@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="/img/Vector (8).png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Nunito|Rubik&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../../../public/prof_asset/css/custom-bs4-3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-11/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../../../public/prof_asset/css/ui.css">
+    <link rel="stylesheet" href="../../../../public/prof_asset/css/style.css">
+    <link rel="stylesheet" href="../../../../public/prof_asset/css/responsive.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <title>Shopper's Dashboard</title>
+</head>
+
+<body style="background-color: #f2f2f2;">
+
+    <header class="section-header">
+
+        <section class="header-top" style="background-color: #02499B !important;">
+            <div class="container pr-0 pl-5 mr-4 ml-4" style="max-width: 95% !important; width: 100%;">
+                <div class="row align-items-center">
+                    <div class="col-md-2 ">
+                        <a href="/" class="brand-wrap">
+                            <img class="logo" src="../../../../public/prof_asset/img/logo.png" alt="logo">
+                        </a>
+                        <!-- brand-wrap.// -->
+                    </div>
+                    <div class="col-md-4 d-flex order-3 text-white">
+                        <div class="top-view">
+                            <h3>Shopper ID: </h3>
+                        </div>
+                    </div>
+                    <!-- col.// -->
+                    <div class="col-md-6 order-2 order-lg-3">
+                        <div class="widgets-wrap d-flex justify-content-end">
+
+
+                            <!-- widget  dropdown.// -->
+                            <div class="widget-header ml-3">
+                                <a href="#"><i class="text-white fa fa-user-circle fa-2x"></i></a>
+                            </div>
+                        </div>
+                        <!-- widgets-wrap.// -->
+                    </div>
+                    <!-- col.// -->
+                </div>
+                <!-- row.// -->
+            </div>
+            <!-- container.// -->
+        </section>
+
+    </header>
+
+    <br>
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-3 pb-5">
+                <div class="card">
+                    <div style="margin-bottom: 20px;">
+                        <h2 class="text-center">MENU</h2>
+                    </div>
+                    <ul style="list-style: none;" class="sidebar-nav">
+                        <li class="">
+                            <a href="index"><i class="fa fa-dashboard"></i>Dashboard</a>
+                        </li>
+                        <li class="">
+                            <a href="delivery-request"><i class="fa fa-comment-alt"></i>Delivery Request</a>
+                        </li>
+                        <li class="nav-item dropdown active">
+                            <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-warehouse"></i> Warehouse</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="warehouse-package">Package Goods</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="delivery-merchant"><i class="fa fa-user"></i>Delivery Merchant Status</a>
+                        </li>
+                        <li>
+                            <a href="routing"><i class="fas fa-route"></i>Control/Routing Check</a>
+                        </li>
+
+                        <li>
+                            <a href="wallet"><i class="fas fa-wallet"></i>Wallet</a>
+                        </li>
+                        <li>
+                            <a href="contact-admin"><i class="fas fa-users-cog"></i>Contact Admin</a>
+                        </li>
+
+                        <li>
+                            <a href="review"><i class="fa fa-thumbs-up"></i>Customer Feedback</a>
+                        </li>
+
+                        <li>
+                            <a href="settings"><i class="fa fa-cog"></i>Settings</a>
+                        </li>
+                        <li>
+                            <a href="messages"><i class="fa fa-envelope"></i>Messages</a>
+                        </li>
+
+                        <li>
+                            <a href="notifications"><i class="fa fa-bell"></i>Notification</a>
+                        </li>
+                        <hr>
+                        <li style="margin-top: 80px;">
+                            <a href="#"><i class="fa fa-sign-out"></i> Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="col-md-9">
+                <div class="row col-md-12 text-center" style="background-color: #AF2E1D !important; padding: 10px; text-align: center !important; color:white">
+                    <h1 class="text-center m-auto pt-3 pb-3"><b>Store in Warehouse</b></h1>
+                </div>
+                <div class="row mb-3" style="background-color: #fff !important; padding: 20px;">
+                    <div class="col-md-6 card p-5 offset-3">
+                        <form>
+                            <div class="form-inline pt-4 ">
+                                <label for="exampleFormControlInput1 " class="col-md-4 " style="font-size: 16px;; ">Storage Location:  </label>
+                                <input type="text " class="form-control col-md-8 " value=" " style="height: 40px; border-radius: 0; ">
+                            </div>
+                            <div class="form-inline pt-4 ">
+                                <label for="exampleFormControlInput1 " class="col-md-4 " style="font-size: 16px;; ">Description:  </label>
+                                <input type="text " class="form-control col-md-8 " value=" " style="height: 40px; border-radius: 0; ">
+                            </div>
+                            <div class="form-inline pt-4 ">
+                                <label for="exampleFormControlInput1 " class="col-md-4 " style="font-size: 16px;; ">Time In:  </label>
+                                <input type="text " class="form-control col-md-8 " value=" " style="height: 40px; border-radius: 0; ">
+                            </div>
+                            <div class="form-inline pt-4 ">
+                                <label for="exampleFormControlInput1 " class="col-md-4 " style="font-size: 16px;; ">Sender Name:  </label>
+                                <input type="text " class="form-control col-md-8 " value=" " style="height: 40px; border-radius: 0; ">
+                            </div>
+                            <div class="form-group pt-4">
+                                <label for="exampleFormControlInput1" class="col-md-4" style=" font-size: 16px;; ">Product Type: </label>
+                                <img src="../../../../public/prof_asset/img/shoe_small.png " width="40px " height="40px " class="col-md-2 img img-thumbnail " />
+                                <img src="../../../../public/prof_asset/img/shoe_small.png " width="40px " height="40px " class="col-md-2 img img-thumbnail " />
+                                <img src="../../../../public/prof_asset/img/shoe_small.png " width="40px " height="40px " class="col-md-2 img img-thumbnail " />
+                            </div>
+                            <div class="form-inline pt-2 ">
+                                <label for="exampleFormControlInput1 " class="col-md-4 " style="font-size: 16px;; ">Buyer Name:  </label>
+                                <input type="text " class="form-control col-md-8 " value=" " style="height: 40px; border-radius: 0; ">
+                            </div>
+                            <div class="form-inline pt-2 ">
+                                <label for="exampleFormControlInput1 " class="col-md-4 " style="font-size: 16px;; ">Billing Address:  </label>
+                                <input type="text " class="form-control col-md-8 " value=" " style="height: 40px; border-radius: 0; ">
+                            </div>
+                            <div class="form-inline pt-2 ">
+                                <label for="exampleFormControlInput1 " class="col-md-4 " style="font-size: 16px;; ">Buyer No:  </label>
+                                <input type="text " class="form-control col-md-8 " value=" " style="height: 40px; border-radius: 0; ">
+                            </div>
+                            <div class="form-inline pt-2 ">
+                                <label for="exampleFormControlInput1 " class="col-md-4 " style="font-size: 16px;; ">Amount:  </label>
+                                <input type="text " class="form-control col-md-8 " value=" " style="height: 40px; border-radius: 0; ">
+                            </div>
+                            <div class="form-inline pt-2 ">
+                                <label for="exampleFormControlInput1 " class="col-md-4 " style="font-size: 16px;; ">Delivery Fee:  </label>
+                                <input type="text " class="form-control col-md-8 " value=" " style="height: 40px; border-radius: 0; ">
+                            </div>
+
+                            <div class="form-group m-auto text-right" style="margin-top: 50px !important;">
+                                <a href="scan-code" class="btn btn-primary ">Store</a>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js "></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js " integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa " crossorigin="anonymous "></script>
+    <script src="../../../../public/prof_asset/js/js.js "></script>
+</body>
+
+</html>
