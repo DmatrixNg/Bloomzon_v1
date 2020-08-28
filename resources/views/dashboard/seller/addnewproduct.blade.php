@@ -131,7 +131,7 @@
                     </div>
                     <div class="row m-5">
                         <div class="col-md-4" style="">
-                            <label for="weight">Weight</label>
+                            <label for="weight">Weight   (kg)</label>
                         </div>
                         <div class="col-md-8">
                             <input name="weight" style="border-radius: 20px; background-color: #EFEFEF;" id="weight"

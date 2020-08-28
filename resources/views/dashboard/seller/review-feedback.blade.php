@@ -15,11 +15,10 @@
 
                 </div>
                 <div class="row col-md-12 mb-3" style="padding: 20px;">
-
                     @if(count($reviews))
                     @foreach($reviews as $review)
                     <div class="mb-2 p-4" style="border-radius: 20px; background-color: #fcfcfc; width: 100%; border: 1px solid #fcfcfc; text-shadow: #666;">
-                        <a href="reply-review">
+                        <a href="{{url('seller/reply-review/'.$review->id)}}">
                             <div class="col-md-2">
                             <img src="{{asset('storage/assets/buyer/avatar/'.$review->buyer_id->avatar)}}" class="img img-circle" width="70" height="70">
                             </div>
@@ -39,9 +38,9 @@
                                     @endif
 
                                     @endfor
-                                   
+
                                 </p>
-                            <a href="{{url('seller/reply-review/'.$review->id)}}" class="btn btn-outline-primary mr-4" style="border: solid 1px #666;">Reply</button>
+                            <a href="{{url('seller/reply-review/'.$review->id)}}" class="btn btn-outline-primary mr-4" style="border: solid 1px #666;">Reply</a>
                             </div>
                         </a>
                     </div>
