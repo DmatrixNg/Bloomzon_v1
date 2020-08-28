@@ -82,13 +82,12 @@
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-container1">
-                <a href="deliverypayout.html">Delivery Merchants</a>
-                <a href="manufacturerpayout.html">Manufacturer</a>
-                <a href="shopperpayout.html">Shopper</a>
-                <a href="fastfoodpayout.html">Fast Food</a>
-                <a href="grocerypayout.html">Grocery</a>
-                <a href="networkingagentpayout.html">Networking Agent</a>
-                <a href="proservicepayout.html">Professional Service</a>
+                <a href="{{ url('admin/payout-request/delivery_merchants') }}">Delivery Merchants</a>
+                <a href="{{ url('admin/payout-request/manufacturer') }}">Manufacturer</a>
+                <a href="{{ url('admin/payout-request/shopper') }}">Shopper</a>
+                <a href="{{ url('admin/payout-request/fast_food_grocery') }}">Fast Food & Grocery</a>
+                <a href="{{ url('admin/payout-request/networking_agent') }}">Networking Agent</a>
+                <a href="{{ url('admin/payout-request/professional_service') }}">Professional Service</a>
             </div>
             @if($admin->role == 'super_admin')
             <button class="dropdown-btn d-none"><i class="fas fa-users"></i> Sub-Admin

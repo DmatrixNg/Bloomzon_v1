@@ -249,7 +249,7 @@
                                                     <li><a href="{{route('fast-foods')}}">Food &amp; Groceries</a></li>
                                                 <li><a href="{{url('/proservice')}}">Professional Services</a></li>
                                                     <li><a href="{{url('/sellers')}}">Seller</a></li>
-                                                    <li class="m-auto"><a href="#">Manufacturers</a></li>
+                                                    <li class="m-auto"><a href="{{url('/manufacturers')}}">Manufacturers</a></li>
                                                 </ul>
                                             </nav>
                                         </div>

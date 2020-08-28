@@ -5,9 +5,13 @@ namespace App\Http\Controllers\Web\Admin;
 use App\Http\Controllers\Controller;
 use App\Review;
 use Illuminate\Http\Request;
+use App\Traits\JsonResponse;
 
 class ReviewController extends Controller
 {
+
+    use JsonResponse;
+    
     /**
      * Display a listing of the resource.
      *
@@ -21,6 +25,19 @@ class ReviewController extends Controller
             'reviews' => $reviews,
         ]);
 
+    }
+
+    public function change_status($id)
+    {
+        $ffg = Review::find($id);
+        if($ffg->status == 1) {
+            $ffg->status = 0;
+        } else {
+            $ffg->status = 1;
+        }
+        $result = $ffg->save();
+        if($result) return $this->send_response(true,$ffg,200,'Status has been changes');
+        return $this->send_response(true,$ffg,400,'');
     }
 
     /**

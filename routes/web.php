@@ -177,16 +177,18 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
         Route::get('all_sellers', 'UserController@all_sellers');
         Route::get('get_users/{user_type}', 'UserController@show_users');
         Route::post('get_users/{user_type}', 'UserController@get_users');
+
         //DELETE USER
         Route::post('delete-user/{usertype}/{id}','UserController@destroyUser');
         Route::post('change_status/{usertype}/{id}','UserController@change_status');
+
         //CHANGE STATUS
         Route::post('change-status/sub_admin/{id}','UserController@changeAdminStatus');
+
         //MAKE SELLER BLOOMZON
         Route::post('make-bloomzon-seller/{id}','UserController@makeBloomzonSeller');
-    
 
-        //BRANDS
+        // BRANDS
         Route::get('all-brands','BrandController@index')->name('all-brands');
         Route::get('create-brands','BrandController@create')->name('create-brand');
         Route::post('store-brand','BrandController@store');
@@ -227,8 +229,6 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
         Route::get('right-of-purchase','SettingController@rightOfPurchase');
         Route::get('refund','SettingController@refund');
         Route::post('save-setting/','SettingController@storeData');
-
-        Route::get('payout-request',"PayoutRequestController@index");
         
         Route::get('site-config','SiteConfigController@index')->name('site-config');
         Route::get('set-configuration',"SiteConfigController@update")->name('set-config');
@@ -259,6 +259,18 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
         Route::get('product/edit/{id}','BloomzonProductController@edit')->name('edit-product');
         Route::post('product/update/{id}','BloomzonProductController@update');
 
+        // payouts
+        Route::get('payout-request/{user_type}',"PayoutRequestController@index");
+        Route::get('payout-request/pay/{request_id}',"PayoutRequestController@pay");
+
+        // 
+        Route::get('shopper-details/{id}',"ShopperController@show_details");
+        Route::get('buyer-details/{id}',"BuyerController@show_details");
+
+        // site analysis
+        Route::get('site-analysis/',"SiteAnalysisController@show_details");
+        
+        
 
     });
 

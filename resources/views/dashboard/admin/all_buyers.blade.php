@@ -38,7 +38,7 @@
                   @foreach ($buyers as $buyer )
                   <tr>
                     <td>{{$buyer->id}}</td>
-                  <td>{{$buyer->full_name}}</td>
+                  <td> <a href="{{ url('/admin/buyer-details', $buyer->id) }}" target="_blank">{{$buyer->full_name}}</a></td>
                     <td>{{$buyer->email}}</td>
                   <td>{{$buyer->phone_number}}</td>
                   <td>{{$buyer->account_type}}</td>

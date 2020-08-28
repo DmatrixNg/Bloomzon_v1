@@ -31,7 +31,7 @@
                   @foreach ($networking_agents as $networking_agent )
                   <tr>
                     <td>{{$networking_agent->id}}</td>
-                  <td>{{$networking_agent->full_name}}</td>
+                  <td> <a href="{{ url('/networkingagent-details', $networking_agent->id) }}" target="_blank">{{$networking_agent->full_name}}</a></td>
                     <td>{{$networking_agent->email}}</td>
                   <td>{{$networking_agent->phone_number}}</td>
                   <td>{{$networking_agent->account_type}}</td>
