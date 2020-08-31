@@ -39,7 +39,16 @@ return [
 
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => ['users',
+                          'buyers',
+                          'admins',
+                          'manufacturers',
+                          'fast_food_groceries',
+                          'networking_agents',
+                          'professionals',
+                          'sellers',
+                          'shoppers',
+                        ],
         ],
 
         'admin' => [
@@ -81,7 +90,7 @@ return [
             'driver' => 'session',
             'provider' => 'shoppers',
         ],
-        
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -153,7 +162,7 @@ return [
             'driver' => 'eloquent',
             'model' => App\Shopper::class,
         ],
-        
+
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

@@ -17,8 +17,9 @@ class PurchaseHistoryController extends Controller
     public function index(){
         $id = $this->buyer->id;
         // $orders =array();
+
         //gets all order and order details relationships
-        $orders = OrderDetails::where('buyer_id',$id)->paginate(5);
+        $orders = $this->buyer->orders()->paginate(5);
        //from the distinc order selected get all order details
     //    $includ = array();
     //     foreach($od as $order){
@@ -28,7 +29,7 @@ class PurchaseHistoryController extends Controller
     //             array_push($includ,$od->id);
     //             array_push($orders,$od);//push all distinct value
     //         }
-    //     }        
+    //     }
         return view('dashboard.buyer.purchase-history',compact(['orders']));
     }
 
@@ -46,13 +47,13 @@ class PurchaseHistoryController extends Controller
                 array_push($includ,$od->id);
                 array_push($payments,$od);//push all distinct value
             }}
-        }        
+        }
         return view('dashboard.buyer.payment-history',compact(['payments']));
     }
 
    public function view_order_details($id){
         $order = Order::find($id);
-        
+
         return view('dashboard.buyer.view-order-details',compact(['order']));
     }
 }

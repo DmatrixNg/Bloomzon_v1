@@ -12,15 +12,46 @@ use App\Traits\JsonResponse;
 use App\WalletHistory;
 use App\WareHouse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use Paystack;
+use App\Helpers\GuardCheck;
+
 
 class OrderController extends Controller
 {
     use JsonResponse;
+
+    public function __construct()
+    {
+      $this->user = auth()->guard(GuardCheck::get())->user();
+    }
+    /**
+* Redirect the User to Paystack Payment Page
+* @return Url
+*/
+public function redirectToGateway()
+{
+
+  try {
+    // dd(request());
+    return Paystack::getAuthorizationUrl()->redirectNow();
+  }catch (\Exception $e){
+
+    return back()->with([
+      'message' => "Error while processing your payment, Please try again",
+      'type' => 'fail'
+    ]);
+  }
+}
+
+
     public function create(Request $request)
     {
-        
-        
+
+// dd($request);
+
         //
         $buyer = null;
         $products = json_decode($request->products);
@@ -34,11 +65,11 @@ class OrderController extends Controller
             'phone_number'          => 'required|string',
             'order_notes'    => 'string',
             'buyer_id'       => 'integer',
-            
+
         ]);
 
-        //check if buyer already on the system 
-        $buyer = Buyer::find($request->buyer_id) ?? Buyer::where('email', $request->email)->first();
+        //check if buyer already on the system
+        $buyer = $this->user->find($request->buyer_id);
         //check if user already exist
         if ($buyer) {
             $buyer->country         = $request->country;
@@ -52,7 +83,7 @@ class OrderController extends Controller
             // $buyer->order_notes = $request->order_notes;
             // $buyer->buyer_id = $request->buyer
         } else {
-            $buyer =  Buyer::create([
+            $buyer =  $this->user->create([
                 'country'         => $request->country,
                 'state'           => $request->state,
                 'full_name'       => $request->full_name,
@@ -62,13 +93,27 @@ class OrderController extends Controller
                 'phone_number'    => $request->phone,
                 'email'           => $request->email,
                 'password'        => Hash::make($request->password),
-                
+
             ]);
         }
-        
-       
+        if ($request->with == "point"){
+          $point = $buyer->point->total_point;
+          $used_point = $buyer->point->used_point;
+
+
+
+          $buyer->point->update([
+            'used_point' => $used_point + ($request->point * 100),
+            'total_point' => ($point - ($request->point * 100))
+          ]);
+        }
+
+
+        // Log::debug($this->user->find($request->buyer_id));
+        // dd();
+        $pickup_id = mt_rand(100, 999).mt_rand(100, 999).mt_rand(100, 999);
         if ($products != null) {
-            $order =  Order::create([
+            $order =  $buyer->orders()->create([
                 'total_amount'    => $request->total_amount,
                 'payment_method'  => $request->payment_gateway,
                 'payment_status'   => $request->payment_status,
@@ -76,24 +121,26 @@ class OrderController extends Controller
                 'order_notes'     => $request->order_notes,
                 'order_reference' => $request->ref,
                 'status' => $request->status,
-                'accumulated_points'=> $buyer->points == null?0:$buyer->points
+                'pickup_id'=>  $pickup_id
             ]);
             if($request->payment_status == 1){
-                $buyer->points += 100;
                 $buyer->save();
             }
             if($order){
-                //loop through each product to create order details and wallet update
+
+                // loop through each product to create order details and wallet update
             foreach ($products as $prod) {
-                $order_detials = OrderDetails::create([
-                    'buyer_id' => $buyer->id,
+
+              $test =  $order->order_details()->create([
+                    'id' => Str::uuid()->toString(),
                     'order_id' => $order->id,
                     'seller_id' => $prod->seller_id->id,
                     'product_id' => $prod->id,
                     'product' => json_encode($prod),
-                    'order_type'=> $prod->product_type,
                     'status'    => $request->status
                 ]);
+                // Log::debug($test);
+                // dd();
                 if($request->payment_status == 1){// check if user already for product
                 WalletHistory::create([
                     'user_id' => $prod->seller_id->id,
@@ -114,7 +161,7 @@ class OrderController extends Controller
                     case 'fast_food_grocery':
                     $seller = FastFoodGrocery::find($prod->seller_id->id);
                     break;
-                    
+
                 }
                 $seller->wallet += $prod->product_sales_price;
                 $seller->save();
@@ -130,15 +177,15 @@ class OrderController extends Controller
 
 
     public function trackDelivery($id = null){
-        
+
         if(isset($id) && $id != null){
             $delivery = OrderDetails::where('order_id',$id)->get();
-            
+
             if(count($delivery)){
                 return view('front.track-delivery',compact(['delivery']));
             }
         }
-       
+
         return view('front.track-delivery',compact(['id']));
     }
 }

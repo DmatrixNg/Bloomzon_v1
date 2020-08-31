@@ -6,18 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Point extends Model
 {
-    protected $table = 'order_details';
-    protected $guarded = [];
+  // protected $table = 'points';
+  protected $guarded = [];
 
-    public function buyer(){
-        return $this->belongsTo('App\User','buyer_id','id');
+
+  protected $fillable = [
+      'id','user_id', 'purchase_count', 'amount',
+      'total_point','used_point'
+    ];
+
+
+    /**
+     * Get the owning pointable model.
+     */
+    public function pointable()
+    {
+        return $this->morphTo();
     }
 
-    public function order(){
-        return $this->belongsTo('App\Order','order_id','id');
-    }
-    public static function myPoints($id){
-        
-        return  self::select(['order_id'])->where('buyer_id',$id)->distinct()->with(['order'])->get();
-    }
+
 }
