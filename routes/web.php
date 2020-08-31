@@ -279,6 +279,8 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
         // send newsletter
         Route::get('newsletter/', "NewsletterController@index");
         Route::post('send-newsletter/', "NewsletterController@send_newsletter");
+        Route::get('newsletters/', "NewsletterController@all_newsletters");
+        Route::get('subscribers/', "NewsletterController@subscribers");
         
         
 

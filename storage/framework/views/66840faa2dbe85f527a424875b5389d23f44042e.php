@@ -15,7 +15,7 @@
                             <label for="subject">Subject:</label>
                         </div>
                         <div class="col-md-10">
-                            <input  id="subject" name="subject" class="form-control" type="text" placeholder="">
+                            <input  id="subject" name="subject" class="form-control" type="text" placeholder="" required>
                             <?php $__errorArgs = ['subject'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -59,7 +59,7 @@ unset($__errorArgs, $__bag); ?>
                 <br>
                 <div class="form-group">
                     <label for="message">Messages</label>
-                    <textarea style="height: 180px;" name="message"  id="message" class="form-control" type="text" placeholder=""></textarea>
+                    <textarea style="height: 180px;" name="message_body"  id="message" class="form-control" type="text" placeholder="" required></textarea>
                     <?php $__errorArgs = ['message'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :

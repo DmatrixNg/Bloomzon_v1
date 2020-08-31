@@ -65,9 +65,9 @@
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-container1">
-                <a href="allsubscribers.html">All Subscribers</a>
+                <a href="<?php echo e(url('admin/subscribers')); ?>">All Subscribers</a>
                 <a href="<?php echo e(url('admin/newsletter')); ?>">Send Out Newsletter</a>
-                <a href="allnewslettersubcribers.html">All Newsletter Subscribers</a>
+                <a href="<?php echo e(url('admin/newsletters')); ?>">All Newsletter Subscribers</a>
             </div>
 
             <button class="dropdown-btn"><i class="fas fa-bullhorn mr-3"></i> Adverts

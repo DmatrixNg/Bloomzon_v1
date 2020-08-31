@@ -45,7 +45,7 @@
                 <br>
                 <div class="form-group">
                     <label for="message">Messages</label>
-                    <textarea style="height: 180px;" name="message"  id="message" class="form-control" type="text" placeholder=""></textarea>
+                    <textarea style="height: 180px;" name="message_body"  id="message" class="form-control" type="text" placeholder="" required></textarea>
                     @error('message')
                         <span class="text-danger">
                             <small>{{ $message }}</small>
