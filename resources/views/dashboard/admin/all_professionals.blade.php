@@ -31,7 +31,7 @@
                 @foreach ($professionals as $professional )
                 <tr>
                   <td>{{$professional->id}}</td>
-                <td>{{$professional->full_name}}</td>
+                <td> <a href="{{ url('/proservice-details', $professional->id) }}" target="_blank">{{$professional->full_name}}</a></td>
                   <td>{{$professional->email}}</td>
                 <td>{{$professional->phone_number}}</td>
                 <td>{{$professional->account_type}}</td>

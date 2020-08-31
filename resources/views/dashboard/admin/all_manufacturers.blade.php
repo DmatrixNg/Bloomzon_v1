@@ -31,7 +31,7 @@
                 @foreach ($manufacturers as $manufacturer )
                 <tr>
                   <td>{{$manufacturer->id}}</td>
-                <td>{{$manufacturer->full_name}}</td>
+                <td> <a href="{{ url('/manufacturer-details', $manufacturer->id) }}" target="_blank">{{$manufacturer->full_name}}</a></td>
                   <td>{{$manufacturer->email}}</td>
                 <td>{{$manufacturer->phone_number}}</td>
                 <td>{{$manufacturer->account_type}}</td>

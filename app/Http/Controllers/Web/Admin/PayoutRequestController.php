@@ -16,8 +16,25 @@ class PayoutRequestController extends Controller
 
     }
 
-    public function index(){
-        $requests = WithdrawalRequest::where('user_type','manufacturer')->get();
-        return view('dashboard.admin.manufacturerpayout',compact(['requests']));
+    public function index($user_type){
+
+        $requests = WithdrawalRequest::where('user_type', $user_type)->get();
+
+        return view('dashboard.admin.payout_requests',[
+            'requests' => $requests
+        ]);
+
+    }
+
+    public function pay($request_id){
+
+        $request = WithdrawalRequest::findOrFail($request_id);
+        $request->status = 1;
+        $request->save();
+
+        return redirect()->back()->with([
+            'message' => 'request status changed',
+        ]);
+        
     }
 }

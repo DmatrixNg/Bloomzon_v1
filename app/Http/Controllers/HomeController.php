@@ -110,6 +110,8 @@ class HomeController extends Controller
                 }
             }
         }
+
+        $sellers= Seller::all();
        
         $brands = [];
         $max_price = $products->max('product_price');

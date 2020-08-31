@@ -87,6 +87,32 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="social-icons style-2">
+                        <div class="row footer-list">
+                            
+                            <br>
+                            <form method="post" action="{{ url('newsletter_subscribe') }}">
+
+                                @csrf
+                                @if(session()->has('message'))
+                                    <div class="alert alert-primary">{{ session()->get('message') }}</div>
+                                @endif
+                                
+                                <div class="col">
+                                    <input class="form-control" placeholder="Email" name="email">
+                                    @error('email')
+                                        <span class="text-danger">
+                                            <small style="color: white;">{{ $message }}</small>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="col">
+                                    <input type="submit" value="Subscribe" class="btn btn-primary">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

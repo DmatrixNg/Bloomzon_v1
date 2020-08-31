@@ -7,7 +7,7 @@
         <div class="col-md-10">
             <div class="row mb-5 mt-5">
                 <div class="col-md-12 text-center">
-                    <h2>Create New User</h2>
+                    <h2>Create New Brand</h2>
                 </div>
             </div>
             <div class="row">

@@ -1,5 +1,6 @@
 @extends('dashboard.manufacturer.layouts.app')
 @section('content')
+
 <div class="col-md-10" style="background-color: #6610f2;">
     <div class="row row justify-content-center mt-5"><h1 class="text-white">Transaction Details</h1></div>
 

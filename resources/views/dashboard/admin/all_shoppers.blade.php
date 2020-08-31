@@ -31,7 +31,7 @@
                 @foreach ($shoppers as $shopper )
                 <tr>
                   <td>{{$shopper->id}}</td>
-                <td>{{$shopper->full_name}}</td>
+                  <td> <a href="{{ url('/admin/shopper-details', $shopper->id) }}" target="_blank">{{$shopper->full_name}}</a></td>
                   <td>{{$shopper->email}}</td>
                 <td>{{$shopper->phone_number}}</td>
                 <td>{{$shopper->account_type}}</td>

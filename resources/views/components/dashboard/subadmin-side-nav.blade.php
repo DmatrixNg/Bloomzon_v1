@@ -61,14 +61,14 @@
                 <a href="{{ route('admin.all-brands') }}">All Brands</a>
                 <a href="{{ route('admin.create-brand') }}">Create New Brand</a>
             </div>
-            {{-- <button class="dropdown-btn"><i class="fas fa-newspaper mr-3"></i> Newsletter
+            <button class="dropdown-btn"><i class="fas fa-newspaper mr-3"></i> Newsletter
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-container1">
-                <a href="allsubscribers.html">All Subscribers</a>
-                <a href="newsletter.html">Send Out Newsletter</a>
-                <a href="allnewslettersubcribers.html">All Newsletter Subscribers</a>
-            </div> --}}
+                <a href="{{ url('admin/subscribers') }}">All Subscribers</a>
+                <a href="{{ url('admin/newsletter') }}">Send Out Newsletter</a>
+                <a href="{{ url('admin/newsletters') }}">All Newsletter Subscribers</a>
+            </div>
 
             <button class="dropdown-btn"><i class="fas fa-bullhorn mr-3"></i> Adverts
                 <i class="fa fa-caret-down"></i>
@@ -82,13 +82,12 @@
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-container1">
-                <a href="deliverypayout.html">Delivery Merchants</a>
-                <a href="manufacturerpayout.html">Manufacturer</a>
-                <a href="shopperpayout.html">Shopper</a>
-                <a href="fastfoodpayout.html">Fast Food</a>
-                <a href="grocerypayout.html">Grocery</a>
-                <a href="networkingagentpayout.html">Networking Agent</a>
-                <a href="proservicepayout.html">Professional Service</a>
+                <a href="{{ url('admin/payout-request/delivery_merchants') }}">Delivery Merchants</a>
+                <a href="{{ url('admin/payout-request/manufacturer') }}">Manufacturer</a>
+                <a href="{{ url('admin/payout-request/shopper') }}">Shopper</a>
+                <a href="{{ url('admin/payout-request/fast_food_grocery') }}">Fast Food & Grocery</a>
+                <a href="{{ url('admin/payout-request/networking_agent') }}">Networking Agent</a>
+                <a href="{{ url('admin/payout-request/professional_service') }}">Professional Service</a>
             </div>
             @if($admin->role == 'super_admin')
             <button class="dropdown-btn d-none"><i class="fas fa-users"></i> Sub-Admin
@@ -98,8 +97,8 @@
                 <a class="dropdown-item" href="{{route('admin.all-subadmin')}}">All Sub - Admin</a>
                 <a class="dropdown-item" href="create_subadmin.html">Create Sub - Admin</a>
             </div>
-            <a href="account_sales_statements.html"><i class="fas fa-clipboard-list"></i> Account Sales Statements</a>
-            <a href="site_analysis.html"><i class="fas fa-route"></i> Site Analysis</a>
+            <a href="{{ url('admin/account-statement') }}"><i class="fas fa-clipboard-list"></i> Account Sales Statements</a>
+            <a href="{{ url('admin/site-analysis') }}"><i class="fas fa-route"></i> Site Analysis</a>
             <a href="{{route("admin.site-config") }}"><i class="fas fa-route"></i> Site Configuration</a>
             <a href="system_control.html"><i class="fa fa-cog"></i>System Control</a>
             @endif
