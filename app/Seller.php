@@ -78,12 +78,28 @@ class Seller extends Authenticatable
     //     return $this->hasMany('App\Product');
     // }
 
-   
+
     public function getProductsAttribute(){
         return Product::where('seller_id',$this->id)->where('product_type','seller')->get();
     }
 
     public function getReviewsAttribute(){
         return Review::where('seller_id',$this->id)->where('review_type','seller')->get();
+    }
+
+    /**
+     * Get all of the user's points.
+     */
+    public function points()
+    {
+        return $this->morphOne('App\Point', 'pointable');
+    }
+
+    /**
+     * Get all of the user's orders.
+     */
+    public function orders()
+    {
+        return $this->morphMany('App\OrderDetail', 'orderable');
     }
 }

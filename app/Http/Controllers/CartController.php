@@ -100,7 +100,7 @@ class CartController extends Controller
         //HANDEL ALL CONVERSIONS RATE HERE
         $m1 = Money::USD($total,true);
         $config = SiteConfig::find(1);
-        $c = ['NGN' => 386.23, 'EUR' => 0.84, 'GBP' => 0.76]; //all currency conversion 
+        $c = ['NGN' => 386.23, 'EUR' => 0.84, 'GBP' => 0.76]; //all currency conversion
         $currencies = array();
         foreach ($c as $key => $curr) {
             array_push($currencies, $m1->convert(currency($key), (double)$curr));
@@ -122,16 +122,16 @@ class CartController extends Controller
         foreach ($cart_items as $key => $cart) {
 
             $product = Product::where('id', $key)->first();
-            
+
             if ($product != []) {
                 //get the coupon code from session
                 //check if the coupon code matches product seller id and seller type
-                //get the discount from the product and apply it to the product_sales_price 
+                //get the discount from the product and apply it to the product_sales_price
                 $coupon = $this->applyCoupon();
                 $product->discounted = false;
-                
+
                 if(count($coupon) && $coupon['user_id'] == $product->seller_id->id && $coupon['user_type'] == $product->product_type){
-                   
+
                     $discount = $product->product_sales_price * $coupon['discount'] / 100;
                     $product->product_sales_price = $product->product_sales_price - $discount;
                     $product->discounted = true;
@@ -142,7 +142,7 @@ class CartController extends Controller
                 $total += $cart['quantity'] * $product->product_sales_price;
             }
         }
-        
+
         return [$cart_items, $products, $total];
     }
 
@@ -152,5 +152,23 @@ class CartController extends Controller
             $coupon = session()->get('coupon');
             return $coupon;
         } return [];
+    }
+
+    public function getConversion($total)
+    {
+      $m1 = Money::USD($total,true);
+      $config = SiteConfig::find(1);
+      $c = ['NGN' => 386.23, 'EUR' => 0.84, 'GBP' => 0.76]; //all currency conversion
+      $currencies = array();
+      foreach ($c as $key => $curr) {
+        // dd($m1->convert(currency($key), (double)$curr)->getCurrency());
+
+          array_push($currencies,[ $m1->convert(currency($key), (double)$curr),'currency' => $m1->convert(currency($key), (double)$curr)->getCurrency()]);
+          if ($key == 'NGN') {
+              $naira_price = $m1->convert(currency($key), (double)$curr)->getValue();
+          }
+      }
+
+      return response()->json($currencies);
     }
 }

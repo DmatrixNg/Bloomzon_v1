@@ -14,7 +14,7 @@ class ReviewController extends Controller
     use JsonResponse;
     protected $seller;
     public function __construct()
-    {   
+    {
         $this->seller = Auth::guard('seller')->user();
     }
     /**

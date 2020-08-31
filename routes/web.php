@@ -4,6 +4,9 @@ use App\Http\Controllers\Web\Buyer\DashboardController;
 use App\Http\Controllers\Web\Buyer\FavoriteController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
+
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -18,6 +21,19 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 // provides the APP\HTTP\CONTOLLERS NAMESPACE
 
+Route::get('/rename_table',function(){
+
+dump("enter old and new name eg /{before}/{after}");
+
+});
+Route::get('/rename_table/{before}/{after}',function(Request $request){
+  if ($request->before && $request->after) {
+    Schema::rename($request->before,$request->after);
+  dump("done");
+  }
+  return dump("enter old and new name eg /{before}/{after}");
+
+});
 Route::get('manufacturer/logout', 'Web\Manufacturer\Auth\LoginController@logout')->name('logout');
 
 Route::GET('/realestate',function(){
@@ -80,9 +96,14 @@ Route::post('/cart/clear','CartController@clearCart');
 Route::get('/checkout','CartController@checkout');
 Route::get('/get_categories', 'Web\Admin\CategoryController@get_all_catgeory');
 Route::get('/all_categories', 'Web\Admin\CategoryController@index');
+Route::get('/convert/{total}', 'CartController@getConversion');
 
 Route::get('/category/{id}/{subid?}','HomeController@show_category');
 
+//paystack
+Route::post('/pay', 'PaymentController@redirectToGateway')->name('pay');
+// Route::post('/order', 'PaymentController@order')->name('order');
+Route::get('/paid', 'PaymentController@handleGatewayCallback');
 
 
 Route::get('/fast-foods','HomeController@fast_foods')->name('fast-foods');
@@ -191,6 +212,7 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
         //MAKE SELLER BLOOMZON
         Route::post('make-bloomzon-seller/{id}','UserController@makeBloomzonSeller');
 
+
         // BRANDS
         Route::get('all-brands','BrandController@index')->name('all-brands');
         Route::get('create-brands','BrandController@create')->name('create-brand');
@@ -200,7 +222,7 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
         // REVIEWS
         Route::get('reviews', 'ReviewController@index');
         Route::post('/reveiw/change_status/{id}', 'ReviewController@change_status');
-        
+
         //ADVERTS
         Route::get('all-adverts','AdvertController@index')->name('all-adverts');
         Route::get('create-advert','AdvertController@create')->name('create-advert');
@@ -232,7 +254,7 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
         Route::get('right-of-purchase','SettingController@rightOfPurchase');
         Route::get('refund','SettingController@refund');
         Route::post('save-setting/','SettingController@storeData');
-        
+
         Route::get('site-config','SiteConfigController@index')->name('site-config');
         Route::get('set-configuration',"SiteConfigController@update")->name('set-config');
 
@@ -286,7 +308,7 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
 
     });
 
-   
+
 });
 
 //all the buyer routes will be defined here...
@@ -313,12 +335,12 @@ Route::prefix('/buyer')->name('buyer.')->namespace('Web\Buyer')->group(function 
     });
 
 
-    
+
     // all buyer protected routes, user must be login as buyer to access these routes
     Route::middleware('auth:buyer')->group(function () {
-        
+
         Route::get('/dashboard', 'DashboardController@index');
-        
+
         Route::get('/profile', 'ProfileController@index');
         //ADD TO FAVORITE
         Route::post('/favorite/add', 'FavoriteController@create');
@@ -346,7 +368,7 @@ Route::prefix('/buyer')->name('buyer.')->namespace('Web\Buyer')->group(function 
             return view('dashboard.buyer.update-account-details', compact(['buyer']));
         });
 
-        
+
         //contact admin
         Route::get('contact-admin', function () {
             $buyer = Auth::guard('buyer')->user();
@@ -365,12 +387,12 @@ Route::prefix('/buyer')->name('buyer.')->namespace('Web\Buyer')->group(function 
 
         Route::get('notifications/{id}','DashboardController@notification');
         Route::get('favorites/{id}','DashboardController@favorites');
-        
-        
+
+
         Route::get('products/bloomzon','DashboardController@bloomlist');
         //POINTS
         Route::get('points','DashboardController@points');
-        
+
         //DELIVERY STATUS
         Route::get('delivery-status/{id}','DashboardController@deliveryStatus')->name('delivery-status');
         Route::get('delivery-status','DashboardController@allStatus')->name('all-delivery');
@@ -392,11 +414,11 @@ Route::prefix('/buyer')->name('buyer.')->namespace('Web\Buyer')->group(function 
         Route::get('/reviews-and-feedback','ReviewController@index')->name('reviews');
         Route::get('/reply-review/{id}','ReviewController@reply')->name('reply-reviews');
         Route::post('/reply-review','ReviewController@storeReply')->name('reply-reviews');
-        
+
         Route::get('/payment_history','PurchaseHistoryController@paymentHistory')->name('payment-history');
 
         //
-       
+
     });
 });
 
@@ -409,7 +431,7 @@ Route::prefix('/manufacturer')->name('manufacturer.')->namespace('Web\Manufactur
         //Login Routes
         Route::get('/login', 'LoginController@showLoginForm')->name('login');
         Route::post('/login', 'LoginController@login');
-        
+
 
         //Register Routes
         Route::get('/register', 'RegisterController@showRegistrationForm')->name('register');
@@ -460,7 +482,7 @@ Route::prefix('/manufacturer')->name('manufacturer.')->namespace('Web\Manufactur
         Route::post('/reply/{message_id}', 'MessageController@reply');
         Route::get('/message_replies/{message_id}', 'MessageController@get_replies');
 
-        //ADVERT 
+        //ADVERT
         Route::get('all-ads/','AdvertController@index')->name('all-ads');
         Route::get('post-new-ads','AdvertController@create')->name('post-new-ads');
         Route::post('post-ads/','AdvertController@store');
@@ -513,7 +535,7 @@ Route::prefix('/networking_agent')->name('networking_agent.')->namespace('Web\Ne
     // all networking_agent protected routes, user must be login as networking_agent to access these routes
     Route::middleware('auth:networking_agent')->group(function () {
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-       
+
         Route::get('/profile', 'ProfileController@index')->name('profile');
          //edit profile
          Route::get('edit-profile','ProfileController@edit_profile')->name('edit-profile');
@@ -540,7 +562,7 @@ Route::prefix('/networking_agent')->name('networking_agent.')->namespace('Web\Ne
 
 
         Route::get('/pre-chart',"SellerController@pre_chart")->name('pre-chart');
-        
+
         Route::get('/verification',function(){
             return view('dashboard.networking_agent.verification');
         })->name('verification');
@@ -550,7 +572,7 @@ Route::prefix('/networking_agent')->name('networking_agent.')->namespace('Web\Ne
          //WALLET
          Route::get('/wallet',"WalletController@index")->name('wallet');
          Route::post('cashout','WalletController@cashOut')->name('cash-out');
- 
+
 
 
         // message
@@ -565,7 +587,7 @@ Route::prefix('/networking_agent')->name('networking_agent.')->namespace('Web\Ne
         Route::get('/accountupgrade/', 'ProfileController@upgrade_account');
         Route::post('/account_upgrade/', 'ProfileController@upgrade');
 
-         
+
           ///ADVERTS
         Route::get('all-ads/','AdvertController@index')->name('all-ads');
         Route::get('post-new-ads','AdvertController@create')->name('post-new-ads');
@@ -573,7 +595,7 @@ Route::prefix('/networking_agent')->name('networking_agent.')->namespace('Web\Ne
         Route::post('delete-ads/{id}','AdvertController@destroy');
         Route::post('change-ads-status/{id}','AdvertController@change_status');
 
-  
+
 
     });
 });
@@ -605,7 +627,7 @@ Route::prefix('/professional')->name('professional.')->namespace('Web\Profession
     Route::middleware('auth:professional')->group(function () {
 
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-       
+
         Route::get('/profile', 'ProfileController@index')->name('profile');
          //edit profile
          Route::get('edit-profile','ProfileController@edit_profile')->name('edit-profile');
@@ -717,7 +739,7 @@ Route::prefix('/seller')->name('seller.')->namespace('Web\Seller')->group(functi
     Route::middleware('auth:seller')->group(function () {
         // index dashboard
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-        
+
         Route::get('/profile', 'ProfileController@index')->name('profile');
          //edit profile
          Route::get('edit-profile', function () {
@@ -740,17 +762,17 @@ Route::prefix('/seller')->name('seller.')->namespace('Web\Seller')->group(functi
 
         Route::get('/sales','SalesController@index')->name('sales');
         Route::get('/sales/show/{sale}','SalesController@show')->name('show-sales');
-       
+
         Route::get('/orders','OrdersController@index')->name('histogram');
         Route::get('/order/show/{order}','OrdersController@show')->name('order-details');
-        
+
         Route::post('change-order-status','OrdersController@changeStatus');
 
         Route::get('/reviews-and-feedback','ReviewController@index')->name('reviews');
         Route::get('/reply-review/{id}','ReviewController@reply')->name('reply-reviews');
         Route::post('/reply-review','ReviewController@storeReply')->name('reply-reviews');  //display account information
 
-       
+
         //contact admin
         Route::get('contact-admin', function () {
             $user =  Auth::guard('seller')->user();
@@ -791,13 +813,13 @@ Route::prefix('/seller')->name('seller.')->namespace('Web\Seller')->group(functi
         Route::post('product/delete/{id}','ProductController@destroy');
         Route::get('product/edit/{id}','ProductController@edit')->name('edit-product');
         Route::post('product/update/{id}','ProductController@update');
-       
-       
+
+
        Route::get('settings', function () {
         $seller = Auth::guard('seller')->user();
         return view('dashboard.seller.settings', compact(['seller']));
     });
-      
+
     Route::get('account-upgrade', function () {
         $seller = Auth::guard('seller')->user();
         return view('dashboard.seller.accountupgrade', compact(['seller']));
@@ -806,13 +828,13 @@ Route::prefix('/seller')->name('seller.')->namespace('Web\Seller')->group(functi
     //     $seller = Auth::guard('seller')->user();
     //     return view('dashboard.seller.promotion', compact(['seller']));
     // });
-    
+
     Route::get('policy', function () {
         $seller = Auth::guard('seller')->user();
         return view('dashboard.seller.policy', compact(['seller']));
     });
 
-    //ADVERT 
+    //ADVERT
     Route::get('all-ads/','AdvertController@index')->name('all-ads');
     Route::get('post-new-ads','AdvertController@create')->name('post-new-ads');
     Route::post('post-ads/','AdvertController@store');
@@ -859,9 +881,9 @@ Route::prefix('/shopper')->name('shopper.')->namespace('Web\Shopper')->group(fun
 
     // all shopper protected routes, user must be login as shopper to access these routes
     Route::middleware('auth:shopper')->group(function () {
-       
+
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-       
+
         Route::get('/profile', 'ProfileController@index')->name('profile');
          //edit profile
          Route::get('edit-profile','ProfileController@edit_profile')->name('edit-profile');
@@ -874,7 +896,7 @@ Route::prefix('/shopper')->name('shopper.')->namespace('Web\Shopper')->group(fun
         });
 
         Route::get('/account-information', 'ProfileController@account_info');
-        
+
 
         ///DELIVERY ROUTE
         Route::get('delivery-request','DeliveryController@index')->name('delivery-request');
@@ -883,7 +905,7 @@ Route::prefix('/shopper')->name('shopper.')->namespace('Web\Shopper')->group(fun
         Route::get('delivery-merchant','DeliveryController@merchant')->name('delivery-merchant');
         Route::get('routing','DeliveryController@routing')->name('routing');
         Route::post('change-delivery-status','DeliveryController@changeDeliveryStatus');
-        
+
         Route::get('warehouse-package','WareHouseController@index')->name('warehouse-package');
         Route::get('store-in-warehouse/{id}','WareHouseController@create')->name('store-in-warehouse');
         Route::post('store-in-warehouse','WareHouseController@store');
@@ -900,7 +922,7 @@ Route::prefix('/shopper')->name('shopper.')->namespace('Web\Shopper')->group(fun
         Route::get('/edit-profile', 'ProfileController@index')->name('profile');
          //edit profile
         Route::put('edit-profile/{id}', 'ProfileController@update');
-        
+
         Route::put('edit-bank/{id}', 'ProfileController@updateBankDetails');
         //update account details
         Route::get('account-details', "ProfileController@accountDetails");
@@ -919,13 +941,13 @@ Route::prefix('/shopper')->name('shopper.')->namespace('Web\Shopper')->group(fun
          Route::post('post-ads/','AdvertController@store');
          Route::post('delete-ads/{id}','AdvertController@destroy');
          Route::post('change-ads-status/{id}','AdvertController@change_status');
-        
+
          //REVIEWS
          Route::get('/reviews-and-feedback','ReviewController@index')->name('reviews');
          Route::get('/reply-review/{id}','ReviewController@reply')->name('reply-reviews');
          Route::post('/reply-review','ReviewController@storeReply')->name('reply-reviews');  //display account information
- 
-        
+
+
     });
 });
 
@@ -954,9 +976,9 @@ Route::prefix('/fast_food_grocery')->name('fast_food_grocery.')->namespace('Web\
 
     // all shopper protected routes, user must be login as shopper to access these routes
     Route::middleware('auth:fast_food_grocery')->group(function () {
-       
+
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-       
+
         Route::get('/profile', 'ProfileController@index')->name('profile');
          //edit profile
          Route::get('edit-profile', function () {
@@ -979,28 +1001,28 @@ Route::prefix('/fast_food_grocery')->name('fast_food_grocery.')->namespace('Web\
 
         Route::get('/orders','OrdersController@index')->name('orders');
         Route::get('/order/show/{order}','OrdersController@show')->name('order-details');
-        
+
         Route::post('change-order-status','OrdersController@changeStatus');
 
-        
-        
+
+
         //WALLET
         Route::get('/wallet',"WalletController@index")->name('wallet');
         Route::post('cashout','WalletController@cashOut')->name('cash-out');
-        
-        
+
+
         Route::get('/food-menu', 'FoodController@index')->name('food-menu');
         Route::get('/add-food-menu', 'FoodController@create')->name('add-food-menu');
         Route::post('/store-food-menu', 'ProductController@store')->name('store-food-menu');
-        
+
         // accountupgrade
         Route::get('/accountupgrade/', 'ProfileController@upgrade_account');
         Route::post('/account_upgrade/', 'ProfileController@upgrade');
-        
+
         // settings
         Route::get('settings', 'ProfileController@settings');
         Route::post('store_settings', 'ProfileController@store_settings');
-        
+
         // message
         Route::get('messages', 'MessageController@messages')->name('messages');;
         Route::get('create_message','MessageController@create_message');
@@ -1008,28 +1030,28 @@ Route::prefix('/fast_food_grocery')->name('fast_food_grocery.')->namespace('Web\
         Route::post('/all_messages', 'MessageController@all_messages');
         Route::post('/reply/{message_id}', 'MessageController@reply');
         Route::get('/message_replies/{message_id}', 'MessageController@get_replies');
-        
+
         ///ADVERTS
         Route::get('all-ads/','AdvertController@index')->name('all-ads');
         Route::get('post-new-ads','AdvertController@create')->name('post-new-ads');
         Route::post('post-ads/','AdvertController@store');
         Route::post('delete-ads/{id}','AdvertController@destroy');
         Route::post('change-ads-status/{id}','AdvertController@change_status');
-        
+
         // ADD PRODUCT
         Route::get('add-new-grocery', 'ProductController@create')->name('add-new-product');
-        
+
         Route::post('grocery/add', 'ProductController@store');
         Route::get('grocery/all/', 'ProductController@index')->name('all-my-groceries');
         Route::post('grocery/delete/{id}','ProductController@destroy');
         Route::get('grocery/edit/{id}','ProductController@edit')->name('edit-grocery');
         Route::post('grocery/update/{id}','ProductController@update');
-        
+
         //REVIEWS
         Route::get('/reviews-and-feedback','ReviewController@index')->name('reviews');
         Route::get('/reply-review/{id}','ReviewController@reply')->name('reply-reviews');
         Route::post('/reply-review','ReviewController@storeReply')->name('reply-reviews');
-        
-        
+
+
     });
 });

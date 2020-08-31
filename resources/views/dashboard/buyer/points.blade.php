@@ -14,7 +14,7 @@
                                 </div>
                                 <div class="col-md-9">
                                     <h4>MY POINTS</h4>
-                                    <h3><b>{{$points}}</b></h3>
+                                    <h3><b>{{$points->total_point ?? 0}}</b></h3>
                                     <p>Total Available Points</p>
                                 </div>
                             </div>
@@ -25,9 +25,9 @@
                                     <i class="fa fa-chart-pie fa-4x"></i>
                                 </div>
                                 <div class="col-md-9">
-                                    
-                                    <h3><b>Earned Points:</b>{{count($order_points)*100}} </h3>
-                                    
+
+                                    <h3><b>Earned Points: </b> ${{$points->amount ?? 0}} </h3>
+
                                 </div>
                             </div>
                         </div>
@@ -47,8 +47,11 @@
                 <div class="col-md-12">
                         <table id="dataTable" class="table text-center table-bordered m-0 p-0">
 
+                          @php
+                            // dd(auth()->guard('buyer')->user()->orders)
+                          @endphp
 
-                            @if(count($order_points))
+                            @if(@$points->total_point)
                                 <thead style="background-color:  #003B88; color: #fff; font-size: 16px; vertical-align: middle;">
                                 <tr style="height: 60px; text-align: center !important;" class="text-center">
                                     <th class="text-center" style="border: solid 3px #ddd;">DAY</th>
@@ -58,18 +61,18 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($order_points as $point)
+                                {{-- @foreach(auth()->guard('buyer')->user()->orders as $order) --}}
                                     <tr style="height: 60px;">
-                                        <td style="border: solid 1px #ddd;">{{\Illuminate\Support\Carbon::parse($point->created_at)->format('d/m/y g:i A')}}</td>
-                                        <td style="border: solid 1px #ddd;">{{count($point->order->order_details)}}</td>
-                                        <td style="border: solid 1px #ddd;">100</td>
-                                        <td style="border: solid 1px #ddd;">{{$point->order->accumulated_points}}</td>
+                                        <td style="border: solid 1px #ddd;">{{@$points->created_at->format('d/m/y g:i A')}}</td>
+                                        <td style="border: solid 1px #ddd;">{{@$points->purchase_count}}</td>
+                                        <td style="border: solid 1px #ddd;">${{@$points->amount}}</td>
+                                        <td style="border: solid 1px #ddd;">{{@$points->used_point}}</td>
                                     </tr>
-                                @endforeach
+                                {{-- @endforeach --}}
                             </tbody>
 
                         </table>
-                       
+
                     @else
                         <h3> You have not earned any points yet. start shopping to earn points </h3>
                     @endif

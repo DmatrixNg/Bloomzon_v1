@@ -55,4 +55,44 @@ class Buyer extends Authenticatable
         return $this->hasMany('App\Review');
     }
 
+
+    /**
+     * Get all of the user's points.
+     */
+    public function point()
+    {
+        return $this->morphOne('App\Point', 'pointable');
+    }
+
+    /**
+     * Get all of the user's orders.
+     */
+    public function order_details()
+    {
+        return $this->morphMany('App\OrderDetail', 'orderable');
+    }
+    /**
+     * Get all of the user's orders.
+     */
+    public function orders()
+    {
+        return $this->morphMany('App\Order', 'orderable');
+    }
+    /**
+     * Get all of the payments.
+     */
+    public function payments()
+    {
+        return $this->morphMany('App\Payment', 'payer');
+    }
+
+    /**
+     * Get all of the payments.
+     */
+    public function cards()
+    {
+        return $this->morphMany('App\Card', 'user');
+    }
+
+
 }
