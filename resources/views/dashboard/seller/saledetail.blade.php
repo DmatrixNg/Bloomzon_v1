@@ -6,7 +6,7 @@
         @section('content')
         <div class="col-md-10">
             <div class="row mt-5 justify-content-center">
-                
+
                 <div class="col-md-2 text-center" style="background-color: #fff !important; padding: 15px !important;">
                     <img src="{{asset('storage/assets/product/avatars/'.$sale->product->avatars[0])}}" class="img" width="140" height="105">
                 </div>
@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="card col-md-6 offset-3" style="padding: 30px;">
 
-                   
+
                         <div class="row">
                             <div class="col-md-3">
                                 <p>{{$sale->product->product_name}}</p>
@@ -28,7 +28,7 @@
                                 <p>{{$sale->product->quantity}} piece(s)</p>
                             </div>
                         </div>
-                    
+
 
 
                 </div>
@@ -42,7 +42,10 @@
                                Buyer:
                            </div>
                            <div class="col-md-6">
-                               {{$sale->buyer_id->full_name}}
+                             {{-- @php
+                               dd($sale)
+                             @endphp --}}
+                               {{$order->orderable->full_name}}
                            </div>
                        </div><hr>
                        <div class="row text-center">
@@ -50,7 +53,7 @@
                                Billing Address:
                            </div>
                            <div class="col-md-6">
-                               {{$sale->buyer_id->billing_address}}
+                               {{$order->orderable->billing_address}}
                            </div>
                        </div><hr>
                        <div class="row text-center">
@@ -58,7 +61,7 @@
                                Amount:
                            </div>
                            <div class="col-md-6">
-                               
+
                                {{number_format($sale->product->total)}}
                            </div>
                        </div><hr>

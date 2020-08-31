@@ -8,6 +8,7 @@ use App\Order;
 use App\OrderDetails;
 use App\Professional;
 use App\Seller;
+use App\Product;
 use App\Traits\JsonResponse;
 use App\WalletHistory;
 use App\WareHouse;
@@ -131,16 +132,17 @@ public function redirectToGateway()
                 // loop through each product to create order details and wallet update
             foreach ($products as $prod) {
 
+              $product = Product::find($prod->id);
+
               $test =  $order->order_details()->create([
                     'id' => Str::uuid()->toString(),
                     'order_id' => $order->id,
-                    'seller_id' => $prod->seller_id->id,
-                    'product_id' => $prod->id,
+                    'seller_id' => $product->seller_id->id,
+                    'seller_type' => $product->seller_class,
+                    'product_id' => $product->id,
                     'product' => json_encode($prod),
                     'status'    => $request->status
                 ]);
-                // Log::debug($test);
-                // dd();
                 if($request->payment_status == 1){// check if user already for product
                 WalletHistory::create([
                     'user_id' => $prod->seller_id->id,
@@ -169,7 +171,6 @@ public function redirectToGateway()
 
 
             }
-
             return $this->send_response(true,$order->id,200,'Order created successfully');
         }
         }

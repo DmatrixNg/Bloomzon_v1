@@ -33,14 +33,14 @@ class DashboardController extends Controller
     {
         $id = $this->seller->id;
         $withdrawals = WithdrawalRequest::where('user_id',$id)->where('user_type','seller')->where('status',1)->get();
-        $orders = OrderDetails::where('seller_id',$id)->get();
-        $sales =  OrderDetails::where('seller_id',$id)->where('status','delivered')->get();
+        $orders = $this->seller->order_details()->get();
+        $sales =  $this->seller->order_details()->where('status','delivered')->get();
         return view('dashboard.seller.home',compact(['orders','sales','withdrawals']));
     }
 
     // handles the file and image uploads
     public function fileStore($data)
-    {   
+    {
         $url = array();
         foreach ($data as $img) {
             $image = $img;
@@ -66,7 +66,7 @@ class DashboardController extends Controller
         return $filename;
     }
 
-   
+
     /**
      * Show the form for creating a new resource.
      *
@@ -129,6 +129,16 @@ class DashboardController extends Controller
             'issue_type'     => ['required', 'string'],
         ]);
     }
+    public function notifications(){
+
+      $notifications = $this->seller->notifications;
+        return view('dashboard.seller.notifications',compact(['notifications']));
+    }
+    public function notification($id){
+      $notifications = $this->seller->notifications;
+        return view('dashboard.seller.notifications',compact(['notifications']));
+    }
+
     /**
      * Display the specified resource.
      *

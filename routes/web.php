@@ -34,6 +34,13 @@ Route::get('/rename_table/{before}/{after}',function(Request $request){
   return dump("enter old and new name eg /{before}/{after}");
 
 });
+Route::get('test/product', function () {
+  $first = \App\Product::all();
+  foreach ($first as $key => $value) {
+dump($value->seller_class);
+ }
+  // dd($first->seller_class);
+});
 Route::get('manufacturer/logout', 'Web\Manufacturer\Auth\LoginController@logout')->name('logout');
 
 Route::GET('/realestate',function(){
@@ -139,9 +146,6 @@ Route::post('/chat/continue','ChatController@continue')->name('chat.continue');
 Route::get('/manufacturers','ManufacturerController@index')->name('manufacturers');
 Route::get('/manufacturer-details/{id}','ManufacturerController@show');
 
-// newsletter
-Route::post('/newsletter_subscribe','NewsletterSubscriptionController@store');
-
 //all the admin routes will be defined here...
 Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function () {
 
@@ -201,19 +205,16 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
         Route::get('all_sellers', 'UserController@all_sellers');
         Route::get('get_users/{user_type}', 'UserController@show_users');
         Route::post('get_users/{user_type}', 'UserController@get_users');
-
         //DELETE USER
         Route::post('delete-user/{usertype}/{id}','UserController@destroyUser');
         Route::post('change_status/{usertype}/{id}','UserController@change_status');
-
         //CHANGE STATUS
         Route::post('change-status/sub_admin/{id}','UserController@changeAdminStatus');
-
         //MAKE SELLER BLOOMZON
         Route::post('make-bloomzon-seller/{id}','UserController@makeBloomzonSeller');
 
 
-        // BRANDS
+        //BRANDS
         Route::get('all-brands','BrandController@index')->name('all-brands');
         Route::get('create-brands','BrandController@create')->name('create-brand');
         Route::post('store-brand','BrandController@store');
@@ -255,6 +256,8 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
         Route::get('refund','SettingController@refund');
         Route::post('save-setting/','SettingController@storeData');
 
+        Route::get('payout-request',"PayoutRequestController@index");
+
         Route::get('site-config','SiteConfigController@index')->name('site-config');
         Route::get('set-configuration',"SiteConfigController@update")->name('set-config');
 
@@ -284,27 +287,6 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
         Route::get('product/edit/{id}','BloomzonProductController@edit')->name('edit-product');
         Route::post('product/update/{id}','BloomzonProductController@update');
 
-        // payouts
-        Route::get('payout-request/{user_type}',"PayoutRequestController@index");
-        Route::get('payout-request/pay/{request_id}',"PayoutRequestController@pay");
-
-        // 
-        Route::get('shopper-details/{id}',"ShopperController@show_details");
-        Route::get('buyer-details/{id}',"BuyerController@show_details");
-
-        // site analysis
-        Route::get('site-analysis/',"SiteAnalysisController@show_details");
-
-        // system control
-        Route::get('account-statement/',"AccountStatementController@index");
-
-        // send newsletter
-        Route::get('newsletter/', "NewsletterController@index");
-        Route::post('send-newsletter/', "NewsletterController@send_newsletter");
-        Route::get('newsletters/', "NewsletterController@all_newsletters");
-        Route::get('subscribers/', "NewsletterController@subscribers");
-        
-        
 
     });
 
@@ -800,6 +782,11 @@ Route::prefix('/seller')->name('seller.')->namespace('Web\Seller')->group(functi
         //     $seller = Auth::guard('seller')->user();
         //     return view('dashboard.seller.package', compact(['seller']));
         // });
+
+        Route::get('notifications/','DashboardController@notifications');
+        Route::get('notification','DashboardController@notifications');
+        Route::get('notification/{id}','DashboardController@notification');
+
 
          Route::get('all-coupons','CouponController@index')->name('all-coupons');
          Route::get('create-coupon','CouponController@create')->name('create-coupon');

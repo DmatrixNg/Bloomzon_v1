@@ -11,14 +11,16 @@ class Login extends Notification
 {
     use Queueable;
 
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    private $user;
+    public function __construct($user)
     {
-        //
+        $this->user = $user;
     }
 
     /**
@@ -29,7 +31,7 @@ class Login extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['database'];
     }
 
     /**
@@ -54,8 +56,10 @@ class Login extends Notification
      */
     public function toArray($notifiable)
     {
+    
         return [
-            //
+            'type' => 'login',
+            'message' => 'You Login last at '. ($this->user->last_login->format('d/m/y')),
         ];
     }
 }

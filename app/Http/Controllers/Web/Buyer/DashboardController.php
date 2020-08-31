@@ -122,10 +122,15 @@ class DashboardController extends Controller
 
     public function notification($id){
         $id = base64_decode($id);
-        $notifications = [];
+        $notifications = $this->buyer->notifications;
+
         return view('dashboard.buyer.notifications',compact(['notifications']));
     }
-
+    // public function notification(){
+    //
+    //   $notifications = $this->buyer->notifications;
+    //     return view('dashboard.seller.notifications',compact(['notifications']));
+    // }
     public function favorites($id){
         $id = base64_decode($id);
         $favorites = [];

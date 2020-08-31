@@ -6,11 +6,12 @@
         @php
         $sellers_arr = [];
 
-        
+
         foreach($order->order_details as $order_detail){
-            
+
             array_push($sellers_arr, $order_detail->product->seller_id->full_name);
         }
+        // dd($order->order_details);
         @endphp
 
         @section('content')
@@ -26,7 +27,7 @@
                                     <li class="list-group-item">
                                         <br>
                                         <b>BILLING ADDRESS</b>
-                                        <span class="badge badge-primary badge-pill" style="background-color: #02499B; font-size: 15px;">{{$order->order_details[0]->buyer_id->billing_address}}</span>
+                                        <span class="badge badge-primary badge-pill" style="background-color: #02499B; font-size: 15px;">{{$order->order_details[0]->order->billing_address}}</span>
                                         <br>
                                     </li>
                                     <li class="list-group-item">

@@ -96,7 +96,7 @@ class DeliveryController extends Controller
             return $this->send_response(false,[],400,'Problem updating status');
     }
 
-    
+
     public function changeDeliveryStatus(Request $request){
         $request->validate([
             'delivery_status'=>['required','string'],
@@ -111,7 +111,7 @@ class DeliveryController extends Controller
 
     public function merchant(){
         $packaged_products = WareHouse::all();
-        
+
         return view('dashboard.shopper.delivery-merchant',compact(['packaged_products']));
     }
 

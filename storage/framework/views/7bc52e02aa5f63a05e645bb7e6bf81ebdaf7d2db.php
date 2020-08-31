@@ -46,7 +46,7 @@
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
     <!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
-    <!--<link href="<?php echo e(asset('css/chat.css')); ?>" rel="stylesheet" id="bootstrap-css">-->
+    <link href="<?php echo e(asset('css/chat.css')); ?>" rel="stylesheet" id="bootstrap-css">
     <!--<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>-->
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <!-- end for chat -->

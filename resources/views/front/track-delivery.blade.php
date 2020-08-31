@@ -35,10 +35,10 @@
                                         <li class="list-group-item">Seller:
                                             {{ $order->seller_id->full_name }}</li>
                                         <li class="list-group-item">Buyer:
-                                            {{ $order->buyer_id->full_name }}</span></p>
+                                            {{ $order->orderable->full_name }}</span></p>
                                         </li>
                                         <li class="list-group-item"><p><span style="font-weight: bolder">Billing
-                                            Address:</span>{{ $order->buyer_id->billing_address }}
+                                            Address:</span>{{ $order->orderable->billing_address }}
                                     </li>
                                     <li class="list-group-item">WareHouse Status:
                                         {{ $order->shopper_status }}</span></p>

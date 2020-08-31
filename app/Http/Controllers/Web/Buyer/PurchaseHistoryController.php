@@ -19,7 +19,8 @@ class PurchaseHistoryController extends Controller
         // $orders =array();
 
         //gets all order and order details relationships
-        $orders = $this->buyer->orders()->paginate(5);
+        $orders = $this->buyer->order_details()->paginate(5);
+        // dd($orders);
        //from the distinc order selected get all order details
     //    $includ = array();
     //     foreach($od as $order){
@@ -37,17 +38,19 @@ class PurchaseHistoryController extends Controller
         $id = $this->buyer->id;
         $payments =array();
         //gets all order and order details relationships
-        $od = OrderDetails::where('buyer_id',$id)->get();
+        // dd($this->buyer->order_details);
+        $payments = $this->buyer->orders;
+        // dd($payments->order_details()->first()->seller->id);
        //from the distinc order selected get all order details
-       $includ = array();
-        foreach($od as $order){
-            $od = Order::with(['order_details'])->where('id',$order->order_id)->where('payment_status',1)->first();//get the order property
-            if($od){
-            if(!in_array($od->id,$includ)){
-                array_push($includ,$od->id);
-                array_push($payments,$od);//push all distinct value
-            }}
-        }
+       // $includ = array();
+       //  foreach($od as $order){
+       //      $od = Order::with(['order_details'])->where('id',$order->order_id)->where('payment_status',1)->first();//get the order property
+       //      if($od){
+       //      if(!in_array($od->id,$includ)){
+       //          array_push($includ,$od->id);
+       //          array_push($payments,$od);//push all distinct value
+       //      }}
+       //  }
         return view('dashboard.buyer.payment-history',compact(['payments']));
     }
 

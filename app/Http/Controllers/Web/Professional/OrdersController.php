@@ -25,9 +25,9 @@ class OrdersController extends Controller
 
     public function show($order){
         $order = json_decode(base64_decode($order));
-        
+
         $orders = OrderDetails::where('buyer_id',$order->buyer_id->id)->where('seller_id',$order->seller_id->id)->where('order_id',$order->order_id)->get();
-        
+
         return view('dashboard.professional.order-detail',compact(['order','orders']));
     }
 

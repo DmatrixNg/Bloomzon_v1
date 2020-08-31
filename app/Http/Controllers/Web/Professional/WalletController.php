@@ -46,5 +46,5 @@ class WalletController extends Controller
             return $this->send_response(false,$withdraw,400,'Withdrawal request failed');
         }
 
- 
+
 }

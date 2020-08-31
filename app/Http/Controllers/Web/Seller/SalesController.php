@@ -21,9 +21,9 @@ class SalesController extends Controller
 
     public function index(){
         $id = $this->seller->id;
-        $sales = OrderDetails::where('seller_id',$id)->where('status','delivered')->get();
+        $sales = $this->seller->order_details()->where('status','delivered')->get();
         $total_sales = WalletHistory::where('user_id',$id)->where('user_type','seller')->where('slug','order')->get();
-        
+// dd($sales);
         return view('dashboard.seller.sales',compact(['sales','total_sales']));
     }
 
@@ -33,7 +33,7 @@ class SalesController extends Controller
         return view('dashboard.seller.saledetail',compact(['sale','order']));
     }
 
-  
+
 
 
 

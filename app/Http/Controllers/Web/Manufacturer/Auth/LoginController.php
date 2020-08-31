@@ -33,6 +33,10 @@ class LoginController extends Controller
     protected $redirectTo = RouteServiceProvider::HOME;
 
     protected function redirectTo() {
+      $user = auth()->guard('manufacturer')->user();
+
+      $user->notify(new \App\Notifications\Login($user));
+
         return '/manufacturer/dashboard';
     }
 
@@ -243,7 +247,7 @@ class LoginController extends Controller
             $user->save();
 
             return redirect('manufacturer/dashboard');
-            
+
         }
 
         return redirect()->back()->with([

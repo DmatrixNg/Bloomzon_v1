@@ -26,11 +26,11 @@ class OrdersController extends Controller
 
     public function show($id){
         $order = OrderDetails::find($id);
-        
+
         $orders = OrderDetails::where('buyer_id',$order->buyer_id->id)
         ->where('seller_id',$order->seller_id->id)
         ->where('order_id',$order->order_id)->get();
-        
+
         return view('dashboard.fast_food_grocery.order-details',compact(['order','orders']));
     }
 

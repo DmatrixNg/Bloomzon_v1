@@ -27,7 +27,7 @@
                     <div class="widgets-wrap d-flex justify-content-end">
 
                         <div class="widget-header ml-3">
-                            
+
                             <p type="text"  class="form-control"> Total Sales: {{number_format($total_sales->sum('amount'))}} </p>
                         </div>
                     </div>
@@ -52,10 +52,10 @@
 
                                 </div>
                                 <div class="col-md-4 text-center p-4">
-                                    <p><b>BUYER:</b>  {{$sale->buyer_id->full_name}}</p>
+                                    <p><b>BUYER:</b>  {{$sale->order->orderable->full_name}}</p>
                                     <p><b>AMOUNT:</b>  &#8358;{{$sale->product->total}}</p>
                                     <p><b>QTY: </b>{{ $sale->product->quantity}}
-                                        
+
                                     </p>
 
                                 </div>
@@ -72,7 +72,7 @@
                             <div class="alert alert-warning">You have no sales record</div>
                         </div>
                     @endif
-                
+
 
             </div>
 

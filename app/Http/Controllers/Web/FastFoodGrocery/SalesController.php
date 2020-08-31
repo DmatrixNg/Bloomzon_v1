@@ -20,7 +20,7 @@ class SalesController extends Controller
 
     public function index(){
         $id = $this->fast_food_grocery->id;
-        $sales = OrderDetails::where('seller_id',$id)->where('order_type','fast_food_grocery')->get();
+        $sales = $this->seller->order_details()->where('order_type','fast_food_grocery')->get();
 
         return view('dashboard.fast_food_grocery.sales',compact(['sales']));
     }
@@ -31,7 +31,7 @@ class SalesController extends Controller
         return view('dashboard.fast_food_grocery.saledetail',compact(['sale','order']));
     }
 
-  
+
 
 
 

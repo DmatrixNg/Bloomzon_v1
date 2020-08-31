@@ -16,9 +16,9 @@
                     height="80" style="border-radius: 40px;">
             </div>
             <div class="col-md-5 text-left">
-                <h4>BUYER ID:{{ $order->buyer_id->id }}</h4>
-                <h4>LOCATION: {{ $order->buyer_id->street_address }}</h4>
-                <h4>BILLING ADDRESS: {{ $order->buyer_id->billing_address }}</h4>
+                <h4>BUYER ID:{{ $order->orderable->id }}</h4>
+                <h4>LOCATION: {{ $order->orderable->street_address }}</h4>
+                <h4>BILLING ADDRESS: {{ $order->orderable->billing_address }}</h4>
 
             </div>
         </div>
@@ -46,7 +46,7 @@
                                     @foreach($orders as $order_detail)
                                         <tr>
                                             <td>{{ $order_detail->product->id }}</td>
-                                            <td>{{ $order->buyer_id->billing_address }}</td>
+                                            <td>{{ $order->orderable->billing_address }}</td>
                                             <td>{{ $order_detail->quantity }}</td>
                                             <td>{{ $order_detail->product->product_price }}</td>
                                             <td>{{ $order_detail->order->payment_method }}</td>
