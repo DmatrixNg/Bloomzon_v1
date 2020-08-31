@@ -13,6 +13,7 @@ use App\Product;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use App\Traits\JsonResponse;
 
 
@@ -31,17 +32,18 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $id = $this->buyer->id;
-        $orders =array();
-        //gets all order and order details relationships
-        $od = OrderDetails::select('*')->where('buyer_id',$id)->distinct()->get('order_id');
-       //from the distinc order selected get all order details
-        foreach($od as $order){
-            $od = Order::with(['order_details'])->find($order->order_id);
-            array_push($orders,$od);
-        }
+        // $id = $this->buyer->id;
+       //  $orders =array();
+       //  //gets all order and order details relationships
+       //  $od = OrderDetails::select('*')->where('buyer_id',$id)->distinct()->get('order_id');
+       // //from the distinc order selected get all order details
+       //  foreach($od as $order){
+       //      $od = Order::with(['order_details'])->find($order->order_id);
+       //      array_push($orders,$od);
+       //  }
 
-
+       $orders = $this->buyer->orders;
+       // dd($order);
         return view('dashboard.buyer.home',compact(['orders']));
     }
 
@@ -63,7 +65,7 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
-        
+
     }
 
     public function contactAdmin(Request $request):\Illuminate\Http\JsonResponse{
@@ -79,7 +81,7 @@ class DashboardController extends Controller
     public function listMessages($id){
         $id = base64_decode($id);
         $messages = Message::distinct()->where('buyer_id',$id)->get(['ticket']);
-        
+
         return view('dashboard.buyer.messages',compact(['messages']));
     }
 
@@ -98,7 +100,7 @@ class DashboardController extends Controller
         //     $table->mediumText('reply')->nullable();
         //     $table->dateTime('message_date')->nullable();
         //     $table->dateTime('reply_date')->nullable();
-        
+
         return Validator::make($data, [
             'buyer_id'   => ['required', 'string', 'max:255'],
             'message' => ['required', 'string', 'max:255'],
@@ -116,14 +118,14 @@ class DashboardController extends Controller
         //
     }
 
-   
-   
+
+
     public function notification($id){
         $id = base64_decode($id);
         $notifications = [];
         return view('dashboard.buyer.notifications',compact(['notifications']));
     }
-   
+
     public function favorites($id){
         $id = base64_decode($id);
         $favorites = [];
@@ -134,15 +136,20 @@ class DashboardController extends Controller
         $bproducts = Product::where('is_bloomzon',1)->paginate(10);
         return view('dashboard.buyer.bloomzon-products',compact(['bproducts']));
     }
-   
-    public function points(){
-        $points = $this->buyer->points;
-        
-        $order_points = Point::myPoints($this->buyer->id);
-        $all_products = OrderDetails::where('buyer_id',$this->buyer->id);
-        // $orders = OrderDetails::where('buyer_id',$this->buyer->id)->distinct();
 
-        return view('dashboard.buyer.points',compact(['points','order_points','all_products']));
+    public function points(){
+
+
+        $this->checkAndUpdatePoint();
+
+        $points = $this->buyer->point;
+        // dd($points);
+
+        // $order_points = Point::myPoints($this->buyer->id);
+        // $all_products = OrderDetails::where('buyer_id',$this->buyer->id);
+        // // $orders = OrderDetails::where('buyer_id',$this->buyer->id)->distinct();
+
+        return view('dashboard.buyer.points',compact(['points']));
     }
 
     public function deliveryStatus($id){
@@ -191,5 +198,40 @@ class DashboardController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function checkAndUpdatePoint()
+    {
+      $user = $this->buyer;
+      $prevpoint = $user->point ? $user->point->total_point : 0;
+      $prev_used_point = $user->point ? $user->point->used_point : 0;
+//      $prev_used_amount = $user->point ? $user->point->used_point : 0;
+      $purchase_count = $user->orders->count();
+      // dd($purchase_count);
+      // dd($purchase_count);
+      // if ($purchase_count >= 10) {
+        // $discount = $purchase_count / 100;
+        //   $discount = (int) $discount;
+          // $amount = $purchase_count * 100;
+          $point = $purchase_count * 100;
+          $old_new = $prev_used_point + $prevpoint;
+          $newpoint = $point - $old_new;
+          $newamount= $newpoint / 100 ;
+          // dd($old_new);
+          // dd($newamount);
+          if ($old_new != $point) {
+
+            $update = $user->point()->updateOrCreate(["pointable_type" => 'App\Buyer','pointable_id' => $user->id],[
+              'id' => Str::uuid()->toString(),
+              'purchase_count' => $purchase_count,
+              'total_point' => $newpoint,
+              'amount' => $newamount
+            ]);
+          }
+
+        return true;
+
+      // }
     }
 }

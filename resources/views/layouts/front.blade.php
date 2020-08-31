@@ -6,12 +6,12 @@
     <title>Bloomzon - @yield('page_title')</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="csrf-token" content="{{ Session::token() }}"> 
+    <meta name="csrf-token" content="{{ Session::token() }}">
     <link rel="manifest" href="site">
     <link rel="apple-touch-icon" href="icon">
     <!-- Place favicon.ico in the root directory -->
 
-    
+
     <!-- bootstrap v4.0.0 -->
     <link rel="stylesheet" href="{{asset('assets/frontend/css/bootstrap.min.css')}}">
     <!-- fontawesome-icons css -->
@@ -99,17 +99,17 @@ function googleTranslateElementInit() {
 <!-- mmenu js -->
 <script src="{{asset('assets/frontend/js/jquery.mmenu.js')}} "></script>
 <!-- easing js -->
-<script src="{{asset('assets/frontend/js/jquery.easing.min.js')}}"></script>
+{{-- <script src="{{asset('assets/frontend/js/jquery.easing.min.js')}}"></script> --}}
 
 
 
-<script src="{{asset('assets/frontend/js/popper.min.js')}}"></script>
+{{-- <script src="{{asset('assets/frontend/js/popper.min.js')}}"></script> --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js "></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js "></script>
 <!---letteranimation-js-->
 <script src="{{asset('assets/frontend/js/letteranimation.min.js')}}"></script>
 <!-- jquery-ui js -->
-<script src="{{asset('assets/frontend/js/jquery-ui.mi.js')}}"></script>
+<script src="{{asset('assets/frontend/js/jquery-ui.min.js')}}"></script>
 <!-- jquery.countdown js -->
 <script src="{{asset('assets/frontend/js/jquery.countdown.min.js')}}"></script>
 <!-- venobox js -->

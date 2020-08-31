@@ -61,7 +61,7 @@
                                 </div>
                                 <div class="col-lg-9">
 
-                                    <input name="country" id="country" />
+                                    <input name="country" value="{{ $buyer ? $buyer->country : '' }}" id="country" />
                                 </div>
                             </div>
                             <div class="row">
@@ -79,7 +79,7 @@
                                     <label>ADDRESS *</label>
                                 </div>
                                 <div class="col-lg-9">
-                                    <input type="text" name="billing_address" id="billing_address"
+                                    <input type="text" name="billing_address" value="{{ $buyer ? $buyer->billing_address : '' }}" id="billing_address"
                                         placeholder="Billing Address">
                                     {{-- <input type="text"
                                         placeholder="Apartment, suite, unite ect (optinal)"
@@ -206,19 +206,29 @@
                                             </tr>
                                             <tr>
                                                 <td>ORDER TOTAL</td>
-                                                <td><strong id="totalDisplay">${{ number_format($total) }}</strong></td>
+                                                <td><input type="hidden" id="cart-total" value="{{ number_format($total) }}">
+                                                  <strong id="totalDisplay">${{ number_format($total) }}</strong></td>
                                             </tr>
 
                                         </tbody>
                                     </table>
-                                    <select class="form-control" onchange="showConversion(this)">
+                                    <select class="form-control" id="convertions" onchange="showConversion(this)">
+
                                         @foreach ($currencies as $curr)
+
                                             <option value="{{ $curr }}">{{ $curr }}</option>
                                         @endforeach
                                     </select>
                                     <input type="hidden" id="status" name="status" value="new" class="d-none">
+                                    <input type="hidden" id="with" name="with" value="" class="d-none">
                                     <div class="payment-gateways mt-30">
                                         <div id="payment_gateways">
+                                          <div class="single-payment-gateway">
+                                              <input id="point" type="checkbox" name="point" value="{{$buyer->point->amount}}" id="paypal">
+                                              {{-- <img src="{{ asset('assets/frontend/images/icons/bank-loan.png') }}" width="50"
+                                                  height="50" /> --}}
+                                              <label for="paypal">Point (${{$buyer->point->amount}})</label>
+                                          </div>
                                             <div class="single-payment-gateway">
                                                 <input type="radio" name="ptype" value="paystack" id="paystack">
                                                 <img src="{{ asset('assets/frontend/img/paystack.png') }}" width="50"
@@ -231,6 +241,25 @@
                                                     height="50" />
                                                 <label for="paypal">PayPal</label>
                                             </div>
+                                            @if ($buyer->cards)
+                                              @foreach ($buyer->cards as $card)
+
+                                                <div class="single-payment-gateway">
+                                                  <input type="radio" name="card" value="{{$card->id}}" class="cards" id="card-{{$card->id}}" >
+
+                                                  @if ($card->brand == 'visa')
+
+                                                    <img src="{{ asset('assets/frontend/images/cards/VISA-logo.png') }}" width="50"
+                                                     />
+                                                  @elseif ($card->brand == 'mastercard')
+                                                    <img src="{{ asset('assets/frontend/images/cards/mastercard.png') }}" width="50"
+                                                    />
+                                                  @endif
+                                                  <label for="card-{{$card->id}}"> Ending with {{$card->last4}} </label>
+                                                </div>
+                                              @endforeach
+                                            @endif
+
                                             <div class="single-payment-gateway">
                                                 <input type="radio" name="ptype" value="pay_on_delivery"
                                                     id="pay_on_delivery">
@@ -269,7 +298,7 @@
         </div>
     </div>
 
-  
+
 
 @endsection
 
@@ -290,183 +319,253 @@ data-namespace="paypal_sdk">
 
     {{-- END OF REQUIRED SCRIPTS --}}
     <script>
-        var payment = new PaymentHandler();
-        var place_order = document.getElementById('place_order');
-        var products = @json($products);
+    var payment = new PaymentHandler();
+    var place_order = document.getElementById('place_order');
+    var products = @json($products);
 
-        var url = '';
-        //WHEN PLACE ORDER BUTTON IS PRESSED
-        place_order.onclick = function() {
-            if (validateInputs() == 'valid') { //Validate to check all  inout are correct
-                var names = document.getElementById('full_name', 2).value.split(' ');
-                var first_name = names[0]
-                var last_name = names[1]
-                var price = document.getElementById('naira_price').value;
-                var usd_price = document.getElementById('total_amount').value;
-                var ref = document.getElementById('ref');
-                var email = document.getElementById('email').value;
-                var payment_stat = document.getElementById('payment_status');
-                var pgateway = document.getElementById('payment_gateway');
-
-
-                //When PAYSTACK IS SELECTED
-                if (document.getElementById('paystack').checked) {
-                    // ALL INPUT IS VALIDATED BEFORE PROCEEDING TO PAYMENT 
-
-                    return payment.pay_with_paystack({
-                        key: 'pk_test_09382aa6313abb13f39a4994ce801a2abfa26dd6',
-                        amount: price,
-                        curency: 'NGN',
-                        first_name: first_name,
-                        last_name: last_name,
-                        reference: ref.value,
-                        email: email,
-                        onClose: function() {
-                            swal("Your payment could not be processed")
-                        },
-                        success: function(res) {
-                            ref.value = res.reference
-                            payment_stat.value = 1;
-                            pgateway.value = 'paystack'
-                            document.getElementById('pay').click();
-                        }
-                    })
-
-                } //HANDLES PAYPAL PAYMENT METHOD 
-                else if (document.getElementById('paypal').checked) {
-                    return payment.pay_with_paypal({
-                        el: "#btn_pp",
-                        amount: usd_price,
-                        success: function(res) {
-                            ref.value = res.id
-                            payment_stat.value = 1;
-                            pgateway.value = 'paypal'
-                            document.getElementById('pay').click();
-
-                        }
-                    });
-                }
-                //HADLES PAY ON DELIVERY METHOD 
-                else if (document.getElementById('pay_on_delivery').checked) {
-                    payment_stat.value = 0;
-                    pgateway.value = 'pay_on_delivery'
-                    document.getElementById('pay').click();
-                } else {
-                    return swal("Please select payment method")
-                }
-            }
-        }
+// console.log($("input[name='card']:checked"));
+// console.log($('.cards'));
+    var url = '';
+    //WHEN PLACE ORDER BUTTON IS PRESSED
+    place_order.onclick = function() {
+      if (validateInputs() == 'valid') { //Validate to check all  inout are correct
+        var names = document.getElementById('full_name', 2).value.split(' ');
+        var first_name = names[0]
+        var last_name = names[1]
+        var price = document.getElementById('naira_price').value;
+        var usd_price = document.getElementById('total_amount').value;
+        var ref = document.getElementById('ref');
+        var email = document.getElementById('email').value;
+        var payment_stat = document.getElementById('payment_status');
+        var pgateway = document.getElementById('payment_gateway');
 
 
-        //VALIDATE EACH USER INPUT NOT NULL
-        function validateInputs() {
-            var names = document.getElementById('full_name').value;
-            var li = names.split(' ');
-            if (names == '' || li.length < 2) {
-                return swal("Please input name correctly")
-            }
-            if (document.getElementById('country').value == '') {
-                return swal("Please enter country")
-            }
-            if (document.getElementById('billing_address').value == '') {
-                return swal("Please enter billing address")
-            }
-            if (document.getElementById('state').value == '') {
-                return swal("Please enter state")
-            }
-            if (document.getElementById('city').value == '') {
-                return swal("please enter city")
-            }
-            if (document.getElementById('email').value == '') {
-                return swal("Please enter email address correctly")
-            }
-            if(validateEmail(document.getElementById('email').value) == false){
-                console.log(validateEmail(document.getElementById('email').value))
-                return swal("Please enter email address correctly")
-            }
-            
-            if (document.getElementById('phone_number').value == '') {
-                return swal("Please enter phone number")
-            }
-            if (document.getElementById('zip_code').value == '') {
-                return swal("Please zip code correctly");
-            }
-            return 'valid';
-        }
-        //HANDLE FOMR SUBMITION
-        FormHandler('billingForm', {
-            requestUrl: '/order/create',
-            requestType: 'POST',
-            props: {
-                products: products
+        //When PAYSTACK IS SELECTED
+        if (document.getElementById('paystack').checked) {
+          // ALL INPUT IS VALIDATED BEFORE PROCEEDING TO PAYMENT
+
+          return payment.pay_with_paystack({
+            key: 'pk_test_09382aa6313abb13f39a4994ce801a2abfa26dd6',
+            amount: price,
+            curency: 'NGN',
+            first_name: first_name,
+            last_name: last_name,
+            reference: ref.value,
+            email: email,
+            onClose: function() {
+              swal("Your payment could not be processed")
             },
-            cb: response => {
-                if (response.success) {
-                    return swal({
-                        title: 'Success!!',
-                        text: 'THANK YOU FOR YOUR ORDER, YOUR ORDER ID IS: ' + response.data,
-                        icon: 'success'
-                    }).then(
-                        (e) => {
-                            makeRequest('/cart/clear', {}).then(
-                                () => {
-                                    window.location.href = '/'
-
-                                }
-                            )
-                        }
-
-                    )
-                }
-                ErrorHandler(response.errors ?? {})
-                return swal({
-                    title: 'Failed!!',
-                    text: 'Error occurred creating order, please try again.',
-                    icon: 'error'
-                })
+            success: function(res) {
+              ref.value = res.reference
+              payment_stat.value = 1;
+              pgateway.value = 'paystack'
+              document.getElementById('pay').click();
             }
+          })
+
+        } //HANDLES PAYPAL PAYMENT METHOD
+        else if (document.getElementById('paypal').checked) {
+          return payment.pay_with_paypal({
+            el: "#btn_pp",
+            amount: usd_price,
+            success: function(res) {
+              ref.value = res.id
+              payment_stat.value = 1;
+              pgateway.value = 'paypal'
+              document.getElementById('pay').click();
+
+            }
+          });
+        }
+        //HADLES PAY ON DELIVERY METHOD
+        else if (document.getElementById('pay_on_delivery').checked) {
+          payment_stat.value = 0;
+          pgateway.value = 'pay_on_delivery'
+          document.getElementById('pay').click();
+        }
+        else if ($("input[name='card']:checked")) {
+          console.log($("input[name='card']:checked").val());
+          payment_stat.value = 0;
+          pgateway.value = 'card'
+          // document.getElementById('pay').click();
+        }
+         else {
+          return swal("Please select payment method")
+        }
+      }
+    }
+
+
+    //VALIDATE EACH USER INPUT NOT NULL
+    function validateInputs() {
+      var names = document.getElementById('full_name').value;
+      var li = names.split(' ');
+      if (names == '' || li.length < 2) {
+        return swal("Please input name correctly")
+      }
+      if (document.getElementById('country').value == '') {
+        return swal("Please enter country")
+      }
+      if (document.getElementById('billing_address').value == '') {
+        return swal("Please enter billing address")
+      }
+      if (document.getElementById('state').value == '') {
+        return swal("Please enter state")
+      }
+      if (document.getElementById('city').value == '') {
+        return swal("please enter city")
+      }
+      if (document.getElementById('email').value == '') {
+        return swal("Please enter email address correctly")
+      }
+      if(validateEmail(document.getElementById('email').value) == false){
+        console.log(validateEmail(document.getElementById('email').value))
+        return swal("Please enter email address correctly")
+      }
+
+      if (document.getElementById('phone_number').value == '') {
+        return swal("Please enter phone number")
+      }
+      if (document.getElementById('zip_code').value == '') {
+        return swal("Please zip code correctly");
+      }
+      return 'valid';
+    }
+    //HANDLE FOMR SUBMITION
+    FormHandler('billingForm', {
+      requestUrl: '/order/create',
+      requestType: 'POST',
+      props: {
+        products: products
+      },
+      cb: response => {
+        if (response.success) {
+          return swal({
+            title: 'Success!!',
+            text: 'THANK YOU FOR YOUR ORDER, YOUR ORDER ID IS: ' + response.data,
+            icon: 'success'
+          }).then(
+          (e) => {
+            makeRequest('/cart/clear', {}).then(
+            () => {
+              window.location.href = '/'
+
+            }
+            )
+          }
+
+          )
+        }
+        ErrorHandler(response.errors ?? {})
+        return swal({
+          title: 'Failed!!',
+          text: 'Error occurred creating order, please try again.',
+          icon: 'error'
         })
+      }
+    })
 
-        function validateEmail(email) {
-                const re =
-                    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                return re.test(String(email).toLowerCase());
+    function validateEmail(email) {
+      const re =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(String(email).toLowerCase());
+    }
+    //SAVE ORDER FOR LATER
+    function saveOrder() {
+      return swal({
+        title: "save order for later",
+        text: "Do you want to save order for later",
+        buttons: true,
+      }).then((willSave) => {
+        if (willSave) {
+          document.getElementById('status').value = "save";
+          document.getElementById('pay_on_delivery').click();
+        } else {
+          document.getElementById('status').value = "new";
+
+        }
+      })
+    }
+
+    //DISPLAY CONVERSIONS ON REAL TIME
+    function showConversion(val) {
+      document.getElementById('totalDisplay').innerHTML = val.value;
+    }
+
+
+    function applyCoupon() {
+      var coup = document.getElementById('coupon').value;
+      makeRequest('/cart/add-coupon', {
+        code: coup
+      }).then((e) => {
+        if (e.success) {
+          return swal("Your coupon has been added - proceed to checkout").then((e) => window.location
+          .reload())
+        }
+        return swal("Invalid coupon code added")
+      })
+    }
+    $("#point").on('change', function() {
+      if ($(this).is(':checked')) {
+        // const subtotal = $('#checkout_subtotal').html();
+        let total = $('#cart-total').val()
+        let point = $(this).val()
+
+        switchStatus = $(this).is(':checked');
+        newtotal = total - point
+        console.log(newtotal);
+        $('#totalDisplay').html("$"+newtotal)
+        $('#with').val("point")
+
+        getConversion(newtotal)
+
+
+      }
+      else {
+        let total = $('#cart-total').val()
+
+        switchStatus = $(this).is(':checked');
+        $('#totalDisplay').html("$"+total)
+        getConversion(total)
+
+
+
+      }
+    });
+    function getConversion(total) {
+      $.ajax({
+        type: 'get',
+        url: "{{ url('/convert/') }}/"+total,
+        dataType: 'json',
+
+        success: function (data) {
+          // console.log(data[0]['currency']);
+          // console.log(data[1]);
+
+          if(Object.keys(data[0]).length != 0) {
+            var convertions = $('#convertions');
+            convertions.empty();
+            for (var i = 0; i < data.length; i++) {
+              var key = Object.keys(data[i].currency)
+                convertions.append('<option id=' + i + ' value=' + data[i][0].amount + '> '+ data[i]['currency'][key].prefix +" " + curency_format(data[i][0].amount) + '</option>');
+                if (Object.keys(data[i].currency) == "NGN") {
+                  console.log('here');
+                  $("#naira_price").val(data[i][0].amount)
+                }
             }
-        //SAVE ORDER FOR LATER
-        function saveOrder() {
-            return swal({
-                title: "save order for later",
-                text: "Do you want to save order for later",
-                buttons: true,
-            }).then((willSave) => {
-                if (willSave) {
-                    document.getElementById('status').value = "save";
-                    document.getElementById('pay_on_delivery').click();
-                } else {
-                    document.getElementById('status').value = "new";
+          }
+        },
 
-                }
-            })
+        error: function (data) {
+          console.log('Error:', data);
         }
 
-        //DISPLAY CONVERSIONS ON REAL TIME
-        function showConversion(val) {
-            document.getElementById('totalDisplay').innerHTML = val.value;
-        }
-
-
-        function applyCoupon() {
-            var coup = document.getElementById('coupon').value;
-            makeRequest('/cart/add-coupon', {
-                code: coup
-            }).then((e) => {
-                if (e.success) {
-                    return swal("Your coupon has been added - proceed to checkout").then((e) => window.location
-                        .reload())
-                }
-                return swal("Invalid coupon code added")
-            })
-        }
-
-    </script>
+    });
+  }
+  function curency_format (number) {
+    let to_fixed = parseFloat(number).toFixed(2)
+    let number_format = new Intl.NumberFormat('ja-JP').format(to_fixed)
+    return number_format
+  }
+  </script>
 @endpush
