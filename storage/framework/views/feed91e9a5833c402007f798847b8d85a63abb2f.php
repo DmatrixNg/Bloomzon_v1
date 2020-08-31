@@ -1,6 +1,4 @@
-@extends('layouts.dashboard.admin')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="col-md-10 p-0">
         <div class="col-md-12 mt-4 mb-4 d-none">
             <div class="row">
@@ -54,58 +52,58 @@
                     <tbody>
                         <tr style="height: 60px;">
                             <td>Buyers</td>
-                            <td>{{ $numb_buyers }}</td>
+                            <td><?php echo e($numb_buyers); ?></td>
                             <td>---</td>
                             <td>---</td>
                             <td>---</td>
-                            <td>{{ $premium_buyers }} - {{ $premium_buyers * 5000 }}</td>
-                            <td>{{ $basic_buyers }} - {{ $basic_buyers * 2000 }}</td>
-                            <td>{{ $premium_buyers + $premium_buyers }}</td>
-                            <td>{{ ($premium_buyers * 5000) + ($basic_buyers * 2000) }} </td>
+                            <td><?php echo e($premium_buyers); ?> - <?php echo e($premium_buyers * 5000); ?></td>
+                            <td><?php echo e($basic_buyers); ?> - <?php echo e($basic_buyers * 2000); ?></td>
+                            <td><?php echo e($premium_buyers + $premium_buyers); ?></td>
+                            <td><?php echo e(($premium_buyers * 5000) + ($basic_buyers * 2000)); ?> </td>
                         </tr>
                         <tr style="height: 60px;">
                             <td>Sellers</td>
-                            <td>{{ $numb_sellers }}</td>
+                            <td><?php echo e($numb_sellers); ?></td>
                             <td>4,000,000</td>
                             <td>600</td>
                             <td>49</td>
-                            <td>{{ $premium_sellers }} - {{ $premium_sellers * 5000 }}</td>
-                            <td>{{ $basic_sellers }} - {{ $basic_sellers * 2000 }}</td>
-                            <td>{{ $premium_sellers + $premium_sellers }}</td>
-                            <td>{{ ($premium_sellers * 5000) + ($basic_sellers * 2000) }}</td>
+                            <td><?php echo e($premium_sellers); ?> - <?php echo e($premium_sellers * 5000); ?></td>
+                            <td><?php echo e($basic_sellers); ?> - <?php echo e($basic_sellers * 2000); ?></td>
+                            <td><?php echo e($premium_sellers + $premium_sellers); ?></td>
+                            <td><?php echo e(($premium_sellers * 5000) + ($basic_sellers * 2000)); ?></td>
                         </tr>
                         <tr style="height: 60px;">
                             <td>Manufacturers</td>
-                            <td>{{ $numb_manufacturers }}</td>
+                            <td><?php echo e($numb_manufacturers); ?></td>
                             <td>4,000,000</td>
                             <td>600</td>
                             <td>49</td>
-                            <td>{{ $premium_manufacturers }} - {{ $premium_manufacturers * 5000 }}</td>
-                            <td>{{ $basic_manufacturers }} - {{ $basic_manufacturers * 2000 }}</td>
-                            <td>{{ $premium_manufacturers + $premium_manufacturers }}</td>
-                            <td>{{ ($premium_manufacturers * 5000) + ($basic_manufacturers * 2000) }}</td>
+                            <td><?php echo e($premium_manufacturers); ?> - <?php echo e($premium_manufacturers * 5000); ?></td>
+                            <td><?php echo e($basic_manufacturers); ?> - <?php echo e($basic_manufacturers * 2000); ?></td>
+                            <td><?php echo e($premium_manufacturers + $premium_manufacturers); ?></td>
+                            <td><?php echo e(($premium_manufacturers * 5000) + ($basic_manufacturers * 2000)); ?></td>
                         </tr>
                         <tr style="height: 60px;">
                             <td>Professional Services</td>
-                            <td>{{ $numb_ps }}</td>
+                            <td><?php echo e($numb_ps); ?></td>
                             <td>4,000,000</td>
                             <td>600</td>
                             <td>49</td>
-                            <td>{{ $premium_ps }} - {{ $premium_ps * 5000 }}</td>
-                            <td>{{ $basic_ps }} - {{ $basic_ps * 2000 }}</td>
-                            <td>{{ $premium_ps + $premium_ps }}</td>
-                            <td>{{ ($premium_ps * 5000) + ($basic_ps * 2000) }}</td>
+                            <td><?php echo e($premium_ps); ?> - <?php echo e($premium_ps * 5000); ?></td>
+                            <td><?php echo e($basic_ps); ?> - <?php echo e($basic_ps * 2000); ?></td>
+                            <td><?php echo e($premium_ps + $premium_ps); ?></td>
+                            <td><?php echo e(($premium_ps * 5000) + ($basic_ps * 2000)); ?></td>
                         </tr>
                         <tr style="height: 60px;">
                             <td>Networking Agents</td>
-                            <td>{{ $numb_na }}</td>
+                            <td><?php echo e($numb_na); ?></td>
                             <td>4,000,000</td>
                             <td>600</td>
                             <td>49</td>
-                            <td>{{ $premium_na }} - {{ $premium_na * 5000 }}</td>
-                            <td>{{ $basic_na }} - {{ $basic_na * 2000 }}</td>
-                            <td>{{ $premium_na + $premium_na }}</td>
-                            <td>{{ ($premium_na * 5000) + ($basic_na * 2000) }}</td>
+                            <td><?php echo e($premium_na); ?> - <?php echo e($premium_na * 5000); ?></td>
+                            <td><?php echo e($basic_na); ?> - <?php echo e($basic_na * 2000); ?></td>
+                            <td><?php echo e($premium_na + $premium_na); ?></td>
+                            <td><?php echo e(($premium_na * 5000) + ($basic_na * 2000)); ?></td>
                         </tr>
                         <tr style="height: 60px;">
                             <td>Delivery Merchants</td>
@@ -120,25 +118,25 @@
                         </tr>
                         <tr style="height: 60px;">
                             <td>Shoppers</td>
-                            <td>{{ $numb_shopper }}</td>
+                            <td><?php echo e($numb_shopper); ?></td>
                             <td>4,000,000</td>
                             <td>600</td>
                             <td>49</td>
-                            <td>{{ $premium_shopper }} - {{ $premium_shopper * 5000 }}</td>
-                            <td>{{ $basic_shopper }} - {{ $basic_shopper * 2000 }}</td>
-                            <td>{{ $premium_shopper + $premium_shopper }}</td>
-                            <td>{{ ($premium_shopper * 5000) + ($basic_shopper * 2000) }}</td>
+                            <td><?php echo e($premium_shopper); ?> - <?php echo e($premium_shopper * 5000); ?></td>
+                            <td><?php echo e($basic_shopper); ?> - <?php echo e($basic_shopper * 2000); ?></td>
+                            <td><?php echo e($premium_shopper + $premium_shopper); ?></td>
+                            <td><?php echo e(($premium_shopper * 5000) + ($basic_shopper * 2000)); ?></td>
                         </tr>
                         <tr style="height: 60px;">
                             <td>Fast-Foods &amp; Groceries</td>
-                            <td>{{ $numb_ffg }}</td>
+                            <td><?php echo e($numb_ffg); ?></td>
                             <td>4,000,000</td>
                             <td>600</td>
                             <td>49</td>
-                            <td>{{ $premium_ffg }} - {{ $premium_ffg * 5000 }}</td>
-                            <td>{{ $basic_ffg }} - {{ $basic_ffg * 2000 }}</td>
-                            <td>{{ $premium_ffg + $premium_ffg }}</td>
-                            <td>{{ ($premium_ffg * 5000) + ($basic_ffg * 2000) }}</td>
+                            <td><?php echo e($premium_ffg); ?> - <?php echo e($premium_ffg * 5000); ?></td>
+                            <td><?php echo e($basic_ffg); ?> - <?php echo e($basic_ffg * 2000); ?></td>
+                            <td><?php echo e($premium_ffg + $premium_ffg); ?></td>
+                            <td><?php echo e(($premium_ffg * 5000) + ($basic_ffg * 2000)); ?></td>
                         </tr>
                     </tbody>
                 </table>
@@ -146,10 +144,10 @@
 
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
 
-@push('scripts')
+<?php $__env->startPush('scripts'); ?>
 
 <script>
 
@@ -174,4 +172,6 @@
       })
     }
 </script>
-@endpush
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('layouts.dashboard.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\Bloomzon_v1\resources\views/dashboard/admin/account_sales_statements.blade.php ENDPATH**/ ?>

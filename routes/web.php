@@ -118,6 +118,9 @@ Route::post('/chat/continue','ChatController@continue')->name('chat.continue');
 Route::get('/manufacturers','ManufacturerController@index')->name('manufacturers');
 Route::get('/manufacturer-details/{id}','ManufacturerController@show');
 
+// newsletter
+Route::post('/newsletter_subscribe','NewsletterSubscriptionController@store');
+
 //all the admin routes will be defined here...
 Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function () {
 
@@ -269,6 +272,13 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
 
         // site analysis
         Route::get('site-analysis/',"SiteAnalysisController@show_details");
+
+        // system control
+        Route::get('account-statement/',"AccountStatementController@index");
+
+        // send newsletter
+        Route::get('newsletter/', "NewsletterController@index");
+        Route::post('send-newsletter/', "NewsletterController@send_newsletter");
         
         
 

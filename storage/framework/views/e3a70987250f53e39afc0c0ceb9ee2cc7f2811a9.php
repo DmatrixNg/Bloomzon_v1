@@ -87,6 +87,39 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="social-icons style-2">
+                        <div class="row footer-list">
+                            
+                            <br>
+                            <form method="post" action="<?php echo e(url('newsletter_subscribe')); ?>">
+
+                                <?php echo csrf_field(); ?>
+                                <?php if(session()->has('message')): ?>
+                                    <div class="alert alert-primary"><?php echo e(session()->get('message')); ?></div>
+                                <?php endif; ?>
+                                
+                                <div class="col">
+                                    <input class="form-control" placeholder="Email" name="email">
+                                    <?php $__errorArgs = ['email'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                        <span class="text-danger">
+                                            <small style="color: white;"><?php echo e($message); ?></small>
+                                        </span>
+                                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                </div>
+                                <div class="col">
+                                    <input type="submit" value="Subscribe" class="btn btn-primary">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

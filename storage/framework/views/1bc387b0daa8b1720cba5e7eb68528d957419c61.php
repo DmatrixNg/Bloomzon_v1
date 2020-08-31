@@ -1,6 +1,4 @@
-@extends('layouts.dashboard.admin')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="col-md-10">
         <div class="col-md-12 mt-4 mb-4">
             <div class="row">
@@ -41,10 +39,10 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
 
-@push('scripts')
+<?php $__env->startPush('scripts'); ?>
 
 
 <script>
@@ -74,7 +72,7 @@
             labels: ['Visitors', 'Transactions', 'Sales', 'Inquiry'],
             datasets: [{
                 // label: '# of Votes',
-                data: [12, '{{ $transactions }}', '{{ $sales }}', '{{ $messages }}'],
+                data: [12, '<?php echo e($transactions); ?>', '<?php echo e($sales); ?>', '<?php echo e($messages); ?>'],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -103,4 +101,6 @@
 </script>
 
 
-@endpush
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('layouts.dashboard.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\Bloomzon_v1\resources\views/dashboard/admin/site_analysis.blade.php ENDPATH**/ ?>

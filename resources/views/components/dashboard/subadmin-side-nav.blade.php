@@ -61,14 +61,14 @@
                 <a href="{{ route('admin.all-brands') }}">All Brands</a>
                 <a href="{{ route('admin.create-brand') }}">Create New Brand</a>
             </div>
-            {{-- <button class="dropdown-btn"><i class="fas fa-newspaper mr-3"></i> Newsletter
+            <button class="dropdown-btn"><i class="fas fa-newspaper mr-3"></i> Newsletter
                 <i class="fa fa-caret-down"></i>
             </button>
             <div class="dropdown-container1">
                 <a href="allsubscribers.html">All Subscribers</a>
-                <a href="newsletter.html">Send Out Newsletter</a>
+                <a href="{{ url('admin/newsletter') }}">Send Out Newsletter</a>
                 <a href="allnewslettersubcribers.html">All Newsletter Subscribers</a>
-            </div> --}}
+            </div>
 
             <button class="dropdown-btn"><i class="fas fa-bullhorn mr-3"></i> Adverts
                 <i class="fa fa-caret-down"></i>
@@ -97,8 +97,8 @@
                 <a class="dropdown-item" href="{{route('admin.all-subadmin')}}">All Sub - Admin</a>
                 <a class="dropdown-item" href="create_subadmin.html">Create Sub - Admin</a>
             </div>
-            <a href="account_sales_statements.html"><i class="fas fa-clipboard-list"></i> Account Sales Statements</a>
-            <a href="site_analysis.html"><i class="fas fa-route"></i> Site Analysis</a>
+            <a href="{{ url('admin/account-statement') }}"><i class="fas fa-clipboard-list"></i> Account Sales Statements</a>
+            <a href="{{ url('admin/site-analysis') }}"><i class="fas fa-route"></i> Site Analysis</a>
             <a href="{{route("admin.site-config") }}"><i class="fas fa-route"></i> Site Configuration</a>
             <a href="system_control.html"><i class="fa fa-cog"></i>System Control</a>
             @endif
