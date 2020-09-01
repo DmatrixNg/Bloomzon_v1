@@ -70,7 +70,10 @@ public function redirectToGateway()
         ]);
 
         //check if buyer already on the system
-        $buyer = $this->user->find($request->buyer_id);
+        if ($request->buyer_id) {
+
+          $buyer = $this->user->find($request->buyer_id);
+        }
         //check if user already exist
         if ($buyer) {
             $buyer->country         = $request->country;
@@ -84,7 +87,12 @@ public function redirectToGateway()
             // $buyer->order_notes = $request->order_notes;
             // $buyer->buyer_id = $request->buyer
         } else {
-            $buyer =  $this->user->create([
+
+          $request->validate([
+            // 'username'     => ['required', 'string', 'max:255', 'unique:buyers'],
+            'email'        => ['required', 'string', 'email', 'max:255', 'unique:buyers'],
+          ]);
+            $buyer =  Buyer::create([
                 'country'         => $request->country,
                 'state'           => $request->state,
                 'full_name'       => $request->full_name,
@@ -97,6 +105,8 @@ public function redirectToGateway()
 
             ]);
         }
+        // Log::debug($buyer);
+        // dd();
         if ($request->with == "point"){
           $point = $buyer->point->total_point;
           $used_point = $buyer->point->used_point;
@@ -110,8 +120,7 @@ public function redirectToGateway()
         }
 
 
-        // Log::debug($this->user->find($request->buyer_id));
-        // dd();
+
         $pickup_id = mt_rand(100, 999).mt_rand(100, 999).mt_rand(100, 999);
         if ($products != null) {
             $order =  $buyer->orders()->create([
