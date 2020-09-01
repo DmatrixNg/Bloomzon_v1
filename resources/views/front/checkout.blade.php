@@ -223,12 +223,17 @@
                                     <input type="hidden" id="with" name="with" value="" class="d-none">
                                     <div class="payment-gateways mt-30">
                                         <div id="payment_gateways">
-                                          <div class="single-payment-gateway">
-                                              <input id="point" type="checkbox" name="point" value="{{$buyer->point->amount}}" id="paypal">
-                                              {{-- <img src="{{ asset('assets/frontend/images/icons/bank-loan.png') }}" width="50"
-                                                  height="50" /> --}}
-                                              <label for="paypal">Point (${{$buyer->point->amount}})</label>
-                                          </div>
+                                          @auth('buyer')
+                                            @isset($buyer->point->amount)
+
+                                              <div class="single-payment-gateway">
+                                                <input id="point" type="checkbox" name="point" value="{{$buyer->point->amount}}" id="paypal">
+                                                {{-- <img src="{{ asset('assets/frontend/images/icons/bank-loan.png') }}" width="50"
+                                                height="50" /> --}}
+                                                <label for="point">Point (${{$buyer->point->amount}})</label>
+                                              </div>
+                                            @endisset
+                                          @endauth
                                             <div class="single-payment-gateway">
                                                 <input type="radio" name="ptype" value="paystack" id="paystack">
                                                 <img src="{{ asset('assets/frontend/img/paystack.png') }}" width="50"
@@ -241,6 +246,7 @@
                                                     height="50" />
                                                 <label for="paypal">PayPal</label>
                                             </div>
+                                            @auth('buyer')
                                             @if ($buyer->cards)
                                               @foreach ($buyer->cards as $card)
 
@@ -259,7 +265,7 @@
                                                 </div>
                                               @endforeach
                                             @endif
-
+                                          @endauth
                                             <div class="single-payment-gateway">
                                                 <input type="radio" name="ptype" value="pay_on_delivery"
                                                     id="pay_on_delivery">
