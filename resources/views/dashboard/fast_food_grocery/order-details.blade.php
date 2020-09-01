@@ -6,7 +6,7 @@
 @section('content')
     <div class="col-md-10">
         <div class="row col-md-12 text-center" style="border-bottom: 1px solid #f2f2f2;">
-        
+
             <h1 class="text-center m-auto pt-3 pb-3 " style="color: #02499B;"><b>Orders Details</b></h1>
         </div>
         <a class="btn btn-sm btn-success" href="{{route('fast_food_grocery.orders')}}">Go back</a>
@@ -70,7 +70,7 @@
                     </div>
                 </div>
             </div>
-            
+
 
             <br><br><br>
 
@@ -94,7 +94,7 @@
 
     </div>
     <script>
-      
+
         async function changeStatus(el){
             var r = document.getElementById('state');
             console.log(r)
@@ -106,6 +106,6 @@
            r.innerHTML = '';
        },3000)
    });
-        }  
+        }
     </script>
 @endsection

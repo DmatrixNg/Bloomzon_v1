@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Buyer;
 use App\FastFoodGrocery;
 use App\Order;
-use App\OrderDetails;
+use App\OrderDetail;
 use App\Professional;
 use App\Seller;
 use App\Product;
@@ -142,6 +142,7 @@ public function redirectToGateway()
             foreach ($products as $prod) {
 
               $product = Product::find($prod->id);
+              // $product->supermarket->user->notify(new \App\Notifications\Store($product));
 
               $test =  $order->order_details()->create([
                     'id' => Str::uuid()->toString(),
@@ -189,7 +190,7 @@ public function redirectToGateway()
     public function trackDelivery($id = null){
 
         if(isset($id) && $id != null){
-            $delivery = OrderDetails::where('order_id',$id)->get();
+            $delivery = OrderDetail::where('order_id',$id)->get();
 
             if(count($delivery)){
                 return view('front.track-delivery',compact(['delivery']));

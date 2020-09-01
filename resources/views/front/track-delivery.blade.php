@@ -23,7 +23,7 @@
                             <div class="col-md-4 p-3 mb-4 mr-2">
                                 <div class="card" style="width: 18rem;">
                                     <div class="badge pull-right text-white" style="top: 0; right: 0; position: absolute; background-color: green;">{{$order->status}}</div>
-                                    
+
                                     <img src="{{ asset('storage/assets/product/avatars/' . $order->product->avatars[0]) }}"
                                         class="img card-img-top" width="60" alt="">
                                     <div class="card-body">
@@ -33,12 +33,15 @@
                                     </div>
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item">Seller:
-                                            {{ $order->seller_id->full_name }}</li>
+                                          {{-- @php
+                                            dd($order->seller)
+                                          @endphp --}}
+                                            {{ $order->seller->full_name }}</li>
                                         <li class="list-group-item">Buyer:
-                                            {{ $order->orderable->full_name }}</span></p>
+                                            {{ $order->order->orderable->full_name }}</span></p>
                                         </li>
                                         <li class="list-group-item"><p><span style="font-weight: bolder">Billing
-                                            Address:</span>{{ $order->orderable->billing_address }}
+                                            Address:</span>{{ $order->order->orderable->billing_address }}
                                     </li>
                                     <li class="list-group-item">WareHouse Status:
                                         {{ $order->shopper_status }}</span></p>
@@ -53,7 +56,7 @@
                         </div>
                     @elseif(isset($id) && $id != null)
                     <h4 class="alert alert-warning">No order found with the ID :  {{$id}}</h4>
-                     @else   
+                     @else
                         <h4>Please enter order ID to track your delivery</h4>
                     @endif
                     <div class="row m-auto">
