@@ -175,6 +175,17 @@ Route::post('/chat/new_chat','ChatController@new_chat')->name('chat.new');
 Route::post('/chat/replies','ChatController@chat_replies')->name('chat.replies');
 Route::post('/chat/reply','ChatController@reply')->name('chat.reply');
 Route::post('/chat/continue','ChatController@continue')->name('chat.continue');
+<<<<<<< HEAD
+=======
+
+// manufacturer
+Route::get('/manufacturers','ManufacturerController@index')->name('manufacturers');
+Route::get('/manufacturer-details/{id}','ManufacturerController@show');
+
+// newsletter
+Route::post('/newsletter_subscribe','NewsletterSubscriptionController@store');
+
+>>>>>>> 59fb27acf8d7a308cb1bcbfa5e917b02b5fe35b0
 //all the admin routes will be defined here...
 Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function () {
 
@@ -234,16 +245,18 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
         Route::get('all_sellers', 'UserController@all_sellers');
         Route::get('get_users/{user_type}', 'UserController@show_users');
         Route::post('get_users/{user_type}', 'UserController@get_users');
+
         //DELETE USER
         Route::post('delete-user/{usertype}/{id}','UserController@destroyUser');
         Route::post('change_status/{usertype}/{id}','UserController@change_status');
+
         //CHANGE STATUS
         Route::post('change-status/sub_admin/{id}','UserController@changeAdminStatus');
+
         //MAKE SELLER BLOOMZON
         Route::post('make-bloomzon-seller/{id}','UserController@makeBloomzonSeller');
 
-
-        //BRANDS
+        // BRANDS
         Route::get('all-brands','BrandController@index')->name('all-brands');
         Route::get('create-brands','BrandController@create')->name('create-brand');
         Route::post('store-brand','BrandController@store');
@@ -252,7 +265,7 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
         // REVIEWS
         Route::get('reviews', 'ReviewController@index');
         Route::post('/reveiw/change_status/{id}', 'ReviewController@change_status');
-
+        
         //ADVERTS
         Route::get('all-adverts','AdvertController@index')->name('all-adverts');
         Route::get('create-advert','AdvertController@create')->name('create-advert');
@@ -284,9 +297,7 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
         Route::get('right-of-purchase','SettingController@rightOfPurchase');
         Route::get('refund','SettingController@refund');
         Route::post('save-setting/','SettingController@storeData');
-
-        Route::get('payout-request',"PayoutRequestController@index");
-
+        
         Route::get('site-config','SiteConfigController@index')->name('site-config');
         Route::get('set-configuration',"SiteConfigController@update")->name('set-config');
 
@@ -316,10 +327,31 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
         Route::get('product/edit/{id}','BloomzonProductController@edit')->name('edit-product');
         Route::post('product/update/{id}','BloomzonProductController@update');
 
+        // payouts
+        Route::get('payout-request/{user_type}',"PayoutRequestController@index");
+        Route::get('payout-request/pay/{request_id}',"PayoutRequestController@pay");
+
+        // 
+        Route::get('shopper-details/{id}',"ShopperController@show_details");
+        Route::get('buyer-details/{id}',"BuyerController@show_details");
+
+        // site analysis
+        Route::get('site-analysis/',"SiteAnalysisController@show_details");
+
+        // system control
+        Route::get('account-statement/',"AccountStatementController@index");
+
+        // send newsletter
+        Route::get('newsletter/', "NewsletterController@index");
+        Route::post('send-newsletter/', "NewsletterController@send_newsletter");
+        Route::get('newsletters/', "NewsletterController@all_newsletters");
+        Route::get('subscribers/', "NewsletterController@subscribers");
+        
+        
 
     });
 
-
+   
 });
 
 //all the buyer routes will be defined here...
