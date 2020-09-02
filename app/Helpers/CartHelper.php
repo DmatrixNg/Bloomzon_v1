@@ -39,7 +39,7 @@ class CartHelper {
      * get the current cart session
      *
      * @return  array
-     */ 
+     */
     public function get_current_cart()
     {
 
@@ -50,25 +50,25 @@ class CartHelper {
         }
 
         return $this->current_cart;
-        
+
     }
 
     /**
      * move the content of $this->current_cart to cart session
      *
      * @return  array
-     */ 
+     */
     protected function set_cart()
     {
         session(['cart' => $this->current_cart]);
     }
-    
+
     /**
      * increase the quantity of an item in cart
      *
      * @return  null
-     */ 
-    public function inc_quantity($product_id, $increment_by = 1)
+     */
+    public function inc_quantity($product_id, $increment_by = 1, $color = "")
     {
 
         if(array_key_exists($product_id, $this->current_cart)) {
@@ -82,23 +82,24 @@ class CartHelper {
 
         $this->current_cart[$product_id] = [
             'product_id' => $product_id,
-            'quantity'   => $increment_by
+            'quantity'   => $increment_by,
+            'color'   => $color
         ];
 
         $this->set_cart();
-        
+
     }
 
     /**
      * reduce the quantity of an item in cart
      *
      * @return  null
-     */ 
+     */
     public function reduce_quantity($product_id, $reduce_by = 1)
     {
 
         if(array_key_exists($product_id, $this->current_cart)) {
-            
+
             $this->current_cart[$product_id]['quantity'] = $reduce_by;
 
             // remove the item if the quantity is less than one
@@ -115,14 +116,14 @@ class CartHelper {
         }
 
         $this->set_cart();
-        
+
     }
 
     /**
      * remove the item from cart
      *
      * @return  array
-     */ 
+     */
     public function remove_item($product_id)
     {
 
@@ -135,11 +136,11 @@ class CartHelper {
      * remove the item from cart
      *
      * @return  array
-     */ 
+     */
     public function delete_cart()
     {
 
-        // 
+        //
         if(session()->has('cart')) {
             // Forget cart array...
             session()->forget('cart');
@@ -147,5 +148,5 @@ class CartHelper {
         }
     }
 
-    
+
 }

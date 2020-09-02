@@ -35,11 +35,12 @@ Route::get('/rename_table/{before}/{after}',function(Request $request){
 
 });
 Route::get('test/product', function () {
-  $first = \App\Product::all();
-  foreach ($first as $key => $value) {
-dump($value->seller_class);
- }
-  // dd($first->seller_class);
+  $first = \App\Product::first();
+//   foreach ($first as $key => $value) {
+// dump($value->seller_class);
+//  }
+dump($first);
+  dd($first->seller);
 });
 Route::get('manufacturer/logout', 'Web\Manufacturer\Auth\LoginController@logout')->name('logout');
 
@@ -92,6 +93,7 @@ Route::post('/product/getSubCategories/{id}','ProductController@getSubCategories
 // Cart System Routes
 
 Route::get('/cart','CartController@displayCart');
+Route::get('/cart/add/{product_id}/{qty}/{color}','CartController@addToCart');
 Route::get('/cart/add/{product_id}/{qty}','CartController@addToCart');
 Route::get('/cart/increase/{product_id}/{qty}','CartController@addToCart');
 Route::get('/cart/decrease/{product_id}/{qty}','CartController@redItemQty');

@@ -73,10 +73,14 @@ class Product extends Model
     }
 
 
-    public function seller(){
-        return $this->belongsTo('App\Seller','seller_id','id');
+    /**
+    * Get the model that the seller belongs to.
+    */
+    public function seller()
+    {
+      return $this->morphTo(__FUNCTION__, 'seller_type', 'seller_id');
     }
-
+    
     public function __toString()
     {
         return (string)$this->id;

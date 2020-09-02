@@ -25,9 +25,9 @@ class CartController extends Controller
         $this->cartHelper = new CartHelper();
     }
 
-    public function addToCart($id, $qty)
+    public function addToCart($id, $qty, $color="")
     {
-        $this->cartHelper->inc_quantity($id, $qty);
+        $this->cartHelper->inc_quantity($id, $qty, $color);
         $cart = $this->cartHelper->get_current_cart();
         return $this->send_response(true, $cart, 200, 'Cart has been updated');
     }
@@ -74,6 +74,7 @@ class CartController extends Controller
         $total = [];
 
         $res = $this->getProductFromCart();
+        // dd($res);
         if ($res) {
             $cart_items = $res[0];
             $products = $res[1];
@@ -95,6 +96,7 @@ class CartController extends Controller
         // $naira_price = null; // for niara value
         $cart_items = $res[0];
         $products = $res[1];
+        // dd( $products);
         $ref = 'BZ' . rand(0, 99999);
         $total = $res[2];
         //HANDEL ALL CONVERSIONS RATE HERE

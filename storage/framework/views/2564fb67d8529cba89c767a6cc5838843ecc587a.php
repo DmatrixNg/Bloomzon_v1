@@ -40,15 +40,17 @@
 								<tr>
 									<th>Image</th>
 									<th>Product Name</th>
+									<th>Color</th>
 									<th>Price</th>
 									<th>Quantity</th>
 									<th>Total</th>
 									<th class="text-center"><i class="fa fa-times" aria-hidden="true"></i></th>
 								</tr>
 							</thead>
+
                                 <tbody>
                                     <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $cart_item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    
+
                                         <tr>
                                             <td>
                                                 <div class="cart-product-thumb">
@@ -58,6 +60,11 @@
                                             <td>
                                                 <div class="cart-product-name">
                                                     <h5><a href="product-details"> <?php echo e($cart_item->product_name); ?></a></h5>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="cart-product-name">
+                                                    <h5><a href="product-details"> <?php echo e(@$cart_items[$cart_item->id]['color']); ?></a></h5>
                                                 </div>
                                             </td>
                                             <td>
@@ -202,9 +209,9 @@
 
  function removeItem(el) {
 			return swal("Do you want to remove this from cart?").then((yes)=>{
-			
+
 					if(yes){
-						const response = fetch(`/cart/remove/${el.getAttribute('data-product-id')}`, 
+						const response = fetch(`/cart/remove/${el.getAttribute('data-product-id')}`,
 						{
                     method: 'GET',
                     headers: {
@@ -212,7 +219,7 @@
                     }
 				}).then(e=>{
 					console.log(e);
-					
+
                 if(e.status == 200){
                     return swal({
                         title: 'Success',
@@ -237,17 +244,17 @@
 		}
 
 		// public function increase(id){
-			
+
 		// }
 
-       
+
 
 
         [...document.getElementsByClassName('value-increase')].map(element => {
             element.onclick = e => {
 				const cart_quantity_element = document.getElementById(`cartItem${e.target.getAttribute('data-product-id')}`);
-				// console.log(cart_quantity_element.value);
-                // cart_quantity_element.value = parseInt(cart_quantity_element.value) - parseInt(1) 
+				console.log(cart_quantity_element.value);
+                // cart_quantity_element.value = parseInt(cart_quantity_element.value) - parseInt(1)
                 fetch(`/cart/increase/${e.target.getAttribute('data-product-id')}/${cart_quantity_element.value}`, {
                     method: 'GET',
                     headers: {

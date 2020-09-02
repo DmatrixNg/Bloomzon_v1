@@ -130,7 +130,7 @@
                                     <label>PHONE *</label>
                                 </div>
                                 <div class="col-lg-9">
-                                    <input type="text" value="{{ $buyer ? $buyer->phone : '' }}" name="phone_number"
+                                    <input type="text" value="{{ $buyer ? $buyer->phone_number : '' }}" name="phone_number"
                                         id="phone_number">
                                 </div>
                             </div>
@@ -224,7 +224,7 @@
                                     <div class="payment-gateways mt-30">
                                         <div id="payment_gateways">
                                           @auth('buyer')
-                                            @isset($buyer->point->amount)
+                                            @if($buyer->point->total_point != 0)
 
                                               <div class="single-payment-gateway">
                                                 <input id="point" type="checkbox" name="point" value="{{$buyer->point->amount}}" id="paypal">
@@ -232,7 +232,7 @@
                                                 height="50" /> --}}
                                                 <label for="point">Point (${{$buyer->point->amount}})</label>
                                               </div>
-                                            @endisset
+                                            @endif
                                           @endauth
                                             <div class="single-payment-gateway">
                                                 <input type="radio" name="ptype" value="paystack" id="paystack">
@@ -247,7 +247,9 @@
                                                 <label for="paypal">PayPal</label>
                                             </div>
                                             @auth('buyer')
+                                              <input type="hidden" id="card_detail" name="card" value="">
                                             @if ($buyer->cards)
+
                                               @foreach ($buyer->cards as $card)
 
                                                 <div class="single-payment-gateway">
@@ -327,7 +329,7 @@ data-namespace="paypal_sdk">
     <script>
     var payment = new PaymentHandler();
     var place_order = document.getElementById('place_order');
-    var products = @json($products);
+    var products = @json([$products,$cart_items]);
 
 // console.log($("input[name='card']:checked"));
 // console.log($('.cards'));
@@ -390,10 +392,11 @@ data-namespace="paypal_sdk">
           document.getElementById('pay').click();
         }
         else if ($("input[name='card']:checked")) {
-          console.log($("input[name='card']:checked").val());
+          // console.log($("input[name='card']:checked").val());
           payment_stat.value = 0;
           pgateway.value = 'card'
-          // document.getElementById('pay').click();
+          $("#card_detail").val($("input[name='card']:checked").val())
+          document.getElementById('pay').click();
         }
          else {
           return swal("Please select payment method")

@@ -1,8 +1,7 @@
-@extends('layouts.front')
-@section('page_title')
+<?php $__env->startSection('page_title'); ?>
 Product Details
-@endsection
-@section('content')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 <!--products-area start-->
 
 <div class="mm-page mm-slideout" id="mm-0">
@@ -12,36 +11,25 @@ Product Details
                 <div class="row">
                     <div class="col-lg-1 col-md-2">
                         <ul class="nav nav-tabs products-nav-tabs">
-                            @foreach ($images as $key => $image )
-                            {{-- <li><a class="active" data-toggle="tab" href="#product-1"><img src="{{asset($product->featured_img_url)}}" alt=""></a></li> --}}
-                            <li><a data-toggle="tab" href="#product-{{$key}}"><img src="{{asset('storage/assets/product/avatars/'.$image)}}" alt=""></a></li>
-                            {{-- <li><a data-toggle="tab" href="#product-3"><img src="{{asset($product->featured_img_url)}}" alt=""></a></li> --}}
-                            @endforeach
+                            <?php $__currentLoopData = $images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            
+                            <li><a data-toggle="tab" href="#product-<?php echo e($key); ?>"><img src="<?php echo e(asset('storage/assets/product/avatars/'.$image)); ?>" alt=""></a></li>
+                            
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </ul>
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="tab-content">
-                            @foreach ($images as $key => $image )
-                            <div id="product-{{$key}}" class="tab-pane fade in show @if($key == 0)active @endif">
+                            <?php $__currentLoopData = $images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <div id="product-<?php echo e($key); ?>" class="tab-pane fade in show <?php if($key == 0): ?>active <?php endif; ?>">
                                 <div class="product-details-thumb">
-                                    <a class="venobox vbox-item" data-gall="myGallery" href="{{asset('storage/assets/product/avatars/'.$image)}}"><i class="fa fa-search-plus"></i></a>
-                                    <img src="{{asset('storage/assets/product/avatars/'.$image)}}" alt="">
+                                    <a class="venobox vbox-item" data-gall="myGallery" href="<?php echo e(asset('storage/assets/product/avatars/'.$image)); ?>"><i class="fa fa-search-plus"></i></a>
+                                    <img src="<?php echo e(asset('storage/assets/product/avatars/'.$image)); ?>" alt="">
                                 </div>
                             </div>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-                            {{-- <div id="product-2" class="tab-pane fade">
-                                <div class="product-details-thumb">
-                                    <a class="venobox vbox-item" data-gall="myGallery" href="{{asset($product->featured_img_url)}}"><i class="fa fa-search-plus"></i></a>
-                                    <img src="{{asset($product->featured_img_url)}}" alt="">
-                                </div>
-                            </div>
-                            <div id="product-3" class="tab-pane fade">
-                                <div class="product-details-thumb">
-                                    <a class="venobox vbox-item" data-gall="myGallery" href="{{asset($product->featured_img_url)}}"><i class="fa fa-search-plus"></i></a>
-                                    <img src="{{asset($product->featured_img_url)}}" alt="">
-                                </div>
-                            </div> --}}
+                            
                         </div>
                     </div>
 
@@ -49,27 +37,27 @@ Product Details
                         <div class="row">
                             <div class="col-lg-8 col-md-7">
                                 <div class="product-details-desc">
-                                    <h2>{{$product->product_name}}</h2>
+                                    <h2><?php echo e($product->product_name); ?></h2>
                                     <ul>
                                         <li>
 
-                                            {{substr($product->product_description, 0, 900)}}...
+                                            <?php echo e(substr($product->product_description, 0, 900)); ?>...
                                         </li>
 
                                     </ul>
                                     <div class="product-meta">
                                         <ul class="list-none">
-                                            <li>SKU: {{$product->stock_level}} <span>|</span></li>
-                                            @if($product->category_id->name ?? $product->name)
+                                            <li>SKU: <?php echo e($product->stock_level); ?> <span>|</span></li>
+                                            <?php if($product->category_id->name ?? $product->name): ?>
                                             <li>Categories:
-                                                <a href="/category/{{$product->category_id->name ?? $product->name}}">{{$product->category_id->name ?? $product->name}}</a>
+                                                <a href="/category/<?php echo e($product->category_id->name ?? $product->name); ?>"><?php echo e($product->category_id->name ?? $product->name); ?></a>
                                                 <span>|</span>
                                             </li>
-                                            @endif
-                                            {{-- <li>Tags:--}}
-                                            {{-- <a href="#">Tech,</a>--}}
-                                            {{-- <a href="#">Apple</a>--}}
-                                            {{-- </li>--}}
+                                            <?php endif; ?>
+                                            
+                                            
+                                            
+                                            
                                         </ul>
                                     </div>
                                     <div class="product-meta">
@@ -96,21 +84,21 @@ Product Details
                                     </div>
                                     <div class="product-price-rating">
                                         <div>
-                                            @if($product->product_sales_price)
-                                            <del>{{$product->product_currency === 1 ? 'NGN': '$'}}{{number_format($product->product_price)}}</del>
+                                            <?php if($product->product_sales_price): ?>
+                                            <del><?php echo e($product->product_currency === 1 ? 'NGN': '$'); ?><?php echo e(number_format($product->product_price)); ?></del>
                                         </div>
-                                        <span>{{$product->product_currency === 1 ? 'NGN': '$'}}{{number_format($product->product_sales_price)}}</span>
-                                        @else
-                                        <span>${{number_format($product->product_price)}}</span>
-                                        @endif
+                                        <span><?php echo e($product->product_currency === 1 ? 'NGN': '$'); ?><?php echo e(number_format($product->product_sales_price)); ?></span>
+                                        <?php else: ?>
+                                        <span>$<?php echo e(number_format($product->product_price)); ?></span>
+                                        <?php endif; ?>
 
                                         <div class="pull-right">
-                                            @for($i=0; $i<$product->rating; $i++)
+                                            <?php for($i=0; $i<$product->rating; $i++): ?>
                                                 <i class="fa fa-star"></i>
-                                                @endfor
-                                                @for($k=0; $k< (5 - $product->rating); $k++)
+                                                <?php endfor; ?>
+                                                <?php for($k=0; $k< (5 - $product->rating); $k++): ?>
                                                     <i class="fa fa-star-o"></i>
-                                                    @endfor
+                                                    <?php endfor; ?>
                                         </div>
                                     </div>
                                     <div class="product-colors mt-20">
@@ -118,7 +106,7 @@ Product Details
                                         <ul class="list-none">
                                            <?php
                                             foreach($colors as $col){  ?>
-                                            <li onclick="$('#colored').val('{{$col}}');$(this).attr('style','border:1px solid {{$col}};background-color:{{$col}}')"  style="background-color:{{$col}}">{{$col}}</li>
+                                            <li onclick="$('#colored').val('<?php echo e($col); ?>');$(this).attr('style','border:1px solid <?php echo e($col); ?>;background-color:<?php echo e($col); ?>')"  style="background-color:<?php echo e($col); ?>"><?php echo e($col); ?></li>
                                             <?php
                                             }
                                             ?>
@@ -129,18 +117,18 @@ Product Details
                                     </div>
                                     <div class="product-quantity mt-15">
                                         <label>Quantity:</label>
-                                        <input type="number" id="qty_{{$product->id}}" value="1">
+                                        <input type="number" id="qty_<?php echo e($product->id); ?>" value="1">
                                     </div>
                                     <div class="add-to-get mt-50">
-                                        <a href="#" id="cart" class="add-to-cart cart" data-product-id="{{$product->id}}">Add to Cart</a>
+                                        <a href="#" id="cart" class="add-to-cart cart" data-product-id="<?php echo e($product->id); ?>">Add to Cart</a>
                                         <a href="/cart" class="add-to-cart text-white bg-danger" >Check out</a>
-                                        {{-- <a href="#" class="add-to-cart compare">+ ADD to Compare</a>--}}
+                                        
                                     </div>
                                     <div class="product-features mt-50">
                                         <ul class="list-none">
-                                            {{-- <li>Satisfaction 100% Guaranteed</li>--}}
-                                            {{-- <li>Free shipping on orders over $99</li>--}}
-                                            {{-- <li>14 day easy Return</li>--}}
+                                            
+                                            
+                                            
                                         </ul>
                                     </div>
                                 </div>
@@ -163,8 +151,8 @@ Product Details
                     <div class="tab-content">
                         <div id="description" class="tab-pane active fade in show ">
                             <div class="product-description">
-                                <h2>{{$product->product_name}}</h2>
-                                <p>{{$product->product_description}}</p>
+                                <h2><?php echo e($product->product_name); ?></h2>
+                                <p><?php echo e($product->product_description); ?></p>
                                 <div class="site-image mb-25">
 
                                 </div>
@@ -177,20 +165,20 @@ Product Details
                                         <td>Customer Rating</td>
                                         <td>
                                             <div class="product-rating">
-                                                @for($i=0; $i<$product->rating; $i++)
+                                                <?php for($i=0; $i<$product->rating; $i++): ?>
                                                     <i class="fa fa-star"></i>
-                                                    @endfor
-                                                    @for($k=0; $k< (5 - $product->rating); $k++)
+                                                    <?php endfor; ?>
+                                                    <?php for($k=0; $k< (5 - $product->rating); $k++): ?>
                                                         <i class="fa fa-star-o"></i>
-                                                        @endfor
+                                                        <?php endfor; ?>
 
-                                                        <span>({{$product->rating}})</span>
+                                                        <span>(<?php echo e($product->rating); ?>)</span>
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>Price</td>
-                                        <td><strong class="price">${{number_format($product->product_price)}}</strong></td>
+                                        <td><strong class="price">$<?php echo e(number_format($product->product_price)); ?></strong></td>
                                     </tr>
 
                                 </tbody>
@@ -199,56 +187,56 @@ Product Details
                         <div id="reviews" class="tab-pane  fade">
                             <div class="blog-comments product-comments mt-0">
                                 <ul class="list-none">
-                                    @foreach($product->reviews as $review)
+                                    <?php $__currentLoopData = $product->reviews; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $review): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <li>
 
                                         <div class="comment-avatar text-center">
-                                            <img src="{{asset('storage/assets/buyer/avatar/'.$review->buyer_id->avatar) }}" alt="" height="50" width="50" h>
+                                            <img src="<?php echo e(asset('storage/assets/buyer/avatar/'.$review->buyer_id->avatar)); ?>" alt="" height="50" width="50" h>
                                             <div class="product-rating mt-10">
 
-                                                @for ($i = 1; $i <= 5; $i++)
-                                                @if($i > $review->rating)
+                                                <?php for($i = 1; $i <= 5; $i++): ?>
+                                                <?php if($i > $review->rating): ?>
                                                 <i class="fa fa-star-o"></i>
-                                                @else
+                                                <?php else: ?>
                                                 <i class="fa fa-star"></i>
-                                                @endif
-                                                @endfor
+                                                <?php endif; ?>
+                                                <?php endfor; ?>
 
 
                                             </div>
                                         </div>
                                         <div class="comment-desc">
-                                            <span>{{ date($review->createdAt) }}</span>
-                                            <h4>{{$review->buyer_id->name}}</h4>
-                                            <p>{{$review->review_message}}. </p>
+                                            <span><?php echo e(date($review->createdAt)); ?></span>
+                                            <h4><?php echo e($review->buyer_id->name); ?></h4>
+                                            <p><?php echo e($review->review_message); ?>. </p>
                                         </div>
                                     </li>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                 </ul>
                             </div>
-                            @php
+                            <?php
                               // dd(session()->get('cart'))
-                            @endphp
+                            ?>
                             <div class="blog-comment-form product-comment-form mt-05">
                                 <h4><span>Add Review</span></h4>
                                 <form name="reviewForm" id="reviewForm">
                                     <div class="row mt-30">
-                                        @if(Auth::guard('buyer')->user())
+                                        <?php if(Auth::guard('buyer')->user()): ?>
                                         <div class="col-sm-6 single-form">
-                                            <input type="text" value="{{Auth::guard('buyer')->user()->full_name}}" disabled>
+                                            <input type="text" value="<?php echo e(Auth::guard('buyer')->user()->full_name); ?>" disabled>
                                         </div>
                                         <div class="col-sm-6">
-                                            <input type="text" value="{{Auth::guard('buyer')->user()->email}}" disabled>
+                                            <input type="text" value="<?php echo e(Auth::guard('buyer')->user()->email); ?>" disabled>
                                         </div>
-                                        @else
+                                        <?php else: ?>
                                         <div class="col-sm-4 single-form">
                                             <h5>Please login to add review</h5>
                                             <a href="/login" class="btn btn-danger btn-lg">Login</a>
                                         </div>
                                         <div class="col-sm-4 single-form">
                                         </div>
-                                        @endif
+                                        <?php endif; ?>
                                         <div class="col-sm-12">
                                             <div class="product-rating style-2">
                                                 <span>Your Rating:</span>
@@ -264,16 +252,16 @@ Product Details
                                             <textarea name="review_message" placeholder="Messages"></textarea>
                                         </div>
                                         <div class="col-sm-12">
-                                            @if(Auth::guard('buyer')->user())
-                                            <input type="hidden" value="{{$product->id}}" name="product_id" />
-                                            <input type="hidden" value="{{$product->seller_id->id}}" name="seller_id" />
-                                            <input type="hidden" value="{{Auth::guard('buyer')->user()->id}}" name="buyer_id" />
+                                            <?php if(Auth::guard('buyer')->user()): ?>
+                                            <input type="hidden" value="<?php echo e($product->id); ?>" name="product_id" />
+                                            <input type="hidden" value="<?php echo e($product->seller_id->id); ?>" name="seller_id" />
+                                            <input type="hidden" value="<?php echo e(Auth::guard('buyer')->user()->id); ?>" name="buyer_id" />
                                             <input type="hidden" value="0" id="rating" name="rating" />
                                             <input type="hidden" value="1" name="status" />
                                             <button name="" class="btn-common mt-25">Submit</button>
-                                            @else
-                                            <a href="{{url('buyer/login')}}" class="btn btn-danger btn-lg">Login</a>
-                                            @endif
+                                            <?php else: ?>
+                                            <a href="<?php echo e(url('buyer/login')); ?>" class="btn btn-danger btn-lg">Login</a>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </form>
@@ -310,9 +298,9 @@ Product Details
         </div>
     </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('scripts')
+<?php $__env->startPush('scripts'); ?>
 
 <script>
     var element = document.getElementById('cart');
@@ -456,7 +444,8 @@ Product Details
                             <div class="col-lg-12">
                                 <h2>TERMS &amp; CONDITIONS</h2>
                                     <p class="text-justify">
-                                      {{$product->seller_id->terms_and_conditions}}
+                                      <?php echo e($product->seller_id->terms_and_conditions); ?>
+
                                     </p>
                             </div>
                         </div>
@@ -481,7 +470,8 @@ Product Details
                             <div class="col-lg-12">
                                 <h2>Delivery Terms</h2>
                                     <p class="text-justify">
-                                      {{$product->seller_id->delivery_terms}}
+                                      <?php echo e($product->seller_id->delivery_terms); ?>
+
                                     </p>
                             </div>
                         </div>
@@ -506,7 +496,8 @@ Product Details
                             <div class="col-lg-12">
                                 <h2>Return Policy</h2>
                                     <p class="text-justify">
-                                      {{$product->seller_id->policy}}
+                                      <?php echo e($product->seller_id->policy); ?>
+
                                     </p>
                             </div>
                         </div>
@@ -516,4 +507,6 @@ Product Details
         </div>
     </div>
 </div>
-@endpush
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('layouts.front', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Users/DMatrix/work/new/Bloomzon_v1/resources/views/front/product-details.blade.php ENDPATH**/ ?>

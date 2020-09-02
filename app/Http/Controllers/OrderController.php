@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Paystack;
 use App\Helpers\GuardCheck;
+use Illuminate\Support\Facades\Http;
+
 
 
 class OrderController extends Controller
@@ -68,7 +70,34 @@ public function redirectToGateway()
             'buyer_id'       => 'integer',
 
         ]);
+        $paymentstatus = $request->status;
 
+        if ($request->payment_gateway =="card") {
+          $request->validate([
+            'card' => 'required'
+          ]);
+
+          // Log::debug($request->total_amount);
+          $card = $this->user->cards()->findOrFail($request->card);
+          $response = Http::withHeaders([
+          "Authorization" => "Bearer " . config('paystack.secretKey'),
+          "Cache-Control" => "no-cache",
+          ])->post('https://api.paystack.co/transaction/charge_authorization', [
+            'authorization_code' => $card->authorization_code,
+            'email' => $this->user->email,
+            'amount' => ($request->total_amount * 100)
+          ]);
+          $paymentDetails = $response->json();
+          if ($paymentDetails['status'] == false) {
+
+            return response()->json($paymentDetails);
+          }
+          if ($paymentDetails['data']['status'] == 'success'){
+            $paymentstatus = 1;
+          }
+
+
+        }
         //check if buyer already on the system
         if ($request->buyer_id) {
 
@@ -130,7 +159,7 @@ public function redirectToGateway()
                 'billing_address' => $request->billing_address,
                 'order_notes'     => $request->order_notes,
                 'order_reference' => $request->ref,
-                'status' => $request->status,
+                'status' => $paymentstatus,
                 'pickup_id'=>  $pickup_id
             ]);
             if($request->payment_status == 1){
@@ -138,8 +167,14 @@ public function redirectToGateway()
             }
             if($order){
 
+              // Log::debug($products);
                 // loop through each product to create order details and wallet update
-            foreach ($products as $prod) {
+            foreach ($products[0] as $prod) {
+              $id = $prod->id;
+
+              $cart = (array)$products[1]->$id;
+              // Log::debug(json_encode([$prod,$cart]));
+              // dd();
 
               $product = Product::find($prod->id);
               // $product->supermarket->user->notify(new \App\Notifications\Store($product));
@@ -151,6 +186,7 @@ public function redirectToGateway()
                     'seller_type' => $product->seller_class,
                     'product_id' => $product->id,
                     'product' => json_encode($prod),
+                    'card_details' => json_encode($cart),
                     'status'    => $request->status
                 ]);
                 if($request->payment_status == 1){// check if user already for product
