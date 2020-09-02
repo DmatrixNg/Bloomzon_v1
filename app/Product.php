@@ -7,30 +7,41 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $guarded = [];
+
+
+
+        /**
+        * Get the model that the seller belongs to.
+        */
+        public function seller()
+        {
+          return $this->morphTo(__FUNCTION__, 'seller_type', 'seller_id');
+        }
+
     public function getBuyerIdAttribute($buyerId){
         return Buyer::find($buyerId);
     }
 
-    public function getSellerIdAttribute($sellerId){
-
-        switch($this->product_type){
-            case 'fast_food_grocery':
-                return FastFoodGrocery::find($sellerId);
-            break;
-
-            case 'seller':
-                return Seller::find($sellerId);
-            break;
-
-            case 'professional':
-                return Professional::find($sellerId);
-            break;
-            case 'manufacturer':
-                return Manufacturer::find($sellerId);
-            break;
-
-        }
-    }
+    // public function getSellerIdAttribute($sellerId){
+    //
+    //     switch($this->product_type){
+    //         case 'fast_food_grocery':
+    //             return FastFoodGrocery::find($sellerId);
+    //         break;
+    //
+    //         case 'seller':
+    //             return Seller::find($sellerId);
+    //         break;
+    //
+    //         case 'professional':
+    //             return Professional::find($sellerId);
+    //         break;
+    //         case 'manufacturer':
+    //             return Manufacturer::find($sellerId);
+    //         break;
+    //
+    //     }
+    // }
     public function getSellerClassAttribute($sellerId){
 
         switch($this->product_type){
@@ -73,14 +84,7 @@ class Product extends Model
     }
 
 
-    /**
-    * Get the model that the seller belongs to.
-    */
-    public function seller()
-    {
-      return $this->morphTo(__FUNCTION__, 'seller_type', 'seller_id');
-    }
-    
+
     public function __toString()
     {
         return (string)$this->id;

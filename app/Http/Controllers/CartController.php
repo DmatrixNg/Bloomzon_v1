@@ -132,7 +132,7 @@ class CartController extends Controller
                 $coupon = $this->applyCoupon();
                 $product->discounted = false;
 
-                if(count($coupon) && $coupon['user_id'] == $product->seller_id->id && $coupon['user_type'] == $product->product_type){
+                if(count($coupon) && $coupon['user_id'] == $product->seller->id && $coupon['user_type'] == $product->product_type){
 
                     $discount = $product->product_sales_price * $coupon['discount'] / 100;
                     $product->product_sales_price = $product->product_sales_price - $discount;

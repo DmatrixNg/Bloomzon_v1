@@ -55,14 +55,20 @@ class Seller extends Authenticatable
         return $this->morphMany('App\Message', 'messageable');
     }
 
+    // /**
+    //  * Get all of the subscriptions's comments.
+    //  */
+    // public function products()
+    // {
+    //     return $this->hasMany(Product::where('product_type', 'seller')->where('seller_id', $this->id)->get());
+    // }
     /**
-     * Get all of the subscriptions's comments.
+     * Get all of the user's products.
      */
     public function products()
     {
-        return $this->hasMany(Product::where('product_type', 'seller')->where('seller_id', $this->id)->get());
+        return $this->morphMany('App\Product', 'seller');
     }
-
     /**
      * Get all of the subscriptions's comments.
      */
