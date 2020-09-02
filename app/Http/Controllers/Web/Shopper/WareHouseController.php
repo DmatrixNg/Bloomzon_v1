@@ -21,11 +21,11 @@ class WareHouseController extends Controller
     protected $shopper;
     public function __construct(){
         $this->shopper = Auth::guard('shopper')->user();
-    } 
+    }
     public function index()
     {
         $packaged_goods = WareHouse::all();
-        
+
         return view('dashboard.shopper.warehouse-package',compact(['packaged_goods']));
     }
 
@@ -69,16 +69,16 @@ class WareHouseController extends Controller
             'order_id'=>$request->order_id,
             'delivery_status'=>'ready_for_pickup',
             'slug'=> str_replace(' ','_',strtolower($request->storage_location))
-        ]);    
+        ]);
 
         if($stored){
             return $this->send_response(true,[],200,'Product stored in warehouse');
         }
             return $this->send_response(true,[],200,'Unable to store in warehouse');
-        
 
 
-        
+
+
     }
 
     public function scan_code($id){

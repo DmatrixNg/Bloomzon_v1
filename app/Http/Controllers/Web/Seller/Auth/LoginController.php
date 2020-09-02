@@ -35,6 +35,10 @@ class LoginController extends Controller
     protected $redirectTo = RouteServiceProvider::HOME;
 
     protected function redirectTo() {
+      $user = auth()->guard('seller')->user();
+
+      $user->notify(new \App\Notifications\Login($user));
+
         return '/seller/dashboard';
     }
 
@@ -200,7 +204,7 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
-        
+
         $this->guard()->logout();
 
         $request->session()->invalidate();
@@ -210,7 +214,7 @@ class LoginController extends Controller
         if ($response = $this->loggedOut($request)) {
             return $response;
         }
-        
+
         return $request->wantsJson()
             ? new Response('', 204)
             : redirect('/');

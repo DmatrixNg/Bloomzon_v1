@@ -74,7 +74,7 @@
                                     value="{{ $order->seller_id->full_name }}" style="height: 40px; border-radius: 0; ">
                                 <input type="hidden" value="{{ $order->order_id }}" name="order_id" />
                                 <input type="hidden" value="{{ $order->seller_id->id }}" name="seller_id" />
-                                <input type="hidden" value="{{ $order->buyer_id->id }}" name="buyer_id" />
+                                <input type="hidden" value="{{ $order->orderable->id }}" name="buyer_id" />
                                 <input type="hidden" value="{{ $order->id }}" name="order_details_id" />
                                 <input type="hidden" value="{{ $shopper->id }}" name="shopper_id" />
                             </div>
@@ -87,7 +87,7 @@
                             <div class="form-inline pt-2 ">
                                 <label for="buyer_name" class="col-md-4 " style="font-size: 16px;; ">Buyer Name: </label>
                                 <input type="text" class="form-control col-md-8" disabled
-                                    value="{{ $order->buyer_id->full_name }}" style="height: 40px; border-radius: 0; ">
+                                    value="{{ $order->orderable->full_name }}" style="height: 40px; border-radius: 0; ">
                             </div>
                             <div class="form-inline pt-2 ">
                                 <label for="exampleFormControlInput1 " class="col-md-4 " style="font-size: 16px;; ">Billing
@@ -98,7 +98,7 @@
                             <div class="form-inline pt-2 ">
                                 <label for="buyer_phone " class="col-md-4 " style="font-size: 16px;; ">Buyer No: </label>
                                 <input type="text" name="buyer_phone" class="form-control col-md-8" disabled
-                                    value="{{ $order->buyer_id->phone_number }}" style="height: 40px; border-radius: 0; ">
+                                    value="{{ $order->orderable->phone_number }}" style="height: 40px; border-radius: 0; ">
                             </div>
                             <div class="form-inline pt-2 ">
                                 <label for="amount" class="col-md-4 " style="font-size: 16px;; ">Amount:</label>

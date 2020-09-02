@@ -1,152 +1,177 @@
 @extends('layouts.dashboard.admin')
-@section('page_title')
-    Fast Food & Groceries Dashboard
-@endsection
 
-        @section('content')
-        <div class="col-md-10 p-0">
-                <div class="col-md-12 mt-4 mb-4">
-                    <div class="row">
-                        <div class="col-md-9">
-                            <label for="exampleFormControlInput1 " style="font-size: 20px; color: #666; font-weight: 500;">Statement:</label>
-                            <div class="form-inline ">
-                            <select class="form-control col-md-4" style="height: 45px; border-radius: 0px;">
-                                <option selected="">Sort</option>
-                                <option>New</option>
-                                <option>Old</option>
-                            </select>
-                        </div>
-                        </div>
-                        <div class="col-md-3">
-                            <label for="exampleFormControlInput1 " style="font-size: 20px; color: #666; font-weight: 500;">Month:</label>
-                            <div class="form-inline ">
-                                <select class="form-control" style="height: 40px; border-radius: 0px; width: 100%;">
-                                    <option>January</option>
-                                    <option>February</option>
-                                    <option>March</option>
-                                    <option>April</option>
-                                    <option>May</option>
-                                    <option>June</option>
-                                    <option>July</option>
-                                    <option>August</option>
-                                    <option>September</option>
-                                    <option>October</option>
-                                    <option>November</option>
-                                    <option>December</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+@section('content')
+    <div class="col-md-10 p-0">
+        <div class="col-md-12 mt-4 mb-4 d-none">
+            <div class="row">
+                <div class="col-md-9">
+                    <label for="exampleFormControlInput1 " style="font-size: 20px; color: #666; font-weight: 500;">Statement:</label>
+                    <div class="form-inline ">
+                    <select class="form-control col-md-4" style="height: 45px; border-radius: 0px;">
+                        <option selected="">Sort</option>
+                        <option>New</option>
+                        <option>Old</option>
+                    </select>
                 </div>
-                <div class="col-md-12 mb-5">
-                    <div class="card m-0 p-0">
-                        <table class="table text-center table-bordered m-0">
-                            <thead style="background-color:  #003B88; color: #fff; font-size: 16px; vertical-align: middle;">
-                                <tr style="height: 60px; text-align: center !important;" class="text-center">
-                                    <th class="text-center">Users</th>
-                                    <th class="text-center">No. of Users</th>
-                                    <th class="text-center">Total Sales(N)</th>
-                                    <th class="text-center">Product Delivered</th>
-                                    <th class="text-center">Payout</th>
-                                    <th class="text-center">Total Premium Users &amp; Amount</th>
-                                    <th class="text-center">Total Basic Users &amp; Amount</th>
-                                    <th class="text-center">Total Amount Subscribed</th>
-                                    <th class="text-center">Income</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr style="height: 60px;">
-                                    <td>Buyers</td>
-                                    <td>400</td>
-                                    <td>4,000,000</td>
-                                    <td>600</td>
-                                    <td>49</td>
-                                    <td>2,000</td>
-                                    <td>90,000</td>
-                                    <td>79</td>
-                                    <td>2,000,000</td>
-                                </tr>
-                                <tr style="height: 60px;">
-                                    <td>Sellers</td>
-                                    <td>400</td>
-                                    <td>4,000,000</td>
-                                    <td>600</td>
-                                    <td>49</td>
-                                    <td>2,000</td>
-                                    <td>90,000</td>
-                                    <td>79</td>
-                                    <td>2,000,000</td>
-                                </tr>
-                                <tr style="height: 60px;">
-                                    <td>Manufacturers</td>
-                                    <td>400</td>
-                                    <td>4,000,000</td>
-                                    <td>600</td>
-                                    <td>49</td>
-                                    <td>2,000</td>
-                                    <td>90,000</td>
-                                    <td>79</td>
-                                    <td>2,000,000</td>
-                                </tr>
-                                <tr style="height: 60px;">
-                                    <td>Professional Services</td>
-                                    <td>400</td>
-                                    <td>4,000,000</td>
-                                    <td>600</td>
-                                    <td>49</td>
-                                    <td>2,000</td>
-                                    <td>90,000</td>
-                                    <td>79</td>
-                                    <td>2,000,000</td>
-                                </tr>
-                                <tr style="height: 60px;">
-                                    <td>Networking Agents</td>
-                                    <td>400</td>
-                                    <td>4,000,000</td>
-                                    <td>600</td>
-                                    <td>49</td>
-                                    <td>2,000</td>
-                                    <td>90,000</td>
-                                    <td>79</td>
-                                    <td>2,000,000</td>
-                                </tr>
-                                <tr style="height: 60px;">
-                                    <td>Delivery Merchants</td>
-                                    <td>400</td>
-                                    <td>4,000,000</td>
-                                    <td>600</td>
-                                    <td>49</td>
-                                    <td>2,000</td>
-                                    <td>90,000</td>
-                                    <td>79</td>
-                                    <td>2,000,000</td>
-                                </tr>
-                                <tr style="height: 60px;">
-                                    <td>Shoppers</td>
-                                    <td>400</td>
-                                    <td>4,000,000</td>
-                                    <td>600</td>
-                                    <td>49</td>
-                                    <td>2,000</td>
-                                    <td>90,000</td>
-                                    <td>79</td>
-                                    <td>2,000,000</td>
-                                </tr>
-                                <tr style="height: 60px;">
-                                    <td>Fast-Foods &amp; Groceries</td>
-                                    <td>400</td>
-                                    <td>4,000,000</td>
-                                    <td>600</td>
-                                    <td>49</td>
-                                    <td>2,000</td>
-                                    <td>90,000</td>
-                                    <td>79</td>
-                                    <td>2,000,000</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                </div>
+                <div class="col-md-3">
+                    <label for="exampleFormControlInput1 " style="font-size: 20px; color: #666; font-weight: 500;">Month:</label>
+                    <div class="form-inline ">
+                        <select class="form-control" style="height: 40px; border-radius: 0px; width: 100%;">
+                            <option>January</option>
+                            <option>February</option>
+                            <option>March</option>
+                            <option>April</option>
+                            <option>May</option>
+                            <option>June</option>
+                            <option>July</option>
+                            <option>August</option>
+                            <option>September</option>
+                            <option>October</option>
+                            <option>November</option>
+                            <option>December</option>
+                        </select>
                     </div>
-
                 </div>
             </div>
-        @endsection
+        </div>
+        <div class="col-md-12 mb-5">
+            <div class="card m-0 p-0">
+                <table id="statements-table" class="table text-center table-bordered m-0">
+                    <thead style="background-color:  #003B88; color: #fff; font-size: 16px; vertical-align: middle;">
+                        <tr style="height: 60px; text-align: center !important;" class="text-center">
+                            <th class="text-center">Users</th>
+                            <th class="text-center">No. of Users</th>
+                            <th class="text-center">Total Sales(N)</th>
+                            <th class="text-center">Product Delivered</th>
+                            <th class="text-center">Payout</th>
+                            <th class="text-center">Total Premium Users &amp; Amount</th>
+                            <th class="text-center">Total Basic Users &amp; Amount</th>
+                            <th class="text-center">Total Amount Subscribed</th>
+                            <th class="text-center">Income</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="height: 60px;">
+                            <td>Buyers</td>
+                            <td>{{ $numb_buyers }}</td>
+                            <td>---</td>
+                            <td>---</td>
+                            <td>---</td>
+                            <td>{{ $premium_buyers }} - {{ $premium_buyers * 5000 }}</td>
+                            <td>{{ $basic_buyers }} - {{ $basic_buyers * 2000 }}</td>
+                            <td>{{ $premium_buyers + $premium_buyers }}</td>
+                            <td>{{ ($premium_buyers * 5000) + ($basic_buyers * 2000) }} </td>
+                        </tr>
+                        <tr style="height: 60px;">
+                            <td>Sellers</td>
+                            <td>{{ $numb_sellers }}</td>
+                            <td>4,000,000</td>
+                            <td>600</td>
+                            <td>49</td>
+                            <td>{{ $premium_sellers }} - {{ $premium_sellers * 5000 }}</td>
+                            <td>{{ $basic_sellers }} - {{ $basic_sellers * 2000 }}</td>
+                            <td>{{ $premium_sellers + $premium_sellers }}</td>
+                            <td>{{ ($premium_sellers * 5000) + ($basic_sellers * 2000) }}</td>
+                        </tr>
+                        <tr style="height: 60px;">
+                            <td>Manufacturers</td>
+                            <td>{{ $numb_manufacturers }}</td>
+                            <td>4,000,000</td>
+                            <td>600</td>
+                            <td>49</td>
+                            <td>{{ $premium_manufacturers }} - {{ $premium_manufacturers * 5000 }}</td>
+                            <td>{{ $basic_manufacturers }} - {{ $basic_manufacturers * 2000 }}</td>
+                            <td>{{ $premium_manufacturers + $premium_manufacturers }}</td>
+                            <td>{{ ($premium_manufacturers * 5000) + ($basic_manufacturers * 2000) }}</td>
+                        </tr>
+                        <tr style="height: 60px;">
+                            <td>Professional Services</td>
+                            <td>{{ $numb_ps }}</td>
+                            <td>4,000,000</td>
+                            <td>600</td>
+                            <td>49</td>
+                            <td>{{ $premium_ps }} - {{ $premium_ps * 5000 }}</td>
+                            <td>{{ $basic_ps }} - {{ $basic_ps * 2000 }}</td>
+                            <td>{{ $premium_ps + $premium_ps }}</td>
+                            <td>{{ ($premium_ps * 5000) + ($basic_ps * 2000) }}</td>
+                        </tr>
+                        <tr style="height: 60px;">
+                            <td>Networking Agents</td>
+                            <td>{{ $numb_na }}</td>
+                            <td>4,000,000</td>
+                            <td>600</td>
+                            <td>49</td>
+                            <td>{{ $premium_na }} - {{ $premium_na * 5000 }}</td>
+                            <td>{{ $basic_na }} - {{ $basic_na * 2000 }}</td>
+                            <td>{{ $premium_na + $premium_na }}</td>
+                            <td>{{ ($premium_na * 5000) + ($basic_na * 2000) }}</td>
+                        </tr>
+                        <tr style="height: 60px;">
+                            <td>Delivery Merchants</td>
+                            <td>400</td>
+                            <td>4,000,000</td>
+                            <td>600</td>
+                            <td>49</td>
+                            <td>2,000</td>
+                            <td>90,000</td>
+                            <td>79</td>
+                            <td>2,000,000</td>
+                        </tr>
+                        <tr style="height: 60px;">
+                            <td>Shoppers</td>
+                            <td>{{ $numb_shopper }}</td>
+                            <td>4,000,000</td>
+                            <td>600</td>
+                            <td>49</td>
+                            <td>{{ $premium_shopper }} - {{ $premium_shopper * 5000 }}</td>
+                            <td>{{ $basic_shopper }} - {{ $basic_shopper * 2000 }}</td>
+                            <td>{{ $premium_shopper + $premium_shopper }}</td>
+                            <td>{{ ($premium_shopper * 5000) + ($basic_shopper * 2000) }}</td>
+                        </tr>
+                        <tr style="height: 60px;">
+                            <td>Fast-Foods &amp; Groceries</td>
+                            <td>{{ $numb_ffg }}</td>
+                            <td>4,000,000</td>
+                            <td>600</td>
+                            <td>49</td>
+                            <td>{{ $premium_ffg }} - {{ $premium_ffg * 5000 }}</td>
+                            <td>{{ $basic_ffg }} - {{ $basic_ffg * 2000 }}</td>
+                            <td>{{ $premium_ffg + $premium_ffg }}</td>
+                            <td>{{ ($premium_ffg * 5000) + ($basic_ffg * 2000) }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+@endsection
+
+
+@push('scripts')
+
+<script>
+
+    $(document).ready(function(){
+      $("#statements-table").DataTable();
+    })
+
+    function deleteUser(id){
+      return swal({
+        text: "Do you want to delete user?",
+        buttons: true,
+      }).then((e)=>{
+        if(e){
+          makeRequest('/admin/delete-user/delivery_agent/'+id).then((e)=>{
+            console.log(e);
+            if(e.success){
+              return swal("Delivery Agent Deleted").then(e => window.location.reload());
+            }
+            return swal("Unable to delete")
+          })
+        }
+      })
+    }
+</script>
+@endpush

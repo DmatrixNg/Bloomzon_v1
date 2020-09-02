@@ -7,7 +7,7 @@ use App\BuyerMessage;
 use App\Http\Controllers\Controller;
 use App\Message;
 use App\Order;
-use App\OrderDetails;
+use App\OrderDetail;
 use App\Point;
 use App\Product;
 use Illuminate\Support\Facades\Validator;
@@ -122,10 +122,15 @@ class DashboardController extends Controller
 
     public function notification($id){
         $id = base64_decode($id);
-        $notifications = [];
+        $notifications = $this->buyer->notifications;
+
         return view('dashboard.buyer.notifications',compact(['notifications']));
     }
-
+    // public function notification(){
+    //
+    //   $notifications = $this->buyer->notifications;
+    //     return view('dashboard.seller.notifications',compact(['notifications']));
+    // }
     public function favorites($id){
         $id = base64_decode($id);
         $favorites = [];
@@ -153,16 +158,16 @@ class DashboardController extends Controller
     }
 
     public function deliveryStatus($id){
-        $all_products = OrderDetails::where('order_id',$id)->get();
-        $delivered_count = OrderDetails::where('order_id',$id)->where('shopper_status','delivered')->get();
-        $transit = OrderDetails::where('order_id',$id)->where('status','!=', 'new')->get();
+        $all_products = OrderDetail::where('order_id',$id)->get();
+        $delivered_count = OrderDetail::where('order_id',$id)->where('shopper_status','delivered')->get();
+        $transit = OrderDetail::where('order_id',$id)->where('status','!=', 'new')->get();
         return view('dashboard.buyer.delivery-status',compact(['all_products','delivered_count','transit']));
     }
     public function allStatus(){
         $buyer = Auth::guard('buyer')->user();
-        $all_products = OrderDetails::where('buyer_id',$buyer->id)->get();
-        $delivered_count = OrderDetails::where('buyer_id',$buyer->id)->where('shopper_status','delivered')->get();
-        $transit = OrderDetails::where('order_id',$buyer->id)->where('status','!=', 'new')->get();
+        $all_products = OrderDetail::where('buyer_id',$buyer->id)->get();
+        $delivered_count = OrderDetail::where('buyer_id',$buyer->id)->where('shopper_status','delivered')->get();
+        $transit = OrderDetail::where('order_id',$buyer->id)->where('status','!=', 'new')->get();
         return view('dashboard.buyer.delivery-status',compact(['all_products','delivered_count','transit']));
     }
 

@@ -20,7 +20,7 @@ class NetworkingAgent extends Authenticatable
      * @var array
      */
     protected $guarded = [ ];
-  
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -37,8 +37,9 @@ class NetworkingAgent extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-    ];
+        'last_login' => 'datetime',
 
+    ];
     /**
      * Get all of the post's comments.
      */

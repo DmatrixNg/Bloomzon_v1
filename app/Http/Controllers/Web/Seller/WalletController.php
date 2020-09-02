@@ -21,8 +21,8 @@ class WalletController extends Controller
 
     public function index(){
         $seller = $this->seller;
-        $orders = OrderDetails::where('seller_id',$this->seller->id)->where('order_type','seller')->get();
-        $sales = OrderDetails::where('seller_id',$this->seller->id)->where('order_type','seller')->where('status','delivered')->get();
+        $orders = $this->seller->order_details()->get();
+        $sales = $this->seller->order_details()->where('status','delivered')->get();
         $history = WalletHistory::where('user_id',$this->seller->id)->where('user_type','seller')->get();
         $order_tran =  WalletHistory::where('user_id',$this->seller->id)->where('user_type','seller')->where('slug','order')->get();
         return view('dashboard.seller.wallet',compact(['orders','history','seller','sales','order_tran']));
@@ -46,5 +46,5 @@ class WalletController extends Controller
             return $this->send_response(false,$withdraw,400,'Withdrawal request failed');
         }
 
- 
+
 }

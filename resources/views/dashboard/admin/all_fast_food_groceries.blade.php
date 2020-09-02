@@ -31,7 +31,9 @@
                 @foreach ($fast_food_groceries as $fast_food_grocery )
                 <tr>
                   <td>{{$fast_food_grocery->id}}</td>
-                <td>{{$fast_food_grocery->full_name}}</td>
+
+                <td> <a href="{{ url('/fast-food-details', $fast_food_grocery->id) }}" target="_blank">{{$fast_food_grocery->full_name}}</a></td>
+
                   <td>{{$fast_food_grocery->email}}</td>
                 <td>{{$fast_food_grocery->phone_number}}</td>
                 <td>{{$fast_food_grocery->account_type}}</td>

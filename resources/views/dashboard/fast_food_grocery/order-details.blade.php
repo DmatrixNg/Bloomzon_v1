@@ -6,7 +6,7 @@
 @section('content')
     <div class="col-md-10">
         <div class="row col-md-12 text-center" style="border-bottom: 1px solid #f2f2f2;">
-        
+
             <h1 class="text-center m-auto pt-3 pb-3 " style="color: #02499B;"><b>Orders Details</b></h1>
         </div>
         <a class="btn btn-sm btn-success" href="{{route('fast_food_grocery.orders')}}">Go back</a>
@@ -16,9 +16,9 @@
                     height="80" style="border-radius: 40px;">
             </div>
             <div class="col-md-5 text-left">
-                <h4>BUYER ID:{{ $order->buyer_id->id }}</h4>
-                <h4>LOCATION: {{ $order->buyer_id->street_address }}</h4>
-                <h4>BILLING ADDRESS: {{ $order->buyer_id->billing_address }}</h4>
+                <h4>BUYER ID:{{ $order->orderable->id }}</h4>
+                <h4>LOCATION: {{ $order->orderable->street_address }}</h4>
+                <h4>BILLING ADDRESS: {{ $order->orderable->billing_address }}</h4>
 
             </div>
         </div>
@@ -46,7 +46,7 @@
                                     @foreach($orders as $order_detail)
                                         <tr>
                                             <td>{{ $order_detail->product->id }}</td>
-                                            <td>{{ $order->buyer_id->billing_address }}</td>
+                                            <td>{{ $order->orderable->billing_address }}</td>
                                             <td>{{ $order_detail->quantity }}</td>
                                             <td>{{ $order_detail->product->product_price }}</td>
                                             <td>{{ $order_detail->order->payment_method }}</td>
@@ -70,7 +70,7 @@
                     </div>
                 </div>
             </div>
-            
+
 
             <br><br><br>
 
@@ -94,7 +94,7 @@
 
     </div>
     <script>
-      
+
         async function changeStatus(el){
             var r = document.getElementById('state');
             console.log(r)
@@ -106,6 +106,6 @@
            r.innerHTML = '';
        },3000)
    });
-        }  
+        }
     </script>
 @endsection

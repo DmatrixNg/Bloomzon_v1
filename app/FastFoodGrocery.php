@@ -12,7 +12,16 @@ class FastFoodGrocery extends Authenticatable
     protected $guard = 'fast_food_grocery';
     protected $guarded = [];
 
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'last_login' => 'datetime',
 
+    ];
     // public function seller_wallet(){
     //     return $this->hasOne('App\SellerWallet','seller_id','id');
     // }

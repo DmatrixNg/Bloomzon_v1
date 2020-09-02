@@ -34,6 +34,10 @@ class LoginController extends Controller
     protected $redirectTo = RouteServiceProvider::HOME;
 
     protected function redirectTo() {
+      $user = auth()->guard('professional')->user();
+
+      $user->notify(new \App\Notifications\Login($user));
+
         return '/professional/dashboard';
     }
 

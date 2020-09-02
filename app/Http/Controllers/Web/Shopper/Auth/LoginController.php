@@ -35,6 +35,10 @@ class LoginController extends Controller
     protected $redirectTo = RouteServiceProvider::HOME;
 
     protected function redirectTo() {
+      $user = auth()->guard('shopper')->user();
+
+      $user->notify(new \App\Notifications\Login($user));
+
         return '/shopper/dashboard';
     }
 

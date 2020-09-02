@@ -22,21 +22,14 @@ class Manufacturer extends Authenticatable
     protected $guarded = [];
 
     /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
-
-    /**
      * The attributes that should be cast to native types.
      *
      * @var array
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'last_login' => 'datetime',
+
     ];
 
     /**
@@ -62,5 +55,5 @@ class Manufacturer extends Authenticatable
     {
         return $this->hasMany('App\ManufacturerRequest');
     }
-    
+
 }

@@ -12,12 +12,12 @@ class Product extends Model
     }
 
     public function getSellerIdAttribute($sellerId){
-        
+
         switch($this->product_type){
             case 'fast_food_grocery':
                 return FastFoodGrocery::find($sellerId);
             break;
-            
+
             case 'seller':
                 return Seller::find($sellerId);
             break;
@@ -27,6 +27,26 @@ class Product extends Model
             break;
             case 'manufacturer':
                 return Manufacturer::find($sellerId);
+            break;
+
+        }
+    }
+    public function getSellerClassAttribute($sellerId){
+
+        switch($this->product_type){
+            case 'fast_food_grocery':
+                return (string)FastFoodGrocery::class;
+            break;
+
+            case 'seller':
+                return (string)Seller::class;
+            break;
+
+            case 'professional':
+                return (string)Professional::class;
+            break;
+            case 'manufacturer':
+                return (string)Manufacturer::class;
             break;
 
         }

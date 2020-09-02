@@ -40,7 +40,10 @@
                 </div>
                 <div class="col-md-12">
                     <div class="card m-0 p-0">
-                        @if(count($payments))
+                      {{-- @php
+                        dd($payments)
+                      @endphp --}}
+                        @isset($payments)
                         <table class="table text-center table-bordered m-0" id="payment_history">
                             <thead style="background-color:  #003B88; color: #fff; font-size: 16px; vertical-align: middle;">
                                 <tr style="height: 60px; text-align: center !important;" class="text-center">
@@ -53,10 +56,11 @@
                             </thead>
                             <tbody>
                                 @foreach($payments as  $payment)
+
                                     <tr style="height: 60px;">
-                                        
+
                                         <td style="border: solid 1px #ddd;">{{count($payment->order_details) }}</td>
-                                        <td style="border: solid 1px #ddd;"><a href="/seller-details/{{$payment->order_details[0]->seller_id->id}}">{{$payment->order_details[0]->seller_id->company_name}}</a></td>
+                                        <td style="border: solid 1px #ddd;"><a href="/seller-details/{{$payment->order_details[0]->seller->id}}">{{$payment->order_details[0]->seller->company_name }}</a></td>
                                         <td style="border: solid 1px #ddd;">{{$payment->total_amount}}</td>
                                         <td style="border: solid 1px #ddd;">{{$payment->payment_method}}</td>
                                         <td style="border: solid 1px #ddd;">{{date('Y-M-d',strtotime($payment->created_at))}}</td>
@@ -78,7 +82,7 @@
                                     </nav>
                         </div> --}}
                             @else
-                            @endif
+                            @endisset
                     </div>
 
                 </div>

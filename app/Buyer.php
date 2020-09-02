@@ -37,6 +37,8 @@ class Buyer extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'last_login' => 'datetime',
+
     ];
 
     /**
@@ -69,7 +71,9 @@ class Buyer extends Authenticatable
      */
     public function order_details()
     {
-        return $this->morphMany('App\OrderDetail', 'orderable');
+        return $this->hasManyThrough('App\OrderDetail', 'App\Order',
+        'orderable_id'
+      );
     }
     /**
      * Get all of the user's orders.

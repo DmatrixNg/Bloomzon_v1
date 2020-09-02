@@ -38,6 +38,7 @@ class Seller extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'last_login' => 'datetime',
     ];
 
 
@@ -94,12 +95,18 @@ class Seller extends Authenticatable
     {
         return $this->morphOne('App\Point', 'pointable');
     }
-
     /**
      * Get all of the user's orders.
      */
     public function orders()
     {
-        return $this->morphMany('App\OrderDetail', 'orderable');
+        return $this->morphMany('App\Order', 'orderable');
+    }
+    /**
+     * Get all of the user's orders.
+     */
+    public function order_details()
+    {
+        return $this->morphMany('App\OrderDetail', 'seller');
     }
 }

@@ -31,18 +31,18 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        
+
         $id = $this->fast_food_grocery->id;
         $catalogues = FoodCatalogue::all();
 
-        $orders = OrderDetails::where('seller_id',$id)->where('order_type','fast_food_grocery')->get();
-        $sales =  OrderDetails::where('seller_id',$id)->where('status','delivered')->where('order_type','fast_food_grocery')->get();
+        $orders = $this->seller->order_details()->where('order_type','fast_food_grocery')->get();
+        $sales =  $this->seller->order_details()->where('status','delivered')->where('order_type','fast_food_grocery')->get();
         return view('dashboard.fast_food_grocery.home',compact(['orders','sales','catalogues']));
     }
 
     // handles the file and image uploads
     public function fileStore($data)
-    {   
+    {
         $url = array();
         foreach ($data as $img) {
             $image = $img;
@@ -68,7 +68,7 @@ class DashboardController extends Controller
         return $filename;
     }
 
-   
+
     /**
      * Show the form for creating a new resource.
      *
@@ -108,7 +108,7 @@ class DashboardController extends Controller
 
         return view('dashboard.fast_food_grocery.show-message', compact(['message']));
     }
-  
+
     /**
      * Display the specified resource.
      *

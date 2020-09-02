@@ -34,6 +34,13 @@ Route::get('/rename_table/{before}/{after}',function(Request $request){
   return dump("enter old and new name eg /{before}/{after}");
 
 });
+Route::get('test/product', function () {
+  $first = \App\Product::all();
+  foreach ($first as $key => $value) {
+dump($value->seller_class);
+ }
+  // dd($first->seller_class);
+});
 Route::get('manufacturer/logout', 'Web\Manufacturer\Auth\LoginController@logout')->name('logout');
 
 Route::GET('/realestate',function(){
@@ -775,6 +782,11 @@ Route::prefix('/seller')->name('seller.')->namespace('Web\Seller')->group(functi
         //     $seller = Auth::guard('seller')->user();
         //     return view('dashboard.seller.package', compact(['seller']));
         // });
+
+        Route::get('notifications/','DashboardController@notifications');
+        Route::get('notification','DashboardController@notifications');
+        Route::get('notification/{id}','DashboardController@notification');
+
 
          Route::get('all-coupons','CouponController@index')->name('all-coupons');
          Route::get('create-coupon','CouponController@create')->name('create-coupon');

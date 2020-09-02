@@ -35,8 +35,8 @@ class CreateManufacturersTable extends Migration
             $table->longText('terms_and_conditions')->nullable();
             $table->longText('terms_of_purchase')->nullable();
             $table->longText('policies')->nullable();
-
-            $table->string('avatar')->default('avatar.png');
+            
+            $table->longText('avatar')->default('avatar.png');
 
             $table->timestamps();
             $table->string('password');

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Web\FastFoodGrocery; 
+namespace App\Http\Controllers\Web\FastFoodGrocery;
 
 use App\Http\Controllers\Controller;
 use App\OrderDetails;
@@ -29,7 +29,7 @@ class WalletController extends Controller
         $order_tran =  WalletHistory::where('user_id',$this->fast_food_grocery->id)->where('user_type','fast_food_grocery')->where('slug','order')->get();
         return view('dashboard.fast_food_grocery.wallet',compact(['orders','history','fast_food_grocery','sales','order_tran']));
     }
-    
+
 
     public function cashOut(Request $request){
         $request->validate([
@@ -49,7 +49,7 @@ class WalletController extends Controller
             return $this->send_response(false,$withdraw,400,'Withdrawal request failed');
         }
 
- 
+
 
     /**
      * Show the form for creating a new resource.

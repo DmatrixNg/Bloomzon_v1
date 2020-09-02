@@ -32,7 +32,7 @@
                                 @if(count($requests))
                                     @foreach($requests as $req)
                             <tr>
-                            <td>{{$loop->index}}</td>
+                                <td>{{$loop->index}}</td>
                                 <td>{{$request->seller_id->full_name}}</td>
                                 <td>{{$request->seller_id->wallet}}</td>
                                 <td>{{$request->amount}}</td>

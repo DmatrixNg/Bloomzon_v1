@@ -249,7 +249,7 @@
                                                     <li><a href="<?php echo e(route('fast-foods')); ?>">Food &amp; Groceries</a></li>
                                                 <li><a href="<?php echo e(url('/proservice')); ?>">Professional Services</a></li>
                                                     <li><a href="<?php echo e(url('/sellers')); ?>">Seller</a></li>
-                                                    <li class="m-auto"><a href="#">Manufacturers</a></li>
+                                                    <li class="m-auto"><a href="<?php echo e(url('/manufacturers')); ?>">Manufacturers</a></li>
                                                 </ul>
                                             </nav>
                                         </div>

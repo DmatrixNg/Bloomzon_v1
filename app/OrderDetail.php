@@ -8,19 +8,18 @@ class OrderDetail extends Model
 {
   protected $guarded = [];
 
+  protected $keyType = 'string';
+
 
   protected $fillable = [
-      'id', 'order_id', 'seller_id', 'product_id',
+      'id', 'order_id', 'seller_id','seller_type', 'product_id',
       'product','status'
     ];
 
 
-    /**
-     * Get the owning orderable model.
-     */
-    public function orderable()
+    public function getProductAttribute($prod)
     {
-        return $this->morphTo();
+        return json_decode($prod);
     }
 
     /**
@@ -28,7 +27,23 @@ class OrderDetail extends Model
      */
     public function order()
     {
-        return $this->belongsTo('App\Order', 'id');
+        return $this->belongsTo('App\Order', 'order_id');
     }
+    /**
+     * Get the OrderDetail for the buyer.
+     */
+    public function products()
+    {
+        return $this->belongsTo('App\Product', 'product_id');
+    }
+
+    /**
+    * Get the model that the seller belongs to.
+    */
+    public function seller()
+    {
+      return $this->morphTo(__FUNCTION__, 'seller_type', 'seller_id');
+    }
+
 
 }

@@ -26,7 +26,7 @@ class SalesController extends Controller
 
     public function index(){
         // $id = $this->seller->id;
-        // $sales = OrderDetails::where('seller_id',$id)->where('')->get();
+        // $sales = $this->seller->order_details()->where('')->get();
 
         // return view('dashboard.professional.sales-history',compact(['sales']));
 
@@ -34,15 +34,15 @@ class SalesController extends Controller
 
 
         $id = Auth::guard('professional')->user()->id;
-        $sales = OrderDetails::where('seller_id',$id)->where('status','delivered')->get();
+        $sales = $this->seller->order_details()->where('status','delivered')->get();
         $total_sales = WalletHistory::where('user_id',$id)->where('user_type','professional')->where('slug','order')->get();
-        
+
         return view('dashboard.professional.sales',compact(['sales','total_sales']));
     }
 
-  
 
-  
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -70,7 +70,7 @@ class SalesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-  
+
     public function show($sale){
         // $sale = json_decode(base64_decode($sale));
         // $order = Order::where('id',$sale->order_id)->first();

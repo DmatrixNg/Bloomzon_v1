@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Buyer;
 use App\FastFoodGrocery;
 use App\Order;
-use App\OrderDetails;
+use App\OrderDetail;
 use App\Professional;
 use App\Seller;
+use App\Product;
 use App\Traits\JsonResponse;
 use App\WalletHistory;
 use App\WareHouse;
@@ -69,7 +70,10 @@ public function redirectToGateway()
         ]);
 
         //check if buyer already on the system
-        $buyer = $this->user->find($request->buyer_id);
+        if ($request->buyer_id) {
+
+          $buyer = $this->user->find($request->buyer_id);
+        }
         //check if user already exist
         if ($buyer) {
             $buyer->country         = $request->country;
@@ -83,7 +87,12 @@ public function redirectToGateway()
             // $buyer->order_notes = $request->order_notes;
             // $buyer->buyer_id = $request->buyer
         } else {
-            $buyer =  $this->user->create([
+
+          $request->validate([
+            // 'username'     => ['required', 'string', 'max:255', 'unique:buyers'],
+            'email'        => ['required', 'string', 'email', 'max:255', 'unique:buyers'],
+          ]);
+            $buyer =  Buyer::create([
                 'country'         => $request->country,
                 'state'           => $request->state,
                 'full_name'       => $request->full_name,
@@ -96,6 +105,8 @@ public function redirectToGateway()
 
             ]);
         }
+        // Log::debug($buyer);
+        // dd();
         if ($request->with == "point"){
           $point = $buyer->point->total_point;
           $used_point = $buyer->point->used_point;
@@ -109,8 +120,7 @@ public function redirectToGateway()
         }
 
 
-        // Log::debug($this->user->find($request->buyer_id));
-        // dd();
+
         $pickup_id = mt_rand(100, 999).mt_rand(100, 999).mt_rand(100, 999);
         if ($products != null) {
             $order =  $buyer->orders()->create([
@@ -131,16 +141,18 @@ public function redirectToGateway()
                 // loop through each product to create order details and wallet update
             foreach ($products as $prod) {
 
+              $product = Product::find($prod->id);
+              // $product->supermarket->user->notify(new \App\Notifications\Store($product));
+
               $test =  $order->order_details()->create([
                     'id' => Str::uuid()->toString(),
                     'order_id' => $order->id,
-                    'seller_id' => $prod->seller_id->id,
-                    'product_id' => $prod->id,
+                    'seller_id' => $product->seller_id->id,
+                    'seller_type' => $product->seller_class,
+                    'product_id' => $product->id,
                     'product' => json_encode($prod),
                     'status'    => $request->status
                 ]);
-                // Log::debug($test);
-                // dd();
                 if($request->payment_status == 1){// check if user already for product
                 WalletHistory::create([
                     'user_id' => $prod->seller_id->id,
@@ -169,7 +181,6 @@ public function redirectToGateway()
 
 
             }
-
             return $this->send_response(true,$order->id,200,'Order created successfully');
         }
         }
@@ -179,7 +190,7 @@ public function redirectToGateway()
     public function trackDelivery($id = null){
 
         if(isset($id) && $id != null){
-            $delivery = OrderDetails::where('order_id',$id)->get();
+            $delivery = OrderDetail::where('order_id',$id)->get();
 
             if(count($delivery)){
                 return view('front.track-delivery',compact(['delivery']));

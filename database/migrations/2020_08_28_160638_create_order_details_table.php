@@ -16,8 +16,8 @@ class CreateOrderDetailsTable extends Migration
         Schema::create('order_details', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->integer('order_id')->unsigned();
-            
-            $table->integer('seller_id')->unsigned();
+
+            $table->morphs('seller');
             $table->integer('product_id')->unsigned();
             $table->mediumText('product');
             $table->string('status')->default('new');

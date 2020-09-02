@@ -18,16 +18,17 @@ class OrdersController extends Controller
         $this->seller = Auth::guard('seller')->user();
     }
     public function index(){
-        $orders = OrderDetails::where('seller_id',$this->seller->id)->where('order_type', 'seller')->get();
-
+        $orders = $this->seller->order_details;
+// dd($orders);
         return view('dashboard.seller.histogram',compact(['orders']));
     }
 
     public function show($order){
         $order = json_decode(base64_decode($order));
-        
-        $orders = OrderDetails::where('buyer_id',$order->buyer_id->id)->where('seller_id',$order->seller_id->id)->where('order_id',$order->order_id)->get();
-        
+        $order = \App\Order::find($order->order_id);
+        $orders = $order->order_details;
+        // dd($orders);
+
         return view('dashboard.seller.order-detail',compact(['order','orders']));
     }
 
