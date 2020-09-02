@@ -1,75 +1,89 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
+
+
+
+
+
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Bloomzon - @yield('page_title')</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ Session::token() }}">
-    <link rel="manifest" href="site">
-    <link rel="apple-touch-icon" href="icon">
-    <!-- Place favicon.ico in the root directory -->
-
-
-    <!-- bootstrap v4.0.0 -->
-    <link rel="stylesheet" href="{{asset('assets/frontend/css/bootstrap.min.css')}}">
-    <!-- fontawesome-icons css -->
-    <link rel="stylesheet" href="{{asset('assets/frontend/css/font-awesome.min.css')}}">
-    <!-- themify-icons css -->
-    <link rel="stylesheet" href="{{asset('assets/frontend/css/themify-icons.css')}}">
-    <!-- elegant css -->
-    <link rel="stylesheet" href="{{asset('assets/frontend/css/elegant.css')}}">
-    <!-- elegant css -->
-    <link rel="stylesheet" href="{{asset('assets/frontend/css/jquery.mmenu.css')}}">
-    <!-- jquery-ui.min css -->
-    <link rel="stylesheet" href="{{asset('assets/frontend/css/jquery-ui.min.css')}}">
-    <!-- venobox css -->
-    <link rel="stylesheet" href="{{asset('assets/frontend/css/venobox.css')}}">
-    <!-- slick css -->
-    <link rel="stylesheet" href="{{asset('assets/frontend/css/slick.css')}}">
-    <!-- slick-theme css -->
-    <link rel="stylesheet" href="{{asset('assets/frontend/css/slick-theme.css')}}">
-    <!-- cssanimation css -->
-    <link rel="stylesheet" href="{{asset('assets/frontend/css/cssanimation.min.css')}}" />
-    <!-- animate css -->
-    <link rel="stylesheet" href="{{asset('assets/frontend/css/animate.css')}}" />
-    <!-- helper css -->
-    <link rel="stylesheet" href="{{asset('assets/frontend/css/helper.css')}}">
-    <!-- style css -->
-    <link rel="stylesheet" href="{{asset('assets/frontend/css/style.css')}}">
-    <!-- responsive css -->
-    <link rel="stylesheet" href="{{asset('assets/frontend/css/responsive.css')}}">
-
-    <!-- for chat -->
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link rel="manifest" href="site.html">
+	<link rel="apple-touch-icon" href="icon.html">
+	<!-- Place favicon.ico in the root directory -->
+  
+	<!-- bootstrap v4.0.0 -->
+	<link rel="stylesheet" href=" {{ asset('front_assets/assets/css/bootstrap.min.css') }}">
+	<!-- fontawesome-icons css -->
+	<link rel="stylesheet" href=" {{ asset('front_assets/assets/css/font-awesome.min.css') }}">
+	<!-- themify-icons css -->
+	<link rel="stylesheet" href=" {{ asset('front_assets/assets/css/themify-icons.css') }}">
+	<!-- elegant css -->
+	<link rel="stylesheet" href=" {{ asset('front_assets/assets/css/elegant.css') }}">
+	<!-- elegant css -->
+	<link rel="stylesheet" href=" {{ asset('front_assets/assets/css/jquery.mmenu.css') }}">
+	<!-- jquery-ui.min css -->
+	<link rel="stylesheet" href=" {{ asset('front_assets/assets/css/jquery-ui.min.css') }}">
+	<!-- venobox css -->
+	<link rel="stylesheet" href=" {{ asset('front_assets/assets/css/venobox.css') }}">
+	<!-- slick css -->
+	<link rel="stylesheet" href=" {{ asset('front_assets/assets/css/slick.css') }}">
+	<!-- slick-theme css -->
+	<link rel="stylesheet" href=" {{ asset('front_assets/assets/css/slick-theme.css') }}">
+	<!-- cssanimation css -->
+	<link rel="stylesheet" href=" {{ asset('front_assets/assets/css/cssanimation.min.css') }}" />
+	<!-- animate css -->
+	<link rel="stylesheet" href=" {{ asset('front_assets/assets/css/animate.css') }}" />	
+	<!-- helper css -->
+	<link rel="stylesheet" href=" {{ asset('front_assets/assets/css/helper.css') }}">
+	<!-- style css -->
+	<link rel="stylesheet" href="{{ asset('front_assets/style.css') }}">
+	<!-- responsive css -->
+    <link rel="stylesheet" href=" {{ asset('front_assets/assets/css/responsive.css') }}">
+
+
+
+
+
+
+    
+
+
+
+    
     <!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
     <link href="{{ asset('css/chat.css') }}" rel="stylesheet" id="bootstrap-css">
     <!--<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>-->
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <!-- end for chat -->
 
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+    new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+    }
+    </script>
 
-<script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-}
-</script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-    <style type="text/css">
-        .single-product-cat{
-            padding: 0px !important;
-            height: 220px !important;
-        }
-        .single-product-cat img{
-            max-height: 220px !important
-        }
-    </style>
+	<style type="text/css">
+		.single-product-cat{
+			padding: 0px !important;
+			height: 220px !important;
+		}
+		.single-product-cat img{
+			max-height: 220px !important
+		}
+	</style>
 </head>
+
 
 <body>
 <!--[if lte IE 9]>
@@ -88,38 +102,42 @@ function googleTranslateElementInit() {
 <!--footer-area end-->
 
 
+
+
+
 <!-- modernizr js -->
-<script src="{{asset('assets/frontend/js/vendor/modernizr-3.6.0.min.js')}}"></script>
+<script src="{{ asset('front_assets/assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
 <!-- jquery-3.3.1 version -->
-{{-- <script src="{{asset('assets/frontend/js/vendor/jquery-3.2.1.min.js')}}"></script> --}}
+<script src="{{ asset('front_assets/assets/js/vendor/jquery-3.2.1.min.js') }}"></script>
+<!-- bootstra.min js -->
+<script src="{{ asset('front_assets/assets/js/bootstrap.min.js') }}"></script>
+<!-- mmenu js -->
+<script src="{{ asset('front_assets/assets/js/jquery.mmenu.js') }}"></script>
+<!-- easing js -->
+<script src="{{ asset('front_assets/assets/js/jquery.easing.min.js') }}"></script>
+<!---slick-js-->
+<script src="{{ asset('front_assets/assets/js/slick.min.js') }}"></script>
+<!---letteranimation-js-->
+<script src="{{ asset('front_assets/assets/js/letteranimation.min.js') }}"></script>
+<!-- jquery-ui js -->
+<script src="{{ asset('front_assets/assets/js/jquery-ui.min.js') }}"></script>
+<!-- jquery.countdown js -->
+<script src="{{ asset('front_assets/assets/js/jquery.countdown.min.js') }}"></script>
+<!-- venobox js -->
+<script src="{{ asset('front_assets/assets/js/venobox.min.js') }}"></script>
+<!-- plugins js -->
+<script src="{{ asset('front_assets/assets/js/plugins.js') }}"></script>
+<!-- main js -->
+<script src="{{ asset('front_assets/assets/js/main.js') }}"></script>
+
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <!-- bootstra.min js -->
-<script src="{{asset('assets/frontend/js/bootstap.min.js')}}"></script>
-<!-- mmenu js -->
-<script src="{{asset('assets/frontend/js/jquery.mmenu.js')}} "></script>
-<!-- easing js -->
-{{-- <script src="{{asset('assets/frontend/js/jquery.easing.min.js')}}"></script> --}}
-
-
+<script src="{{ asset('front_assets/assets/js/bootstrap.min.js')}}"></script>
 
 {{-- <script src="{{asset('assets/frontend/js/popper.min.js')}}"></script> --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js "></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js "></script>
-<!---letteranimation-js-->
-<script src="{{asset('assets/frontend/js/letteranimation.min.js')}}"></script>
-<!-- jquery-ui js -->
-<script src="{{asset('assets/frontend/js/jquery-ui.min.js')}}"></script>
-<!-- jquery.countdown js -->
-<script src="{{asset('assets/frontend/js/jquery.countdown.min.js')}}"></script>
-<!-- venobox js -->
-<script src="{{asset('assets/frontend/js/venobox.min.js')}}"></script>
-<!-- plugins js -->
-<script src="{{asset('assets/frontend/js/plugins.js')}}"></script>
-<!---slick-js-->
-<script src="{{asset('assets/frontend/js/slick.min.js')}}"></script>
-<!-- main js -->
-<script src="{{asset('assets/frontend/js/main.js')}}"></script>
 
 {{-- Axios --}}
 <script src="{{asset('js/axios.min.js')}}"></script>
