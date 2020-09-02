@@ -224,7 +224,7 @@
                                     <div class="payment-gateways mt-30">
                                         <div id="payment_gateways">
                                           @auth('buyer')
-                                            @if($buyer->point->total_point != 0)
+                                            @if($buyer->point && $buyer->point->total_point != 0)
 
                                               <div class="single-payment-gateway">
                                                 <input id="point" type="checkbox" name="point" value="{{$buyer->point->amount}}" id="paypal">
