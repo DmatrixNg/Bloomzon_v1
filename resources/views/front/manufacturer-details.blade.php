@@ -12,46 +12,27 @@ Manufacturer
     <div class="container-fluid">
         <div class="product-details">
             <div class="row">
-                <div class="col-lg-2 col-md-1">
-                    <ul class="nav nav-tabs products-nav-tabs">
-                        <li><a class="active" data-toggle="tab" href="#product-1"><img src="{{ asset('manufacturer_assets/img/a.jpg') }}" alt=""></a></li>
-                        <li><a data-toggle="tab" href="#product-2"><img src="{{ asset('manufacturer_assets/img/a.jpg') }}" alt=""></a></li>
-                        <li><a data-toggle="tab" href="#product-3"><img src="{{ asset('manufacturer_assets/img/a.jpg') }}" alt=""></a></li>
-                    </ul>
-                </div>
                 <div class="col-lg-6 col-md-7">
                     <div class="tab-content">
                         <div id="product-1" class="tab-pane fade in show active">
                             <div class="product-details-thumb">
                                 <a class="venobox vbox-item" data-gall="myGallery" href="assets/img/a.jpg"><i class="fa fa-search-plus"></i></a>
-                                <img src="assets/img/a.jpg" alt="">
-                            </div>
-                        </div>
-                        <div id="product-2" class="tab-pane fade">
-                            <div class="product-details-thumb">
-                                <a class="venobox vbox-item" data-gall="myGallery" href="assets/img/a.jpg"><i class="fa fa-search-plus"></i></a>
-                                <img src="assets/img/a.jpg" alt="">
-                            </div>
-                        </div>
-                        <div id="product-3" class="tab-pane fade">
-                            <div class="product-details-thumb">
-                                <a class="venobox vbox-item" data-gall="myGallery" href="assets/img/a.jpg"><i class="fa fa-search-plus"></i></a>
-                                <img src="assets/img/a.jpg" alt="">
+                                <img src="{{ asset('storage/manufacturer/' . $manufacturer->avatar) }}" alt="">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 mt-sm-50">
                     <div class="product-details-desc">
-                        <h3><small>NAMES:</small> <span class="pl-5">Bloomzon Shop</span></h3>
-                        <h3><small>LOCATION: </small> <span class="pl-4">Abuja</span></h3>
+                        <h3><small>NAMES:</small> <span class="pl-5">{{ $manufacturer->company_name}}</span></h3>
+                        <h3><small>LOCATION: </small> <span class="pl-4">{{ $manufacturer->street_address }}</span></h3>
                         <h3><small>DESCRIPTION OF SERVICE: </small></h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim  veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                        <h3><small>CONTACT NUMBER: </small> <span class="pl-4">08036626366</span></h3>
-                        <h3><small>CONTACT EMAIL: </small> <span class="pl-5">bloomzon@gmail.com</span></h3>
+                        <p>{{ $manufacturer->description }}</p>
+                        <h3><small>CONTACT NUMBER: </small> <span class="pl-4">{{ $manufacturer->phone_number }}</span></h3>
+                        <h3><small>CONTACT EMAIL: </small> <span class="pl-5">{{ $manufacturer->email }}</span></h3>
                         <h3><small>LAST SEEN: </small> <span class="pl-5">30/04/2020</span></h3>
                         <h3><small>CHAT VENDOR: </small> <button class="btn btn-danger ml-5" id="addClass">Chat <i class="fa fa-comments fa-1x text-white"></i></button></h3>
-                        <div class="social-icons style-5">
+                        <div class="social-icons style-5 d-none">
                             <span>Share Link:</span>
                             <a href="#"><i class="fa fa-facebook"></i></a>
                             <a href="#"><i class="fa fa-twitter"></i></a>
@@ -72,278 +53,76 @@ Manufacturer
                         <li><a data-toggle="tab" href="#returnpol">Return Policy</a></li>
                         <li><a data-toggle="tab" href="#deliverter">Delivery Terms</a></li>
                         <li><a data-toggle="tab" href="#product_list">Products</a></li>
-                        <li><a data-toggle="tab" href="#reviews">Review (2)</a></li>
+                        <li class="d-none"><a data-toggle="tab" href="#reviews">Review (2)</a></li>
                     </ul>
                     <div class="tab-content">
                         <div id="termscond" class="tab-pane fade in show active">
                             <div class="product-description">
                                 <h2>Manufacturer's Terms &amp; Conditions</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim  veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</p>
+                                <p>{{ $manufacturer->terms_of_purchase }}</p>
                             </div>
                         </div>
                         <div id="returnpol" class="tab-pane fade returnpol">
                             <div class="product-description">
                                 <h2>Manufacturer's Return Policy</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim  veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</p>
+                                <p>{{ $manufacturer->terms_and_conditions }}</p>
                             </div>
                         </div>
                         <div id="deliverter" class="tab-pane fade deliverter">
                             <div class="product-description">
                                 <h2>Manufacturer's Delivery Terms</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim  veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</p>
+                                <p>{{ $manufacturer->delivery_terms }}</p>
                             </div>
                         </div>
                         <div id="product_list" class="tab-pane fade product_list">
                             <div class="best-sellers mt-45">
                                 <div class="container-fluid fix">
                                     <div class="row four-items cv-visible">
-                                        <div class="col-lg-3">
-                                            <div class="product-single">
-                                                <div class="product-title">
-                                                    <small><a href="#">Aquaracer</a></small>
-                                                    <h4><a href="#">iPATROL RILEY - WiFi Enabled Mobilized Home Monitoring Robot</a></h4>
-                                                </div>
-                                                <div class="product-thumb">
-                                                    <a href="#"><img src="assets/images/products/shop/1.jpg" alt="" /></a>
-                                                    <div class="downsale"><span>-</span>$35</div>
-                                                    <div class="product-quick-view">
-                                                        <a href="javascript:void(0);" data-toggle="modal" data-target="#quick-view" tabindex="0">quick view</a>
+
+                                        @foreach($products as $product)
+                                            <div class="col-lg-3">
+                                                <div class="product-single">
+                                                    <div class="product-title">
+                                                        <small class="d-none"><a href="#">Aquaracer</a></small>
+                                                        <h4><a href="#">{{ $product->product_name }}</a></h4>
                                                     </div>
-                                                </div>
-                                                <div class="product-price-rating">
-                                                    <div class="pull-left">
-                                                        <span>$395.00</span>
+                                                    <div class="product-thumb">
+                                                        <a href="#"><img src="{{asset('storage/assets/product/avatars/'.$product->avatars[0] ?? 'avatar.png') }}" alt="" /></a>
+                                                        <div class="downsale"><span>-</span>${{$product->product_price - $product->product_sales_price}}</div>
+                                                        <div class="product-quick-view d-none">
+                                                            <a href="javascript:void(0);" data-toggle="modal" data-target="#quick-view" tabindex="0">quick view</a>
+                                                        </div>
                                                     </div>
-                                                    <div class="pull-right">
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
+                                                    <div class="product-price-rating">
+                                                        <div class="pull-left">
+                                                            @if($product->product_sales_price)
+                                                                <span>${{ number_format($product->product_sales_price) }}</span>
+                                                                <del>${{ number_format($product->product_price) }}</del>
+                                                            @else
+                                                                <span>${{ number_format($product->product_price) }}</span>
+                                                            @endif
+                                                        </div>
+                                                        <div class="pull-right d-none">
+                                                            <i class="fa fa-star-o"></i>
+                                                            <i class="fa fa-star-o"></i>
+                                                            <i class="fa fa-star-o"></i>
+                                                            <i class="fa fa-star-o"></i>
+                                                            <i class="fa fa-star-o"></i>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="product-action">
-                                                    <a href="javascript:void(0);" class="product-compare"><i class="ti-control-shuffle"></i></a>
-                                                    <a href="javascript:void(0);" class="add-to-cart">Add to Cart</a>
-                                                    <a href="javascript:void(0);" class="product-wishlist"><i class="ti-heart"></i></a>
+                                                    <div class="product-action">
+                                                    <x-product-buttons aria-label="{{$product->id}}" aria-labelledby="{{$product->id}}" :product="$product"/>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="product-single">
-                                                <div class="product-title">
-                                                    <small><a href="#">Iphone</a></small>
-                                                    <h4><a href="#">Samsung CF591 Series Curved 27-Inch FHD Monitor</a></h4>
-                                                </div>
-                                                <div class="product-thumb">
-                                                    <a href="#"><img src="assets/images/products/shop/2.jpg" alt="" /></a>
-                                                    <div class="product-quick-view">
-                                                        <a href="javascript:void(0);" data-toggle="modal" data-target="#quick-view" tabindex="0">quick view</a>
-                                                    </div>
-                                                </div>
-                                                <div class="product-price-rating">
-                                                    <div class="pull-left">
-                                                        <span>$495.00</span>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="product-action">
-                                                    <a href="javascript:void(0);" class="product-compare"><i class="ti-control-shuffle"></i></a>
-                                                    <a href="javascript:void(0);" class="add-to-cart">Add to Cart</a>
-                                                    <a href="javascript:void(0);" class="product-wishlist"><i class="ti-heart"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="product-single">
-                                                <div class="product-title">
-                                                    <small><a href="#">Camera</a></small>
-                                                    <h4><a href="#">Blue Yeti USB Microphone Blackout Edition</a></h4>
-                                                </div>
-                                                <div class="product-thumb">
-                                                    <a href="#"><img src="assets/images/products/shop/3.jpg" alt="" /></a>
-                                                    <div class="product-quick-view">
-                                                        <a href="javascript:void(0);" data-toggle="modal" data-target="#quick-view" tabindex="0">quick view</a>
-                                                    </div>
-                                                </div>
-                                                <div class="product-price-rating">
-                                                    <div class="pull-left">
-                                                        <span>$345.00</span>
-                                                        <del>429.99</del>
-                                                    </div>
-                                                </div>
-                                                <div class="product-action">
-                                                    <a href="javascript:void(0);" class="product-compare"><i class="ti-control-shuffle"></i></a>
-                                                    <a href="javascript:void(0);" class="add-to-cart">Add to Cart</a>
-                                                    <a href="javascript:void(0);" class="product-wishlist"><i class="ti-heart"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="product-single">
-                                                <div class="product-title">
-                                                    <small><a href="#">Macbook</a></small>
-                                                    <h4><a href="#">iNewby 3.3mm Lens 720P HD WiFi Smart</a></h4>
-                                                </div>
-                                                <div class="product-thumb">
-                                                    <a href="#"><img src="assets/images/products/shop/4.jpg" alt="" /></a>
-                                                    <div class="product-quick-view">
-                                                        <a href="javascript:void(0);" data-toggle="modal" data-target="#quick-view" tabindex="0">quick view</a>
-                                                    </div>
-                                                </div>
-                                                <div class="product-price-rating">
-                                                    <div class="pull-left">
-                                                        <span>$495.00</span>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="product-action">
-                                                    <a href="javascript:void(0);" class="product-compare"><i class="ti-control-shuffle"></i></a>
-                                                    <a href="javascript:void(0);" class="add-to-cart">Add to Cart</a>
-                                                    <a href="javascript:void(0);" class="product-wishlist"><i class="ti-heart"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="product-single">
-                                                <div class="product-title">
-                                                    <small><a href="#">Aquaracer</a></small>
-                                                    <h4><a href="#">DYMO LabelWriter 450 Turbo Thermal Label Printer</a></h4>
-                                                </div>
-                                                <div class="product-thumb">
-                                                    <a href="#"><img src="assets/images/products/shop/5.jpg" alt="" /></a>
-                                                    <div class="downsale"><span>-</span>$35</div>
-                                                    <div class="product-quick-view">
-                                                        <a href="javascript:void(0);" data-toggle="modal" data-target="#quick-view" tabindex="0">quick view</a>
-                                                    </div>
-                                                </div>
-                                                <div class="product-price-rating">
-                                                    <div class="pull-left">
-                                                        <span>$395.00</span>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="product-action">
-                                                    <a href="javascript:void(0);" class="product-compare"><i class="ti-control-shuffle"></i></a>
-                                                    <a href="javascript:void(0);" class="add-to-cart">Add to Cart</a>
-                                                    <a href="javascript:void(0);" class="product-wishlist"><i class="ti-heart"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="product-single">
-                                                <div class="product-title">
-                                                    <small><a href="#">Iphone</a></small>
-                                                    <h4><a href="#">Samsung CF591 Series Curved 27-Inch FHD Monitor</a></h4>
-                                                </div>
-                                                <div class="product-thumb">
-                                                    <a href="#"><img src="assets/images/products/shop/6.jpg" alt="" /></a>
-                                                    <div class="product-quick-view">
-                                                        <a href="javascript:void(0);" data-toggle="modal" data-target="#quick-view" tabindex="0">quick view</a>
-                                                    </div>
-                                                </div>
-                                                <div class="product-price-rating">
-                                                    <div class="pull-left">
-                                                        <span>$495.00</span>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="product-action">
-                                                    <a href="javascript:void(0);" class="product-compare"><i class="ti-control-shuffle"></i></a>
-                                                    <a href="javascript:void(0);" class="add-to-cart">Add to Cart</a>
-                                                    <a href="javascript:void(0);" class="product-wishlist"><i class="ti-heart"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="product-single">
-                                                <div class="product-title">
-                                                    <small><a href="#">Camera</a></small>
-                                                    <h4><a href="#">Blue Yeti USB Microphone Blackout Edition</a></h4>
-                                                </div>
-                                                <div class="product-thumb">
-                                                    <a href="#"><img src="assets/images/products/shop/3.jpg" alt="" /></a>
-                                                    <div class="product-quick-view">
-                                                        <a href="javascript:void(0);" data-toggle="modal" data-target="#quick-view" tabindex="0">quick view</a>
-                                                    </div>
-                                                </div>
-                                                <div class="product-price-rating">
-                                                    <div class="pull-left">
-                                                        <span>$345.00</span>
-                                                        <del>429.99</del>
-                                                    </div>
-                                                </div>
-                                                <div class="product-action">
-                                                    <a href="javascript:void(0);" class="product-compare"><i class="ti-control-shuffle"></i></a>
-                                                    <a href="javascript:void(0);" class="add-to-cart">Add to Cart</a>
-                                                    <a href="javascript:void(0);" class="product-wishlist"><i class="ti-heart"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-3">
-                                            <div class="product-single">
-                                                <div class="product-title">
-                                                    <small><a href="#">Macbook</a></small>
-                                                    <h4><a href="#">iNewby 3.3mm Lens 720P HD WiFi Smart</a></h4>
-                                                </div>
-                                                <div class="product-thumb">
-                                                    <a href="#"><img src="assets/images/products/shop/4.jpg" alt="" /></a>
-                                                    <div class="product-quick-view">
-                                                        <a href="javascript:void(0);" data-toggle="modal" data-target="#quick-view" tabindex="0">quick view</a>
-                                                    </div>
-                                                </div>
-                                                <div class="product-price-rating">
-                                                    <div class="pull-left">
-                                                        <span>$495.00</span>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="product-action">
-                                                    <a href="javascript:void(0);" class="product-compare"><i class="ti-control-shuffle"></i></a>
-                                                    <a href="javascript:void(0);" class="add-to-cart">Add to Cart</a>
-                                                    <a href="javascript:void(0);" class="product-wishlist"><i class="ti-heart"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        @endforeach
+                                        
                                     </div>
                                     <div class="text-center"><button class="btn btn-danger">View More</button></div>
                                 </div>
                             </div>
                         </div>
-                        <div id="reviews" class="tab-pane fade">
+                        <div id="reviews" class="tab-pane fade d-none">
                             <div class="blog-comments product-comments mt-0">
                                 <ul class="list-none">
                                     <li>

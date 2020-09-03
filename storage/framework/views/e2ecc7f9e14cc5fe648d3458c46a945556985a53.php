@@ -13,16 +13,16 @@
                                 
                                 <div class="carousel-inner">
                                     <?php ($count = 0); ?>
-                                 <?php $__currentLoopData = $adverts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $advert): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <?php if($advert->advert_position == 'Slider'): ?>
-                                    <div class="carousel-item <?php if($count == 0): ?> active <?php endif; ?>">
-                                        <div class="banner-sm hover-effect">
-                                    <img style="max-height: 350px" class="d-block w-100" src="<?php echo e(asset('storage/assets/advert/avatar/'.$advert->avatar)); ?>" alt="<?php echo e($advert->advert_link); ?>">
-                                    <?php ($count++); ?>    
-                                    </div>
-                                    </div>
-                                  <?php endif; ?>
-                                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    <?php $__currentLoopData = $adverts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $advert): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <?php if($advert->advert_position == 'Slider'): ?>
+                                            <div class="carousel-item <?php if($count == 0): ?> active <?php endif; ?>">
+                                                <div class="banner-sm hover-effect">
+                                            <img style="max-height: 350px" class="d-block w-100" src="<?php echo e(asset('storage/assets/advert/avatar/'.$advert->avatar)); ?>" alt="<?php echo e($advert->advert_link); ?>">
+                                            <?php ($count++); ?>    
+                                            </div>
+                                            </div>
+                                        <?php endif; ?>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                  
                                 </div>
                                 <a class="carousel-control-prev" href="#sliderCar" role="button" data-slide="prev">
@@ -184,10 +184,9 @@
                                                         data-slick-index="0" aria-hidden="false" tabindex="0"
                                                         style="width: 140px;">
                                                         <div class="single-product-cat">
-                                                            <a href="<?php echo e(url('/manufacturer-details/'.$manufacturer->id)); ?>"
-                                                                tabindex="0"><img
-                                                                    src="<?php echo e(asset('/manufa')); ?>"
-                                                                    alt="" height="180"></a>
+                                                            <a href="<?php echo e(url('/manufacturer-details/'.$manufacturer->id)); ?>" tabindex="0">
+                                                                <img src="<?php echo e(asset('storage/manufacturer/' . $manufacturer->avatar)); ?>" alt="" height="180">
+                                                            </a>
                                                             <h4><a href="<?php echo e(url('/manufacturer-details/'.$manufacturer->id)); ?>"
                                                                     tabindex="0"><?php echo e($manufacturer->company_name); ?></a>
                                                             </h4>
@@ -261,11 +260,10 @@
                             </div>
                             <div class="row cv-visible">
                                 <?php $__currentLoopData = $food_menus; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $food_menu): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <div class="col-lg-2 offset-2">
-                                        <div class="product-single p-0"
-                                            style="height: 230px; background-image: url('assets/img/food1.jpg'); background-size: 350px; background-position: center;">
+                                    <div class="col-md-3">
+                                        <div class="product-single p-0">
                                             <div class="product-thumb">
-                                                <img src="<?php echo e(asset('storage/assets/fast_food_grocery/catalogue/' . $food_menu->avatar)); ?>" class="img img-circle m-auto">
+                                                <img src="<?php echo e(asset('storage/assets/fast_food_grocery/catalogue/' . $food_menu->avatar)); ?>" style="height: 200px;">
                                             </div>
                                             <div class="product-title text-white pull-right"
                                                 style="background-color: #bd1a09; padding: 10px; bottom: 0; right: 0; position: absolute; margin-bottom: -20px; ">
@@ -275,7 +273,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </div>
                         </div>
@@ -311,19 +308,18 @@
                                                                 </div>
                                                             <?php endif; ?>
                                                             <div class="product-quick-view">
-                                                                <div class="row">
-                                                                    <div class="col-md-4 p-0"><a
-                                                                            href="<?php echo e(url('product-details/'.base64_encode($product->id))); ?>"
-                                                                            class="btn btn-success"><i
-                                                                                class="fa fa-eye"></i></a></div>
-                                                                    <div class="col-md-4 p-0"><a href="/cart"
-                                                                            class="btn btn-success"><i
-                                                                                class="fa fa-shopping-cart"></i></a></div>
-                                                                    <div class="col-md-4 p-0"><a href="javascript:void(0);"
-                                                                            class="btn btn-success"><i class="ti-heart"></i></a>
-                                                                    </div>
-                                                                </div>
-
+                                                                 <?php if (isset($component)) { $__componentOriginal67db60db2ec16c09df5ad6b20d1009873d3b799a = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\ProductButtons::class, ['product' => $product]); ?>
+<?php $component->withName('product-buttons'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes(['aria-label' => ''.e($product->id).'','aria-labelledby' => ''.e($product->id).'']); ?>
+<?php if (isset($__componentOriginal67db60db2ec16c09df5ad6b20d1009873d3b799a)): ?>
+<?php $component = $__componentOriginal67db60db2ec16c09df5ad6b20d1009873d3b799a; ?>
+<?php unset($__componentOriginal67db60db2ec16c09df5ad6b20d1009873d3b799a); ?>
+<?php endif; ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?> 
                                                             </div>
                                                         </div>
                                                         <div class="product-title">

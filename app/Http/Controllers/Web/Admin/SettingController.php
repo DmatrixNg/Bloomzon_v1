@@ -35,29 +35,95 @@ class SettingController extends Controller
     public function terms(){
         return view('dashboard.admin.terms');
     }
+
+    public function accountpolicy(){
+        return view('dashboard.admin.accountpolicy');
+    }
+
+    public function retailpolicy(){
+        return view('dashboard.admin.retailpolicy');
+    }
+
+    public function cookies(){
+        return view('dashboard.admin.cookies');
+    }
+
+    public function privacy(){
+        return view('dashboard.admin.privacy');
+    }
+
+    public function refundpolicy(){
+        return view('dashboard.admin.refundpolicy');
+    }
+
+    public function datapolicy(){
+        return view('dashboard.admin.datapolicy');
+    }
+
+    public function shippingreturns(){
+        return view('dashboard.admin.shippingreturns');
+    }
+
+    public function qualitycontrol(){
+        return view('dashboard.admin.qualitycontrol');
+    }
+    
     public function rightOfPurchase(){
         return view('dashboard.admin.rightofpurchase');
     }
-    public function refund(){
-        return view('dashboard.admin.refundpolicy');
-    }
+
+    // public function refund(){
+    //     return view('dashboard.admin.refundpolicy');
+    // }
 
     public function storeData(Request $request){
         $config = SiteConfig::find(1);
 
         switch($request->type){
+            
             case ('privacy_policy'):
                 $config->privacy_policy  = $request->data;
                 $config->save();
-            return $this->send_response(true,$config,200,'');
-            
+                return $this->send_response(true,$config,200,'');
             case ('terms'):
-                $config->update(['terms' => $request->data]);
-            return $this->send_response(true,$config,200,'');
-            
+                $config->terms =  $request->data;
+                $config->save();
+                return $this->send_response(true,$config,200,'');
+            case ('accountpolicy'):
+                $config->accountpolicy =  $request->data;
+                $config->save();
+                return $this->send_response(true,$config,200,'');
+            case ('retailpolicy'):
+                $config->retailpolicy = $request->data;
+                $config->save();
+                return $this->send_response(true,$config,200,'');
+            case ('cookies'):
+                $config->cookies = $request->data;
+                $config->save();
+                return $this->send_response(true,$config,200,'');
+            case ('privacy'):
+                $config->privacy = $request->data;
+                $config->save();
+                return $this->send_response(true,$config,200,'');
+            case ('refundpolicy'):
+                $config->refundpolicy = $request->data;
+                $config->save();
+                return $this->send_response(true,$config,200,'');
+            case ('datapolicy'):
+                $config->datapolicy = $request->data;
+                $config->save();
+                return $this->send_response(true,$config,200,'');
+            case ('shippingreturns'):
+                $config->shippingreturns = $request->data;
+                $config->save();
+                return $this->send_response(true,$config,200,'');
+            case ('qualitycontrol'):
+                $config->qualitycontrol = $request->data;
+                $config->save();
+                return $this->send_response(true,$config,200,'');
             case ('right_of_purchase'):
                 $config->update(['right_of_purchase' => $request->data]);
-            return $this->send_response(true,$config,200,'');
+                return $this->send_response(true,$config,200,'');
             
             case ('refund'):
                 $config->update(['refund' => $request->data]);
@@ -66,6 +132,7 @@ class SettingController extends Controller
         }
 
     }
+
     public function create()
     {
         //

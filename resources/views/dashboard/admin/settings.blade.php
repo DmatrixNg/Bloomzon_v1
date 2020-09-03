@@ -98,6 +98,151 @@
                             commodo consequat.</div>
                     </div>
                 </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a style="color: #02499B;" href="{{url('/admin/accountpolicy')}}">
+        
+                            <img src="{{asset('assets/dashboard/img/refundicon.png')}}">
+        
+                           <span style="margin-left: 37px;">Account policy </span> <i style="color: #02499B; margin-left: 460px;" class="fa fa-chevron-right"></i></a>
+                        </h4>
+                    </div>
+                    <div id="collapse5" class="panel-collapse collapse">
+                        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                            minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat.</div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a style="color: #02499B;" href="{{ url('/admin/retailpolicy' )}}">
+        
+                            <img src="{{asset('assets/dashboard/img/refundicon.png')}}">
+        
+                           <span style="margin-left: 37px;">Retail policy </span> <i style="color: #02499B; margin-left: 460px;" class="fa fa-chevron-right"></i></a>
+                        </h4>
+                    </div>
+                    <div id="collapse5" class="panel-collapse collapse">
+                        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                            minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat.</div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a style="color: #02499B;" href="{{ url('/admin/cookies' )}}">
+        
+                            <img src="{{asset('assets/dashboard/img/refundicon.png')}}">
+        
+                           <span style="margin-left: 37px;">Cookies </span> <i style="color: #02499B; margin-left: 460px;" class="fa fa-chevron-right"></i></a>
+                        </h4>
+                    </div>
+                    <div id="collapse5" class="panel-collapse collapse">
+                        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                            minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat.</div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a style="color: #02499B;" href="{{ url('/admin/privacy' )}}">
+        
+                            <img src="{{asset('assets/dashboard/img/refundicon.png')}}">
+        
+                           <span style="margin-left: 37px;">Privacy </span> <i style="color: #02499B; margin-left: 460px;" class="fa fa-chevron-right"></i></a>
+                        </h4>
+                    </div>
+                    <div id="collapse5" class="panel-collapse collapse">
+                        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                            minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat.</div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a style="color: #02499B;" href="{{ url('/admin/refundpolicy' )}}">
+        
+                            <img src="{{asset('assets/dashboard/img/refundicon.png')}}">
+        
+                           <span style="margin-left: 37px;">Refund Policy </span> <i style="color: #02499B; margin-left: 460px;" class="fa fa-chevron-right"></i></a>
+                        </h4>
+                    </div>
+                    <div id="collapse5" class="panel-collapse collapse">
+                        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                            minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat.</div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a style="color: #02499B;" href="{{ url('/admin/datapolicy' )}}">
+        
+                            <img src="{{asset('assets/dashboard/img/refundicon.png')}}">
+        
+                           <span style="margin-left: 37px;">Data Policy </span> <i style="color: #02499B; margin-left: 460px;" class="fa fa-chevron-right"></i></a>
+                        </h4>
+                    </div>
+                    <div id="collapse5" class="panel-collapse collapse">
+                        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                            minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat.</div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a style="color: #02499B;" href="{{ url('/admin/shippingreturns' )}}">
+        
+                            <img src="{{asset('assets/dashboard/img/refundicon.png')}}">
+        
+                           <span style="margin-left: 37px;">Shipping Returns </span> <i style="color: #02499B; margin-left: 460px;" class="fa fa-chevron-right"></i></a>
+                        </h4>
+                    </div>
+                    <div id="collapse5" class="panel-collapse collapse">
+                        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                            minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat.</div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a style="color: #02499B;" href="{{ url('/admin/qualitycontrol' )}}">
+        
+                            <img src="{{asset('assets/dashboard/img/refundicon.png')}}">
+        
+                           <span style="margin-left: 37px;">Quality Control </span> <i style="color: #02499B; margin-left: 460px;" class="fa fa-chevron-right"></i></a>
+                        </h4>
+                    </div>
+                    <div id="collapse5" class="panel-collapse collapse">
+                        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                            minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat.</div>
+                    </div>
+                </div>
+
             </div>
             </div>
             </div>

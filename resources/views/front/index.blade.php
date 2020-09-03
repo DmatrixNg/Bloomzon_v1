@@ -13,16 +13,16 @@
                                 
                                 <div class="carousel-inner">
                                     @php($count = 0)
-                                 @foreach($adverts as $key => $advert)
-                                    @if($advert->advert_position == 'Slider')
-                                    <div class="carousel-item @if($count == 0) active @endif">
-                                        <div class="banner-sm hover-effect">
-                                    <img style="max-height: 350px" class="d-block w-100" src="{{asset('storage/assets/advert/avatar/'.$advert->avatar) }}" alt="{{$advert->advert_link}}">
-                                    @php($count++)    
-                                    </div>
-                                    </div>
-                                  @endif
-                                  @endforeach
+                                    @foreach($adverts as $key => $advert)
+                                        @if($advert->advert_position == 'Slider')
+                                            <div class="carousel-item @if($count == 0) active @endif">
+                                                <div class="banner-sm hover-effect">
+                                            <img style="max-height: 350px" class="d-block w-100" src="{{asset('storage/assets/advert/avatar/'.$advert->avatar) }}" alt="{{$advert->advert_link}}">
+                                            @php($count++)    
+                                            </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
                                  
                                 </div>
                                 <a class="carousel-control-prev" href="#sliderCar" role="button" data-slide="prev">
@@ -121,18 +121,7 @@
                                                                 </div>
                                                             @endif
                                                             <div class="product-quick-view">
-                                                                {{-- <div class="row">
-                                                                    <div class="col-md-4 p-0"><a
-                                                                    href="{{url('product-details/'.base64_encode($product->id))}}"
-                                                                            class="btn btn-success"><i
-                                                                                class="fa fa-eye"></i></a></div>
-                                                                    <div class="col-md-4 p-0"><a href="javascript:void(0);"
-                                                                                class="btn btn-success"><i
-                                                                                class="fa fa-shopping-cart"></i></a></div>
-                                                                    <div class="col-md-4 p-0"><a href="javascript:void(0);"
-                                                                          onclick="addFavorite(1,3)"  class="btn btn-success"><i class="ti-heart"></i></a>
-                                                                    </div>
-                                                                </div> --}}
+                                                                
                                                             <x-product-buttons aria-label="{{$product->id}}" aria-labelledby="{{$product->id}}" :product="$product"/>
                                                             
 
@@ -183,10 +172,9 @@
                                                         data-slick-index="0" aria-hidden="false" tabindex="0"
                                                         style="width: 140px;">
                                                         <div class="single-product-cat">
-                                                            <a href="{{ url('/manufacturer-details/'.$manufacturer->id) }}"
-                                                                tabindex="0"><img
-                                                                    src="{{ asset('/manufa') }}"
-                                                                    alt="" height="180"></a>
+                                                            <a href="{{ url('/manufacturer-details/'.$manufacturer->id) }}" tabindex="0">
+                                                                <img src="{{ asset('storage/manufacturer/' . $manufacturer->avatar) }}" alt="" height="180">
+                                                            </a>
                                                             <h4><a href="{{ url('/manufacturer-details/'.$manufacturer->id) }}"
                                                                     tabindex="0">{{ $manufacturer->company_name }}</a>
                                                             </h4>
@@ -260,11 +248,10 @@
                             </div>
                             <div class="row cv-visible">
                                 @foreach($food_menus as $food_menu)
-                                    <div class="col-lg-2 offset-2">
-                                        <div class="product-single p-0"
-                                            style="height: 230px; background-image: url('assets/img/food1.jpg'); background-size: 350px; background-position: center;">
+                                    <div class="col-md-3">
+                                        <div class="product-single p-0">
                                             <div class="product-thumb">
-                                                <img src="{{ asset('storage/assets/fast_food_grocery/catalogue/' . $food_menu->avatar) }}" class="img img-circle m-auto">
+                                                <img src="{{ asset('storage/assets/fast_food_grocery/catalogue/' . $food_menu->avatar) }}" style="height: 200px;">
                                             </div>
                                             <div class="product-title text-white pull-right"
                                                 style="background-color: #bd1a09; padding: 10px; bottom: 0; right: 0; position: absolute; margin-bottom: -20px; ">
@@ -274,7 +261,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 @endforeach
                             </div>
                         </div>
@@ -309,19 +295,7 @@
                                                                 </div>
                                                             @endif
                                                             <div class="product-quick-view">
-                                                                <div class="row">
-                                                                    <div class="col-md-4 p-0"><a
-                                                                            href="{{url('product-details/'.base64_encode($product->id))}}"
-                                                                            class="btn btn-success"><i
-                                                                                class="fa fa-eye"></i></a></div>
-                                                                    <div class="col-md-4 p-0"><a href="/cart"
-                                                                            class="btn btn-success"><i
-                                                                                class="fa fa-shopping-cart"></i></a></div>
-                                                                    <div class="col-md-4 p-0"><a href="javascript:void(0);"
-                                                                            class="btn btn-success"><i class="ti-heart"></i></a>
-                                                                    </div>
-                                                                </div>
-
+                                                                <x-product-buttons aria-label="{{$product->id}}" aria-labelledby="{{$product->id}}" :product="$product"/>
                                                             </div>
                                                         </div>
                                                         <div class="product-title">

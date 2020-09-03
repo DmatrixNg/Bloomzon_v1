@@ -1,39 +1,33 @@
 @extends('layouts.front')
 @section('page_title')
-    Page Not Found
+	Data Policy
 @endsection
 @section('content')
 
-    <div class="card container my-5 py-5 z-depth-1">
+<div class="card container my-5 py-5 z-depth-1">
 
-	    <h2 class="text-center">Data Policy</h2>
+	<h2 class="text-center">Data Policy</h2>
 
-	    <br>
+	<br>
 
-	    <section class=" px-md-5 mx-md-5 dark-grey-text">
-
-
-	        <div class="row d-flex text-left">
+	<section class=" px-md-5 mx-md-5 dark-grey-text">
 
 
-	            <div class="col-lg-12">
-
-	                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores deleniti explicabo voluptatem quisquam nulla asperiores aspernatur aperiam voluptate et consectetur minima delectus, fugiat eum soluta blanditiis adipisci, velit dolore magnam.</p>
-
-	                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores deleniti explicabo voluptatem quisquam nulla asperiores aspernatur aperiam voluptate et consectetur minima delectus, fugiat eum soluta blanditiis adipisci, velit dolore magnam.</p>
-	                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores deleniti explicabo voluptatem quisquam nulla asperiores aspernatur aperiam voluptate et consectetur minima delectus, fugiat eum soluta blanditiis adipisci, velit dolore magnam.</p>
-	                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores deleniti explicabo voluptatem quisquam nulla asperiores aspernatur aperiam voluptate et consectetur minima delectus, fugiat eum soluta blanditiis adipisci, velit dolore magnam.</p>
-	                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores deleniti explicabo voluptatem quisquam nulla asperiores aspernatur aperiam voluptate et consectetur minima delectus, fugiat eum soluta blanditiis adipisci, velit dolore magnam.</p>
-	                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores deleniti explicabo voluptatem quisquam nulla asperiores aspernatur aperiam voluptate et consectetur minima delectus, fugiat eum soluta blanditiis adipisci, velit dolore magnam.</p>
-	            </div>
+		<div class="row d-flex text-left">
 
 
-	        </div>
+			<div class="col-lg-12">
+				<p>
+					{{ \App\SiteConfig::find(1)->datapolicy }}
+				</p>
 
-	    </section>
+			</div>
 
 
+		</div>
 
-	</div>
+	</section>
 
+
+</div>
 @endsection
