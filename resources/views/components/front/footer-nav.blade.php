@@ -12,19 +12,19 @@
                                 <ul>
                                     <li><a href="{{route('home','about')}}">About</a> </li>
                                     <li><a href="{{route('home','services')}}">Services</a> </li>
-                                    <li><a href="{{route('home','agent')}}">Agents</a> </li>
-                                    <li><a href="{{route('home','investor_relations')}}">Investor Relations</a></li>
+                                    <li><a href="{{ url('/agents') }}">Agents</a> </li>
+                                    <li><a href="#">Investor Relations</a></li>
                                     <li><a href="{{route('home','bloomzontrip')}}">Bloomzon trip</a></li>
-                                    <li><a href="{{route('home','make_money')}}">Make Money with Us</a></li>
-                                    <li><a href="{{route('home','sell_on_bloomzon')}}">Sell on bloomzon</a></li>
+                                    <li><a href="#">Make Money with Us</a></li>
+                                    <li><a href="{{ url('/seller/register') }}">Sell on bloomzon</a></li>
                                 </ul>
                             </div>
                             <div class="col">
                                 <ul>
-                                    <li><a href="{{route('home','career')}}">Career</a> </li>
-                                    <li><a href="{{route('home','blog')}}">Blog</a> </li>
+                                    <li><a href="#">Career</a> </li>
+                                    <li class="d-none"><a href="{{route('home','blog')}}">Blog</a> </li>
                                     <li><a href="{{route('home','faq')}}">FAQ</a> </li>
-                                    <li><a href="{{route('home','sell_your_service')}}">Sell Your Services on bloomzon</a></li>
+                                    <li><a href=" {{ url('professional/register') }} ">Sell Your Services on bloomzon</a></li>
                                     <li><a href="{{route('home','advertise_on_bloomzon')}}">Advertise on bloomzon tv</a></li>
                                     <li><a href="{{route('home','contact_us')}}">contact us</a></li>
                                     <li><a href="{{route('home','advertise_your_products')}}">Advertise Your Products</a></li>
@@ -44,7 +44,7 @@
                                     <li><a href="{{route('home','termsandcondititons')}}">Terms and Condition</a> </li>
                                     <li><a href="{{route('home','retailpolicy')}}">Retail Policy</a> </li>
                                     <li><a href="{{route('home','accountpolicy')}}">Account Policy</a> </li>
-                                    <li><a href="{{route('home','accountpolicy')}}">Become an Affiliate</a></li>
+                                    <li><a href="{{route('home','becomeanaffiliate')}}">Become an Affiliate</a></li>
                                     <li><a href="{{route('home','cookies')}}">cookies</a> </li>
                                     <li><a href="{{route('home','gifts')}}">Gifts</a> </li>
                                     <li><a href="{{route('home','datapolicy')}}">data policy</a> </li>
@@ -108,7 +108,7 @@
                                     @enderror
                                 </div>
                                 <div class="col">
-                                    <input type="submit" value="Subscribe" class="btn btn-primary">
+                                    <input type="submit" value="Subscribe" class="btn btn-danger ">
                                 </div>
                             </form>
                         </div>

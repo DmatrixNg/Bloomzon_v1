@@ -292,6 +292,14 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
         Route::get('account-statement','SettingController@accountStatement');
         Route::get('privacy-policy','SettingController@privacyPolicy');
         Route::get('terms','SettingController@terms');
+        Route::get('accountpolicy','SettingController@accountpolicy');
+        Route::get('retailpolicy','SettingController@retailpolicy');
+        Route::get('cookies','SettingController@cookies');
+        Route::get('privacy','SettingController@privacy');
+        Route::get('refundpolicy','SettingController@refundpolicy');
+        Route::get('datapolicy','SettingController@datapolicy');
+        Route::get('shippingreturns','SettingController@shippingreturns');
+        Route::get('qualitycontrol','SettingController@qualitycontrol');
         Route::get('right-of-purchase','SettingController@rightOfPurchase');
         Route::get('refund','SettingController@refund');
         Route::post('save-setting/','SettingController@storeData');
