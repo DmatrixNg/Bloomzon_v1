@@ -184,13 +184,13 @@
                                                     class="fa fa-lg fa-registered text-light"></i> {{ __("Register")}} <i
                                                         class="fa fa-angle-down"></i></a>
                                                 <ul style="width:100%">
-                                                    <li><a href="/buyer/register"> {{ __("As Buyer")}}</a></li>
-                                                    <li><a href="/seller/register">{{ __("As Seller")}}</a></li>
-                                                    <li><a href="/networking_agent/register">{{ __("As Network Agent")}}</a></li>
-                                                    <li><a href="/fast_food_grocery/register">{{ __("As FastFood & Grocery")}}</a></li>
-                                                    <li><a href="/professional/register">{{ __("Professional Service")}}</a></li>
-                                                    <li><a href="/fast_food_grocery/register">{{ __("As Fast Food Grocery")}}</a></li>
-                                                    <li><a href="/manufacturer/register">{{ __("As Manufacturer")}}</a></li>
+                                                    <li><a href="{{route("buyer.register",app()->getLocale())}}"> {{ __("As Buyer")}}</a></li>
+                                                    <li><a href="{{route("seller.register",app()->getLocale())}}">{{ __("As Seller")}}</a></li>
+                                                    <li><a href="{{route("networking_agent.register",app()->getLocale())}}">{{ __("As Network Agent")}}</a></li>
+                                                    <li><a href="{{route("fast_food_grocery.register",app()->getLocale())}}">{{ __("As FastFood & Grocery")}}</a></li>
+                                                    <li><a href="{{route("professional.register",app()->getLocale())}}">{{ __("Professional Service")}}</a></li>
+                                                    <li><a href="{{route("fast_food_grocery.register",app()->getLocale())}}">{{ __("As Fast Food Grocery")}}</a></li>
+                                                    <li><a href="{{route("manufacturer.register",app()->getLocale())}}">{{ __("As Manufacturer")}}</a></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -202,12 +202,12 @@
                                                             class="fa fa-lg fa-sign-in text-light"></i>{{ __("Login")}} <i
                                                             class="fa fa-angle-down"></i></a>
                                                     <ul style="width:100%">
-                                                        <li><a href="/buyer/login"> {{ __("As Buyer")}}</a></li>
-                                                        <li><a href="/seller/login">{{ __("As Seller")}}</a></li>
-                                                        <li><a href="/networking_agent/login">{{ __("As Network Manager")}}</a></li>
-                                                        <li><a href="/professional/login">{{ __("Professional Service")}}</a></li>
-                                                        <li><a href="/fast_food_grocery/login">{{ __("As Fast Food Grocery")}}</a></li>
-                                                        <li><a href="/manufacturer/login">{{ __("As Manufacturer")}}</a></li>
+                                                        <li><a href="{{route("buyer.login",app()->getLocale())}}"> {{ __("As Buyer")}}</a></li>
+                                                        <li><a href="{{route("seller.login",app()->getLocale())}}">{{ __("As Seller")}}</a></li>
+                                                        <li><a href="{{route("networking_agent.login",app()->getLocale())}}">{{ __("As Network Manager")}}</a></li>
+                                                        <li><a href="{{route("professional.login",app()->getLocale())}}">{{ __("Professional Service")}}</a></li>
+                                                        <li><a href="{{route("fast_food_grocery.login",app()->getLocale())}}">{{ __("As Fast Food Grocery")}}</a></li>
+                                                        <li><a href="{{route("manufacturer.login",app()->getLocale())}}">{{ __("As Manufacturer")}}</a></li>
                                                         {{-- <li><a href="/admin/login">As Admin</a></li> --}}
                                                     </ul>
                                                 </li>

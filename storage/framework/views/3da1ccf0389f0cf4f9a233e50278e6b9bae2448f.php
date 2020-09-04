@@ -185,13 +185,13 @@
                                                     class="fa fa-lg fa-registered text-light"></i> <?php echo e(__("Register")); ?> <i
                                                         class="fa fa-angle-down"></i></a>
                                                 <ul style="width:100%">
-                                                    <li><a href="/buyer/register"> <?php echo e(__("As Buyer")); ?></a></li>
-                                                    <li><a href="/seller/register"><?php echo e(__("As Seller")); ?></a></li>
-                                                    <li><a href="/networking_agent/register"><?php echo e(__("As Network Agent")); ?></a></li>
-                                                    <li><a href="/fast_food_grocery/register"><?php echo e(__("As FastFood & Grocery")); ?></a></li>
-                                                    <li><a href="/professional/register"><?php echo e(__("Professional Service")); ?></a></li>
-                                                    <li><a href="/fast_food_grocery/register"><?php echo e(__("As Fast Food Grocery")); ?></a></li>
-                                                    <li><a href="/manufacturer/register"><?php echo e(__("As Manufacturer")); ?></a></li>
+                                                    <li><a href="<?php echo e(route("buyer.register",app()->getLocale())); ?>"> <?php echo e(__("As Buyer")); ?></a></li>
+                                                    <li><a href="<?php echo e(route("seller.register",app()->getLocale())); ?>"><?php echo e(__("As Seller")); ?></a></li>
+                                                    <li><a href="<?php echo e(route("networking_agent.register",app()->getLocale())); ?>"><?php echo e(__("As Network Agent")); ?></a></li>
+                                                    <li><a href="<?php echo e(route("fast_food_grocery.register",app()->getLocale())); ?>"><?php echo e(__("As FastFood & Grocery")); ?></a></li>
+                                                    <li><a href="<?php echo e(route("professional.register",app()->getLocale())); ?>"><?php echo e(__("Professional Service")); ?></a></li>
+                                                    <li><a href="<?php echo e(route("fast_food_grocery.register",app()->getLocale())); ?>"><?php echo e(__("As Fast Food Grocery")); ?></a></li>
+                                                    <li><a href="<?php echo e(route("manufacturer.register",app()->getLocale())); ?>"><?php echo e(__("As Manufacturer")); ?></a></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -203,12 +203,12 @@
                                                             class="fa fa-lg fa-sign-in text-light"></i><?php echo e(__("Login")); ?> <i
                                                             class="fa fa-angle-down"></i></a>
                                                     <ul style="width:100%">
-                                                        <li><a href="/buyer/login"> <?php echo e(__("As Buyer")); ?></a></li>
-                                                        <li><a href="/seller/login"><?php echo e(__("As Seller")); ?></a></li>
-                                                        <li><a href="/networking_agent/login"><?php echo e(__("As Network Manager")); ?></a></li>
-                                                        <li><a href="/professional/login"><?php echo e(__("Professional Service")); ?></a></li>
-                                                        <li><a href="/fast_food_grocery/login"><?php echo e(__("As Fast Food Grocery")); ?></a></li>
-                                                        <li><a href="/manufacturer/login"><?php echo e(__("As Manufacturer")); ?></a></li>
+                                                        <li><a href="<?php echo e(route("buyer.login",app()->getLocale())); ?>"> <?php echo e(__("As Buyer")); ?></a></li>
+                                                        <li><a href="<?php echo e(route("seller.login",app()->getLocale())); ?>"><?php echo e(__("As Seller")); ?></a></li>
+                                                        <li><a href="<?php echo e(route("networking_agent.login",app()->getLocale())); ?>"><?php echo e(__("As Network Manager")); ?></a></li>
+                                                        <li><a href="<?php echo e(route("professional.login",app()->getLocale())); ?>"><?php echo e(__("Professional Service")); ?></a></li>
+                                                        <li><a href="<?php echo e(route("fast_food_grocery.login",app()->getLocale())); ?>"><?php echo e(__("As Fast Food Grocery")); ?></a></li>
+                                                        <li><a href="<?php echo e(route("manufacturer.login",app()->getLocale())); ?>"><?php echo e(__("As Manufacturer")); ?></a></li>
                                                         
                                                     </ul>
                                                 </li>
