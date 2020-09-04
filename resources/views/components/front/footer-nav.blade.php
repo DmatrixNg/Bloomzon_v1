@@ -25,7 +25,7 @@
                                     <li><a href="{{route('home','blog')}}">{{ __("Blog")}}</a> </li>
                                     <li><a href="{{route('home','faq')}}">{{ __("FAQ")}}</a> </li>
                                     <li><a href="{{route('home','sell_your_service')}}">{{ __("Sell Your Services on")}} bloomzon</a></li>
-                                    <li><a href="{{route('home','advertise_on_bloomzon')}}">{{ __("Advertise")}} on bloomzon tv</a></li>
+                                    <li><a href="{{route('home','advertise_on_bloomzon')}}">{{ __("Advertise on")}} bloomzon tv</a></li>
                                     <li><a href="{{route('home','contact_us')}}">{{ __("contact us")}}</a></li>
                                     <li><a href="{{route('home','advertise_your_products')}}">{{ __("Advertise Your Products")}}</a></li>
                                 </ul>

@@ -19,12 +19,12 @@
                                             <div class="carousel-item @if($count == 0) active @endif">
                                                 <div class="banner-sm hover-effect">
                                             <img style="max-height: 350px" class="d-block w-100" src="{{asset('storage/assets/advert/avatar/'.$advert->avatar) }}" alt="{{$advert->advert_link}}">
-                                            @php($count++)    
+                                            @php($count++)
                                             </div>
                                             </div>
                                         @endif
                                     @endforeach
-                                 
+
 
                                 </div>
                                 <a class="carousel-control-prev" href="#sliderCar" role="button" data-slide="prev">
@@ -123,7 +123,7 @@
                                                                 </div>
                                                             @endif
                                                             <div class="product-quick-view">
-                                                                
+
                                                             <x-product-buttons aria-label="{{$product->id}}" aria-labelledby="{{$product->id}}" :product="$product"/>
 
 
@@ -151,7 +151,7 @@
                                         @endforeach
 
                                     </div>
-                                    <div class="text-center pt-2"><a href="{{url('/shop')}}" class="btn btn-danger text-white">{{ __("View All")}}</a></div>
+                                    <div class="text-center pt-2"><a href="{{url(app()->getLocale().'/shop')}}" class="btn btn-danger text-white">{{ __("View All")}}</a></div>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -173,10 +173,10 @@
                                                         data-slick-index="0" aria-hidden="false" tabindex="0"
                                                         style="width: 140px;">
                                                         <div class="single-product-cat">
-                                                            <a href="{{ url('/manufacturer-details/'.$manufacturer->id) }}" tabindex="0">
+                                                            <a href="{{ url(app()->getLocale().'/manufacturer-details/'.$manufacturer->id) }}" tabindex="0">
                                                                 <img src="{{ asset('storage/manufacturer/' . $manufacturer->avatar) }}" alt="" height="180">
                                                             </a>
-                                                            <h4><a href="{{ url('/manufacturer-details/'.$manufacturer->id) }}"
+                                                            <h4><a href="{{ url(app()->getLocale().'/manufacturer-details/'.$manufacturer->id) }}"
                                                                     tabindex="0">{{ $manufacturer->company_name }}</a>
                                                             </h4>
                                                         </div>
@@ -200,7 +200,7 @@
                                 <div class="col-lg-12">
                                     <div class="section-title text-left">
                                         <h3>{{ __("GROCERIES")}}
-                                            <a href="/groceries?groceries={{ base64_encode(json_encode($groceries)) }}"
+                                            <a href="{{app()->getLocale()}}/groceries?groceries={{ base64_encode(json_encode($groceries)) }}"
                                                 class="text-white pull-right"> {{ __("SEE ALL")}}</a>
                                         </h3>
 
@@ -221,7 +221,7 @@
                                             </div>
                                             <div class="product-title text-white pull-right"
                                                 style="background-color: #bd1a09; padding: 10px; bottom: 0; right: 0; position: absolute; margin-bottom: -20px; ">
-                                                <h4><a href="{{ url('product-details/' . base64_encode($grocery->id)) }}"
+                                                <h4><a href="{{ url(app()->getLocale().'/product-details/' . base64_encode($grocery->id)) }}"
                                                     class="text-white">
                                                     {{ $grocery->product_name }}</a>
 
@@ -241,7 +241,7 @@
                                 <div class="col-lg-12">
                                     <div class="section-title text-left">
                                         <h3>{{ __("FOOD MENUS")}}
-                                            <a href="/food-menus?food_menus={{ base64_encode(json_encode($food_menus)) }}"
+                                            <a href="{{app()->getLocale()}}/food-menus?food_menus={{ base64_encode(json_encode($food_menus)) }}"
                                                 class="text-white pull-right"> {{ __("SEE ALL")}}</a>
                                         </h3>
                                     </div>
@@ -256,7 +256,7 @@
                                             </div>
                                             <div class="product-title text-white pull-right"
                                                 style="background-color: #bd1a09; padding: 10px; bottom: 0; right: 0; position: absolute; margin-bottom: -20px; ">
-                                                <h4><a href="/category/{{ $food_menu->name }}?fast_food_grocery" style="color: #fff !important;">
+                                                <h4><a href="{{ url(app()->getLocale().'/category/'.$food_menu->name) }}?fast_food_grocery" style="color: #fff !important;">
                                                     {{ $food_menu->name }}</a>
                                                 </h4>
                                             </div>
@@ -273,7 +273,7 @@
                                         <div class="col-lg-12">
                                             <div class="section-title text-left">
                                                 <h3>{{ __("MARKET BOKU")}}
-                                                    <a href="{{url('/shop')}}" class="text-white pull-right"> SEE ALL</a>
+                                                    <a href="{{url(app()->getLocale().'/shop')}}" class="text-white pull-right"> SEE ALL</a>
                                                 </h3>
                                             </div>
                                         </div>
@@ -300,7 +300,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="product-title">
-                                                            <h4><a href="{{url('product-details/'.base64_encode($product->id))}}">{{ $product->product_name }}</a></h4>
+                                                            <h4><a href="{{url(app()->getLocale().'/product-details/'.base64_encode($product->id))}}">{{ $product->product_name }}</a></h4>
                                                             <small>
                                                                 @if($product->product_sales_price)
                                                                     <div class="product-price-rating">
@@ -320,8 +320,7 @@
                                         @endforeach
 
                                     </div>
-                                    <div class="text-center pt-2"><a href="/shop" class="btn btn-danger text-white">View
-                                            {{ __("All") }}</a></div>
+                                    <div class="text-center pt-2"><a href="{{url(app()->getLocale().'/shop')}}" class="btn btn-danger text-white">{{ __("View All") }}</a></div>
                                 </div>
                             </div>
                         </div>

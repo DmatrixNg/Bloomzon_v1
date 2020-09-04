@@ -82,7 +82,7 @@
 					<div class="row align-items-center">
 						<div class="col-lg-2">
 							<div class="logo">
-								<a href="index.html"><img src="<?php echo e(asset('front_assets/assets/images/bloomzon_white.png')); ?>" width="90" height="auto" alt="logo" /></a>
+								<a href="<?php echo e(url('/')); ?>"><img src="<?php echo e(asset('front_assets/assets/images/bloomzon_white.png')); ?>" width="90" height="auto" alt="logo" /></a>
 							</div>
 						</div>
 						<div class="col-lg-6">
@@ -239,7 +239,7 @@
                                             <div class="row" style="width: 100vw !important; min-height: 100%; background-color: rgb(1, 54, 119, .9);">
                                                 <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <li style="border-right: 1px solid #ccc;" class="col-md-2 p-2">
-                                                    <a href="/category/<?php echo e($category->name); ?>" style="font-size: 19px; color: white;"></i><?php echo e($category->name); ?> zzz</a>
+                                                    <a href="/category/<?php echo e($category->name); ?>" style="font-size: 19px; color: white;"></i><?php echo e($category->name); ?></a>
                                                         <?php if(!empty($category->sub_categories)): ?>
                                                             <ul>
                                                                 <li>
@@ -267,9 +267,10 @@
                             <div class="mainmenu text-white">
                                 <nav>
                                     <ul>
+
                                         <li><a href="<?php echo e(url(app()->getLocale().'/realestate')); ?>"><?php echo e(__("Real Estate")); ?></a></li>
                                         <li><a href="<?php echo e(route('fashion',app()->getLocale())); ?>"><?php echo e(__("Fashion Designer")); ?> &amp; <?php echo e(__("Tailoring")); ?></a></li>
-                                        <li><a href="<?php echo e(url(app()->getLocale().'bloomzontravels')); ?>"><?php echo e(__("Bloomzon Travel & Hotels")); ?></a></li>
+                                        <li><a href="<?php echo e(url(app()->getLocale().'/bloomzontravels')); ?>"><?php echo e(__("Bloomzon Travel & Hotels")); ?></a></li>
                                         <li><a href="#">Bloomzon <?php echo e(__("Products")); ?></a></li>
                                         <li><a href="<?php echo e(route('fast-foods',app()->getLocale())); ?>"><?php echo e(__("Food")); ?> &amp; <?php echo e(__("Groceries")); ?></a></li>
                                     <li><a href="<?php echo e(url(app()->getLocale().'/proservice')); ?>"><?php echo e(__("Professional Services")); ?></a></li>
@@ -334,18 +335,20 @@
                                             <?php if(!empty($category->sub_categories)): ?>
                                                 <ul class="">
                                                     <li class="megamenu-single">
+
                                                         <span class="mega-menu-title"><?php echo e(__("Sub-Category")); ?></span>
-                                                <ul>
-                                                    <?php $__currentLoopData = $category->sub_categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $child): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <?php if($child): ?>
-                                                            <li><a href="/category/<?php echo e($category->name); ?>/<?php echo e($child->name); ?>"><?php echo e($child->name); ?></a>
-                                                            </li>
-                                                        <?php endif; ?>
-                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                        <ul>
+                                                            <?php $__currentLoopData = $category->sub_categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $child): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                <?php if($child): ?>
+                                                                    <li><a href="/category/<?php echo e($category->name); ?>/<?php echo e($child->name); ?>"><?php echo e($child->name); ?></a>
+                                                                    </li>
+                                                                <?php endif; ?>
+                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                        </ul>
+                                                    </li>
+
                                                 </ul>
-                                                </li>
-                                            </ul>
-                                        <?php endif; ?>
+                                            <?php endif; ?>
                                         </li>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 								</ul>

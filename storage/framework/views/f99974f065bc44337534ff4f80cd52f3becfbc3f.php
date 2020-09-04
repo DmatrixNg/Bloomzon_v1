@@ -25,7 +25,7 @@
                                     <li><a href="<?php echo e(route('home','blog')); ?>"><?php echo e(__("Blog")); ?></a> </li>
                                     <li><a href="<?php echo e(route('home','faq')); ?>"><?php echo e(__("FAQ")); ?></a> </li>
                                     <li><a href="<?php echo e(route('home','sell_your_service')); ?>"><?php echo e(__("Sell Your Services on")); ?> bloomzon</a></li>
-                                    <li><a href="<?php echo e(route('home','advertise_on_bloomzon')); ?>"><?php echo e(__("Advertise")); ?> on bloomzon tv</a></li>
+                                    <li><a href="<?php echo e(route('home','advertise_on_bloomzon')); ?>"><?php echo e(__("Advertise on")); ?> bloomzon tv</a></li>
                                     <li><a href="<?php echo e(route('home','contact_us')); ?>"><?php echo e(__("contact us")); ?></a></li>
                                     <li><a href="<?php echo e(route('home','advertise_your_products')); ?>"><?php echo e(__("Advertise Your Products")); ?></a></li>
                                 </ul>
@@ -115,7 +115,7 @@ endif;
 unset($__errorArgs, $__bag); ?>
                                 </div>
                                 <div class="col">
-                                    <input type="submit" value="Subscribe" class="btn btn-primary">
+                                    <input type="submit" value="Subscribe" class="btn btn-danger ">
                                 </div>
                             </form>
                         </div>
