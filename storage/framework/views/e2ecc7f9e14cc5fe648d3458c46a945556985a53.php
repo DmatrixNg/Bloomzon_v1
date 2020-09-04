@@ -111,7 +111,7 @@
                                                            
                                                             <a href="#">
                                                                 <?php if($product->avatars != null): ?>
-                                                                <img src="<?php echo e(asset('storage/assets/product/avatars/'.$product->avatars[0]??'')); ?>" alt="">
+                                                                <img src="<?php echo e(asset('storage/assets/product/avatars/'.$product->avatars[0]??'')); ?>" alt="" style="height: 100px;">
                                                                 <?php endif; ?>
                                                             </a>
 
@@ -139,8 +139,8 @@
 
                                                             </div>
                                                         </div>
-                                                        <div class="product-title">
-                                                            <h4><a href="#"><?php echo e($product->product_name); ?></a></h4>
+                                                        <div class="product-title text-truncate">
+                                                            <h4><a href="#" class="text-truncate" title="<?php echo e($product->product_name); ?>"><?php echo e($product->product_name); ?></a></h4>
                                                             <small>
                                                                 <?php if($product->product_sales_price): ?>
                                                                     <div class="product-price-rating">

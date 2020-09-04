@@ -111,7 +111,7 @@
                                                            
                                                             <a href="#">
                                                                 @if($product->avatars != null)
-                                                                <img src="{{asset('storage/assets/product/avatars/'.$product->avatars[0]??'') }}" alt="">
+                                                                <img src="{{asset('storage/assets/product/avatars/'.$product->avatars[0]??'') }}" alt="" style="height: 100px;">
                                                                 @endif
                                                             </a>
 
@@ -127,8 +127,8 @@
 
                                                             </div>
                                                         </div>
-                                                        <div class="product-title">
-                                                            <h4><a href="#">{{ $product->product_name }}</a></h4>
+                                                        <div class="product-title text-truncate">
+                                                            <h4><a href="#" class="text-truncate" title="{{ $product->product_name }}">{{ $product->product_name }}</a></h4>
                                                             <small>
                                                                 @if($product->product_sales_price)
                                                                     <div class="product-price-rating">
