@@ -286,41 +286,70 @@
 function changeLocation(loc) {
 
 													var path = window.location.href;
+													var request = window.location.search;
+													// if (request) {
+													//
+													// }
 
 													if (loc ==="en") {
 
-														newloc = path.replace('fr', loc)
-														newloc = newloc.replace('es', loc)
-														newloc = newloc.replace('zh', loc)
-														newloc = newloc.replace('ar', loc)
+														newloc = path.replace('/fr/', "/"+loc+"/") && path.replace('/fr', "/"+loc)
+														newloc = newloc.replace('/es/', "/"+loc+"/") && newloc.replace('/es', "/"+loc)
+														newloc = newloc.replace('/zh_CH/', "/"+loc+"/") && newloc.replace('/zh_CH', "/"+loc)
+														newloc = newloc.replace('/ar/', "/"+loc+"/") &&  newloc.replace('/ar', "/"+loc)
+														// if (request) {
+														// 	newloc = path.replace('/fr/', "/"+loc+"/")
+														// 	newloc = newloc.replace('/es/', "/"+loc+"/")
+														// 	newloc = newloc.replace('/zh/', "/"+loc+"/")
+														// 	newloc = newloc.replace('/ar/', "/"+loc+"/") &&  newloc.replace('/ar', "/"+loc)
+														// }
 														window.location = newloc
 
 													}if (loc ==="fr") {
-														newloc = path.replace('en', loc)
-														newloc = newloc.replace('es', loc)
-														newloc = newloc.replace('zh', loc)
-														newloc = newloc.replace('ar', loc)
+
+														newloc = path.replace('/en/', "/"+loc+"/") && path.replace('/en', "/"+loc)
+														newloc = newloc.replace('/es/', "/"+loc+"/") && newloc.replace('/es', "/"+loc)
+														newloc = newloc.replace('/zh_CH/', "/"+loc+"/") && newloc.replace('/zh_CH', "/"+loc)
+														newloc = newloc.replace('/ar/', "/"+loc+"/") &&  newloc.replace('/ar', "/"+loc)
+														if (request) {
+															newloc = newloc.replace(request, "?"+loc)
+
+														}
+														// console.log(newloc);
 														window.location = newloc
+
 													}if (loc ==="es") {
-														newloc = path.replace('en', loc)
-														newloc = newloc.replace('fr', loc)
-														newloc = newloc.replace('zh', loc)
-														newloc = newloc.replace('ar', loc)
+														newloc = path.replace('/en/', "/"+loc+"/") && path.replace('/en', "/"+loc)
+														newloc = newloc.replace('/fr/', "/"+loc+"/") && newloc.replace('/fr', "/"+loc)
+														newloc = newloc.replace('/zh_CH/', "/"+loc+"/") && newloc.replace('/zh_CH', "/"+loc)
+														newloc = newloc.replace('/ar/', "/"+loc+"/") &&  newloc.replace('/ar', "/"+loc)
+														if (request) {
+															newloc = newloc.replace(request, "?"+loc)
+
+														}
 														window.location = newloc
 													}
 													if (loc ==="zh_CH") {
-														newloc = path.replace('en', loc)
-														newloc = newloc.replace('es', loc)
-														newloc = newloc.replace('fr', loc)
-														newloc = newloc.replace('ar', loc)
+														newloc = path.replace('/en/', "/"+loc+"/") && path.replace('/en', "/"+loc)
+														newloc = newloc.replace('/es/', "/"+loc+"/") && newloc.replace('/es', "/"+loc)
+														newloc = newloc.replace('/fr/', "/"+loc+"/") && newloc.replace('/fr', "/"+loc)
+														newloc = newloc.replace('/ar/', "/"+loc+"/") &&  newloc.replace('/ar', "/"+loc)
+														if (request) {
+															newloc = newloc.replace(request, "?"+loc)
 
+														}
+														// console.log(newloc);
 														window.location = newloc
 
 													}if (loc ==="ar") {
-														newloc = path.replace('en', loc)
-														newloc = newloc.replace('es', loc)
-														newloc = newloc.replace('zh', loc)
-														newloc = newloc.replace('fr', loc)
+														newloc = path.replace('/en/', "/"+loc+"/") && path.replace('/en', "/"+loc)
+														newloc = newloc.replace('/es/', "/"+loc+"/") && newloc.replace('/es', "/"+loc)
+														newloc = newloc.replace('/zh_CH/', "/"+loc+"/") && newloc.replace('/zh_CH', "/"+loc)
+														newloc = newloc.replace('/fr/', "/"+loc+"/") && newloc.replace('/fr', "/"+loc)
+														if (request) {
+															newloc = newloc.replace(request, "?"+loc)
+
+														}
 														window.location = newloc
 													}
 
