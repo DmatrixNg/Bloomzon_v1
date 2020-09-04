@@ -204,7 +204,7 @@
                                     <div class="col-sm-12">
                                         <?php if(Auth::guard('buyer')->user()): ?>
                                         <input type="hidden" value="<?php echo e($product->id); ?>" name="product_id" />
-                                        <input type="hidden" value="<?php echo e($product->seller_id->id); ?>" name="seller_id" />
+                                        <input type="hidden" value="<?php echo e($product->seller->id); ?>" name="seller_id" />
                                         <input type="hidden" value="<?php echo e(Auth::guard('buyer')->user()->id); ?>" name="buyer_id" />
                                         <input type="hidden" value="0" id="rating" name="rating" />
                                         <input type="hidden" value="1" name="status" />

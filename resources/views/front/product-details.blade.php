@@ -266,7 +266,7 @@ Product Details
                                         <div class="col-sm-12">
                                             @if(Auth::guard('buyer')->user())
                                             <input type="hidden" value="{{$product->id}}" name="product_id" />
-                                            <input type="hidden" value="{{$product->seller_id->id}}" name="seller_id" />
+                                            <input type="hidden" value="{{$product->seller->id}}" name="seller_id" />
                                             <input type="hidden" value="{{Auth::guard('buyer')->user()->id}}" name="buyer_id" />
                                             <input type="hidden" value="0" id="rating" name="rating" />
                                             <input type="hidden" value="1" name="status" />
@@ -456,7 +456,7 @@ Product Details
                             <div class="col-lg-12">
                                 <h2>TERMS &amp; CONDITIONS</h2>
                                     <p class="text-justify">
-                                      {{$product->seller_id->terms_and_conditions}}
+                                      {{$product->seller->terms_and_conditions}}
                                     </p>
                             </div>
                         </div>
@@ -481,7 +481,7 @@ Product Details
                             <div class="col-lg-12">
                                 <h2>Delivery Terms</h2>
                                     <p class="text-justify">
-                                      {{$product->seller_id->delivery_terms}}
+                                      {{$product->seller->delivery_terms}}
                                     </p>
                             </div>
                         </div>
@@ -506,7 +506,7 @@ Product Details
                             <div class="col-lg-12">
                                 <h2>Return Policy</h2>
                                     <p class="text-justify">
-                                      {{$product->seller_id->policy}}
+                                      {{$product->seller->policy}}
                                     </p>
                             </div>
                         </div>

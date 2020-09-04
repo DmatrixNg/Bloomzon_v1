@@ -96,10 +96,10 @@ class HomeController extends Controller
         //get sellers of product in distinct 
         if(count($products)){
             foreach($products as $product){
-                if($product->seller_id != null){
-                if(!in_array($product->seller_id->id,$dis)){
-                    array_push($sellers,$product->seller_id);
-                    array_push($dis,$product->seller_id->id);
+                if($product->seller->id != null){
+                if(!in_array($product->seller->id,$dis)){
+                    array_push($sellers,$product->seller->id);
+                    array_push($dis,$product->seller->id);
                 }
                 }
             }
@@ -228,7 +228,7 @@ class HomeController extends Controller
         if(count($products)){
             foreach($products as $product){
                 if(!in_array(strval($product),$dis)){
-                    array_push($sellers,$product->seller_id);
+                    array_push($sellers,$product->seller->id);
                     array_push($dis,strval($product));
                 }
             }

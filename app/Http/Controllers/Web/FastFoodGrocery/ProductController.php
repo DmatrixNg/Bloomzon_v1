@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Config;
 
 class ProductController extends Controller
 {
-    
+
     use JsonResponse;
     /**
      * Display a listing of the resource.
@@ -39,7 +39,7 @@ class ProductController extends Controller
             $fast_food_grocery = Auth::guard('fast_food_grocery')->user();
             $categories = Category::all();
             return view('dashboard.fast_food_grocery.addnewproduct', compact(['fast_food_grocery','categories']));
-     
+
     }
 
     /**
@@ -50,9 +50,9 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $prod   = new Product();
-       $config  = SiteConfig::find(1); 
+       $config  = SiteConfig::find(1);
         $request->validate([
             'product_name'           => ['required', 'string', 'max:255'],
             'product_description'    => ['required', 'string'],
@@ -62,15 +62,15 @@ class ProductController extends Controller
             'product_sales_price'    => ['numeric','max:5000'],
             'weight'                 => 'required|integer',
             'avatars'                => 'required|string|min:3',
-            
+
         ],
     ['avatars.required'=>'Please upload an image',
     'avatars.min'=>'You need to upload image',
     'product_sales_price.max' => "Sales price must be less than $5000"
     ]
 );
-        
-        $created = $prod->create($request->all());
+
+        $created = Auth::guard("fast_food_grocery")->user()->products()->create($request->all());
         if ($created) {
 
             return $this->send_response(true, $created, 200, 'Product added');
@@ -102,7 +102,7 @@ class ProductController extends Controller
             $fast_food_grocery = Auth::guard('fast_food_grocery')->user();
             $categories = Category::all();
             return view('dashboard.fast_food_grocery.editproduct', compact(['fast_food_grocery','categories','product']));
-     
+
     }
 
     /**
@@ -114,7 +114,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-     
+
         $request->validate([
             'product_name'           => ['required', 'string', 'max:255'],
             'product_description'    => ['required', 'string'],
@@ -124,7 +124,7 @@ class ProductController extends Controller
             'product_sales_price'    => ['numeric','max:5000'],
             'weight'                 => 'required|integer',
             'avatars'                => 'required|string|min:3',
-            
+
         ],
     ['avatars.required'=>'Please upload an image',
     'avatars.min'=>'You need to upload image',
