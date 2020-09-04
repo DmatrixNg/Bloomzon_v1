@@ -54,7 +54,7 @@
             </div>
             <!--header-bottom-->
 
-            
+
                 <div class="sticker header-bottom" style="background-color: #aa1607 !important; color: #fff;">
                     <div class="container-fluid mr-5 ml-5 pr-5 pl-5">
                         <div class="row align-items-center">
@@ -82,19 +82,19 @@
 
                                     <div class="search-box col-md-10">
                                         <form action="/search" method="GET">
-                                    
+
                                         <select class="form-control"
                                             name="category"
                                             style="width: 80px; height: 45px !important; border-top-right-radius: 0px; border-bottom-right-radius:  0px;">
                                             <option value="all">All</option>
-                                            
+
                                                 <option value="product">Products</option>
                                                 <option value="seller">Seller</option>
                                                 <option value="proservice">Professional Service</option>
                                                 <option value="fast_food_grocery">Fast Food Grocery</option>
                                                 <option value="networking_agent">Networking Associate</option>
                                                 <option value="manufacturer">Manufacturer</option>
-                                            
+
                                         </select>
                                         <input type="text" name="search_term" placeholder="What do you need?" style="height: 45px;" />
                                         <button
@@ -108,18 +108,18 @@
 
                             <div class="col-lg-4">
                                 <div class="register-login">
-                                <a type="button" href="{{url('/track-delivery')}}" class="badge btn btn-outline-light text-white mr-2">Track Delivery</button>
-                                    <a href="{{url('/cart')}}" class="btn btn-success mr-2"> <span class="text-white">My Cart </span><i
+                                <a type="button" href="{{ url(app()->getLocale().'/track-delivery')}}" class="badge btn btn-outline-light text-white mr-2">Track Delivery</button>
+                                    <a href="{{ url(app()->getLocale().'/cart')}}" class="btn btn-success mr-2"> <span class="text-white">My Cart </span><i
                                             class="fa fa-lg fa-shopping-cart text-light">{{count($cart)}}</i></a>
                                     @if($isBuyer || $isSeller || $isMan || $isNtw || $isAdmin)
                                         <a href="#" class="text-white mr-2"><i
                                                 class="fa fa-lg fa-sign-out text-light"></i> Logout</a>
-                                       
+
                                             <div class="currency-bar lang-bar">
                                                 <ul>
                                                     <li> <a href="/home" class="text-white mr-2"><i class="fa fa-lg fa-dashboard text-light"></i>
                                                         My Account </a>
-                                                        
+
                                                         <ul style="width:100%">
                                                             @if($isBuyer)<li>
                                                                 <a href="/buyer/dashboard"> As Buyer</a>
@@ -150,7 +150,7 @@
                                                             </li>
                                                             @endif
 
-                                                            
+
                                                         </ul>
                                                     </li>
                                                 </ul>
@@ -244,17 +244,17 @@
                                     </div>
                                 </div>
                                 <div class="col-xl-10 col-lg-10 pl-0 pr-0">
-                                        <div class="mainmenu text-white">  
+                                        <div class="mainmenu text-white">
                                             <nav>
                                                 <ul>
-                                                    <li><a href="{{url('/realestate')}}">Real Estate</a></li>
-                                                    <li><a href="{{route('fashion')}}">Fashion Designer &amp; Tailoring</a></li>
-                                                    <li><a href="{{url('bloomzontravels')}}">Bloomzon Travel & Hotels</a></li>
+                                                    <li><a href="{{ url(app()->getLocale().'/realestate')}}">Real Estate</a></li>
+                                                    <li><a href="{{route('fashion',app()->getLocale())}}">Fashion Designer &amp; Tailoring</a></li>
+                                                    <li><a href="{{ url(app()->getLocale().'bloomzontravels')}}">Bloomzon Travel & Hotels</a></li>
                                                     <li><a href="#">Bloomzon Products</a></li>
-                                                    <li><a href="{{route('fast-foods')}}">Food &amp; Groceries</a></li>
-                                                <li><a href="{{url('/proservice')}}">Professional Services</a></li>
-                                                    <li><a href="{{url('/sellers')}}">Seller</a></li>
-                                                    <li class="m-auto"><a href="{{url('/manufacturers')}}">Manufacturers</a></li>
+                                                    <li><a href="{{route('fast-foods',app()->getLocale())}}">Food &amp; Groceries</a></li>
+                                                <li><a href="{{ url(app()->getLocale().'/proservice')}}">Professional Services</a></li>
+                                                    <li><a href="{{ url(app()->getLocale().'/sellers')}}">Seller</a></li>
+                                                    <li class="m-auto"><a href="{{ url(app()->getLocale().'/manufacturers')}}">Manufacturers</a></li>
                                                 </ul>
                                             </nav>
                                         </div>
@@ -418,5 +418,5 @@
                     </div>
                 </div>
         </header>
-    
+
     </div>

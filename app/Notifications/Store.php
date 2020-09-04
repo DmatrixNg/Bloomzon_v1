@@ -56,7 +56,7 @@ class Store extends Notification
     public function toArray($notifiable)
     {
       return [
-          'type' => 'store',
+          'type' => 'Order',
           'data' => $this->product,
           'message' => 'A buyer just bought one of your product "'.$this->product->name.'" Successfully',
       ];

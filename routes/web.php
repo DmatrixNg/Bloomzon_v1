@@ -61,7 +61,7 @@ dump('done');
   // $first->supermarket->user->notify(new \App\Notifications\Store($product));
 });
 Route::get('manufacturer/logout', 'Web\Manufacturer\Auth\LoginController@logout')->name('logout');
-
+Route::redirect('/','en');
 Route::group(['prefix' => '{lang}'], function () {
 
   Route::GET('/realestate',function(){
@@ -175,17 +175,15 @@ Route::post('/chat/new_chat','ChatController@new_chat')->name('chat.new');
 Route::post('/chat/replies','ChatController@chat_replies')->name('chat.replies');
 Route::post('/chat/reply','ChatController@reply')->name('chat.reply');
 Route::post('/chat/continue','ChatController@continue')->name('chat.continue');
-<<<<<<< HEAD
-=======
 
-// manufacturer
-Route::get('/manufacturers','ManufacturerController@index')->name('manufacturers');
-Route::get('/manufacturer-details/{id}','ManufacturerController@show');
+
+// // manufacturer
+// Route::get('/manufacturers','ManufacturerController@index')->name('manufacturers');
+// Route::get('/manufacturer-details/{id}','ManufacturerController@show');
 
 // newsletter
 Route::post('/newsletter_subscribe','NewsletterSubscriptionController@store');
 
->>>>>>> 59fb27acf8d7a308cb1bcbfa5e917b02b5fe35b0
 //all the admin routes will be defined here...
 Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function () {
 
@@ -265,7 +263,7 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
         // REVIEWS
         Route::get('reviews', 'ReviewController@index');
         Route::post('/reveiw/change_status/{id}', 'ReviewController@change_status');
-        
+
         //ADVERTS
         Route::get('all-adverts','AdvertController@index')->name('all-adverts');
         Route::get('create-advert','AdvertController@create')->name('create-advert');
@@ -297,7 +295,7 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
         Route::get('right-of-purchase','SettingController@rightOfPurchase');
         Route::get('refund','SettingController@refund');
         Route::post('save-setting/','SettingController@storeData');
-        
+
         Route::get('site-config','SiteConfigController@index')->name('site-config');
         Route::get('set-configuration',"SiteConfigController@update")->name('set-config');
 
@@ -331,7 +329,7 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
         Route::get('payout-request/{user_type}',"PayoutRequestController@index");
         Route::get('payout-request/pay/{request_id}',"PayoutRequestController@pay");
 
-        // 
+        //
         Route::get('shopper-details/{id}',"ShopperController@show_details");
         Route::get('buyer-details/{id}',"BuyerController@show_details");
 
@@ -346,12 +344,12 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
         Route::post('send-newsletter/', "NewsletterController@send_newsletter");
         Route::get('newsletters/', "NewsletterController@all_newsletters");
         Route::get('subscribers/', "NewsletterController@subscribers");
-        
-        
+
+
 
     });
 
-   
+
 });
 
 //all the buyer routes will be defined here...
