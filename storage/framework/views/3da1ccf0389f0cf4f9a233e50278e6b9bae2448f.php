@@ -236,9 +236,9 @@
                                         </a>
 
                                         <ul class="vm-dropdown" style="display: none; background-color: rgba(0,0,0,0); border: none;">
-                                            <div class="row" style="width: 100vw !important; min-height: 100%; background-color: rgb(1, 54, 119, .9);">
+                                            <div style="width: 100vw !important; min-height: 100%; background-color: rgb(1, 54, 119, .9); display: none;" class="row menu-hider">
                                                 <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                    <li style="border-right: 1px solid #ccc;" class="col-md-2 p-2">
+                                                    <li style="border-right: 1px solid #ccc; display: none;" class="col-md-2 p-2 menu-hider">
                                                     <a href="/category/<?php echo e($category->name); ?>" style="font-size: 19px; color: white;"></i><?php echo e($category->name); ?></a>
                                                         <?php if(!empty($category->sub_categories)): ?>
                                                             <ul>

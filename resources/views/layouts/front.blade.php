@@ -285,12 +285,11 @@ function changeLocation(loc) {
 														newloc = newloc.replace('/es/', "/"+loc+"/") && newloc.replace('/es', "/"+loc)
 														newloc = newloc.replace('/zh_CH/', "/"+loc+"/") && newloc.replace('/zh_CH', "/"+loc)
 														newloc = newloc.replace('/ar/', "/"+loc+"/") &&  newloc.replace('/ar', "/"+loc)
-														// if (request) {
-														// 	newloc = path.replace('/fr/', "/"+loc+"/")
-														// 	newloc = newloc.replace('/es/', "/"+loc+"/")
-														// 	newloc = newloc.replace('/zh/', "/"+loc+"/")
-														// 	newloc = newloc.replace('/ar/', "/"+loc+"/") &&  newloc.replace('/ar', "/"+loc)
-														// }
+
+														if (request) {
+															newloc = newloc.replace(request, "?"+loc)
+
+														}
 														window.location = newloc
 
 													}if (loc ==="fr") {

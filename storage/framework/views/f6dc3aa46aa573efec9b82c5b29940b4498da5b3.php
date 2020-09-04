@@ -1,7 +1,7 @@
 <div class="row">
-    <div class="col-md-4 p-0"><a href="<?php echo e(url('product-details/' . base64_encode($product->id))); ?>"
+    <div class="col-md-4 p-0"><a href="<?php echo e(url(app()->getLocale().'/product-details/' . base64_encode($product->id))); ?>"
             class="btn btn-success"><i class="fa fa-eye"></i></a></div>
-   
+
             <div class="col-md-4 p-0"  onclick="addCart(<?php echo e($id); ?>)"><a href="javascript:void(0);" class="btn btn-success"><i
                 class="fa fa-shopping-cart"></i></a></div>
             <div class="col-md-4 p-0" onclick="addFavorite(<?php echo e($id); ?>)"><a href="javascript:void(0);" class="btn btn-success"><i
@@ -11,7 +11,7 @@
 
 <?php $__env->startPush('product-buttons'); ?>
     <script>
-    
+
         var buyer_id = null;
         //check if user is authenticated then get the ID
         <?php if(Auth::guard('buyer')->user()): ?>
@@ -21,7 +21,7 @@
        async function addCart(id) {
             try {
                 console.log("pressed")
-                const response = await (await fetch('/cart/add/' + id + '/1', 
+                const response = await (await fetch('/cart/add/' + id + '/1',
                 {
                     method: 'GET',
                     headers: {'Accept': 'application/json'}
@@ -47,12 +47,12 @@
                 return swal('','You must be logged in to add to favorite')
             }
             try {
-               
+
                 const response = await makeRequest('buyer/favorite/add',{
                     buyer_id:buyer_id,
                     product_id:id
                 });
-                 
+
                 console.log(response);
                 if (response.success) {
                     return swal({

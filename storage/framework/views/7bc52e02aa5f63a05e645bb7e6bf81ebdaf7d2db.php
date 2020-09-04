@@ -10,7 +10,7 @@
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
 	<meta name="description" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
 
 	<link rel="manifest" href="site.html">
 	<link rel="apple-touch-icon" href="icon.html">
@@ -73,6 +73,12 @@
 		.single-product-cat img{
 			max-height: 220px !important
 		}
+
+        /* @media (max-width: 100px) {
+            .menu-hider {
+                display: none !important;
+            }
+        } */
 	</style>
 </head>
 
@@ -297,12 +303,11 @@ function changeLocation(loc) {
 														newloc = newloc.replace('/es/', "/"+loc+"/") && newloc.replace('/es', "/"+loc)
 														newloc = newloc.replace('/zh_CH/', "/"+loc+"/") && newloc.replace('/zh_CH', "/"+loc)
 														newloc = newloc.replace('/ar/', "/"+loc+"/") &&  newloc.replace('/ar', "/"+loc)
-														// if (request) {
-														// 	newloc = path.replace('/fr/', "/"+loc+"/")
-														// 	newloc = newloc.replace('/es/', "/"+loc+"/")
-														// 	newloc = newloc.replace('/zh/', "/"+loc+"/")
-														// 	newloc = newloc.replace('/ar/', "/"+loc+"/") &&  newloc.replace('/ar', "/"+loc)
-														// }
+
+														if (request) {
+															newloc = newloc.replace(request, "?"+loc)
+
+														}
 														window.location = newloc
 
 													}if (loc ==="fr") {

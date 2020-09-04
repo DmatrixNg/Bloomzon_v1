@@ -33,7 +33,7 @@ class ProductController extends Controller
 
     //
 
-    
+
 
 
 
@@ -44,9 +44,9 @@ class ProductController extends Controller
      */
     // public function create(Request $request)
     // {
-        
+
     //     $prod = new Product();
-       
+
     //     $request->validate([
     //         'product_name'           => ['required', 'string', 'max:255'],
     //         'product_description'    => ['required', 'string'],
@@ -55,7 +55,7 @@ class ProductController extends Controller
     //         'minimum_order_quantity' => ['integer'],
     //         'product_sales_price'     => [],
     //         'weight'                => 'required | integer',
-            
+
     //     ]);
     //     $uploadedFiles = array();
     //     $created = $prod->create($request->all());
@@ -64,7 +64,7 @@ class ProductController extends Controller
     //     } else {
     //         return $this->send_response(false, [], 400, 'Message added');
     //     }
-        
+
     // }
 
     /**
@@ -96,21 +96,22 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        $id = base64_decode($id);
+      // dd($request->id);
+        $id = base64_decode($request->id);
         $product = Product::where('id',$id)->first();
         //redirects ifproduct does not exist
         if(!$product){
          return redirect('/not-found');
         }
         $colors = $product->product_color?$product->product_color:[];
-        
+
         $images = [];
         if($product->avatars) {
             $images = $product->avatars;
         }
-        
+
 
         return view('front.product-details', compact(['product','images','colors']));
     }
@@ -119,13 +120,13 @@ class ProductController extends Controller
 
         //check if user already gave reviews
         $reviewExist = Review::where('buyer_id',$request->buyer_id)->where('product_id',$request->product_id)->first();
-        
+
         if($reviewExist != null){
             $reviewExist->update($request->all());
             return $this->send_response(true, $reviewExist, 200, 'Product Review updated');
         }
 
-        //creates 
+        //creates
         $review = Review::create($request->all());
         if($review){
             return $this->send_response(true, $review, 200, 'Product Review added');
@@ -183,7 +184,7 @@ class ProductController extends Controller
             $imgName = time() . '.' . $request->file->getClientOriginalExtension();
             try {
                 $url = $request->file('file')->storeAs('/assets/product/avatars', $imgName, 'public');
-               
+
                return $this->send_response(false,$imgName, 200,'Image stored');
             }catch(\Exception $e){
                 return $this->send_response(false,$e, 400,'Problem adding image to advert');
