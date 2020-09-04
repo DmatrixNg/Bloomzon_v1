@@ -67,6 +67,26 @@ class SettingController extends Controller
     public function qualitycontrol(){
         return view('dashboard.admin.qualitycontrol');
     }
+
+    public function about(){
+        return view('dashboard.admin.about');
+    }
+
+    public function services(){
+        return view('dashboard.admin.services');
+    }
+
+    public function investor_relations(){
+        return view('dashboard.admin.investor_relations');
+    }
+
+    public function career(){
+        return view('dashboard.admin.career');
+    }
+
+    public function advertise_your_products(){
+        return view('dashboard.admin.advertise_your_products');
+    }
     
     public function rightOfPurchase(){
         return view('dashboard.admin.rightofpurchase');
@@ -121,10 +141,30 @@ class SettingController extends Controller
                 $config->qualitycontrol = $request->data;
                 $config->save();
                 return $this->send_response(true,$config,200,'');
+            case ('about'):
+                $config->about = $request->data;
+                $config->save();
+                return $this->send_response(true,$config,200,'');
+            case ('services'):
+                $config->services = $request->data;
+                $config->save();
+                return $this->send_response(true,$config,200,'');
+            case ('investor_relations'):
+                $config->investor_relations = $request->data;
+                $config->save();
+                return $this->send_response(true,$config,200,'');
+            case ('career'):
+                $config->career = $request->data;
+                $config->save();
+                return $this->send_response(true,$config,200,'');
+            case ('advertise_your_products'):
+                $config->advertise_your_products = $request->data;
+                $config->save();
+                return $this->send_response(true,$config,200,'');
             case ('right_of_purchase'):
                 $config->update(['right_of_purchase' => $request->data]);
                 return $this->send_response(true,$config,200,'');
-            
+                
             case ('refund'):
                 $config->update(['refund' => $request->data]);
             return $this->send_response(true,$config,200,'');

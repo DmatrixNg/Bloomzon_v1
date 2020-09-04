@@ -10,9 +10,10 @@
                     <div class="col-xl-8">
                         <div class="main-slider mt-30 mt-sm-0 slick-initialized slick-slider slick-dotted">
                             <div id="sliderCar" class="carousel slide" data-ride="carousel">
-                                
+
                                 <div class="carousel-inner">
                                     <?php ($count = 0); ?>
+
                                     <?php $__currentLoopData = $adverts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $advert): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <?php if($advert->advert_position == 'Slider'): ?>
                                             <div class="carousel-item <?php if($count == 0): ?> active <?php endif; ?>">
@@ -24,14 +25,15 @@
                                         <?php endif; ?>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                  
+
                                 </div>
                                 <a class="carousel-control-prev" href="#sliderCar" role="button" data-slide="prev">
                                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                  <span class="sr-only">Previous</span>
+                                  <span class="sr-only"><?php echo e(__("Previous")); ?></span>
                                 </a>
                                 <a class="carousel-control-next" href="#sliderCar" role="button" data-slide="next">
                                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                  <span class="sr-only">Next</span>
+                                  <span class="sr-only"><?php echo e(__("Next")); ?></span>
                                 </a>
                               </div>
                         </div>
@@ -64,7 +66,7 @@
             <div class="brands-area">
                 <div class="row">
                     <div class="col-lg-2">
-                        <h2>Brands</h2>
+                        <h2><?php echo e(__("Brands")); ?></h2>
                     </div>
                     <div class="col-lg-10">
                         <div class="brand-items slick-initialized slick-slider">
@@ -97,18 +99,18 @@
                                     <div class="row" style="background-color: #0149a0 !important; color: #fff;">
                                         <div class="col-lg-12">
                                             <div class="section-title text-left">
-                                                <h3>MOST POPULAR</h3>
+                                                <h3><?php echo e(__("MOST POPULAR")); ?></h3>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row cv-visible">
 
-                                        <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <?php $__currentLoopData = $products->take(8); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <?php if($product->product_name): ?>
                                                 <div class="col-lg-3">
                                                     <div class="product-single">
                                                         <div class="product-thumb">
-                                                           
+
                                                             <a href="#">
                                                                 <?php if($product->avatars != null): ?>
                                                                 <img src="<?php echo e(asset('storage/assets/product/avatars/'.$product->avatars[0]??'')); ?>" alt="" style="height: 100px;">
@@ -135,7 +137,7 @@
 <?php endif; ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?> 
-                                                            
+
 
                                                             </div>
                                                         </div>
@@ -161,8 +163,7 @@
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                     </div>
-                                    <div class="text-center pt-2"><a href="<?php echo e(url('/shop')); ?>" class="btn btn-danger text-white">View
-                                            All</a></div>
+                                    <div class="text-center pt-2"><a href="<?php echo e(url('/shop')); ?>" class="btn btn-danger text-white"><?php echo e(__("View All")); ?></a></div>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -170,7 +171,7 @@
                                     <div class="row" style="background-color: #0149a0 !important; color: #fff;">
                                         <div class="col-lg-12">
                                             <div class="section-title text-right">
-                                                <h3>WHOLESALERS/MANUFACTURERS</h3>
+                                                <h3><?php echo e(__("WHOLESALERS/MANUFACTURERS")); ?></h3>
                                             </div>
                                         </div>
                                     </div>
@@ -178,7 +179,7 @@
                                         <div class="slick-list draggable">
                                             <div class="slick-track"
                                                 style="opacity: 1; width: 420px; transform: translate3d(0px, 0px, 0px);">
-                                                <?php $__currentLoopData = $manufacturers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $manufacturer): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php $__currentLoopData = $manufacturers->take(6); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $manufacturer): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
                                                     <div class="col-lg-4 p-1 slick-slide slick-current slick-active"
                                                         data-slick-index="0" aria-hidden="false" tabindex="0"
@@ -201,7 +202,7 @@
                                     </div>
                                     <div class="text-center pt-4"><a
                                             href="/manufacturers?manufacturers=<?php echo e(base64_encode(json_encode($manufacturers))); ?>"
-                                            class="btn btn-danger text-white">View All</a></div>
+                                            class="btn btn-danger text-white"><?php echo e(__("View All")); ?></a></div>
                                 </div>
                             </div>
                         </div>
@@ -210,9 +211,10 @@
                             <div class="row" style="background-color: #0149a0 !important; color: #fff;">
                                 <div class="col-lg-12">
                                     <div class="section-title text-left">
-                                        <h3>GROCERIES
+                                        <h3><?php echo e(__("GROCERIES")); ?>
+
                                             <a href="/groceries?groceries=<?php echo e(base64_encode(json_encode($groceries))); ?>"
-                                                class="text-white pull-right"> SEE ALL</a>
+                                                class="text-white pull-right"> <?php echo e(__("SEE ALL")); ?></a>
                                         </h3>
 
                                     </div>
@@ -221,9 +223,9 @@
                             </div>
                             <div class="row cv-visible">
 
-                                
-                               
-                                <?php $__currentLoopData = $groceries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $grocery): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
+
+                                <?php $__currentLoopData = $groceries->take(6); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $grocery): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <div class="col-lg-2">
                                         <div class="product-single p-0"
                                             style="height: 230px; background-image: url('assets/img/g1.jpeg'); background-size: 350px; background-position: center;">
@@ -246,14 +248,19 @@
 
 
                             </div>
+                            <br/>
+                            <div class="text-center pt-4"><a
+                                            href="<?php echo e(route('fast-foods',app()->getLocale())); ?>"
+                                            class="btn btn-danger text-white"><?php echo e(__("View All")); ?></a></div>
                         </div>
                         <div class="products-tab mt-35">
                             <div class="row" style="background-color: #0149a0 !important; color: #fff;">
                                 <div class="col-lg-12">
                                     <div class="section-title text-left">
-                                        <h3>FOOD MENUS
+                                        <h3><?php echo e(__("FOOD MENUS")); ?>
+
                                             <a href="/food-menus?food_menus=<?php echo e(base64_encode(json_encode($food_menus))); ?>"
-                                                class="text-white pull-right"> SEE ALL</a>
+                                                class="text-white pull-right"> <?php echo e(__("SEE ALL")); ?></a>
                                         </h3>
                                     </div>
                                 </div>
@@ -283,7 +290,8 @@
                                     <div class="row" style="background-color: #0149a0 !important; color: #fff;">
                                         <div class="col-lg-12">
                                             <div class="section-title text-left">
-                                                <h3>MARKET BOKU
+                                                <h3><?php echo e(__("MARKET BOKU")); ?>
+
                                                     <a href="<?php echo e(url('/shop')); ?>" class="text-white pull-right"> SEE ALL</a>
                                                 </h3>
                                             </div>
@@ -298,7 +306,7 @@
                                                         <div class="product-thumb">
                                                             <a href="#">
                                                                 <?php if($product->avatars != null): ?>
-                                                                <img src="<?php echo e(asset('storage/assets/product/avatars/'.$product->avatars[0] ?? '')); ?>" alt="">
+                                                                <img src="<?php echo e(asset('storage/assets/product/avatars/'.$product->avatars[0] ?? '')); ?>" alt="" style="height: 200px;">
                                                                 <?php endif; ?>
                                                             </a>
                                                             <?php if($product->product_sales_price): ?>
@@ -322,8 +330,8 @@
 <?php endif; ?> 
                                                             </div>
                                                         </div>
-                                                        <div class="product-title">
-                                                            <h4><a href="<?php echo e(url('product-details/'.base64_encode($product->id))); ?>"><?php echo e($product->product_name); ?></a></h4>
+                                                        <div class="product-title text-truncate">
+                                                            <h4><a href="<?php echo e(url('product-details/'.base64_encode($product->id))); ?>" class="text-truncate"><?php echo e($product->product_name); ?></a></h4>
                                                             <small>
                                                                 <?php if($product->product_sales_price): ?>
                                                                     <div class="product-price-rating">
@@ -344,7 +352,7 @@
 
                                     </div>
                                     <div class="text-center pt-2"><a href="/shop" class="btn btn-danger text-white">View
-                                            All</a></div>
+                                            <?php echo e(__("All")); ?></a></div>
                                 </div>
                             </div>
                         </div>
@@ -354,7 +362,7 @@
                                 <div class="row" style="background-color: #0149a0 !important; color: #fff;">
                                     <div class="col-lg-12">
                                         <div class="section-title text-left">
-                                            <h3>BLOOMZON TV</h3>
+                                            <h3><?php echo e(__("BLOOMZON TV")); ?></h3>
                                         </div>
                                     </div>
                                 </div>
@@ -380,60 +388,60 @@
 						<div class="row" style="background-color: #0149a0 !important; color: #fff;">
 							<div class="col-lg-12">
 								<div class="section-title text-left">
-									<h3>VENDORS</h3>
+									<h3><?php echo e(__("VENDORS")); ?></h3>
 								</div>
 							</div>
 						</div>
 						<div class="row cv-visible">
 							<div class="col-lg-2">
-                                <a href="<?php echo e(route('fast-foods')); ?>" class="text-white">
+                                <a href="<?php echo e(route('fast-foods',app()->getLocale())); ?>" class="text-white">
 								<div class="product-single p-0" style="background-image: url('<?php echo e(asset("assets/frontend/img/food1.jpg")); ?>'); height: 220px; border-radius: 15px; background-size: cover; width: 100%;  background-repeat: no-repeat; background-position: center;">
 									<div class="product-title pt-2" style=" width: 100%; background-color: #23374D; opacity: 0.8; position: absolute; bottom: 0; text-align: center; border-bottom-right-radius: 15px; border-bottom-left-radius: 15px;">
-										<h4 class="text-white">Fast Food Vendors</h4>
+										<h4 class="text-white"><?php echo e(__("Fast Food Vendors")); ?></h4>
 									</div>
 								</div></a>
 							</div>
 							<div class="col-lg-2">
-                                <a href="<?php echo e(route('groceries')); ?>" class="text-white">
+                                <a href="<?php echo e(route('groceries',app()->getLocale())); ?>" class="text-white">
 								<div class="product-single p-0" style="background-image: url('<?php echo e(asset("assets/frontend/img/g2.jpg")); ?>'); height: 220px; border-radius: 15px; background-size: cover; background-position: center;">
 									<div class="product-title pt-2" style=" width: 100%; background-color: #23374D; opacity: 0.8; position: absolute; bottom: 0; text-align: center; border-bottom-right-radius: 15px; border-bottom-left-radius: 15px;">
-										<h4 class="text-white">Groceries</h4>
+										<h4 class="text-white"><?php echo e(__("Groceries")); ?></h4>
 									</div>
                                 </div>
                             </a>
 							</div>
 							<div class="col-lg-2">
-                                <a href="<?php echo e(route('agents')); ?>" class="text-white">
+                                <a href="<?php echo e(route('agents',app()->getLocale())); ?>" class="text-white">
 								<div class="product-single p-0" style="background-image: url('<?php echo e(asset("assets/frontend/img/b3.jpg")); ?>'); height: 220px; border-radius: 15px; background-size: cover; background-position: center;">
 									<div class="product-title pt-2" style=" width: 100%; background-color: #23374D; opacity: 0.8; position: absolute; bottom: 0; text-align: center; border-bottom-right-radius: 15px; border-bottom-left-radius: 15px;">
-										<h4 class="text-white">Networking Associates</h4>
+										<h4 class="text-white"><?php echo e(__("Networking Associates")); ?></h4>
 									</div>
                                 </div>
                             </a>
 							</div>
 							<div class="col-lg-2">
-                                <a href="<?php echo e(route('manufacturers')); ?>" class="text-white">
+                                <a href="<?php echo e(route('manufacturers',app()->getLocale())); ?>" class="text-white">
 								<div class="product-single p-0" style="background-image: url('<?php echo e(asset("assets/frontend/img/b1.jpeg")); ?>'); height: 220px; border-radius: 15px; background-size: cover; background-position: center;">
 									<div class="product-title pt-2" style=" width: 100%; background-color: #23374D; opacity: 0.8; position: absolute; bottom: 0; text-align: center; border-bottom-right-radius: 15px; border-bottom-left-radius: 15px;">
-										<h4 class="text-white">Manufacturers</h4>
+										<h4 class="text-white"><?php echo e(__("Manufacturers")); ?></h4>
 									</div>
                                 </div>
                             </a>
 							</div>
 							<div class="col-lg-2">
-                                <a href="<?php echo e(route('proservice')); ?>" class="text-white">
+                                <a href="<?php echo e(route('proservice',app()->getLocale())); ?>" class="text-white">
 								<div class="product-single p-0" style="background-image: url('<?php echo e(asset("assets/frontend/img/p1.jpg")); ?>'); height: 220px; border-radius: 15px; background-size: cover; background-position: center;">
 									<div class="product-title pt-2" style=" width: 100%; background-color: #23374D; opacity: 0.8; position: absolute; bottom: 0; text-align: center; border-bottom-right-radius: 15px; border-bottom-left-radius: 15px;">
-										<h4 class="text-white">Professional Services</h4>
+										<h4 class="text-white"><?php echo e(__("Professional Services")); ?></h4>
 									</div>
                                 </div>
                             </a>
 							</div>
 							<div class="col-lg-2">
-                                <a href="<?php echo e(route('sellers')); ?>" class="text-white">
+                                <a href="<?php echo e(route('sellers',app()->getLocale())); ?>" class="text-white">
 								<div class="product-single p-0" style="background-image: url('<?php echo e(asset("assets/frontend/img/p2.jpg")); ?>'); height: 220px; border-radius: 15px; background-size: cover; background-position: center;">
 									<div class="product-title pt-2" style=" width: 100%; background-color: #23374D; opacity: 0.8; position: absolute; bottom: 0; text-align: center; border-bottom-right-radius: 15px; border-bottom-left-radius: 15px;">
-										<h4 class="text-white">Sellers</h4>
+										<h4 class="text-white"><?php echo e(__("Sellers")); ?></h4>
 									</div>
                                 </div>
                             </a>
@@ -446,7 +454,7 @@
 		</div>
 	</div>
 	<!--products-tab end-->
-	
+
         <div class="container-fluid mt-50">
             <div class="row mt-40">
                 <?php $__currentLoopData = $adverts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $advert): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -466,6 +474,5 @@
         </div>
     </div>
 <?php $__env->stopSection(); ?>
-
 
 <?php echo $__env->make('layouts.front', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\Bloomzon_v1\resources\views/front/index.blade.php ENDPATH**/ ?>

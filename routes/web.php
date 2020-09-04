@@ -302,6 +302,11 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
         Route::get('qualitycontrol','SettingController@qualitycontrol');
         Route::get('right-of-purchase','SettingController@rightOfPurchase');
         Route::get('refund','SettingController@refund');
+        Route::get('about','SettingController@about');
+        Route::get('services','SettingController@services');
+        Route::get('investor_relations','SettingController@investor_relations');
+        Route::get('career','SettingController@career');
+        Route::get('advertise_your_products','SettingController@advertise_your_products');
         Route::post('save-setting/','SettingController@storeData');
 
         Route::get('site-config','SiteConfigController@index')->name('site-config');
