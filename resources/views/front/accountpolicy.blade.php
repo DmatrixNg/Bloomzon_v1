@@ -2,56 +2,34 @@
 @section('page_title')
     Account Policy
 @endsection
+
+
 @section('content')
 
 <div class="card container my-5 py-5 z-depth-1">
-	    <h2 class="text-center">Account Policy</h2>
-	    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores deleniti explicabo voluptatem quisquam nulla asperiores aspernatur aperiam voluptate et consectetur minima delectus, fugiat eum soluta blanditiis adipisci, velit dolore magnam.</p>
 
-	    <br>
+	<h2 class="text-center">Account Policy</h2>
 
-	    <section class=" px-md-5 mx-md-5 dark-grey-text">
+	<br>
 
-	        <div class="card" style="background-color: lightgray; padding: 20px;">
-	            <h3>Overview:</h3>
-	            <ul>
-	                <li>How Personal Information about Customers is used?</li>
-	                <li>What Personal Information about Customers does Bloomzon Gather?</li>
-	                <li>What about Cookies?</li>
-	                <li>What is the accuracy of the Personal data provided to Bloomzon?</li>
-	                <li> How Secure is Information about Me?</li>
-	                <li>Examples of Information Collected</li>
-	                <li>What are your rights?</li>
-	            </ul>
-	        </div>
+	<section class=" px-md-5 mx-md-5 dark-grey-text">
 
 
-
-	        <br>
-	        <br>
+		<div class="row d-flex text-left">
 
 
-	        <div class="row d-flex text-left">
+			<div class="col-lg-12">
+				<p>
+					{{\App\SiteConfig::find(1)->accountpolicy}}
+				</p>
+
+			</div>
 
 
-	            <div class="col-lg-12">
+		</div>
 
-	                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores deleniti explicabo voluptatem quisquam nulla asperiores aspernatur aperiam voluptate et consectetur minima delectus, fugiat eum soluta blanditiis adipisci, velit dolore magnam.</p>
-
-	                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores deleniti explicabo voluptatem quisquam nulla asperiores aspernatur aperiam voluptate et consectetur minima delectus, fugiat eum soluta blanditiis adipisci, velit dolore magnam.</p>
-	                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores deleniti explicabo voluptatem quisquam nulla asperiores aspernatur aperiam voluptate et consectetur minima delectus, fugiat eum soluta blanditiis adipisci, velit dolore magnam.</p>
-	                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores deleniti explicabo voluptatem quisquam nulla asperiores aspernatur aperiam voluptate et consectetur minima delectus, fugiat eum soluta blanditiis adipisci, velit dolore magnam.</p>
-	                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores deleniti explicabo voluptatem quisquam nulla asperiores aspernatur aperiam voluptate et consectetur minima delectus, fugiat eum soluta blanditiis adipisci, velit dolore magnam.</p>
-	                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores deleniti explicabo voluptatem quisquam nulla asperiores aspernatur aperiam voluptate et consectetur minima delectus, fugiat eum soluta blanditiis adipisci, velit dolore magnam.</p>
-	            </div>
+	</section>
 
 
-	        </div>
-
-	    </section>
-
-
-
-	</div>
-
+</div>
 @endsection

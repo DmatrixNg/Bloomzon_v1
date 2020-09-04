@@ -108,7 +108,7 @@
                                     @enderror
                                 </div>
                                 <div class="col">
-                                    <input type="submit" value="Subscribe" class="btn btn-primary">
+                                    <input type="submit" value="Subscribe" class="btn btn-danger ">
                                 </div>
                             </form>
                         </div>

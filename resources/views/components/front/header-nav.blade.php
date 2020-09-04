@@ -81,7 +81,7 @@
 					<div class="row align-items-center">
 						<div class="col-lg-2">
 							<div class="logo">
-								<a href="index.html"><img src="{{ asset('front_assets/assets/images/bloomzon_white.png') }}" width="90" height="auto" alt="logo" /></a>
+								<a href="{{ url('/') }}"><img src="{{ asset('front_assets/assets/images/bloomzon_white.png') }}" width="90" height="auto" alt="logo" /></a>
 							</div>
 						</div>
 						<div class="col-lg-6">
@@ -238,7 +238,7 @@
                                             <div class="row" style="width: 100vw !important; min-height: 100%; background-color: rgb(1, 54, 119, .9);">
                                                 @foreach($categories as $category)
                                                     <li style="border-right: 1px solid #ccc;" class="col-md-2 p-2">
-                                                    <a href="/category/{{ $category->name }}" style="font-size: 19px; color: white;"></i>{{ $category->name }} zzz</a>
+                                                    <a href="/category/{{ $category->name }}" style="font-size: 19px; color: white;"></i>{{ $category->name }}</a>
                                                         @if(!empty($category->sub_categories))
                                                             <ul>
                                                                 <li>
@@ -266,6 +266,7 @@
                             <div class="mainmenu text-white">
                                 <nav>
                                     <ul>
+
                                         <li><a href="{{url(app()->getLocale().'/realestate')}}">{{ __("Real Estate")}}</a></li>
                                         <li><a href="{{route('fashion',app()->getLocale())}}">{{ __("Fashion Designer")}} &amp; {{ __("Tailoring")}}</a></li>
                                         <li><a href="{{url(app()->getLocale().'bloomzontravels')}}">{{ __("Bloomzon Travel & Hotels")}}</a></li>
@@ -333,18 +334,20 @@
                                             @if(!empty($category->sub_categories))
                                                 <ul class="">
                                                     <li class="megamenu-single">
+
                                                         <span class="mega-menu-title">{{ __("Sub-Category")}}</span>
-                                                <ul>
-                                                    @foreach($category->sub_categories as $child)
-                                                        @if($child)
-                                                            <li><a href="/category/{{$category->name}}/{{ $child->name }}">{{ $child->name }}</a>
-                                                            </li>
-                                                        @endif
-                                                    @endforeach
+                                                        <ul>
+                                                            @foreach($category->sub_categories as $child)
+                                                                @if($child)
+                                                                    <li><a href="/category/{{$category->name}}/{{ $child->name }}">{{ $child->name }}</a>
+                                                                    </li>
+                                                                @endif
+                                                            @endforeach
+                                                        </ul>
+                                                    </li>
+
                                                 </ul>
-                                                </li>
-                                            </ul>
-                                        @endif
+                                            @endif
                                         </li>
                                     @endforeach
 								</ul>

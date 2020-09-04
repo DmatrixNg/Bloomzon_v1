@@ -1,39 +1,19 @@
 @extends('layouts.front')
 @section('page_title')
-   Gifts
+    Gifts
 @endsection
 @section('content')
 
-    <div class="card container my-5 py-5 z-depth-1">
+    <div class="container text-center" style="height: 300px; margin-top: 150px;">
 
-	    <h2 class="text-center">Gifts</h2>
-
-	    <br>
-
-	    <section class=" px-md-5 mx-md-5 dark-grey-text">
-
-
-	        <div class="row d-flex text-left">
-
-
-	            <div class="col-lg-12">
-
-	                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores deleniti explicabo voluptatem quisquam nulla asperiores aspernatur aperiam voluptate et consectetur minima delectus, fugiat eum soluta blanditiis adipisci, velit dolore magnam.</p>
-
-	                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores deleniti explicabo voluptatem quisquam nulla asperiores aspernatur aperiam voluptate et consectetur minima delectus, fugiat eum soluta blanditiis adipisci, velit dolore magnam.</p>
-	                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores deleniti explicabo voluptatem quisquam nulla asperiores aspernatur aperiam voluptate et consectetur minima delectus, fugiat eum soluta blanditiis adipisci, velit dolore magnam.</p>
-	                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores deleniti explicabo voluptatem quisquam nulla asperiores aspernatur aperiam voluptate et consectetur minima delectus, fugiat eum soluta blanditiis adipisci, velit dolore magnam.</p>
-	                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores deleniti explicabo voluptatem quisquam nulla asperiores aspernatur aperiam voluptate et consectetur minima delectus, fugiat eum soluta blanditiis adipisci, velit dolore magnam.</p>
-	                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores deleniti explicabo voluptatem quisquam nulla asperiores aspernatur aperiam voluptate et consectetur minima delectus, fugiat eum soluta blanditiis adipisci, velit dolore magnam.</p>
-	            </div>
-
-
+	    <div class="wrapper">
+	        <h1 style="font-size: 75px;">Coming soon<span class="dot">.</span></h1>
+	        <div class="icons" style="padding: 10px;">
+	            <a style="padding-right: 20px;" href=""><i class="fa fa-twitter fa-3x"></i></a>
+	            <a style="padding-right: 20px;" href=""><i class="fa fa-instagram fa-3x"></i></a>
+	            <a href=""><i class="fa fa-facebook fa-3x"></i></a>
 	        </div>
-
-	    </section>
-
-
+	    </div>
 
 	</div>
-
-    @endsection
+@endsection

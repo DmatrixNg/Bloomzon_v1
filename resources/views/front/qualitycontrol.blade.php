@@ -2,25 +2,33 @@
 @extends('layouts.front')
 @section('page_title')
     Quality Control
-    @endsection
+@endsection
+
 @section('content')
-	<div class="card container my-5 py-5 z-depth-1">
-	    <h2 class="text-center">Quality Control</h2>
-	    <br>
+<div class="card container my-5 py-5 z-depth-1">
 
-	    <section class=" px-md-5 mx-md-5 dark-grey-text">
-	        <div class="row d-flex text-left">
-	            <div class="col-lg-12">
+	<h2 class="text-center">Quality Control</h2>
 
-	                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores deleniti explicabo voluptatem quisquam nulla asperiores aspernatur aperiam voluptate et consectetur minima delectus, fugiat eum soluta blanditiis adipisci, velit dolore magnam.</p>
+	<br>
 
-	                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores deleniti explicabo voluptatem quisquam nulla asperiores aspernatur aperiam voluptate et consectetur minima delectus, fugiat eum soluta blanditiis adipisci, velit dolore magnam.</p>
-	                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores deleniti explicabo voluptatem quisquam nulla asperiores aspernatur aperiam voluptate et consectetur minima delectus, fugiat eum soluta blanditiis adipisci, velit dolore magnam.</p>
-	                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores deleniti explicabo voluptatem quisquam nulla asperiores aspernatur aperiam voluptate et consectetur minima delectus, fugiat eum soluta blanditiis adipisci, velit dolore magnam.</p>
-	                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores deleniti explicabo voluptatem quisquam nulla asperiores aspernatur aperiam voluptate et consectetur minima delectus, fugiat eum soluta blanditiis adipisci, velit dolore magnam.</p>
-	                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores deleniti explicabo voluptatem quisquam nulla asperiores aspernatur aperiam voluptate et consectetur minima delectus, fugiat eum soluta blanditiis adipisci, velit dolore magnam.</p>
-	            </div>
-	        </div>
-	    </section>
-	</div>
-	@endsection
+	<section class=" px-md-5 mx-md-5 dark-grey-text">
+
+
+		<div class="row d-flex text-left">
+
+
+			<div class="col-lg-12">
+				<p>
+					{{ \App\SiteConfig::find(1)->qualitycontrol }}
+				</p>
+
+			</div>
+
+
+		</div>
+
+	</section>
+
+
+</div>
+@endsection
