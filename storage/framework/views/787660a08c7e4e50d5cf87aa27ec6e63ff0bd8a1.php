@@ -44,7 +44,7 @@
                                     <tr style="height: 60px;">
 
                                         <td style="border: solid 1px #ddd;"><?php echo e(count($payment->order_details)); ?></td>
-                                        <td style="border: solid 1px #ddd;"><a href="/seller-details/<?php echo e($payment->order_details[0]->seller->id); ?>"><?php echo e($payment->order_details[0]->seller->company_name); ?></a></td>
+                                        <td style="border: solid 1px #ddd;"><a href="/seller-details/<?php echo e(@$payment->order_details[0]->seller->id ?? ""); ?>"><?php echo e(@$payment->order_details[0]->seller->company_name ?? ""); ?></a></td>
                                         <td style="border: solid 1px #ddd;"><?php echo e($payment->total_amount); ?></td>
                                         <td style="border: solid 1px #ddd;"><?php echo e($payment->payment_method); ?></td>
                                         <td style="border: solid 1px #ddd;"><?php echo e(date('Y-M-d',strtotime($payment->created_at))); ?></td>

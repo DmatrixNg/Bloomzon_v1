@@ -162,6 +162,8 @@ public function redirectToGateway()
                 'status' => $paymentstatus,
                 'pickup_id'=>  $pickup_id
             ]);
+            // $buyer->notify(new \App\Notifications\OrderPaid($order));
+
             if($request->payment_status == 1){
                 $buyer->save();
             }
@@ -177,12 +179,12 @@ public function redirectToGateway()
               // dd();
 
               $product = Product::find($prod->id);
-              // $product->supermarket->user->notify(new \App\Notifications\Store($product));
+              $product->seller->notify(new \App\Notifications\Store($product));
 
               $test =  $order->order_details()->create([
                     'id' => Str::uuid()->toString(),
                     'order_id' => $order->id,
-                    'seller_id' => $product->seller_id->id,
+                    'seller_id' => $product->seller->id,
                     'seller_type' => $product->seller_class,
                     'product_id' => $product->id,
                     'product' => json_encode($prod),

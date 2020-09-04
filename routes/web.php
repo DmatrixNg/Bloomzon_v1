@@ -36,107 +36,139 @@ Route::get('/rename_table/{before}/{after}',function(Request $request){
 });
 Route::get('test/product', function () {
   $first = \App\Product::first();
+
+
 //   foreach ($first as $key => $value) {
 // dump($value->seller_class);
 //  }
-dump($first);
-  dd($first->seller);
+$first->seller->notify(new \App\Notifications\Store($first));
+// dump($first->seller);
+  // dd($first->seller);
+});
+Route::get('fix/product-seller', function () {
+  $first = \App\Product::all();
+
+
+  foreach ($first as $key => $value) {
+    \App\Product::where('id',$value->id)->update([
+      'seller_type' => $value->seller_class
+    ]);
+dump($value->seller_class);
+
+ }
+dump('done');
+  // dd($first->seller);
+  // $first->supermarket->user->notify(new \App\Notifications\Store($product));
 });
 Route::get('manufacturer/logout', 'Web\Manufacturer\Auth\LoginController@logout')->name('logout');
+Route::redirect('/','en');
+Route::group(['prefix' => '{lang}'], function () {
 
-Route::GET('/realestate',function(){
+  Route::GET('/realestate',function(){
     return view('front.realestate');
-});
+  });
 
 
-Route::get('home/{page?}','HomeController@home')->name('home');
+  Route::get('home/{page?}','HomeController@home')->name('home');
 
-Route::GET('/chat',function(){
+  Route::GET('/chat',function(){
     return view('front.chat');
-});
+  });
 
-Route::view('/test', 'emails.new_chat_notification');
-
-Route::get('bloomzontravels',function(){
+  Route::view('/test', 'emails.new_chat_notification');
+  Route::get('bloomzontravels',function(){
     return view('front.bloomzontravels');
-});
-Route::get('bloomzontravels',function(){
+  });
+  Route::get('bloomzontravels',function(){
     return view('front.bloomzontrip');
-});
+  });
 
 
-Route::get('/', 'HomeController@index');
-Route::post('/uploadImage','ProductController@upload_image');
-Route::post('/deleteImage','ProductController@delete_image');
+  Route::get('/', 'HomeController@index');
+  Route::post('/uploadImage','ProductController@upload_image');
+  Route::post('/deleteImage','ProductController@delete_image');
 
-Route::get('/not-found',function(){
+  Route::get('/not-found',function(){
     return view('front.404');
+  });
+
+
+  Route::get('/track-delivery/{id?}','OrderController@trackDelivery');
+
+  Route::get('track-order/{id}','OrderController@trackDelivery');
 });
 
 Route::post('/order/create','OrderController@create');
-
-Route::get('/track-delivery/{id?}','OrderController@trackDelivery');
-
-Route::get('track-order/{id}','OrderController@trackDelivery');
 Route::post('track-order/{id}','OrderController@trackDelivery');
 
 Auth::routes();
 Route::get('/logout',function(){
     Auth::logout();
 });
-// Route::get('/', 'HomeController@index')->name('home');
-Route::get('/product-details/{id}','ProductController@show');
+Route::post('/pay', 'PaymentController@redirectToGateway')->name('pay');
+// Route::post('/order', 'PaymentController@order')->name('order');
+Route::get('/paid', 'PaymentController@handleGatewayCallback');
 Route::post('/product/reviews/add','ProductController@addReview');
 
 //gets the subcategories
 Route::post('/product/getSubCategories/{id}','ProductController@getSubCategories');
-// Cart System Routes
 
-Route::get('/cart','CartController@displayCart');
-Route::get('/cart/add/{product_id}/{qty}/{color}','CartController@addToCart');
-Route::get('/cart/add/{product_id}/{qty}','CartController@addToCart');
-Route::get('/cart/increase/{product_id}/{qty}','CartController@addToCart');
-Route::get('/cart/decrease/{product_id}/{qty}','CartController@redItemQty');
-Route::get('/cart/remove/{product_id}','CartController@removeItem');
 Route::post('/cart/add-coupon/','CartController@addCoupon');
 Route::post('/cart/clear','CartController@clearCart');
 
+Route::group(['prefix' => '{lang}'], function () {
 
-Route::get('/checkout','CartController@checkout');
-Route::get('/get_categories', 'Web\Admin\CategoryController@get_all_catgeory');
-Route::get('/all_categories', 'Web\Admin\CategoryController@index');
-Route::get('/convert/{total}', 'CartController@getConversion');
+  // Route::get('/', 'HomeController@index')->name('home');
+  Route::get('/product-details/{id}','ProductController@show');
 
-Route::get('/category/{id}/{subid?}','HomeController@show_category');
+  // Cart System Routes
 
-//paystack
-Route::post('/pay', 'PaymentController@redirectToGateway')->name('pay');
-// Route::post('/order', 'PaymentController@order')->name('order');
-Route::get('/paid', 'PaymentController@handleGatewayCallback');
-
-
-Route::get('/fast-foods','HomeController@fast_foods')->name('fast-foods');
-Route::get('/vendor-food-list/{id?}','HomeController@vendor_food_list');
-Route::get('/fast-food-details/{id}','HomeController@fast_food_details')->name('fast-food-details');
-Route::get('/groceries','HomeController@groceries')->name("groceries");
-
-// Route::get('/manufacturers','HomeController@manufacturers')->name('manufacturers');
-Route::get('/sellers','HomeController@sellers')->name('sellers');
-Route::get('/seller-details/{id}','HomeController@seller_details')->name('seller-details');
-Route::get('/seller-product-list/{id?}','HomeController@seller_product_list');
+  Route::get('/cart','CartController@displayCart');
+  Route::get('/cart/add/{product_id}/{qty}/{color}','CartController@addToCart');
+  Route::get('/cart/add/{product_id}/{qty}','CartController@addToCart');
+  Route::get('/cart/increase/{product_id}/{qty}','CartController@addToCart');
+  Route::get('/cart/decrease/{product_id}/{qty}','CartController@redItemQty');
+  Route::get('/cart/remove/{product_id}','CartController@removeItem');
 
 
+  Route::get('/checkout','CartController@checkout');
+  Route::get('/get_categories', 'Web\Admin\CategoryController@get_all_catgeory');
+  Route::get('/all_categories', 'Web\Admin\CategoryController@index');
+  Route::get('/convert/{total}', 'CartController@getConversion');
 
-Route::get('/proservice','HomeController@proservice')->name('proservice');
-Route::get('/fashion_design','HomeController@fashion')->name('fashion');
-Route::get('/proservice-details/{id}','HomeController@proservice_details')->name('proservice_details');
-// Route::get('/proservice','HomeController@proservice')->name('proservice');
+  Route::get('/category/{id}/{subid?}','HomeController@show_category');
 
-//AGENTS
-Route::get('/agents','HomeController@agents')->name('agents');
-Route::get('/networkingagent-details/{id}','HomeController@agent_details')->name('fast-food-details');
+  //paystack
 
-Route::get('/shop','HomeController@shops');
+
+  Route::get('/fast-foods','HomeController@fast_foods')->name('fast-foods');
+  Route::get('/vendor-food-list/{id?}','HomeController@vendor_food_list');
+  Route::get('/fast-food-details/{id}','HomeController@fast_food_details')->name('fast-food-details');
+  Route::get('/groceries','HomeController@groceries')->name("groceries");
+
+  // Route::get('/manufacturers','HomeController@manufacturers')->name('manufacturers');
+  Route::get('/sellers','HomeController@sellers')->name('sellers');
+  Route::get('/seller-details/{id}','HomeController@seller_details')->name('seller-details');
+  Route::get('/seller-product-list/{id?}','HomeController@seller_product_list');
+
+
+
+  Route::get('/proservice','HomeController@proservice')->name('proservice');
+  Route::get('/fashion_design','HomeController@fashion')->name('fashion');
+  Route::get('/proservice-details/{id}','HomeController@proservice_details')->name('proservice_details');
+  // Route::get('/proservice','HomeController@proservice')->name('proservice');
+
+  //AGENTS
+  Route::get('/agents','HomeController@agents')->name('agents');
+  Route::get('/networkingagent-details/{id}','HomeController@agent_details')->name('fast-food-details');
+
+  Route::get('/shop','HomeController@shops');
+
+
+  // manufacturer
+  Route::get('/manufacturers','ManufacturerController@index')->name('manufacturers');
+  Route::get('/manufacturer-details/{id}','ManufacturerController@show');
+});
 
 // chat
 Route::post('/chat/new_chat','ChatController@new_chat')->name('chat.new');
@@ -144,9 +176,10 @@ Route::post('/chat/replies','ChatController@chat_replies')->name('chat.replies')
 Route::post('/chat/reply','ChatController@reply')->name('chat.reply');
 Route::post('/chat/continue','ChatController@continue')->name('chat.continue');
 
-// manufacturer
-Route::get('/manufacturers','ManufacturerController@index')->name('manufacturers');
-Route::get('/manufacturer-details/{id}','ManufacturerController@show');
+
+// // manufacturer
+// Route::get('/manufacturers','ManufacturerController@index')->name('manufacturers');
+// Route::get('/manufacturer-details/{id}','ManufacturerController@show');
 
 // newsletter
 Route::post('/newsletter_subscribe','NewsletterSubscriptionController@store');
@@ -230,7 +263,7 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
         // REVIEWS
         Route::get('reviews', 'ReviewController@index');
         Route::post('/reveiw/change_status/{id}', 'ReviewController@change_status');
-        
+
         //ADVERTS
         Route::get('all-adverts','AdvertController@index')->name('all-adverts');
         Route::get('create-advert','AdvertController@create')->name('create-advert');
@@ -270,7 +303,7 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
         Route::get('right-of-purchase','SettingController@rightOfPurchase');
         Route::get('refund','SettingController@refund');
         Route::post('save-setting/','SettingController@storeData');
-        
+
         Route::get('site-config','SiteConfigController@index')->name('site-config');
         Route::get('set-configuration',"SiteConfigController@update")->name('set-config');
 
@@ -304,7 +337,7 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
         Route::get('payout-request/{user_type}',"PayoutRequestController@index");
         Route::get('payout-request/pay/{request_id}',"PayoutRequestController@pay");
 
-        // 
+        //
         Route::get('shopper-details/{id}',"ShopperController@show_details");
         Route::get('buyer-details/{id}',"BuyerController@show_details");
 
@@ -319,12 +352,12 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
         Route::post('send-newsletter/', "NewsletterController@send_newsletter");
         Route::get('newsletters/', "NewsletterController@all_newsletters");
         Route::get('subscribers/', "NewsletterController@subscribers");
-        
-        
+
+
 
     });
 
-   
+
 });
 
 //all the buyer routes will be defined here...

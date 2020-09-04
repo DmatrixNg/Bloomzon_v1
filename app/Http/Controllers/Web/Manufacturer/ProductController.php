@@ -25,7 +25,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        
+
         $products = Product::where('product_type','manufacturer')->where('seller_id',$this->manufacturer->id)->get();
         return view('dashboard.manufacturer.products',compact(['products']));
     }
@@ -41,7 +41,7 @@ class ProductController extends Controller
         $categories = Category::all();
         return view('dashboard.manufacturer.add-product',compact(['manufacturer', 'categories']));
     }
-   
+
 
     /**
      * Store a newly created resource in storage.
@@ -51,24 +51,24 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $prod = new Product();
-       
+
         $request->validate([
             'product_name'           => ['required', 'string', 'max:255'],
             'product_description'    => ['required', 'string'],
             'product_price'          => ['required', 'string'],
             'product_sales_price'     => [],
-            
+
         ]);
-    
-        $created = $prod->create($request->all());
+
+        $created =  $this->manufacturer->products()->create($request->all());
         if($created){
             return $this->send_response(true, $created, 200, 'Product added');
         } else {
             return $this->send_response(false, [], 400, 'Message added');
         }
-        
+
     }
 
     /**
@@ -111,7 +111,7 @@ class ProductController extends Controller
             'product_description'    => ['required', 'string'],
             'product_price'          => ['required', 'string'],
             'product_sales_price'     => [],
-            
+
         ]);
         //call the product from db by id
             $prod = Product::find($id);
