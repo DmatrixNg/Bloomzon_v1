@@ -242,7 +242,98 @@
                             commodo consequat.</div>
                     </div>
                 </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a style="color: #02499B;" href="{{ url('/admin/about' )}}">
+        
+                            <img src="{{asset('assets/dashboard/img/refundicon.png')}}">
+        
+                           <span style="margin-left: 37px;">About </span> <i style="color: #02499B; margin-left: 460px;" class="fa fa-chevron-right"></i></a>
+                        </h4>
+                    </div>
+                    <div id="collapse5" class="panel-collapse collapse">
+                        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                            minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat.</div>
+                    </div>
+                </div>
 
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a style="color: #02499B;" href="{{ url('/admin/services' )}}">
+        
+                            <img src="{{asset('assets/dashboard/img/refundicon.png')}}">
+        
+                           <span style="margin-left: 37px;">Services </span> <i style="color: #02499B; margin-left: 460px;" class="fa fa-chevron-right"></i></a>
+                        </h4>
+                    </div>
+                    <div id="collapse5" class="panel-collapse collapse">
+                        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                            minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat.</div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a style="color: #02499B;" href="{{ url('/admin/investor_relations' )}}">
+        
+                            <img src="{{asset('assets/dashboard/img/refundicon.png')}}">
+        
+                           <span style="margin-left: 37px;">Investor Relations </span> <i style="color: #02499B; margin-left: 460px;" class="fa fa-chevron-right"></i></a>
+                        </h4>
+                    </div>
+                    <div id="collapse5" class="panel-collapse collapse">
+                        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                            minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat.</div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a style="color: #02499B;" href="{{ url('/admin/career' )}}">
+        
+                            <img src="{{asset('assets/dashboard/img/refundicon.png')}}">
+        
+                           <span style="margin-left: 37px;">Career </span> <i style="color: #02499B; margin-left: 460px;" class="fa fa-chevron-right"></i></a>
+                        </h4>
+                    </div>
+                    <div id="collapse5" class="panel-collapse collapse">
+                        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                            minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat.</div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a style="color: #02499B;" href="{{ url('/admin/advertise_your_products' )}}">
+        
+                            <img src="{{asset('assets/dashboard/img/refundicon.png')}}">
+        
+                           <span style="margin-left: 37px;">Advertise your product </span> <i style="color: #02499B; margin-left: 460px;" class="fa fa-chevron-right"></i></a>
+                        </h4>
+                    </div>
+                    <div id="collapse5" class="panel-collapse collapse">
+                        <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                            minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                            commodo consequat.</div>
+                    </div>
+                </div>
+
+                
             </div>
             </div>
             </div>

@@ -1,9 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="zxx">
-
-
-
-
+<html class="no-js" lang="<?php echo e(app()->getLocale()); ?>">
 
 <head>
 	<meta charset="utf-8">
@@ -14,12 +10,12 @@
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
 	<meta name="description" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
 
 	<link rel="manifest" href="site.html">
 	<link rel="apple-touch-icon" href="icon.html">
 	<!-- Place favicon.ico in the root directory -->
-  
+
 	<!-- bootstrap v4.0.0 -->
 	<link rel="stylesheet" href=" <?php echo e(asset('front_assets/assets/css/bootstrap.min.css')); ?>">
 	<!-- fontawesome-icons css -->
@@ -41,7 +37,7 @@
 	<!-- cssanimation css -->
 	<link rel="stylesheet" href=" <?php echo e(asset('front_assets/assets/css/cssanimation.min.css')); ?>" />
 	<!-- animate css -->
-	<link rel="stylesheet" href=" <?php echo e(asset('front_assets/assets/css/animate.css')); ?>" />	
+	<link rel="stylesheet" href=" <?php echo e(asset('front_assets/assets/css/animate.css')); ?>" />
 	<!-- helper css -->
 	<link rel="stylesheet" href=" <?php echo e(asset('front_assets/assets/css/helper.css')); ?>">
 	<!-- style css -->
@@ -54,22 +50,18 @@
 
 
 
-    
 
 
 
-    
+
+
     <!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
     <link href="<?php echo e(asset('css/chat.css')); ?>" rel="stylesheet" id="bootstrap-css">
     <!--<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>-->
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <!-- end for chat -->
 
-    <script type="text/javascript">
-    function googleTranslateElementInit() {
-    new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-    }
-    </script>
+    
 
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
@@ -81,6 +73,12 @@
 		.single-product-cat img{
 			max-height: 220px !important
 		}
+
+        /* @media (max-width: 100px) {
+            .menu-hider {
+                display: none !important;
+            }
+        } */
 	</style>
 </head>
 
@@ -172,7 +170,7 @@
 
 
 <div class="mm-wrapper__blocker mm-slideout"><a href="#mm-0">
-        <span class="mm-sronly">Close menu</span></a></div>
+        <span class="mm-sronly"><?php echo e(__("Close menu")); ?></span></a></div>
 <a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647;"><i class="fa fa-angle-up"></i></a>
 
 <!-- Modal -->
@@ -190,53 +188,53 @@
                         <div class="tab-content">
                             <div id="product-1" class="tab-pane fade in show active">
                                 <div class="product-details-thumb">
-                                    <img src="assets/images/products/product-details/1.jpg" alt="" />
+                                    <img src="<?php echo e(asset("assets/images/products/product-details/1.jpg")); ?>" alt="" />
                                 </div>
                             </div>
                             <div id="product-2" class="tab-pane fade">
                                 <div class="product-details-thumb">
-                                    <img src="assets/images/products/product-details/2.jpg" alt="" />
+                                    <img src="<?php echo e(asset("assets/images/products/product-details/2.jpg")); ?>" alt="" />
                                 </div>
                             </div>
                             <div id="product-3" class="tab-pane fade">
                                 <div class="product-details-thumb">
-                                    <img src="assets/images/products/product-details/3.jpg" alt="" />
+                                    <img src="<?php echo e(asset("assets/images/products/product-details/3.jpg")); ?>" alt="" />
                                 </div>
                             </div>
                         </div>
                         <ul class="nav nav-tabs products-nav-tabs horizontal quick-view mt-10">
-                            <li><a class="active" data-toggle="tab" href="#product-1"><img src="assets/images/products/product-details/thumb-1.jpg" alt="" /></a></li>
-                            <li><a data-toggle="tab" href="#product-2"><img src="assets/images/products/product-details/thumb-2.jpg" alt="" /></a></li>
-                            <li><a data-toggle="tab" href="#product-3"><img src="assets/images/products/product-details/thumb-3.jpg" alt="" /></a></li>
+                            <li><a class="active" data-toggle="tab" href="#product-1"><img src="<?php echo e(asset("assets/images/products/product-details/thumb-1.jpg")); ?>" alt="" /></a></li>
+                            <li><a data-toggle="tab" href="#product-2"><img src="<?php echo e(asset("assets/images/products/product-details/thumb-2.jpg")); ?>" alt="" /></a></li>
+                            <li><a data-toggle="tab" href="#product-3"><img src="<?php echo e(asset("assets/images/products/product-details/thumb-3.jpg")); ?>" alt="" /></a></li>
                         </ul>
                     </div>
                     <div class="col-lg-8">
                         <div class="row">
                             <div class="col-lg-8">
                                 <div class="product-details-desc">
-                                    <h2>Apple The New MacBook Retina 2016 MLHA2 12 inches</h2>
+                                    <h2><?php echo e(__("Apple The New MacBook Retina 2016 MLHA2 12 inches")); ?></h2>
                                     <ul>
-                                        <li>1.6 GHz dual-core Intel Core i5 (Turbo Boost up to 2.7 GHz) with 3 MB shared L3 cache 8 GB of 1600 MHz LPDDR3 RAM; 128 GB PCIe-based flash storage</li>
-                                        <li>13.3-Inch (diagonal) LED-backlit Glossy Widescreen Display, 1440 x 900 resolution Intel HD Graphics 6000</li>
-                                        <li>OS X El Capitan, Up to 12 Hours of Battery Life Macbook Air does not have a Retina display on any model.</li>
+                                        <li><?php echo e(__("1.6 GHz dual-core Intel Core i5 (Turbo Boost up to 2.7 GHz) with 3 MB shared L3 cache 8 GB of 1600 MHz LPDDR3 RAM; 128 GB PCIe-based flash storage")); ?></li>
+                                        <li><?php echo e(__("13.3-Inch (diagonal) LED-backlit Glossy Widescreen Display, 1440 x 900 resolution Intel HD Graphics 6000")); ?></li>
+                                        <li><?php echo e(__("OS X El Capitan, Up to 12 Hours of Battery Life Macbook Air does not have a Retina display on any model.")); ?></li>
                                     </ul>
                                     <div class="product-meta">
                                         <ul class="list-none">
-                                            <li>SKU: 00012 <span>|</span></li>
-                                            <li>Categories:
-                                                <a href="#">Tech</a>
-                                                <a href="#">Macbook</a>
-                                                <a href="#">Laptop</a>
+                                            <li><?php echo e(__("SKU: 00012")); ?> <span>|</span></li>
+                                            <li><?php echo e(__("Categories")); ?>:
+                                                <a href="#"><?php echo e(__("Tech")); ?></a>
+                                                <a href="#"><?php echo e(__("Macbook")); ?></a>
+                                                <a href="#"><?php echo e(__("Laptop")); ?></a>
                                                 <span>|</span>
                                             </li>
-                                            <li>Tags:
-                                                <a href="#">Tech,</a>
-                                                <a href="#">Apple</a>
+                                            <li><?php echo e(__("Tags")); ?>:
+                                                <a href="#"><?php echo e(__("Tech")); ?>,</a>
+                                                <a href="#"><?php echo e(__("Apple")); ?></a>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="social-icons style-5">
-                                        <span>Share Link:</span>
+                                        <span><?php echo e(__("Share Link")); ?>:</span>
                                         <a href="#"><i class="fa fa-facebook"></i></a>
                                         <a href="#"><i class="fa fa-twitter"></i></a>
                                         <a href="#"><i class="fa fa-google-plus"></i></a>
@@ -247,7 +245,7 @@
                             <div class="col-lg-4">
                                 <div class="product-action stuck text-left">
                                     <div class="free-delivery">
-                                        <a href="#"><i class="ti-truck"></i> Free Delivery</a>
+                                        <a href="#"><i class="ti-truck"></i> <?php echo e(__("Free Delivery")); ?></a>
                                     </div>
                                     <div class="product-price-rating">
                                         <div>
@@ -263,21 +261,21 @@
                                         </div>
                                     </div>
                                     <div class="product-colors mt-20">
-                                        <label>Select Color:</label>
+                                        <label><?php echo e(__("Select Color")); ?>:</label>
                                         <ul class="list-none">
-                                            <li>Red</li>
-                                            <li>Black</li>
-                                            <li>Blue</li>
+                                            <li><?php echo e(__("Red")); ?></li>
+                                            <li><?php echo e(__("Black")); ?></li>
+                                            <li><?php echo e(__("Blue")); ?></li>
                                         </ul>
 
                                     </div>
                                     <div class="product-quantity mt-15">
-                                        <label>Quantity:</label>
+                                        <label><?php echo e(__("Quantity")); ?>:</label>
                                         <input type="number" value="1" />
                                     </div>
                                     <div class="add-to-get mt-50">
-                                        <a href="#" class="add-to-cart">Add to Cart</a>
-                                        <a href="#" class="add-to-cart compare">+ ADD to Compare</a>
+                                        <a href="#" class="add-to-cart"><?php echo e(__("Add to Cart")); ?></a>
+                                        <a href="#" class="add-to-cart compare">+ <?php echo e(__("ADD to Compare")); ?></a>
                                     </div>
                                 </div>
                             </div>
@@ -290,7 +288,51 @@
 </div>
 <?php echo $__env->yieldContent('page_js'); ?>
 <?php echo $__env->yieldPushContent('scripts'); ?>
+<script>
+function changeLocation(loc) {
 
+													var path = window.location.href;
+
+													if (loc ==="en") {
+
+														newloc = path.replace('fr', loc)
+														newloc = newloc.replace('es', loc)
+														newloc = newloc.replace('zh', loc)
+														newloc = newloc.replace('ar', loc)
+														window.location = newloc
+
+													}if (loc ==="fr") {
+														newloc = path.replace('en', loc)
+														newloc = newloc.replace('es', loc)
+														newloc = newloc.replace('zh', loc)
+														newloc = newloc.replace('ar', loc)
+														window.location = newloc
+													}if (loc ==="es") {
+														newloc = path.replace('en', loc)
+														newloc = newloc.replace('fr', loc)
+														newloc = newloc.replace('zh', loc)
+														newloc = newloc.replace('ar', loc)
+														window.location = newloc
+													}
+													if (loc ==="zh_CH") {
+														newloc = path.replace('en', loc)
+														newloc = newloc.replace('es', loc)
+														newloc = newloc.replace('fr', loc)
+														newloc = newloc.replace('ar', loc)
+
+														window.location = newloc
+
+													}if (loc ==="ar") {
+														newloc = path.replace('en', loc)
+														newloc = newloc.replace('es', loc)
+														newloc = newloc.replace('zh', loc)
+														newloc = newloc.replace('fr', loc)
+														window.location = newloc
+													}
+
+
+												}
+</script>
 </body>
 
 </html>
