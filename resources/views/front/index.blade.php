@@ -105,7 +105,7 @@
                                     </div>
                                     <div class="row cv-visible">
 
-                                        @foreach($products as $product)
+                                        @foreach($products->take(8) as $product)
                                             @if($product->product_name)
                                                 <div class="col-lg-3">
                                                     <div class="product-single">
@@ -113,7 +113,7 @@
 
                                                             <a href="#">
                                                                 @if($product->avatars != null)
-                                                                <img src="{{asset('storage/assets/product/avatars/'.$product->avatars[0]??'') }}" alt="">
+                                                                <img src="{{asset('storage/assets/product/avatars/'.$product->avatars[0]??'') }}" alt="" style="height: 100px;">
                                                                 @endif
                                                             </a>
 
@@ -129,8 +129,8 @@
 
                                                             </div>
                                                         </div>
-                                                        <div class="product-title">
-                                                            <h4><a href="#">{{ $product->product_name }}</a></h4>
+                                                        <div class="product-title text-truncate">
+                                                            <h4><a href="#" class="text-truncate" title="{{ $product->product_name }}">{{ $product->product_name }}</a></h4>
                                                             <small>
                                                                 @if($product->product_sales_price)
                                                                     <div class="product-price-rating">
@@ -167,7 +167,7 @@
                                         <div class="slick-list draggable">
                                             <div class="slick-track"
                                                 style="opacity: 1; width: 420px; transform: translate3d(0px, 0px, 0px);">
-                                                @foreach($manufacturers as $manufacturer)
+                                                @foreach($manufacturers->take(6) as $manufacturer)
 
                                                     <div class="col-lg-4 p-1 slick-slide slick-current slick-active"
                                                         data-slick-index="0" aria-hidden="false" tabindex="0"
@@ -212,7 +212,7 @@
 
 
 
-                                @foreach($groceries as $grocery)
+                                @foreach($groceries->take(6) as $grocery)
                                     <div class="col-lg-2">
                                         <div class="product-single p-0"
                                             style="height: 230px; background-image: url('assets/img/g1.jpeg'); background-size: 350px; background-position: center;">
@@ -235,6 +235,10 @@
 
 
                             </div>
+                            <br/>
+                            <div class="text-center pt-4"><a
+                                            href="{{route('fast-foods',app()->getLocale())}}"
+                                            class="btn btn-danger text-white">{{ __("View All")}}</a></div>
                         </div>
                         <div class="products-tab mt-35">
                             <div class="row" style="background-color: #0149a0 !important; color: #fff;">
@@ -287,7 +291,7 @@
                                                         <div class="product-thumb">
                                                             <a href="#">
                                                                 @if($product->avatars != null)
-                                                                <img src="{{asset('storage/assets/product/avatars/'.$product->avatars[0] ?? '') }}" alt="">
+                                                                <img src="{{asset('storage/assets/product/avatars/'.$product->avatars[0] ?? '') }}" alt="" style="height: 200px;">
                                                                 @endif
                                                             </a>
                                                             @if($product->product_sales_price)
@@ -299,8 +303,8 @@
                                                                 <x-product-buttons aria-label="{{$product->id}}" aria-labelledby="{{$product->id}}" :product="$product"/>
                                                             </div>
                                                         </div>
-                                                        <div class="product-title">
-                                                            <h4><a href="{{url(app()->getLocale().'/product-details/'.base64_encode($product->id))}}">{{ $product->product_name }}</a></h4>
+                                                        <div class="product-title text-truncate">
+                                                            <h4><a href="{{url(app()->getLocale().'/product-details/'.base64_encode($product->id))}}" class="text-truncate">{{ $product->product_name }}</a></h4>
                                                             <small>
                                                                 @if($product->product_sales_price)
                                                                     <div class="product-price-rating">

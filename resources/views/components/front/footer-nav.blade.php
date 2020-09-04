@@ -10,6 +10,7 @@
                         <div class="row footer-list border-right">
                             <div class="col">
                                 <ul>
+
                                     <li><a href="{{route('home','about')}}">{{ __("About")}}</a> </li>
                                     <li><a href="{{route('home','services')}}">{{ __("Services")}}</a> </li>
                                     <li><a href="{{route('home','agent')}}">{{ __("Agents")}}</a> </li>
@@ -17,17 +18,20 @@
                                     <li><a href="{{route('home','bloomzontrip')}}">{{ __("Bloomzon trip")}}</a></li>
                                     <li><a href="{{route('home','make_money')}}">{{ __("Make Money with Us")}}</a></li>
                                     <li><a href="{{route('home','sell_on_bloomzon')}}">{{ __("Sell on")}} bloomzon</a></li>
+
                                 </ul>
                             </div>
                             <div class="col">
                                 <ul>
+
                                     <li><a href="{{route('home','career')}}">{{ __("Career")}}</a> </li>
-                                    <li><a href="{{route('home','blog')}}">{{ __("Blog")}}</a> </li>
+                                    <li class="d-none"><a href="{{route('home','blog')}}">{{ __("Blog")}}</a> </li>
                                     <li><a href="{{route('home','faq')}}">{{ __("FAQ")}}</a> </li>
-                                    <li><a href="{{route('home','sell_your_service')}}">{{ __("Sell Your Services on")}} bloomzon</a></li>
+                                    <li><a href="{{ url('professional/register') }}">{{ __("Sell Your Services on")}} bloomzon</a></li>
                                     <li><a href="{{route('home','advertise_on_bloomzon')}}">{{ __("Advertise on")}} bloomzon tv</a></li>
                                     <li><a href="{{route('home','contact_us')}}">{{ __("contact us")}}</a></li>
                                     <li><a href="{{route('home','advertise_your_products')}}">{{ __("Advertise Your Products")}}</a></li>
+
                                 </ul>
                             </div>
                         </div>

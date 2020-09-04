@@ -13,7 +13,7 @@
                                     <li><a href="<?php echo e(route('home','about')); ?>">About</a> </li>
                                     <li><a href="<?php echo e(route('home','services')); ?>">Services</a> </li>
                                     <li><a href="<?php echo e(url('/agents')); ?>">Agents</a> </li>
-                                    <li><a href="#">Investor Relations</a></li>
+                                    <li><a href="<?php echo e(route('home','investor_relations')); ?>">Investor Relations</a></li>
                                     <li><a href="<?php echo e(route('home','bloomzontrip')); ?>">Bloomzon trip</a></li>
                                     <li><a href="#">Make Money with Us</a></li>
                                     <li><a href="<?php echo e(url('/seller/register')); ?>">Sell on bloomzon</a></li>
@@ -21,7 +21,7 @@
                             </div>
                             <div class="col">
                                 <ul>
-                                    <li><a href="#">Career</a> </li>
+                                    <li><a href="<?php echo e(route('home','career')); ?>">Career</a> </li>
                                     <li class="d-none"><a href="<?php echo e(route('home','blog')); ?>">Blog</a> </li>
                                     <li><a href="<?php echo e(route('home','faq')); ?>">FAQ</a> </li>
                                     <li><a href=" <?php echo e(url('professional/register')); ?> ">Sell Your Services on bloomzon</a></li>

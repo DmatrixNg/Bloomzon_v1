@@ -235,9 +235,9 @@
                                         </a>
 
                                         <ul class="vm-dropdown" style="display: none; background-color: rgba(0,0,0,0); border: none;">
-                                            <div class="row" style="width: 100vw !important; min-height: 100%; background-color: rgb(1, 54, 119, .9);">
+                                            <div style="width: 100vw !important; min-height: 100%; background-color: rgb(1, 54, 119, .9); display: none;" class="row menu-hider">
                                                 @foreach($categories as $category)
-                                                    <li style="border-right: 1px solid #ccc;" class="col-md-2 p-2">
+                                                    <li style="border-right: 1px solid #ccc; display: none;" class="col-md-2 p-2 menu-hider">
                                                     <a href="/category/{{ $category->name }}" style="font-size: 19px; color: white;"></i>{{ $category->name }}</a>
                                                         @if(!empty($category->sub_categories))
                                                             <ul>
