@@ -1,10 +1,10 @@
-<div class="row">
-    <div class="col-md-4 p-0"><a href="<?php echo e(url(app()->getLocale().'/product-details/' . base64_encode($product->id))); ?>"
+<div class="row mx-2">
+    <div class="col-4 p-0"><a href="<?php echo e(url(app()->getLocale().'/product-details/' . base64_encode($product->id))); ?>"
             class="btn btn-success"><i class="fa fa-eye"></i></a></div>
 
-            <div class="col-md-4 p-0"  onclick="addCart(<?php echo e($id); ?>)"><a href="javascript:void(0);" class="btn btn-success"><i
+            <div class="col-4 p-0"  onclick="addCart(<?php echo e($id); ?>)"><a href="javascript:void(0);" class="btn btn-success"><i
                 class="fa fa-shopping-cart"></i></a></div>
-            <div class="col-md-4 p-0" onclick="addFavorite(<?php echo e($id); ?>)"><a href="javascript:void(0);" class="btn btn-success"><i
+            <div class="col-4 p-0" onclick="addFavorite(<?php echo e($id); ?>)"><a href="javascript:void(0);" class="btn btn-success"><i
                 class="ti-heart"></i></a>
     </div>
 </div>

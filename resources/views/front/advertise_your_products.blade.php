@@ -1,12 +1,12 @@
 @extends('layouts.front')
 @section('page_title')
-    Advertise On Bloomzon
+    {{ __("Advertise On Bloomzon")}}
 @endsection
 @section('content')
 
 <div class="card container my-5 py-5 z-depth-1">
 
-	<h2 class="text-center">Advertise On Bloomzon</h2>
+	<h2 class="text-center">{{ __("Advertise On Bloomzon")}}</h2>
 
 	<br>
 

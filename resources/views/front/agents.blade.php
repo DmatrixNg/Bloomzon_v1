@@ -1,16 +1,16 @@
 @extends('layouts.front')
 @section('page_title')
-    Agents
+    {{ __("Agents")}}
 @endsection
 @section('content')
 
 <div class="container text-center mt-5">
 
 
-    <p class="text-left"><a href="index.html">Home</a> <i class="fa fa-chevron-right"></i> <a style="color:grey;" href="agent.html">Networking Associates</a></p>
+    <p class="text-left"><a href="index.html">{{ __("Home")}}</a> <i class="fa fa-chevron-right"></i> <a style="color:grey;" href="agent.html">{{ __("Networking Associates")}}</a></p>
 
-    <h4 class="text-left">NETWORKING ASSOCIATES</h4>
-    
+    <h4 class="text-left">{{ __("NETWORKING ASSOCIATES")}}</h4>
+
     <div class="row mt-5">
 
         @if(count($agents))
@@ -38,7 +38,7 @@
                     <div class="text-center">
                         <h3 class="testimonial_heading font-weight-bold">{{ucwords($agent->full_name)}}</h3>
                         <p class="testimonial_heading2">{{$agent->street_address}}</p>
-                    <a href="{{url('/networkingagent-details/'.$agent->id)}}" class="btn btn-outline-primary">View Services</a>
+                    <a href="{{url('/networkingagent-details/'.$agent->id)}}" class="btn btn-outline-primary">{{ __("View Services")}}</a>
 
                     </div>
                     <br>
@@ -51,10 +51,10 @@
         @endforeach
         @else
         <div class="alert alert-warning">
-            No Associate on the system
+            {{ __("No Associate on the system")}}
         </div>
         @endif
-      
+
 
 
     </div>

@@ -1,6 +1,6 @@
 @extends('layouts.front')
 @section('page_title')
-    Track Delivery
+    {{ __("Track Delivery")}}
 @endsection
 @section('content')
 
@@ -11,10 +11,10 @@
                 <div id="grid-products" class="tab-pane active">
                     <div class="row mb-4">
                         <div class="col-md-8 offset-2 form-inline">
-                            <label><b>Enter Your Order ID:</b></label>
+                            <label><b>{{ __("Enter Your Order ID")}}:</b></label>
                             <input id="order_id" class="form-control ml-5" style="height: 50px; border-radius: 0px;" />
                             <button class="btn btn-lg btn-danger" style="border-radius: 0px;"
-                                onclick="trackId()">Track</button>
+                                onclick="trackId()">{{ __("Track")}}</button>
                         </div>
                     </div>
                     @if (isset($delivery) && count($delivery))
@@ -27,23 +27,23 @@
                                     <img src="{{ asset('storage/assets/product/avatars/' . $order->product->avatars[0]) }}"
                                         class="img card-img-top" width="60" alt="">
                                     <div class="card-body">
-                                        <h5 class="card-title">Order ID:</span><span class="pl-5">{{ $order->order_id }}
+                                        <h5 class="card-title">{{ __("Order ID")}}:</span><span class="pl-5">{{ $order->order_id }}
                                         </h5>
                                         <p class="card-text"></p>
                                     </div>
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Seller:
+                                        <li class="list-group-item">{{ __("Seller")}}:
                                           {{-- @php
                                             dd($order->seller)
                                           @endphp --}}
                                             {{ $order->seller->full_name }}</li>
-                                        <li class="list-group-item">Buyer:
+                                        <li class="list-group-item">{{ __("Buyer")}}:
                                             {{ $order->order->orderable->full_name }}</span></p>
                                         </li>
-                                        <li class="list-group-item"><p><span style="font-weight: bolder">Billing
-                                            Address:</span>{{ $order->order->orderable->billing_address }}
+                                        <li class="list-group-item"><p><span style="font-weight: bolder">{{ __("Billing
+                                            Address")}}:</span>{{ $order->order->orderable->billing_address }}
                                     </li>
-                                    <li class="list-group-item">WareHouse Status:
+                                    <li class="list-group-item">{{ __("WareHouse Status")}}:
                                         {{ $order->shopper_status }}</span></p>
                                     </li>
                                     </ul>
@@ -55,9 +55,9 @@
 
                         </div>
                     @elseif(isset($id) && $id != null)
-                    <h4 class="alert alert-warning">No order found with the ID :  {{$id}}</h4>
+                    <h4 class="alert alert-warning">{{ __("No order found with the ID")}} :  {{$id}}</h4>
                      @else
-                        <h4>Please enter order ID to track your delivery</h4>
+                        <h4>{{ __("Please enter order ID to track your delivery")}}</h4>
                     @endif
                     <div class="row m-auto">
 

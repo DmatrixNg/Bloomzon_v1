@@ -1,12 +1,12 @@
 @extends('layouts.front')
 @section('page_title')
-   Career
+   {{ __("Career")}}
 @endsection
 @section('content')
 
 <div class="card container my-5 py-5 z-depth-1">
 
-	<h2 class="text-center">Career</h2>
+	<h2 class="text-center">{{ __("Career")}}</h2>
 
 	<br>
 
@@ -31,4 +31,3 @@
 
 </div>
 @endsection
-

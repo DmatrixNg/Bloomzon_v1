@@ -326,7 +326,7 @@
 					<div class="col-lg-12">
                         <a href="#my-menu" class="mmenu-icon pull-left"><i class="fa fa-bars"></i></a>
 
-                        <div class="mainmenu">
+                        <div class="mainmenu d-none">
 							<nav id="">
 								<ul>
 									<?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
