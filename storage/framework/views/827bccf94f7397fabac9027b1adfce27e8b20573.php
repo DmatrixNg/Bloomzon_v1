@@ -94,7 +94,7 @@
                         <!--product-categories-->
                         <div class="row">
                             <div class="col-md-6" style="border-right: 1px solid #eee;">
-                                <div class="best-sellers">
+                                <div class="product best-sellers">
                                     <div class="row" style="background-color: #0149a0 !important; color: #fff;">
                                         <div class="col-lg-12">
                                             <div class="section-title text-left">
@@ -102,29 +102,30 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row cv-visible">
+                                    <div class="cv-visible product-container">
+                                      <div class="content-1 p-1 row">
 
                                         <?php $__currentLoopData = $products->take(8); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <?php if($product->product_name): ?>
-                                                <div class="col-lg-3">
-                                                    <div class="product-single">
-                                                        <div class="product-thumb">
+                                          <?php if($product->product_name): ?>
+                                            <div class="product-card-short">
+                                              
+                                              <div class="product-thumb">
 
-                                                            <a href="#">
-                                                                <?php if($product->avatars != null): ?>
-                                                                <img src="<?php echo e(asset('storage/assets/product/avatars/'.$product->avatars[0]??'')); ?>" alt="" style="height: 100px;">
-                                                                <?php endif; ?>
-                                                            </a>
+                                                <a href="<?php echo e(url(app()->getLocale().'/product-details/' . base64_encode($product->id))); ?>">
+                                                  <?php if($product->avatars != null): ?>
+                                                    <img src="<?php echo e(asset('storage/assets/product/avatars/'.$product->avatars[0]??'')); ?>" alt="">
+                                                  <?php endif; ?>
+                                                </a>
 
-                                                            <?php if($product->product_sales_price): ?>
-                                                                <div class="downsale">
-                                                                    <span>-</span>$<?php echo e(number_format($product->product_price - $product->product_sales_price)); ?>
+                                                <?php if($product->product_sales_price): ?>
+                                                  <div class="downsale">
+                                                    <span>-</span>$<?php echo e(number_format($product->product_price - $product->product_sales_price)); ?>
 
-                                                                </div>
-                                                            <?php endif; ?>
-                                                            <div class="product-quick-view">
+                                                  </div>
+                                                <?php endif; ?>
+                                                <div class="product-quick-view">
 
-                                                             <?php if (isset($component)) { $__componentOriginal67db60db2ec16c09df5ad6b20d1009873d3b799a = $component; } ?>
+                                                   <?php if (isset($component)) { $__componentOriginal67db60db2ec16c09df5ad6b20d1009873d3b799a = $component; } ?>
 <?php $component = $__env->getContainer()->make(App\View\Components\ProductButtons::class, ['product' => $product]); ?>
 <?php $component->withName('product-buttons'); ?>
 <?php if ($component->shouldRender()): ?>
@@ -138,28 +139,29 @@
 <?php endif; ?> 
 
 
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-title text-truncate">
-                                                            <h4><a href="#" class="text-truncate" title="<?php echo e($product->product_name); ?>"><?php echo e($product->product_name); ?></a></h4>
-                                                            <small>
-                                                                <?php if($product->product_sales_price): ?>
-                                                                    <div class="product-price-rating">
-                                                                        <span>$<?php echo e(number_format($product->product_sales_price)); ?></span>
-                                                                        <del>$<?php echo e(number_format($product->product_price)); ?></del>
-                                                                    </div>
-                                                                <?php else: ?>
-                                                                    <div class="product-price-rating">
-                                                                        <span>$<?php echo e(number_format($product->product_price)); ?></span>
-                                                                    </div>
-                                                                <?php endif; ?>
-
-                                                            </small>
-                                                        </div>
-                                                    </div>
+                                                  </div>
                                                 </div>
+                                                <div class="product-body text-truncate">
+                                                  <h4><a href="<?php echo e(url(app()->getLocale().'/product-details/' . base64_encode($product->id))); ?>" class="text-truncate" title="<?php echo e($product->product_name); ?>"><?php echo e($product->product_name); ?></a></h4>
+                                                  <small>
+                                                    <?php if($product->product_sales_price): ?>
+                                                      <div class="product-price-rating">
+                                                        <span>$<?php echo e(number_format($product->product_sales_price)); ?></span>
+                                                        <del>$<?php echo e(number_format($product->product_price)); ?></del>
+                                                      </div>
+                                                    <?php else: ?>
+                                                      <div class="product-price-rating">
+                                                        <span>$<?php echo e(number_format($product->product_price)); ?></span>
+                                                      </div>
+                                                    <?php endif; ?>
+
+                                                  </small>
+                                                </div>
+                                                
+                                              </div>
                                             <?php endif; ?>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                      </div>
 
                                     </div>
                                     <div class="text-center pt-2"><a href="<?php echo e(url(app()->getLocale().'/shop')); ?>" class="btn btn-danger text-white"><?php echo e(__("View All")); ?></a></div>
@@ -285,7 +287,7 @@
                         <!--banner-section-->
                         <div class="row mt-40">
                             <div class="col-md-12" style="border-right: 1px solid #eee;">
-                                <div class="best-sellers">
+                                <div class="product best-sellers">
                                     <div class="row" style="background-color: #0149a0 !important; color: #fff;">
                                         <div class="col-lg-12">
                                             <div class="section-title text-left">
@@ -296,16 +298,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row cv-visible">
+                                    <div class="cv-visible product-container">
+                                      <div class="content-1 p-1 row">
 
                                         <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <?php if($product->product_name): ?>
-                                                <div class="col-lg-2">
-                                                    <div class="product-single">
+                                                <div class="product-card-full">
+                                                    
                                                         <div class="product-thumb">
-                                                            <a href="#">
+                                                            <a href="<?php echo e(url(app()->getLocale().'/product-details/' . base64_encode($product->id))); ?>">
                                                                 <?php if($product->avatars != null): ?>
-                                                                <img src="<?php echo e(asset('storage/assets/product/avatars/'.$product->avatars[0] ?? '')); ?>" alt="" style="height: 200px;">
+                                                                <img src="<?php echo e(asset('storage/assets/product/avatars/'.$product->avatars[0] ?? '')); ?>" alt="">
                                                                 <?php endif; ?>
                                                             </a>
                                                             <?php if($product->product_sales_price): ?>
@@ -329,7 +332,7 @@
 <?php endif; ?> 
                                                             </div>
                                                         </div>
-                                                        <div class="product-title text-truncate">
+                                                        <div class="product-body text-truncate">
                                                             <h4><a href="<?php echo e(url(app()->getLocale().'/product-details/'.base64_encode($product->id))); ?>" class="text-truncate"><?php echo e($product->product_name); ?></a></h4>
                                                             <small>
                                                                 <?php if($product->product_sales_price): ?>
@@ -344,11 +347,12 @@
                                                                 <?php endif; ?>
                                                             </small>
                                                         </div>
-                                                    </div>
+                                                    
                                                 </div>
                                             <?php endif; ?>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
+                                    </div>
                                     </div>
                                     <div class="text-center pt-2"><a href="<?php echo e(url(app()->getLocale().'/shop')); ?>" class="btn btn-danger text-white"><?php echo e(__("View All")); ?></a></div>
                                 </div>

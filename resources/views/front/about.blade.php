@@ -1,14 +1,14 @@
 
 @extends('layouts.front')
 @section('page_title')
-    About us
+    {{ __("About us")}}
 @endsection
 
 @section('content')
 
 <div class="card container my-5 py-5 z-depth-1">
 
-	<h2 class="text-center">About us</h2>
+	<h2 class="text-center">{{ __("About us")}}</h2>
 
 	<br>
 

@@ -325,7 +325,7 @@
 					<div class="col-lg-12">
                         <a href="#my-menu" class="mmenu-icon pull-left"><i class="fa fa-bars"></i></a>
 
-                        <div class="mainmenu">
+                        <div class="mainmenu d-none">
 							<nav id="">
 								<ul>
 									@foreach($categories as $category)

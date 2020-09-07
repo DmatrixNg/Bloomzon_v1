@@ -1,6 +1,6 @@
 @extends('layouts.front')
 @section('page_title')
-    Account Policy
+    {{ __("Account Policy")}}
 @endsection
 
 
@@ -8,7 +8,7 @@
 
 <div class="card container my-5 py-5 z-depth-1">
 
-	<h2 class="text-center">Account Policy</h2>
+	<h2 class="text-center">{{ __("Account Policy")}}</h2>
 
 	<br>
 

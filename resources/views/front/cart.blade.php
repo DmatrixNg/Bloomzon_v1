@@ -1,6 +1,6 @@
 @extends('layouts.front')
 @section('page_title')
-    Cart
+    {{ __("Cart")}}
 @endsection
 @section('content')
     <div class="shopping-cart-steps">
@@ -11,17 +11,17 @@
 						<ul class="clearfix">
 							<li class="active">
 								<div class="inner">
-									<span class="step">01</span> <span class="inner-step">Shopping Cart</span>
+									<span class="step">01</span> <span class="inner-step">{{ __("Shopping Cart")}}</span>
 								</div>
 							</li>
 							<li>
 								<div class="inner">
-									<span class="step">02</span> <span class="inner-step">Checkout </span>
+									<span class="step">02</span> <span class="inner-step">{{ __("Checkout")}} </span>
 								</div>
 							</li>
 							<li>
 								<div class="inner">
-									<span class="step">03</span> <span class="inner-step">Order Completed </span>
+									<span class="step">03</span> <span class="inner-step">{{ __("Order Completed")}} </span>
 								</div>
 							</li>
 						</ul>
@@ -39,12 +39,12 @@
 						<table class="cart-table">
 							<thead>
 								<tr>
-									<th>Image</th>
-									<th>Product Name</th>
-									<th>Color</th>
-									<th>Price</th>
-									<th>Quantity</th>
-									<th>Total</th>
+									<th>{{ __("Image")}}</th>
+									<th>{{ __("Product Name")}}</th>
+									<th>{{ __("Color")}}</th>
+									<th>{{ __("Price")}}</th>
+									<th>{{ __("Quantity")}}</th>
+									<th>{{ __("Total")}}</th>
 									<th class="text-center"><i class="fa fa-times" aria-hidden="true"></i></th>
 								</tr>
 							</thead>
@@ -99,88 +99,88 @@
 			<div class="row mt-30">
 				<div class="col-lg-6">
 					<div class="cart-update">
-						<a href="shop" class="btn-common">CONTINUE SHOPPING</a>
+						<a href="shop" class="btn-common">{{ __("CONTINUE SHOPPING")}}</a>
 					</div>
 				</div>
 				<div class="col-lg-6">
 					<div class="cart-update pull-right">
-						<a href="javascript:void(0)" id="update-cart" class="btn-common">UPDATE CART</a>
+						<a href="javascript:void(0)" id="update-cart" class="btn-common">{{ __("UPDATE CART")}}</a>
 					</div>
 				</div>
 			</div>
 			<div class="row mt-40">
 				<div class="col-lg-4 d-none">
 					<div class="cart-box shpping-tax">
-						<h5>Estimate Shipping And Tax</h5>
+						<h5>{{ __("Estimate Shipping And Tax")}}</h5>
 						<div class="cart-box-inner">
-							<p>Enter your destination to get shipping & tax</p>
+							<p>{{ __("Enter your destination to get shipping & tax")}}</p>
 							<table class="table">
 								<tr>
 									<td>
-										<label>COUNTRY *:</label>
+										<label>{{ __("COUNTRY")}} *:</label>
 									</td>
 									<td>
 										<select>
-											<option>Select options</option>
-											<option>United States</option>
-											<option>China</option>
-											<option>Canada</option>
+											<option>{{ __("Select options")}}</option>
+											<option>{{ __("United States")}}</option>
+											<option>{{ __("China")}}</option>
+											<option>{{ __("Canada")}}</option>
 										</select>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<label>STATE / PROVINCE *:</label>
+										<label>{{ __("STATE / PROVINCE")}} *:</label>
 									</td>
 									<td>
 										<select>
-											<option>Select options</option>
-											<option>United States</option>
-											<option>China</option>
-											<option>Canada</option>
+											<option>{{ __("Select options")}}</option>
+											<option>{{ __("United States")}}</option>
+											<option>{{ __("China")}}</option>
+											<option>{{ __("Canada")}}</option>
 										</select>
 									</td>
 								</tr>
 								<tr>
 									<td>
-										<label>ZIP / POSTAL CODE *:</label>
+										<label>{{ __("ZIP / POSTAL CODE")}} *:</label>
 									</td>
 									<td>
 										<select>
-											<option>Select options</option>
-											<option>United States</option>
-											<option>China</option>
-											<option>Canada</option>
+											<option>{{ __("Select options")}}</option>
+											<option>{{ __("United States")}}</option>
+											<option>{{ __("China")}}</option>
+											<option>{{ __("Canada")}}</option>
 										</select>
 									</td>
 								</tr>
 							</table>
-							<a href="#" class="btn-common">GET A QUOTE</a>
+							<a href="#" class="btn-common">{{ __("GET A QUOTE")}}</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-4">
 					<div class="cart-box cart-coupon fix">
-						<h5>Promotional Code</h5>
+						<h5>{{ __("Promotional Code")}}</h5>
 						<div class="cart-box-inner">
-							<p>Enter your coupon code if you have one</p>
+							<p>{{ __("Enter your coupon code if you have one")}}</p>
 							<input type="text" id="coupon" name="coupon" value="">
 							<p></p>
-							<a href="#" onclick="applyCoupon()" class="btn-common">Apply</a>
+							<a href="#" onclick="applyCoupon()" class="btn-common">{{ __("Apply")}}</a>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-4">
 					<div class="cart-box cart-total">
-						<h5>Cart Total</h5>
+						<h5>{{ __("Cart Total")}}</h5>
 						<div class="cart-box-inner">
 							<table class="table">
 								<tr>
-									<td>SUB TOTAL:</td>
+									<td>{{ __("SUB TOTAL")}}:</td>
 									<td><span>${{number_format($total)}}</span></td>
 								</tr>x
 								<tr>
-									<td>GRAND TOTAL:</td>
+									<td>{{ __("GRAND TOTAL")}}:</td>
 									<td><span>${{number_format($total)}}</span></td>
 								</tr>
 							</table>
@@ -189,13 +189,13 @@
 {{--									<a href="#">Checkout with multiple address</a>--}}
 {{--								</div>--}}
 								<div class="col-lg-12">
-									<a href="checkout" class="btn-common">PROCEED TO CHECK OUT</a>
+									<a href="checkout" class="btn-common">{{ __("PROCEED TO CHECK OUT")}}</a>
 								</div>
 							</div>
 						</div>
 					</div>
                     @else
-                        <h3> Your Cart is  empty, <a href="shop">start shopping</a></h3>
+                        <h3> {{ __("Your Cart is  empty,")}} <a href="shop">{{ __("start shopping")}}</a></h3>
                     @endif
 
 				</div>
@@ -209,7 +209,7 @@
     <script>
 
  function removeItem(el) {
-			return swal("Do you want to remove this from cart?").then((yes)=>{
+			return swal("{{ __("Do you want to remove this from cart?")}}").then((yes)=>{
 
 					if(yes){
 						const response = fetch(`/cart/remove/${el.getAttribute('data-product-id')}`,
@@ -224,7 +224,7 @@
                 if(e.status == 200){
                     return swal({
                         title: 'Success',
-                        text: 'Product removed from cart successfully',
+                        text: '{{ __("Product removed from cart successfully")}}',
                         icon: 'success'
                     }).then( () => window.location.reload());
                 }
@@ -236,11 +236,11 @@
 			var coup = document.getElementById('coupon').value;
 			makeRequest('/cart/add-coupon',{code:coup}).then((e)=>{
 				if(e.success){
-					return swal("Your coupon has been added - proceed to checkout").then(e=>{
+					return swal("{{ __("Your coupon has been added - proceed to checkout")}}").then(e=>{
 						window.location.reload()
 					})
 				}
-				return swal("Invalid coupon code added")
+				return swal("{{ __("Invalid coupon code added")}}")
 			})
 		}
 

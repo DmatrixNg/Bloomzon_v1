@@ -95,7 +95,7 @@
                         <!--product-categories-->
                         <div class="row">
                             <div class="col-md-6" style="border-right: 1px solid #eee;">
-                                <div class="best-sellers">
+                                <div class="product best-sellers">
                                     <div class="row" style="background-color: #0149a0 !important; color: #fff;">
                                         <div class="col-lg-12">
                                             <div class="section-title text-left">
@@ -103,52 +103,54 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row cv-visible">
+                                    <div class="cv-visible product-container">
+                                      <div class="content-1 p-1 row">
 
                                         @foreach($products->take(8) as $product)
-                                            @if($product->product_name)
-                                                <div class="col-lg-3">
-                                                    <div class="product-single">
-                                                        <div class="product-thumb">
+                                          @if($product->product_name)
+                                            <div class="product-card-short">
+                                              {{-- <div class="product-single"> --}}
+                                              <div class="product-thumb">
 
-                                                            <a href="#">
-                                                                @if($product->avatars != null)
-                                                                <img src="{{asset('storage/assets/product/avatars/'.$product->avatars[0]??'') }}" alt="" style="height: 100px;">
-                                                                @endif
-                                                            </a>
+                                                <a href="{{ url(app()->getLocale().'/product-details/' . base64_encode($product->id)) }}">
+                                                  @if($product->avatars != null)
+                                                    <img src="{{asset('storage/assets/product/avatars/'.$product->avatars[0]??'') }}" alt="">
+                                                  @endif
+                                                </a>
 
-                                                            @if($product->product_sales_price)
-                                                                <div class="downsale">
-                                                                    <span>-</span>${{ number_format($product->product_price - $product->product_sales_price) }}
-                                                                </div>
-                                                            @endif
-                                                            <div class="product-quick-view">
+                                                @if($product->product_sales_price)
+                                                  <div class="downsale">
+                                                    <span>-</span>${{ number_format($product->product_price - $product->product_sales_price) }}
+                                                  </div>
+                                                @endif
+                                                <div class="product-quick-view">
 
-                                                            <x-product-buttons aria-label="{{$product->id}}" aria-labelledby="{{$product->id}}" :product="$product"/>
+                                                  <x-product-buttons aria-label="{{$product->id}}" aria-labelledby="{{$product->id}}" :product="$product"/>
 
 
-                                                            </div>
-                                                        </div>
-                                                        <div class="product-title text-truncate">
-                                                            <h4><a href="#" class="text-truncate" title="{{ $product->product_name }}">{{ $product->product_name }}</a></h4>
-                                                            <small>
-                                                                @if($product->product_sales_price)
-                                                                    <div class="product-price-rating">
-                                                                        <span>${{ number_format($product->product_sales_price) }}</span>
-                                                                        <del>${{ number_format($product->product_price) }}</del>
-                                                                    </div>
-                                                                @else
-                                                                    <div class="product-price-rating">
-                                                                        <span>${{ number_format($product->product_price) }}</span>
-                                                                    </div>
-                                                                @endif
-
-                                                            </small>
-                                                        </div>
-                                                    </div>
+                                                  </div>
                                                 </div>
+                                                <div class="product-body text-truncate">
+                                                  <h4><a href="{{ url(app()->getLocale().'/product-details/' . base64_encode($product->id)) }}" class="text-truncate" title="{{ $product->product_name }}">{{ $product->product_name }}</a></h4>
+                                                  <small>
+                                                    @if($product->product_sales_price)
+                                                      <div class="product-price-rating">
+                                                        <span>${{ number_format($product->product_sales_price) }}</span>
+                                                        <del>${{ number_format($product->product_price) }}</del>
+                                                      </div>
+                                                    @else
+                                                      <div class="product-price-rating">
+                                                        <span>${{ number_format($product->product_price) }}</span>
+                                                      </div>
+                                                    @endif
+
+                                                  </small>
+                                                </div>
+                                                {{-- </div> --}}
+                                              </div>
                                             @endif
-                                        @endforeach
+                                          @endforeach
+                                      </div>
 
                                     </div>
                                     <div class="text-center pt-2"><a href="{{url(app()->getLocale().'/shop')}}" class="btn btn-danger text-white">{{ __("View All")}}</a></div>
@@ -272,7 +274,7 @@
                         <!--banner-section-->
                         <div class="row mt-40">
                             <div class="col-md-12" style="border-right: 1px solid #eee;">
-                                <div class="best-sellers">
+                                <div class="product best-sellers">
                                     <div class="row" style="background-color: #0149a0 !important; color: #fff;">
                                         <div class="col-lg-12">
                                             <div class="section-title text-left">
@@ -282,16 +284,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row cv-visible">
+                                    <div class="cv-visible product-container">
+                                      <div class="content-1 p-1 row">
 
                                         @foreach($products as $product)
                                             @if($product->product_name)
-                                                <div class="col-lg-2">
-                                                    <div class="product-single">
+                                                <div class="product-card-full">
+                                                    {{-- <div class="product-single"> --}}
                                                         <div class="product-thumb">
-                                                            <a href="#">
+                                                            <a href="{{ url(app()->getLocale().'/product-details/' . base64_encode($product->id)) }}">
                                                                 @if($product->avatars != null)
-                                                                <img src="{{asset('storage/assets/product/avatars/'.$product->avatars[0] ?? '') }}" alt="" style="height: 200px;">
+                                                                <img src="{{asset('storage/assets/product/avatars/'.$product->avatars[0] ?? '') }}" alt="">
                                                                 @endif
                                                             </a>
                                                             @if($product->product_sales_price)
@@ -303,7 +306,7 @@
                                                                 <x-product-buttons aria-label="{{$product->id}}" aria-labelledby="{{$product->id}}" :product="$product"/>
                                                             </div>
                                                         </div>
-                                                        <div class="product-title text-truncate">
+                                                        <div class="product-body text-truncate">
                                                             <h4><a href="{{url(app()->getLocale().'/product-details/'.base64_encode($product->id))}}" class="text-truncate">{{ $product->product_name }}</a></h4>
                                                             <small>
                                                                 @if($product->product_sales_price)
@@ -318,11 +321,12 @@
                                                                 @endif
                                                             </small>
                                                         </div>
-                                                    </div>
+                                                    {{-- </div> --}}
                                                 </div>
                                             @endif
                                         @endforeach
 
+                                    </div>
                                     </div>
                                     <div class="text-center pt-2"><a href="{{url(app()->getLocale().'/shop')}}" class="btn btn-danger text-white">{{ __("View All") }}</a></div>
                                 </div>
