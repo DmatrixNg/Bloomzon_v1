@@ -185,13 +185,13 @@
                                                     class="fa fa-lg fa-registered text-light"></i> <?php echo e(__("Register")); ?> <i
                                                         class="fa fa-angle-down"></i></a>
                                                 <ul style="width:100%">
-                                                    <li><a href="/buyer/register"> <?php echo e(__("As Buyer")); ?></a></li>
-                                                    <li><a href="/seller/register"><?php echo e(__("As Seller")); ?></a></li>
-                                                    <li><a href="/networking_agent/register"><?php echo e(__("As Network Agent")); ?></a></li>
-                                                    <li><a href="/fast_food_grocery/register"><?php echo e(__("As FastFood & Grocery")); ?></a></li>
-                                                    <li><a href="/professional/register"><?php echo e(__("Professional Service")); ?></a></li>
-                                                    <li><a href="/fast_food_grocery/register"><?php echo e(__("As Fast Food Grocery")); ?></a></li>
-                                                    <li><a href="/manufacturer/register"><?php echo e(__("As Manufacturer")); ?></a></li>
+                                                    <li><a href="<?php echo e(route("buyer.register",app()->getLocale())); ?>"> <?php echo e(__("As Buyer")); ?></a></li>
+                                                    <li><a href="<?php echo e(route("seller.register",app()->getLocale())); ?>"><?php echo e(__("As Seller")); ?></a></li>
+                                                    <li><a href="<?php echo e(route("networking_agent.register",app()->getLocale())); ?>"><?php echo e(__("As Network Agent")); ?></a></li>
+                                                    <li><a href="<?php echo e(route("fast_food_grocery.register",app()->getLocale())); ?>"><?php echo e(__("As FastFood & Grocery")); ?></a></li>
+                                                    <li><a href="<?php echo e(route("professional.register",app()->getLocale())); ?>"><?php echo e(__("Professional Service")); ?></a></li>
+                                                    <li><a href="<?php echo e(route("fast_food_grocery.register",app()->getLocale())); ?>"><?php echo e(__("As Fast Food Grocery")); ?></a></li>
+                                                    <li><a href="<?php echo e(route("manufacturer.register",app()->getLocale())); ?>"><?php echo e(__("As Manufacturer")); ?></a></li>
                                                 </ul>
                                             </li>
                                         </ul>
@@ -203,12 +203,12 @@
                                                             class="fa fa-lg fa-sign-in text-light"></i><?php echo e(__("Login")); ?> <i
                                                             class="fa fa-angle-down"></i></a>
                                                     <ul style="width:100%">
-                                                        <li><a href="/buyer/login"> <?php echo e(__("As Buyer")); ?></a></li>
-                                                        <li><a href="/seller/login"><?php echo e(__("As Seller")); ?></a></li>
-                                                        <li><a href="/networking_agent/login"><?php echo e(__("As Network Manager")); ?></a></li>
-                                                        <li><a href="/professional/login"><?php echo e(__("Professional Service")); ?></a></li>
-                                                        <li><a href="/fast_food_grocery/login"><?php echo e(__("As Fast Food Grocery")); ?></a></li>
-                                                        <li><a href="/manufacturer/login"><?php echo e(__("As Manufacturer")); ?></a></li>
+                                                        <li><a href="<?php echo e(route("buyer.login",app()->getLocale())); ?>"> <?php echo e(__("As Buyer")); ?></a></li>
+                                                        <li><a href="<?php echo e(route("seller.login",app()->getLocale())); ?>"><?php echo e(__("As Seller")); ?></a></li>
+                                                        <li><a href="<?php echo e(route("networking_agent.login",app()->getLocale())); ?>"><?php echo e(__("As Network Manager")); ?></a></li>
+                                                        <li><a href="<?php echo e(route("professional.login",app()->getLocale())); ?>"><?php echo e(__("Professional Service")); ?></a></li>
+                                                        <li><a href="<?php echo e(route("fast_food_grocery.login",app()->getLocale())); ?>"><?php echo e(__("As Fast Food Grocery")); ?></a></li>
+                                                        <li><a href="<?php echo e(route("manufacturer.login",app()->getLocale())); ?>"><?php echo e(__("As Manufacturer")); ?></a></li>
                                                         
                                                     </ul>
                                                 </li>
@@ -270,7 +270,7 @@
 
                                         <li><a href="<?php echo e(url(app()->getLocale().'/realestate')); ?>"><?php echo e(__("Real Estate")); ?></a></li>
                                         <li><a href="<?php echo e(route('fashion',app()->getLocale())); ?>"><?php echo e(__("Fashion Designer")); ?> &amp; <?php echo e(__("Tailoring")); ?></a></li>
-                                        <li><a href="<?php echo e(url(app()->getLocale().'bloomzontravels')); ?>"><?php echo e(__("Bloomzon Travel & Hotels")); ?></a></li>
+                                        <li><a href="<?php echo e(url(app()->getLocale().'/bloomzontravels')); ?>"><?php echo e(__("Bloomzon Travel & Hotels")); ?></a></li>
                                         <li><a href="#">Bloomzon <?php echo e(__("Products")); ?></a></li>
                                         <li><a href="<?php echo e(route('fast-foods',app()->getLocale())); ?>"><?php echo e(__("Food")); ?> &amp; <?php echo e(__("Groceries")); ?></a></li>
                                     <li><a href="<?php echo e(url(app()->getLocale().'/proservice')); ?>"><?php echo e(__("Professional Services")); ?></a></li>
@@ -291,19 +291,75 @@
 			<div class="container-fluid">
 				<!--logo and cart-->
 				<div class="row align-items-center">
-					<div class="col-sm-4 col-6">
+
+					<div class="col-2">
 						<div class="logo">
-							<a href="<?php echo e(url(app()->getLocale().'/')); ?>"><img src="<?php echo e(asset('front_assets/assets/images/bloomzon.png')); ?>" width="60" height="auto" alt="logo" /></a>
+							<a href="<?php echo e(url(app()->getLocale().'/')); ?>"><img src="<?php echo e(asset('front_assets/assets/images/bloomzon.png')); ?>" alt="logo" style="width: 60px; height: auto;" /></a>
 						</div>
-					</div>
-					<div class="col-sm-8 col-6">
+                    </div>
+
+                    <div class="col-6">
+                        <?php if(count($adverts)): ?>
+                            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    <?php $__currentLoopData = $adverts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $advert): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <div class="carousel-item <?php if($loop->iteration === 1): ?> active <?php endif; ?>">
+                                            <a href="<?php echo e($advert->advert_link); ?>?referrer=bloomzon" target="_blank">
+                                                <img class="d-block w-100" src="<?php echo e(asset('storage/assets/advert/avatar/' . $advert->avatar)); ?>" alt="First slide" height="60" width="100%">
+                                            </a>
+                                        </div>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </div>
+                            </div>
+                        <?php else: ?>
+                            <img src="<?php echo e(asset('front_assets/assets/images/top_banner.jpg')); ?>" height="60" width="100%" class="img img-responsive">
+                        <?php endif; ?>
+                    </div>
+
+					<div class="col-4">
 						<div class="mini-cart text-right">
-							<ul>
+                            <div class="currency-bar lang-bar" style="width: 20px; display: inline-block !important;">
+                                <ul>
+                                    <li>
+                                        <a href="#" class="btn btn-sm btn-primary" style="background-color: #23374D !important; padding: -1px !important; margin: 0px; ">
+                                            <?php if(app()->getLocale() == 'en'): ?>
+                                                <?php echo e(__("En")); ?>
+
+                                            <?php elseif(app()->getLocale() == 'fr'): ?>
+                                                <?php echo e(__("Frn")); ?>
+
+                                            <?php elseif(app()->getLocale() == 'es'): ?>
+                                                <?php echo e(__("	Spn")); ?>
+
+                                            <?php elseif(app()->getLocale() == 'zh_CH'): ?>
+                                                <?php echo e(__("	Cns")); ?>
+
+                                            <?php elseif(app()->getLocale() == 'ar'): ?>
+                                                <?php echo e(__("	Ara")); ?>
+
+                                            <?php else: ?>
+                                                <?php echo e(__("	En ")); ?>
+
+                                            <?php endif; ?>
+                                        </a>
+                                        <ul>
+                                            <li><a href="javascript:changeLocation('en')"> <img src="<?php echo e(asset('front_assets/assets/img/us.jpg')); ?>" width="30" height="20"> <?php echo e(__("English")); ?></a></li><br>
+                                            <li><a href="javascript:changeLocation('fr')"> <img src="<?php echo e(asset('front_assets/assets/img/fr.jpg')); ?>" width="30" height="20"> <?php echo e(__("French")); ?></a></li><br>
+                                            <li><a href="javascript:changeLocation('es')"> <img src="<?php echo e(asset('front_assets/assets/img/sp.jpg')); ?>" width="30" height="20"> <?php echo e(__("Spanish")); ?></a></li><br>
+                                            <li><a href="javascript:changeLocation('zh_CH')"> <img src="<?php echo e(asset('front_assets/assets/img/chinese.jpg')); ?>" width="30" height="20"> <?php echo e(__("Chinese")); ?></a></li><br>
+                                            <li><a href="javascript:changeLocation('ar')"> <img src="<?php echo e(asset('front_assets/assets/img/arabic.jpg')); ?>" width="30" height="20"> <?php echo e(__("Arabic")); ?></a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+							<ul style="width: 20px; display: inline-block !important;">
 								<li class="d-none"><a href="#"><i class="icon_heart_alt"></i><span>3</span></a></li>
 								<li class="minicart-icon"><a href="<?php echo e(url(app()->getLocale().'/cart')); ?>"><i class="icon_bag_alt"></i><span><?php echo e(count($cart)); ?></span></a>
 								</li>
-							</ul>
-						</div>
+                            </ul>
+                            
+                        </div>
+                        
 					</div>
 				</div>
 				<!--search-box-->
@@ -317,7 +373,7 @@
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 							</select>
 							<input type="text" placeholder="<?php echo e(__("What do you need?")); ?>" />
-							<button><?php echo e(__("Search")); ?></button>
+                            <button><i class="fa fa-search"></i></button>
 						</div>
 					</div>
 				</div>
@@ -326,7 +382,7 @@
 					<div class="col-lg-12 menu-hider">
                         <a href="#my-menu" class="mmenu-icon pull-left"><i class="fa fa-bars"></i></a>
 
-                        <div class="mainmenu">
+                        <div class="mainmenu d-none">
 							<nav id="">
 								<ul>
 									<?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

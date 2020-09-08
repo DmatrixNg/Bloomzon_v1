@@ -255,7 +255,7 @@ Product Details
                                         <div class="col-sm-12">
                                             <?php if(Auth::guard('buyer')->user()): ?>
                                             <input type="hidden" value="<?php echo e($product->id); ?>" name="product_id" />
-                                            <input type="hidden" value="<?php echo e($product->seller_id->id); ?>" name="seller_id" />
+                                            <input type="hidden" value="<?php echo e($product->seller->id); ?>" name="seller_id" />
                                             <input type="hidden" value="<?php echo e(Auth::guard('buyer')->user()->id); ?>" name="buyer_id" />
                                             <input type="hidden" value="0" id="rating" name="rating" />
                                             <input type="hidden" value="1" name="status" />
@@ -445,7 +445,7 @@ Product Details
                             <div class="col-lg-12">
                                 <h2>TERMS &amp; CONDITIONS</h2>
                                     <p class="text-justify">
-                                      <?php echo e($product->seller_id->terms_and_conditions); ?>
+                                      <?php echo e($product->seller->terms_and_conditions); ?>
 
                                     </p>
                             </div>
@@ -471,7 +471,7 @@ Product Details
                             <div class="col-lg-12">
                                 <h2>Delivery Terms</h2>
                                     <p class="text-justify">
-                                      <?php echo e($product->seller_id->delivery_terms); ?>
+                                      <?php echo e($product->seller->delivery_terms); ?>
 
                                     </p>
                             </div>
@@ -497,7 +497,7 @@ Product Details
                             <div class="col-lg-12">
                                 <h2>Return Policy</h2>
                                     <p class="text-justify">
-                                      <?php echo e($product->seller_id->policy); ?>
+                                      <?php echo e($product->seller->policy); ?>
 
                                     </p>
                             </div>

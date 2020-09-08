@@ -56,7 +56,7 @@ class CartHelper {
     /**
      * move the content of $this->current_cart to cart session
      *
-     * @return  array
+     * @return  null
      */
     protected function set_cart()
     {
@@ -122,7 +122,7 @@ class CartHelper {
     /**
      * remove the item from cart
      *
-     * @return  array
+     * @return  null
      */
     public function remove_item($product_id)
     {
@@ -146,6 +146,7 @@ class CartHelper {
             session()->forget('cart');
             session()->forget('coupon');
         }
+        
     }
 
 

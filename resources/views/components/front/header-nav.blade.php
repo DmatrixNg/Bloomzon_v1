@@ -290,19 +290,69 @@
 			<div class="container-fluid">
 				<!--logo and cart-->
 				<div class="row align-items-center">
-					<div class="col-sm-4 col-6">
+
+					<div class="col-2">
 						<div class="logo">
-							<a href="{{ url(app()->getLocale().'/') }}"><img src="{{ asset('front_assets/assets/images/bloomzon.png') }}" width="60" height="auto" alt="logo" /></a>
+							<a href="{{ url(app()->getLocale().'/') }}"><img src="{{ asset('front_assets/assets/images/bloomzon.png') }}" alt="logo" style="width: 60px; height: auto;" /></a>
 						</div>
-					</div>
-					<div class="col-sm-8 col-6">
+                    </div>
+
+                    <div class="col-6">
+                        @if(count($adverts))
+                            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    @foreach($adverts as $advert)
+                                        <div class="carousel-item @if ($loop->iteration === 1) active @endif">
+                                            <a href="{{ $advert->advert_link }}?referrer=bloomzon" target="_blank">
+                                                <img class="d-block w-100" src="{{ asset('storage/assets/advert/avatar/' . $advert->avatar) }}" alt="First slide" height="60" width="100%">
+                                            </a>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @else
+                            <img src="{{ asset('front_assets/assets/images/top_banner.jpg') }}" height="60" width="100%" class="img img-responsive">
+                        @endif
+                    </div>
+
+					<div class="col-4">
 						<div class="mini-cart text-right">
-							<ul>
+                            <div class="currency-bar lang-bar" style="width: 20px; display: inline-block !important;">
+                                <ul>
+                                    <li>
+                                        <a href="#" class="btn btn-sm btn-primary" style="background-color: #23374D !important; padding: -1px !important; margin: 0px; ">
+                                            @if (app()->getLocale() == 'en')
+                                                {{ __("En")}}
+                                            @elseif (app()->getLocale() == 'fr')
+                                                {{ __("Frn")}}
+                                            @elseif (app()->getLocale() == 'es')
+                                                {{ __("	Spn")}}
+                                            @elseif (app()->getLocale() == 'zh_CH')
+                                                {{ __("	Cns")}}
+                                            @elseif (app()->getLocale() == 'ar')
+                                                {{ __("	Ara")}}
+                                            @else
+                                                {{ __("	En ")}}
+                                            @endif
+                                        </a>
+                                        <ul>
+                                            <li><a href="javascript:changeLocation('en')"> <img src="{{ asset('front_assets/assets/img/us.jpg') }}" width="30" height="20"> {{ __("English")}}</a></li><br>
+                                            <li><a href="javascript:changeLocation('fr')"> <img src="{{ asset('front_assets/assets/img/fr.jpg') }}" width="30" height="20"> {{ __("French")}}</a></li><br>
+                                            <li><a href="javascript:changeLocation('es')"> <img src="{{ asset('front_assets/assets/img/sp.jpg') }}" width="30" height="20"> {{ __("Spanish")}}</a></li><br>
+                                            <li><a href="javascript:changeLocation('zh_CH')"> <img src="{{ asset('front_assets/assets/img/chinese.jpg') }}" width="30" height="20"> {{ __("Chinese")}}</a></li><br>
+                                            <li><a href="javascript:changeLocation('ar')"> <img src="{{ asset('front_assets/assets/img/arabic.jpg') }}" width="30" height="20"> {{ __("Arabic")}}</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+							<ul style="width: 20px; display: inline-block !important;">
 								<li class="d-none"><a href="#"><i class="icon_heart_alt"></i><span>3</span></a></li>
 								<li class="minicart-icon"><a href="{{url(app()->getLocale().'/cart')}}"><i class="icon_bag_alt"></i><span>{{count($cart)}}</span></a>
 								</li>
-							</ul>
-						</div>
+                            </ul>
+                            
+                        </div>
+                        
 					</div>
 				</div>
 				<!--search-box-->
@@ -316,7 +366,7 @@
                                 @endforeach
 							</select>
 							<input type="text" placeholder="{{ __("What do you need?")}}" />
-							<button>{{ __("Search")}}</button>
+                            <button><i class="fa fa-search"></i></button>
 						</div>
 					</div>
 				</div>

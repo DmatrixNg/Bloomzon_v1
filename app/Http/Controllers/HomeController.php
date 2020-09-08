@@ -56,6 +56,7 @@ class HomeController extends Controller
         }
         return view('front.'.$page);
     }
+
     public function show_category($name, $subname = ''){
         $products = null;
         $cat = null;
@@ -125,6 +126,23 @@ class HomeController extends Controller
         return view('front.fast-food-grocery',compact(['fast_foods']));
     }
 
+    public function groceries(){
+        $groceries = Product::where('product_type','fast_food_grocery')->where('category_id',0)->latest('id')->get();
+        return view('front.groceries',compact(['groceries']));
+    }
+
+    // public function groceries(){
+    //     $fast_foods = FastFoodGrocery::all();
+    //     return view('front.fast-food-grocery',compact(['fast_foods']));
+    // }
+
+    public function food_menus(){
+
+        $food_menus = FoodCatalogue::all();
+        return view('front.food-menus',compact(['food_menus']));
+
+    }
+
     public function vendor_food_list($id = 0){
         if($id == 0){
             $products = Product::where('product_type','fast_food_grocery')->paginate(10);
@@ -148,10 +166,7 @@ class HomeController extends Controller
         return view('front.networkingagent-details',compact(['agent']));
     }
   
-    public function groceries(){
-        $fast_foods = FastFoodGrocery::all();
-        return view('front.fast-food-grocery',compact(['fast_foods']));
-    }
+    
 
 
 

@@ -45,6 +45,10 @@
 	<!-- responsive css -->
     <link rel="stylesheet" href=" <?php echo e(asset('front_assets/assets/css/responsive.css')); ?>">
 
+    <!-- owl slider -->
+    <link rel="stylesheet" href=" <?php echo e(asset('front_assets/assets/css/owl.carousel.css')); ?>">
+    <link rel="stylesheet" href=" <?php echo e(asset('front_assets/assets/css/owl.theme.default.min.css')); ?>">
+
 
 
 
@@ -77,6 +81,16 @@
         @media (max-width: 994px) {
             .menu-hider {
                 display: none !important;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .hider-cs {
+                display: none !important;
+            }
+
+            .svh {
+                height: 180px !important;
             }
         }
 	</style>
@@ -167,6 +181,29 @@
 <!-- sweet alert -->
 <script src="<?php echo e(asset('assets/frontend/js/sweetalert.js')); ?>"></script>
 
+\
+
+<!-- owl slider -->
+<script src="<?php echo e(asset('front_assets/assets/owl.carousel.min.js')); ?>"></script>
+
+<script>
+$('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    nav:true,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:5
+        }
+    }
+})
+</script>
 
 
 <div class="mm-wrapper__blocker mm-slideout"><a href="#mm-0">
@@ -292,41 +329,69 @@
 function changeLocation(loc) {
 
 													var path = window.location.href;
+													var request = window.location.search;
+													// if (request) {
+													//
+													// }
 
 													if (loc ==="en") {
 
-														newloc = path.replace('fr', loc)
-														newloc = newloc.replace('es', loc)
-														newloc = newloc.replace('zh', loc)
-														newloc = newloc.replace('ar', loc)
+														newloc = path.replace('/fr/', "/"+loc+"/") && path.replace('/fr', "/"+loc)
+														newloc = newloc.replace('/es/', "/"+loc+"/") && newloc.replace('/es', "/"+loc)
+														newloc = newloc.replace('/zh_CH/', "/"+loc+"/") && newloc.replace('/zh_CH', "/"+loc)
+														newloc = newloc.replace('/ar/', "/"+loc+"/") &&  newloc.replace('/ar', "/"+loc)
+
+														if (request) {
+															newloc = newloc.replace(request, "?"+loc)
+
+														}
 														window.location = newloc
 
 													}if (loc ==="fr") {
-														newloc = path.replace('en', loc)
-														newloc = newloc.replace('es', loc)
-														newloc = newloc.replace('zh', loc)
-														newloc = newloc.replace('ar', loc)
+
+														newloc = path.replace('/en/', "/"+loc+"/") && path.replace('/en', "/"+loc)
+														newloc = newloc.replace('/es/', "/"+loc+"/") && newloc.replace('/es', "/"+loc)
+														newloc = newloc.replace('/zh_CH/', "/"+loc+"/") && newloc.replace('/zh_CH', "/"+loc)
+														newloc = newloc.replace('/ar/', "/"+loc+"/") &&  newloc.replace('/ar', "/"+loc)
+														if (request) {
+															newloc = newloc.replace(request, "?"+loc)
+
+														}
+														// console.log(newloc);
 														window.location = newloc
+
 													}if (loc ==="es") {
-														newloc = path.replace('en', loc)
-														newloc = newloc.replace('fr', loc)
-														newloc = newloc.replace('zh', loc)
-														newloc = newloc.replace('ar', loc)
+														newloc = path.replace('/en/', "/"+loc+"/") && path.replace('/en', "/"+loc)
+														newloc = newloc.replace('/fr/', "/"+loc+"/") && newloc.replace('/fr', "/"+loc)
+														newloc = newloc.replace('/zh_CH/', "/"+loc+"/") && newloc.replace('/zh_CH', "/"+loc)
+														newloc = newloc.replace('/ar/', "/"+loc+"/") &&  newloc.replace('/ar', "/"+loc)
+														if (request) {
+															newloc = newloc.replace(request, "?"+loc)
+
+														}
 														window.location = newloc
 													}
 													if (loc ==="zh_CH") {
-														newloc = path.replace('en', loc)
-														newloc = newloc.replace('es', loc)
-														newloc = newloc.replace('fr', loc)
-														newloc = newloc.replace('ar', loc)
+														newloc = path.replace('/en/', "/"+loc+"/") && path.replace('/en', "/"+loc)
+														newloc = newloc.replace('/es/', "/"+loc+"/") && newloc.replace('/es', "/"+loc)
+														newloc = newloc.replace('/fr/', "/"+loc+"/") && newloc.replace('/fr', "/"+loc)
+														newloc = newloc.replace('/ar/', "/"+loc+"/") &&  newloc.replace('/ar', "/"+loc)
+														if (request) {
+															newloc = newloc.replace(request, "?"+loc)
 
+														}
+														// console.log(newloc);
 														window.location = newloc
 
 													}if (loc ==="ar") {
-														newloc = path.replace('en', loc)
-														newloc = newloc.replace('es', loc)
-														newloc = newloc.replace('zh', loc)
-														newloc = newloc.replace('fr', loc)
+														newloc = path.replace('/en/', "/"+loc+"/") && path.replace('/en', "/"+loc)
+														newloc = newloc.replace('/es/', "/"+loc+"/") && newloc.replace('/es', "/"+loc)
+														newloc = newloc.replace('/zh_CH/', "/"+loc+"/") && newloc.replace('/zh_CH', "/"+loc)
+														newloc = newloc.replace('/fr/', "/"+loc+"/") && newloc.replace('/fr', "/"+loc)
+														if (request) {
+															newloc = newloc.replace(request, "?"+loc)
+
+														}
 														window.location = newloc
 													}
 
