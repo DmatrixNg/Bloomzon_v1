@@ -62,6 +62,7 @@ dump('done');
 });
 Route::get('manufacturer/logout', 'Web\Manufacturer\Auth\LoginController@logout')->name('logout');
 Route::redirect('/','en');
+Route::get('home/{page?}','HomeController@home')->name('home');
 Route::group(['prefix' => '{lang}'], function () {
 
   Route::GET('/realestate',function(){
@@ -69,7 +70,6 @@ Route::group(['prefix' => '{lang}'], function () {
   });
 
 
-  Route::get('home/{page?}','HomeController@home')->name('home');
 
   Route::GET('/chat',function(){
     return view('front.chat');

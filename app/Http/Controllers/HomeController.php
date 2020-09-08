@@ -49,12 +49,12 @@ class HomeController extends Controller
         'manufacturers','groceries','food_menus']));
     }
 
-    public function home($page = ''){
+    public function home(Request $request, $page = ''){
 
-        if($page == ''){
+        if($request->page == ''){
             return redirect('/');
         }
-        return view('front.'.$page);
+        return view('front.'.$request->page);
     }
     public function show_category(Request $request,$name, $subname = ''){
         $products = null;
