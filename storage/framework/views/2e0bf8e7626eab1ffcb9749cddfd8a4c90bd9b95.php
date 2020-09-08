@@ -40,11 +40,11 @@
                     <div class="col-md-4 mb-3">
                         <div class="card text-center" style="color: #02499B; background-color: white; padding: 30px;">
                             <h2 style="font-size: 70px;"><i class="fas fa-play"></i></h2>
-                            <h4> <a href="/#bloomzon_tv" target="_blank"> Stream Bloomzon TV </a> </h4>
+                            <h4> <a href="<?php echo e(url(app()->getLocale())); ?>/#bloomzon_tv" target="_blank"> Stream Bloomzon TV </a> </h4>
                         </div>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <a href="/track-delivery">
+                        <a href="<?php echo e(url(app()->getLocale())); ?>/track-delivery">
                             <div class="card text-center" style="color: #02499B; background-color: white; padding: 30px;">
                                 <h2 style="font-size: 70px;"><i class="fas fa-route"></i></h2>
                                 <h4>Track Your Purchase</h4><br>
@@ -52,7 +52,7 @@
                         </a>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <a href="delivery-status">
+                        <a href="/delivery-status">
                             <div class="card text-center pt-3" style="color: #02499B; background-color: white; padding: 30px;">
                                 <h2 style="font-size: 70px;"><i class="fas fa-truck"></i></h2>
                                 <h4>Delivery Alert</h4><br><br>

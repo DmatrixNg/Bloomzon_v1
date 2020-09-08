@@ -253,7 +253,7 @@
                                                 <div class="product-quick-view">
                                                     {{-- <div class="row">
                                                         <div class="col-md-4 p-0"><a
-                                                        href="{{url('product-details/'.base64_encode($product->id))}}"
+                                                        href="{{url(app()->getLocale().'/product-details/'.base64_encode($product->id))}}"
                                                                 class="btn btn-success"><i
                                                                     class="fa fa-eye"></i></a></div>
                                                         <div class="col-md-4 p-0"><a href="javascript:void(0);"

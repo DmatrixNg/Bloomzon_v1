@@ -74,7 +74,7 @@
                                             </div>
                                             <div class="product-title text-white pull-right"
                                                 style="background-color: #bd1a09; padding: 10px; bottom: 0; right: 0; position: absolute; margin-bottom: -20px; ">
-                                                <h4><a href="/category/{{ $food_menu->name }}?fast_food_grocery" style="color: #fff !important;">
+                                                <h4><a href="{{url(app()->getLocale())}}/category/{{ $food_menu->name }}?fast_food_grocery" style="color: #fff !important;">
                                                     {{ $food_menu->name }}</a>
                                                 </h4>
                                             </div>
@@ -107,7 +107,7 @@
                                     <div class="col-lg-3">
                                         <div class="product-single">
                                             <div class="product-thumb">
-                                               
+
                                                 <a href="#">
                                                     @if($product->avatars != null)
                                                     <img src="{{asset('storage/assets/product/avatars/'.$product->avatars[0]??'') }}" alt="">
@@ -122,7 +122,7 @@
                                                 <div class="product-quick-view">
                                                     {{-- <div class="row">
                                                         <div class="col-md-4 p-0"><a
-                                                        href="{{url('product-details/'.base64_encode($product->id))}}"
+                                                        href="{{url(app()->getLocale().'/product-details/'.base64_encode($product->id))}}"
                                                                 class="btn btn-success"><i
                                                                     class="fa fa-eye"></i></a></div>
                                                         <div class="col-md-4 p-0"><a href="javascript:void(0);"
@@ -133,7 +133,7 @@
                                                         </div>
                                                     </div> --}}
                                                 <x-product-buttons aria-label="{{$product->id}}" aria-labelledby="{{$product->id}}" :product="$product"/>
-                                                
+
 
                                                 </div>
                                             </div>
@@ -162,7 +162,7 @@
                                     </div>
                                     @endif
                                 </div>
-                                <div class="text-center"><a href="{{url('/vendor-food-list/'.$fast_food_grocery->id)}}" class="btn btn-danger">View More</a></div>
+                                <div class="text-center"><a href="{{url(app()->getLocale().'/vendor-food-list/'.$fast_food_grocery->id)}}" class="btn btn-danger">View More</a></div>
                             </div>
                         </div>
                     </div>
@@ -190,7 +190,7 @@
                                 </li>
                                 @endforeach
                                 @endif
-                               
+
                             </ul>
                         </div>
                         <div class="blog-comment-form product-comment-form mt-05">
@@ -258,7 +258,7 @@
     var element = document.getElementById('cart');
         element.onclick = async e => {
             e.preventDefault();
-            
+
             const productId = e.target.getAttribute('data-product-id');
             const quantity = document.getElementById(`qty_${productId}`).value;
             try{
@@ -285,9 +285,9 @@
             catch(e){
                 console.log(e)
             }
-           
+
         }
-           
+
 
     function rate(rate) {
         var s1 = document.getElementById('star1')

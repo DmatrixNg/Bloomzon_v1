@@ -60,8 +60,11 @@ dump('done');
   // dd($first->seller);
   // $first->supermarket->user->notify(new \App\Notifications\Store($product));
 });
+Route::get('/paid', 'PaymentController@handleGatewayCallback');
+
 Route::get('manufacturer/logout', 'Web\Manufacturer\Auth\LoginController@logout')->name('logout');
 Route::redirect('/','en');
+Route::get('home/{page?}','HomeController@home')->name('home');
 Route::group(['prefix' => '{lang}'], function () {
 
   Route::GET('/realestate',function(){
@@ -69,7 +72,6 @@ Route::group(['prefix' => '{lang}'], function () {
   });
 
 
-  Route::get('home/{page?}','HomeController@home')->name('home');
 
   Route::GET('/chat',function(){
     return view('front.chat');
@@ -107,7 +109,6 @@ Route::get('/logout',function(){
 });
 Route::post('/pay', 'PaymentController@redirectToGateway')->name('pay');
 // Route::post('/order', 'PaymentController@order')->name('order');
-Route::get('/paid', 'PaymentController@handleGatewayCallback');
 Route::post('/product/reviews/add','ProductController@addReview');
 
 //gets the subcategories
@@ -115,6 +116,18 @@ Route::post('/product/getSubCategories/{id}','ProductController@getSubCategories
 
 Route::post('/cart/add-coupon/','CartController@addCoupon');
 Route::post('/cart/clear','CartController@clearCart');
+
+Route::get('/cart/add/{product_id}/{qty}/{color}','CartController@addToCart');
+Route::get('/cart/add/{product_id}/{qty}','CartController@addToCart');
+Route::get('/cart/increase/{product_id}/{qty}','CartController@addToCart');
+Route::get('/cart/decrease/{product_id}/{qty}','CartController@redItemQty');
+Route::get('/cart/remove/{product_id}','CartController@removeItem');
+
+Route::get('/get_categories', 'Web\Admin\CategoryController@get_all_catgeory');
+Route::get('/convert/{total}', 'CartController@getConversion');
+
+Route::get('/all_categories', 'Web\Admin\CategoryController@index');
+
 
 Route::group(['prefix' => '{lang}'], function () {
 
@@ -124,19 +137,11 @@ Route::group(['prefix' => '{lang}'], function () {
   // Cart System Routes
 
   Route::get('/cart','CartController@displayCart');
-  Route::get('/cart/add/{product_id}/{qty}/{color}','CartController@addToCart');
-  Route::get('/cart/add/{product_id}/{qty}','CartController@addToCart');
-  Route::get('/cart/increase/{product_id}/{qty}','CartController@addToCart');
-  Route::get('/cart/decrease/{product_id}/{qty}','CartController@redItemQty');
-  Route::get('/cart/remove/{product_id}','CartController@removeItem');
 
 
   Route::get('/checkout','CartController@checkout');
-  Route::get('/get_categories', 'Web\Admin\CategoryController@get_all_catgeory');
-  Route::get('/all_categories', 'Web\Admin\CategoryController@index');
-  Route::get('/convert/{total}', 'CartController@getConversion');
 
-  Route::get('/category/{id}/{subid?}','HomeController@show_category');
+  Route::get('/category/{name}/{subname?}','HomeController@show_category');
 
   //paystack
 

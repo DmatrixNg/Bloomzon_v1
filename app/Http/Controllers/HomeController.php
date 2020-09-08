@@ -49,21 +49,23 @@ class HomeController extends Controller
         'manufacturers','groceries','food_menus']));
     }
 
-    public function home($page = ''){
+    public function home(Request $request, $page = ''){
 
-        if($page == ''){
+        if($request->page == ''){
             return redirect('/');
         }
-        return view('front.'.$page);
+        return view('front.'.$request->page);
     }
 
-    public function show_category($name, $subname = ''){
+    public function show_category(Request $request,$name, $subname = ''){
+
         $products = null;
         $cat = null;
+        // dd($request->name);
         if(isset($_GET['fast_food_grocery'])){
-            $cat = FoodCatalogue::where('name',$name)->first();
+            $cat = FoodCatalogue::where('name',$request->name)->first();
         }else{
-            $cat = Category::where('name',$name)->first();
+            $cat = Category::where('name',$request->name)->first();
         }
         $categories = Category::all();
         $sub = null;
@@ -74,8 +76,8 @@ class HomeController extends Controller
             return view('front.404',compact(['message']));
         }
         //directs type of product search if subname is not available
-        if($subname != null){
-            $sub = SubCategory::where('name',$subname)->first();
+        if($request->subname != null){
+            $sub = SubCategory::where('name',$request->subname)->first();
             $sub_id = $sub != null?$sub->id:0;
             if($sub_id != 0){
                 $products = Product::where('category_id',$cat->id)->where('sub_category_id',$sub_id)->get();
@@ -91,13 +93,14 @@ class HomeController extends Controller
         }
         $dis = array();
         if(isset($_GET['fast_food_grocery'])){
-            $page_title = $cat->name .' | '. $subname;
+            $page_title = $cat->name .' | '. $request->subname;
             return view('front.fast_foods',compact(['products','page_title']));
         }
-        //get sellers of product in distinct 
+        //get sellers of product in distinct
         if(count($products)){
             foreach($products as $product){
-                if($product->seller->id != null){
+              // dd($product->seller->id);
+                if(@$product->seller->id != null){
                 if(!in_array($product->seller->id,$dis)){
                     array_push($sellers,$product->seller->id);
                     array_push($dis,$product->seller->id);
@@ -113,60 +116,50 @@ class HomeController extends Controller
         }
 
         $sellers= Seller::all();
-       
+
         $brands = [];
         $max_price = $products->max('product_price');
-        $page_title = $cat->name .' | '. $subname;
+        $page_title = $cat->name .' | '. $request->subname;
         return view('front.category',compact(['max_price','sellers','products','categories','brands','colors','page_title']));
 
     }
-    
+
     public function fast_foods(){
         $fast_foods = FastFoodGrocery::all();
         return view('front.fast-food-grocery',compact(['fast_foods']));
     }
 
-    public function groceries(){
-        $groceries = Product::where('product_type','fast_food_grocery')->where('category_id',0)->latest('id')->get();
-        return view('front.groceries',compact(['groceries']));
-    }
 
-    // public function groceries(){
-    //     $fast_foods = FastFoodGrocery::all();
-    //     return view('front.fast-food-grocery',compact(['fast_foods']));
-    // }
+    public function vendor_food_list(Request $request,$id = 0){
+      // dd($request->id);
+        if($request->id == 0){
 
-    public function food_menus(){
-
-        $food_menus = FoodCatalogue::all();
-        return view('front.food-menus',compact(['food_menus']));
-
-    }
-
-    public function vendor_food_list($id = 0){
-        if($id == 0){
             $products = Product::where('product_type','fast_food_grocery')->paginate(10);
         }else{
-            $products = Product::where('seller_id',$id)->where('product_type','fast_food_grocery')->paginate(10);
+            $products = Product::where('seller_id',$request->id)->where('product_type','fast_food_grocery')->paginate(10);
         }
-        $ffg = FastFoodGrocery::find($id);
+        $ffg = FastFoodGrocery::find($request->id);
         $page_title = $ffg->company_name;
         return view('front.fast_foods',compact(['products','page_title']));
     }
 
-    public function fast_food_details($id){
-        $fast_food_grocery = FastFoodGrocery::find($id);
+    public function fast_food_details(Request $request,$id){
+        $fast_food_grocery = FastFoodGrocery::find($request->id);
         $food_cats = FoodCatalogue::all();
         return view('front.fast-food-grocery-details',compact(['fast_food_grocery','food_cats']));
     }
-    
-    public function agent_details($id){
-        $agent = NetworkingAgent::find($id);
-    
+
+    public function agent_details(Request $request,$id){
+        $agent = NetworkingAgent::find($request->id);
+
         return view('front.networkingagent-details',compact(['agent']));
     }
-  
-    
+
+
+    public function groceries(){
+        $fast_foods = FastFoodGrocery::all();
+        return view('front.fast-food-grocery',compact(['fast_foods']));
+    }
 
 
 
@@ -179,19 +172,19 @@ class HomeController extends Controller
         $sellers = Seller::all();
         return view('front.sellers',compact(['sellers']));
     }
-    public function seller_details($id){
-        $seller = Seller::find($id);
-        
+    public function seller_details(Request $request,$id){
+        $seller = Seller::find($request->id);
+
         return view('front.seller-details',compact(['seller']));
     }
 
-    public function seller_product_list($id = 0){
-        if($id == 0){
+    public function seller_product_list(Request $request, $id = 0){
+        if($request->id == 0){
             $products = Product::where('product_type','seller')->paginate(5);
         }else{
-            $products = Product::where('seller_id',$id)->where('product_type','seller')->paginate(5);
+            $products = Product::where('seller_id',$request->id)->where('product_type','seller')->paginate(5);
         }
-        //get sellers of product in distinct 
+        //get sellers of product in distinct
         $dis = array();
         $colors = array();
         if(count($products)){
@@ -203,7 +196,7 @@ class HomeController extends Controller
                 }
         }}
         $brands = [];
-        $seller = Seller::find($id);
+        $seller = Seller::find($request->id);
         $max_price = $products->max('product_price');
         $page_title = $seller->company_name;
         return view('front.seller-products',compact(['max_price','products','brands','colors','page_title']));
@@ -219,9 +212,9 @@ class HomeController extends Controller
         $proservices = Professional::where('profession','like','%fashion%')->get();
         return view('front.proservices',compact(['proservices']));
     }
-    public function proservice_details($id){
-        $proservice = Professional::find($id);
-        
+    public function proservice_details(Request $request,$id){
+        $proservice = Professional::find($request->id);
+        // dd($proservice);
         return view('front.proservice-details',compact(['proservice']));
     }
 
@@ -243,7 +236,7 @@ class HomeController extends Controller
         if(count($products)){
             foreach($products as $product){
                 if(!in_array(strval($product),$dis)){
-                    array_push($sellers,$product->seller->id);
+                    array_push($sellers,$product->seller);
                     array_push($dis,strval($product));
                 }
             }
@@ -254,10 +247,11 @@ class HomeController extends Controller
                 }
             }
         }
+
         $max_price = $products->max('product_price');
         $brands = Brand::all();
         return view('front.shop',compact(['products','brands','categories','colors','sellers','max_price']));
     }
-  
-    
+
+
 }

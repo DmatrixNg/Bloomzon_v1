@@ -15,9 +15,9 @@
                     <div class="">
                         <div class="mb-5">
                             <h5 class="font-weight-bold text-left">Order by</h5>
-        
+
                             <div class="divider-small mb-3"></div>
-        
+
                             <ul class="list-unstyled link-black">
                                 <li class="mb-2">
                                     <a href="" class="active">Default</a>
@@ -37,14 +37,14 @@
                             </ul>
                         </div>
                         <!-- Filter panel -->
-        
+
                         <!-- Filter panel -->
                         <div class="mb-5">
-        
+
                             <h5 class="font-weight-bold mb-3">Location</h5>
-        
+
                             <div class="divider-small mb-3"></div>
-        
+
                             <form class="input-group">
                                 <div class="row">
                                     <div class="col-md-8">
@@ -55,25 +55,28 @@
                                     </div>
                                 </div>
                             </form>
-        
+
                             <div class="row justify-content-center">
-        
+
                             </div>
-        
+
                         </div>
                         <!-- Filter panel -->
-        
+
                         <!-- Filter panel -->
                         <div class="mb-5">
-        
+
                             <h5 class="font-weight-bold text-left">Sellers</h5>
-        
+
                             <div class="divider-small mb-3"></div>
-        
+
                             <div class="form-check mb-2">
                                 <input type="radio" class="form-check-input" id="material1" name="groupOfMaterial" checked="">
                                 <label class="form-check-label" for="material1">All</label>
                             </div>
+                            @php
+                              // dd($sellers)
+                            @endphp
                             @foreach($sellers as $seller)
                             <div class="form-check mb-2">
                                 <input type="radio" class="form-check-input" id="material7" name="groupOfMaterial">
@@ -82,57 +85,57 @@
                             @endforeach
                         </div>
                         <!-- Filter panel -->
-        
+
                         <!-- Filter panel -->
                         <div class="mb-5">
-        
+
                             <h5 class="font-weight-bold text-left">Brands</h5>
-        
+
                             <div class="divider-small mb-3"></div>
-        
+
                             <div class="form-check mb-2">
                                 <input type="radio" class="form-check-input" id="materialGroupExample1" name="groupOfMaterialRadios">
                                 <label class="form-check-label" for="materialGroupExample1">All</label>
                             </div>
-        
+
                             <div class="form-check mb-2">
                                 <input type="radio" class="form-check-input" id="materialGroupExample2" name="groupOfMaterialRadios" checked="">
                                 <label class="form-check-label" for="materialGroupExample2">Apple</label>
                             </div>
-        
+
                             <div class="form-check mb-2">
                                 <input type="radio" class="form-check-input" id="materialGroupExample3" name="groupOfMaterialRadios">
                                 <label class="form-check-label" for="materialGroupExample3">Samsung</label>
                             </div>
-        
+
                             <div class="form-check mb-2">
                                 <input type="radio" class="form-check-input" id="materialGroupExample4" name="groupOfMaterialRadios">
                                 <label class="form-check-label" for="materialGroupExample4">Techno</label>
                             </div>
-        
+
                             <div class="form-check mb-2">
                                 <input type="radio" class="form-check-input" id="materialGroupExample5" name="groupOfMaterialRadios">
                                 <label class="form-check-label" for="materialGroupExample5">Itel</label>
                             </div>
-        
+
                             <div class="form-check mb-2">
                                 <input type="radio" class="form-check-input" id="materialGroupExample6" name="groupOfMaterialRadios">
                                 <label class="form-check-label" for="materialGroupExample6">Infinix</label>
                             </div>
-        
+
                             <div class="form-check mb-2">
                                 <input type="radio" class="form-check-input" id="materialGroupExample7" name="groupOfMaterialRadios">
                                 <label class="form-check-label" for="materialGroupExample7">Google Pixel</label>
                             </div>
                         </div>
                         <!-- Filter panel -->
-        
-        
+
+
                         <!-- Filter panel -->
                         <div class="mb-5">
-        
+
                             <h5 class="font-weight-bold mb-3">Select Color</h5>
-        
+
                             <div class="divider-small mb-3"></div>
                             <select id="colorselector" class="form-control">
                                 <option selected>All</option>
@@ -153,50 +156,50 @@
                                     <li><a class="color-btn" style="background-color: rgb(199, 21, 133);" href="#" data-color="#C71585" data-value="78" title="mediumvioletred"></a></li>
                                 </ul>
                             </div>
-        
-        
+
+
                         </div>
                         <!-- Filter panel -->
-        
-        
-        
-        
+
+
+
+
                         <!-- Filter panel -->
                         <div class="mb-5">
-        
+
                             <h5 class="font-weight-bold mb-3">Price</h5>
-        
+
                             <div class="divider-small mb-3"></div>
-        
+
                             <form class="range-field">
                                 <input class="form-control" type="range" min="0" max="319">
                             </form>
-        
+
                             <div class="row justify-content-center">
-        
+
                                 <!-- Grid column -->
                                 <div class="col-md-6 text-left">
                                     <p class="dark-grey-text"><strong id="resellerEarnings">$0</strong></p>
                                 </div>
                                 <!-- Grid column -->
-        
+
                                 <!-- Grid column -->
                                 <div class="col-md-6 text-right">
                                 <p class="dark-grey-text"><strong id="clientPrice">${{$max_price}}</strong></p>
                                 </div>
                                 <!-- Grid column -->
                             </div>
-        
+
                         </div>
                         <!-- Filter panel -->
-        
+
                         <!-- Filter panel -->
                         <div class="link-black">
-        
+
                             <h5 class="font-weight-bold mb-3">Rating</h5>
-        
+
                             <div class="divider-small mb-3"></div>
-        
+
                             <div class="amber-text fa-sm mb-1">
                                 <i class="fa fa-star text-warning"></i>
                                 <i class="fa fa-star text-warning"></i>
@@ -205,7 +208,7 @@
                                 <i class="fa fa-star"></i>
                                 <a href="" class="ml-2 active">4 and more</a>
                             </div>
-        
+
                             <div class="amber-text fa-sm mb-1">
                                 <i class="fas fa-star text-warning"></i>
                                 <i class="fas fa-star text-warning"></i>
@@ -214,7 +217,7 @@
                                 <i class="fas fa-star"></i>
                                 <a href="" class="ml-2">3 - 3,99</a>
                             </div>
-        
+
                             <div class="amber-text fa-sm mb-1">
                                 <i class="fas fa-star text-warning"></i>
                                 <i class="fas fa-star text-warning"></i>
@@ -223,11 +226,11 @@
                                 <i class="fas fa-star"></i>
                                 <a href="" class="ml-2">3.00 and less</a>
                             </div>
-        
+
                         </div>
                         <!-- Filter panel -->
                     </div>
-        
+
                 </div>
 				<div class="col-md-9">
 					<div class="tab-content">
@@ -238,7 +241,7 @@
                                     <div class="col-xl-3 col-md-4 col-sm-6">
                                         <div class="product-single">
                                             <div class="product-thumb">
-                                               
+
                                                 <a href="#">
                                                     @if($product->avatars != null)
                                                     <img style="min-height: 150px" src="{{asset('storage/assets/product/avatars/'.$product->avatars[0]??'') }}" alt="">
@@ -253,7 +256,7 @@
                                                 <div class="product-quick-view">
                                                     {{-- <div class="row">
                                                         <div class="col-md-4 p-0"><a
-                                                        href="{{url('product-details/'.base64_encode($product->id))}}"
+                                                        href="{{url(app()->getLocale().'/product-details/'.base64_encode($product->id))}}"
                                                                 class="btn btn-success"><i
                                                                     class="fa fa-eye"></i></a></div>
                                                         <div class="col-md-4 p-0"><a href="javascript:void(0);"
@@ -264,7 +267,7 @@
                                                         </div>
                                                     </div> --}}
                                                 <x-product-buttons aria-label="{{$product->id}}" aria-labelledby="{{$product->id}}" :product="$product"/>
-                                                
+
 
                                                 </div>
                                             </div>
@@ -289,7 +292,7 @@
                                 @endif
                             @endforeach
 
-								
+
 
 							</div>
 						</div>
@@ -319,7 +322,7 @@
 		</div>
 	</div>
 	<!--products-area end-->
-	
+
 @endsection
 
     @push('scripts')
@@ -349,4 +352,3 @@
             })
         </script>
     @endpush
-

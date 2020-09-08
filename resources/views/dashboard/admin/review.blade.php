@@ -76,7 +76,7 @@
                         <p>{{ $review->review_message }}</p>
                     </div>
                     <div class="col-md-2">
-                        <a href="{{url('product-details/'.base64_encode($review->product_id->id))}}" target="_blank"><img src="{{asset('storage/assets/product/avatars/'.$review->product_id->avatars[0])}}" height="35" width="35" alt="bag"></a>
+                        <a href="{{url(app()->getLocale().'/product-details/'.base64_encode($review->product_id->id))}}" target="_blank"><img src="{{asset('storage/assets/product/avatars/'.$review->product_id->avatars[0])}}" height="35" width="35" alt="bag"></a>
                     </div>
                     <div class="col-md-2">
                         <p>{{$review->seller->full_name}}</p>

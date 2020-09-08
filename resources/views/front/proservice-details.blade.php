@@ -38,18 +38,19 @@
 			</div>
 		</div>
     </div>
+
 </div><div class="product-review-area mt-45">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
                 <ul class="nav nav-tabs product-review-nav">
-                   
+
                     <li><a class="" data-toggle="tab" href="#termscond">Description</a></li>
                     <li><a data-toggle="tab" href="#deliverymet">Further Specification</a></li>
                     <li><a data-toggle="tab" href="#reviews">Review ({{count($proservice->reviews)}})</a></li>
                 </ul>
                 <div class="tab-content">
-                  
+
                     <div id="termscond" class="tab-pane fade active termscond">
                         <div class="product-description">
                             <h2>Terms &amp; Conditions</h2>
@@ -62,7 +63,7 @@
                         <p>{{$proservice->delivery_terms}}</p>
                         </div>
                     </div>
-                   
+
                     <div id="reviews" class="tab-pane fade">
                         <div class="blog-comments product-comments mt-0">
                             <ul class="list-none">
@@ -87,7 +88,7 @@
                                 </li>
                                 @endforeach
                                 @endif
-                               
+
                             </ul>
                         </div>
                         <div class="blog-comment-form product-comment-form mt-05">
@@ -124,9 +125,12 @@
                                         <textarea name="review_message" placeholder="Messages"></textarea>
                                     </div>
                                     <div class="col-sm-12">
+                                      {{-- @php
+                                        dd($product);
+                                      @endphp --}}
                                         @if(Auth::guard('buyer')->user())
-                                        <input type="hidden" value="{{$product->id}}" name="product_id" />
-                                        <input type="hidden" value="{{$product->proservice_id->id}}" name="seller_id" />
+                                        <input type="hidden" value="{{@$product->id}}" name="product_id" />
+                                        <input type="hidden" value="{{@$product->proservice_id->id}}" name="seller_id" />
                                         <input type="hidden" value="{{Auth::guard('buyer')->user()->id}}" name="buyer_id" />
                                         <input type="hidden" value="0" id="rating" name="rating" />
                                         <input type="hidden" value="1" name="status" />
@@ -146,7 +150,7 @@
 </div>
 	</div>
 	<!--products-area end-->
-	
+
 @endsection
 
 
@@ -155,7 +159,7 @@
     var element = document.getElementById('cart');
         element.onclick = async e => {
             e.preventDefault();
-            
+
             const productId = e.target.getAttribute('data-product-id');
             const quantity = document.getElementById(`qty_${productId}`).value;
             try{
@@ -182,9 +186,9 @@
             catch(e){
                 console.log(e)
             }
-           
+
         }
-           
+
 
     function rate(rate) {
         var s1 = document.getElementById('star1')

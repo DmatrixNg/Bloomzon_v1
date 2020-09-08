@@ -165,9 +165,21 @@ class DashboardController extends Controller
     }
     public function allStatus(){
         $buyer = Auth::guard('buyer')->user();
-        $all_products = OrderDetail::where('buyer_id',$buyer->id)->get();
-        $delivered_count = OrderDetail::where('buyer_id',$buyer->id)->where('shopper_status','delivered')->get();
-        $transit = OrderDetail::where('order_id',$buyer->id)->where('status','!=', 'new')->get();
+        $all_products = $buyer->order_details()->get();
+        $delivered_count = $buyer->order_details()->where('shopper_status','delivered')->get();
+        // dd($buyer->order_details());
+        $transit = [];
+        foreach ($buyer->order_details()->get() as $order) {
+          // if()
+          // dd($order->status == "new");
+          if ($order->status != "new") {
+
+            $transit[] = $order;
+          }
+        }
+        // $brands = collect($brands);
+        // $transit = $buyer->orders()->order_details()->where('status','!=', 'new')->get();
+        // dd(collect($transit));
         return view('dashboard.buyer.delivery-status',compact(['all_products','delivered_count','transit']));
     }
 
