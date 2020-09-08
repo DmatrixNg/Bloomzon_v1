@@ -238,14 +238,14 @@
                                             <div style="width: 100vw !important; min-height: 100%; background-color: rgb(1, 54, 119, .9);" class="row menu-hider">
                                                 @foreach($categories as $category)
                                                     <li style="border-right: 1px solid #ccc;" class="col-md-2 p-2 menu-hider">
-                                                    <a href="/category/{{ $category->name }}" style="font-size: 19px; color: white;"></i>{{ $category->name }}</a>
+                                                    <a href="{{ url(app()->getLocale()."/category/".$category->name)}}" style="font-size: 19px; color: white;"></i>{{ $category->name }}</a>
                                                         @if(!empty($category->sub_categories))
                                                             <ul>
                                                                 <li>
                                                                     <ul>
                                                                         @foreach($category->sub_categories as $child)
                                                                             @if($child)
-                                                                                <li style="font-size: 15px; color: white !important;" style="list-style: circle;"><a href="/category/{{$category->name}}/{{ $child->name }}" style="color: white;">{{ $child->name }}</a>
+                                                                                <li style="font-size: 15px; color: white !important;" style="list-style: circle;"><a href="{{ url(app()->getLocale()."/category/".$category->name."/". $child->name) }}" style="color: white;">{{ $child->name }}</a>
                                                                                 </li>
                                                                             @endif
                                                                         @endforeach

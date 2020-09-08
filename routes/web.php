@@ -116,6 +116,16 @@ Route::post('/product/getSubCategories/{id}','ProductController@getSubCategories
 Route::post('/cart/add-coupon/','CartController@addCoupon');
 Route::post('/cart/clear','CartController@clearCart');
 
+Route::get('/cart/add/{product_id}/{qty}/{color}','CartController@addToCart');
+Route::get('/cart/add/{product_id}/{qty}','CartController@addToCart');
+Route::get('/cart/increase/{product_id}/{qty}','CartController@addToCart');
+Route::get('/cart/decrease/{product_id}/{qty}','CartController@redItemQty');
+Route::get('/cart/remove/{product_id}','CartController@removeItem');
+
+Route::get('/get_categories', 'Web\Admin\CategoryController@get_all_catgeory');
+Route::get('/convert/{total}', 'CartController@getConversion');
+
+
 Route::group(['prefix' => '{lang}'], function () {
 
   // Route::get('/', 'HomeController@index')->name('home');
@@ -124,19 +134,12 @@ Route::group(['prefix' => '{lang}'], function () {
   // Cart System Routes
 
   Route::get('/cart','CartController@displayCart');
-  Route::get('/cart/add/{product_id}/{qty}/{color}','CartController@addToCart');
-  Route::get('/cart/add/{product_id}/{qty}','CartController@addToCart');
-  Route::get('/cart/increase/{product_id}/{qty}','CartController@addToCart');
-  Route::get('/cart/decrease/{product_id}/{qty}','CartController@redItemQty');
-  Route::get('/cart/remove/{product_id}','CartController@removeItem');
 
 
   Route::get('/checkout','CartController@checkout');
-  Route::get('/get_categories', 'Web\Admin\CategoryController@get_all_catgeory');
   Route::get('/all_categories', 'Web\Admin\CategoryController@index');
-  Route::get('/convert/{total}', 'CartController@getConversion');
 
-  Route::get('/category/{id}/{subid?}','HomeController@show_category');
+  Route::get('/category/{name}/{subname?}','HomeController@show_category');
 
   //paystack
 
