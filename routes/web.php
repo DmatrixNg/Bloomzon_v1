@@ -125,6 +125,8 @@ Route::get('/cart/remove/{product_id}','CartController@removeItem');
 Route::get('/get_categories', 'Web\Admin\CategoryController@get_all_catgeory');
 Route::get('/convert/{total}', 'CartController@getConversion');
 
+Route::get('/all_categories', 'Web\Admin\CategoryController@index');
+
 
 Route::group(['prefix' => '{lang}'], function () {
 
@@ -137,7 +139,6 @@ Route::group(['prefix' => '{lang}'], function () {
 
 
   Route::get('/checkout','CartController@checkout');
-  Route::get('/all_categories', 'Web\Admin\CategoryController@index');
 
   Route::get('/category/{name}/{subname?}','HomeController@show_category');
 

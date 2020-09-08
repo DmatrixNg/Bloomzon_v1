@@ -127,25 +127,26 @@ class HomeController extends Controller
         return view('front.fast-food-grocery',compact(['fast_foods']));
     }
 
-    public function vendor_food_list($id = 0){
-        if($id == 0){
+    public function vendor_food_list(Request $request,$id = 0){
+      // dd($request->id);
+        if($request->id == 0){
             $products = Product::where('product_type','fast_food_grocery')->paginate(10);
         }else{
-            $products = Product::where('seller_id',$id)->where('product_type','fast_food_grocery')->paginate(10);
+            $products = Product::where('seller_id',$request->id)->where('product_type','fast_food_grocery')->paginate(10);
         }
-        $ffg = FastFoodGrocery::find($id);
+        $ffg = FastFoodGrocery::find($request->id);
         $page_title = $ffg->company_name;
         return view('front.fast_foods',compact(['products','page_title']));
     }
 
-    public function fast_food_details($id){
-        $fast_food_grocery = FastFoodGrocery::find($id);
+    public function fast_food_details(Request $request,$id){
+        $fast_food_grocery = FastFoodGrocery::find($request->id);
         $food_cats = FoodCatalogue::all();
         return view('front.fast-food-grocery-details',compact(['fast_food_grocery','food_cats']));
     }
 
-    public function agent_details($id){
-        $agent = NetworkingAgent::find($id);
+    public function agent_details(Request $request,$id){
+        $agent = NetworkingAgent::find($request->id);
 
         return view('front.networkingagent-details',compact(['agent']));
     }
@@ -166,13 +167,13 @@ class HomeController extends Controller
         $sellers = Seller::all();
         return view('front.sellers',compact(['sellers']));
     }
-    public function seller_details($id){
-        $seller = Seller::find($id);
+    public function seller_details(Request $request,$id){
+        $seller = Seller::find($request->id);
 
         return view('front.seller-details',compact(['seller']));
     }
 
-    public function seller_product_list($id = 0){
+    public function seller_product_list(Request $request, $id = 0){
         if($id == 0){
             $products = Product::where('product_type','seller')->paginate(5);
         }else{
