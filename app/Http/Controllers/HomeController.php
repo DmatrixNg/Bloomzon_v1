@@ -230,7 +230,7 @@ class HomeController extends Controller
         if(count($products)){
             foreach($products as $product){
                 if(!in_array(strval($product),$dis)){
-                    array_push($sellers,$product->seller->id);
+                    array_push($sellers,$product->seller);
                     array_push($dis,strval($product));
                 }
             }
@@ -241,6 +241,7 @@ class HomeController extends Controller
                 }
             }
         }
+
         $max_price = $products->max('product_price');
         $brands = Brand::all();
         return view('front.shop',compact(['products','brands','categories','colors','sellers','max_price']));
