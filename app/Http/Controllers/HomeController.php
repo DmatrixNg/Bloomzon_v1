@@ -208,8 +208,8 @@ class HomeController extends Controller
         return view('front.proservices',compact(['proservices']));
     }
     public function proservice_details(Request $request,$id){
-        $proservice = Professional::find( $request->id);
-
+        $proservice = Professional::find($request->id);
+        // dd($proservice);
         return view('front.proservice-details',compact(['proservice']));
     }
 
