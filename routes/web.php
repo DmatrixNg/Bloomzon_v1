@@ -60,6 +60,8 @@ dump('done');
   // dd($first->seller);
   // $first->supermarket->user->notify(new \App\Notifications\Store($product));
 });
+Route::get('/paid', 'PaymentController@handleGatewayCallback');
+
 Route::get('manufacturer/logout', 'Web\Manufacturer\Auth\LoginController@logout')->name('logout');
 Route::redirect('/','en');
 Route::get('home/{page?}','HomeController@home')->name('home');
@@ -107,7 +109,6 @@ Route::get('/logout',function(){
 });
 Route::post('/pay', 'PaymentController@redirectToGateway')->name('pay');
 // Route::post('/order', 'PaymentController@order')->name('order');
-Route::get('/paid', 'PaymentController@handleGatewayCallback');
 Route::post('/product/reviews/add','ProductController@addReview');
 
 //gets the subcategories
