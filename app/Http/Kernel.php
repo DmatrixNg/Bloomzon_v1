@@ -69,5 +69,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'manufacturer_has_verified' => \App\Http\Middleware\ManufacturerHasVerified::class,
         'manufacturer_accept_terms_and_conditions' => \App\Http\Middleware\ManufacturerAcceptTermsAndConditions::class,
+        'check_subscription_package' => \App\Http\Middleware\CheckSubscriptionPackage::class,
     ];
 }

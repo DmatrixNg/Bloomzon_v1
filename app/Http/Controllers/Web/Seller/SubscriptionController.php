@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web\Seller;
 
+use App\Helpers\SubscriptionHelper;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,13 +41,17 @@ class SubscriptionController extends Controller
      */
     public function store(Request $request)
     {
-        
+
+        $request->validate([
+
+        ]);
 
         $seller = Auth::guard('seller')->user();
 
-        $this->seller->subscriptions->create($request->all());
+        $subscription = SubscriptionHelper::store($seller, $request);
 
         return redirect()->back();
+
     }
 
     /**

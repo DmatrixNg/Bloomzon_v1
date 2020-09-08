@@ -17,14 +17,16 @@ class CreateSubscriptionsTable extends Migration
 
             $table->id();
 
-            $table->string('package');
+            $table->string('package')->nullable();
 
-            $table->date('start_date')->nullable();
-            $table->date('end_date')->nullable();
+            $table->timestamp('start_date')->nullable();
+            $table->timestamp('end_date')->nullable();
 
-            $table->integer('duration');
+            $table->string('payment_method')->nullable();
+            $table->string('payment_ref')->nullable();
+            $table->float('amount')->nullable();
 
-            $table->string('status')->default('unapproved');
+            $table->string('status')->default('approved');
 
             $table->integer('subscriptionable_id');
             $table->string('subscriptionable_type');
