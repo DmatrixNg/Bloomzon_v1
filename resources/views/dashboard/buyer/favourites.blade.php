@@ -24,7 +24,7 @@
                                                     </div>
                                                     <div class="col-md-6 m-auto">
                                                         <p><span style="font-weight: bolder">
-                                                            <a href="{{ url('product-details/' . base64_encode($favourite->product_id->id)) }}">
+                                                            <a href="{{ url(app()->getLocale().'/product-details/' . base64_encode($favourite->product_id->id)) }}">
                                                                 {{$favourite->product_id->product_name}}
                                                             </a>
                                                         </span></p>
@@ -34,7 +34,7 @@
                                                     <div class="col-md-3 text-center">
                                                         <i class="fa fa-heart fa-2x" style="color: red"></i><br>
                                                         <button style="border-radius: 25px;" data-favourite-id="{{$favourite->id}}" type="button" id="removefv" onclick="removeFav({{$favourite->id}})" class="btn btn-info mt-3 btn-sm">Remove</button>
-                                                        <a href="{{ url('product-details/' . base64_encode($favourite->product_id->id)) }}"
+                                                        <a href="{{ url(app()->getLocale().'/product-details/' . base64_encode($favourite->product_id->id)) }}"
                                                             class="btn btn-info mt-3 btn-sm"><i class="fa fa-eye"></i>   </a>
                                                     </div>
                                                 </div>
@@ -52,7 +52,7 @@
 
                             </div>
                         </div>
-{{--         
+{{--
                 <div class="row">
                     <div class="col-md-12 text-center">
                         <h2>Saved for later</h2>
@@ -101,7 +101,7 @@
                             </div>
                         </div>
         --}}
-                        @endsection 
+                        @endsection
 @push('scripts')
 <script>
     elem = document.getElementById('removefv');
@@ -123,10 +123,10 @@ function removeFav(id){
             }
             )
 
-        }) 
+        })
     }
-    
+
     });
 }
-</script>   
+</script>
 @endpush
