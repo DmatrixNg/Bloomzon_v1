@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use phpDocumentor\Reflection\Types\This;
 
 class Seller extends Authenticatable
 {
@@ -75,6 +76,18 @@ class Seller extends Authenticatable
     public function subscriptions()
     {
         return $this->morphMany('App\Subscription', 'subscriptionable');
+    }
+
+    public function is_subscribed()
+    {
+        $my_subscription = $this->subscriptions->where('end_date', '>', now())->first();
+
+        if($my_subscription) {
+            return $my_subscription;
+        } else {
+            return null;
+        }
+
     }
 
     /**

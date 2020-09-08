@@ -13,70 +13,112 @@
             </div>
         </div>
 
-        <div class="">
-            <div class="col-md-3"></div>
-            <div class="col-md-6" style="padding: 30px;">
-                <div class="text-center align-items-center card" style="padding: 30px;">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h4>Current Package</h4>
-                        </div>
-                        <div class="col-md-6">
-                            <button class="btn" style="color: white; background-color: #02499B; border-radius: 5px;">{{ auth()->guard('seller')->user()->subscription_plan }}</button>
+        @if(auth()->guard('seller')->user()->is_subscribed())
+            <div class="">
+                <div class="col-md-3"></div>
+                <div class="col-md-6" style="padding: 30px;">
+                    <div class="text-center align-items-center card" style="padding: 30px;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>Current Package</h4>
+                            </div>
+                            <div class="col-md-6">
+                                <button class="btn text-capitalize" style="color: white; background-color: #02499B; border-radius: 5px;">{{ auth()->guard('seller')->user()->is_subscribed()->package }}</button>
+                            </div>
+
+                            <div class="col-md-6">
+                                <h4>Start Date</h4>
+                            </div>
+                            <div class="col-md-6">
+                                <button class="btn text-capitalize" style="color: white; background-color: #02499B; border-radius: 5px;">{{ auth()->guard('seller')->user()->is_subscribed()->start_date }}</button>
+                            </div>
+
+                            <div class="col-md-6">
+                                <h4>End Date</h4>
+                            </div>
+                            <div class="col-md-6">
+                                <button class="btn text-capitalize" style="color: white; background-color: #02499B; border-radius: 5px;">{{ auth()->guard('seller')->user()->is_subscribed()->end_date }}</button>
+                            </div>
                         </div>
                     </div>
-                </div>
 
+                </div>
+                <div class="col-md-3"></div>
             </div>
-            <div class="col-md-3"></div>
-        </div>
+        @else
 
-        <div class="">
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
-                <form id="sub_form" action="{{ url('seller/create_subscription') }}" method="post">
-                    @csrf
-                    <div class="row">
-                        <div class="col-md-4">
-                            <label for="renewal">Renewal Plan</label>
-                        </div>
-                        <div class="col-md-8">
-                            <select name="plan" id="sub_plan" class="form-control">
-                                <option value="basic">Basic</option>
-                                <option value="premium">Premium</option>
-                            </select>
+            <div class="">
+                <div class="col-md-3"></div>
+                <div class="col-md-6" style="padding: 30px;">
+                    <div class="text-center align-items-center card" style="padding: 30px;">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>Current Package</h4>
+                            </div>
+                            <div class="col-md-6">
+                                <button class="btn" style="color: white; background-color: #02499B; border-radius: 5px;">You are not subscribed to any package</button>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="row mt-5">
-                        <div class="col-md-4">
-                            <label for="withdraw">Payment Methods</label>
-                        </div>
-                        <div class="col-md-8">
-                            <select name="payment_method" id="payment_method" class="form-control">
-                                <option value="paypal">Paypal</option>
-                                <option value="paystack">Paystack</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <input id="payment_ref" type="hidden" name="payment_ref" value="">
-                    <input id="payment_amount" type="hidden" name="amount_paid" value="">
-                </form>
-                
-                <br>
-                <br>
-
-                <div class="text-center">
-                    <button class="btn btn-primary" onclick="pay_sub()" type="submit">Pay</button>
                 </div>
-                
-                <div class="mt-3" id="paypal-button-container"></div>
+                <div class="col-md-3"></div>
             </div>
 
-            <div class="col-md-4"></div>
+            <div class="">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <form id="sub_form" action="{{ url('seller/create_subscription') }}" method="post">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="renewal">Renewal Plan</label>
+                            </div>
+                            <div class="col-md-8">
+                                <select name="package" id="package" class="form-control">
+                                    <option value="basic">Basic</option>
+                                    <option value="premium">Premium</option>
+                                </select>
+                            </div>
+                        </div>
 
-        </div>
+                        <div class="row mt-5">
+                            <div class="col-md-4">
+                                <label for="withdraw">Payment Methods</label>
+                            </div>
+                            <div class="col-md-8">
+                                <select name="payment_method" id="payment_method" class="form-control">
+                                    <option value="paypal">Paypal</option>
+                                    <option value="paystack">Paystack</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <input id="payment_ref" type="hidden" name="payment_ref" value="">
+                        <input id="amount" type="hidden" name="amount" value="">
+
+                        <br>
+                        <br>
+
+                        
+                    </form>
+
+                        <div class="text-center">
+                            <button class="btn btn-primary" onclick="pay_sub()" type="submit">Pay</button>
+                        </div>
+                    
+                    
+                    <div class="mt-3" id="paypal-button-container"></div>
+                </div>
+
+                <div class="col-md-4"></div>
+
+            </div>
+        @endif
+
+        
+
+        
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
@@ -109,8 +151,8 @@
 
         var price = 0
 
-        var plan = $('#sub_plan').val()
-        var duration = $('#sub_duration').val()
+        var plan = $('#package').val()
+        // var duration = $('#sub_duration').val()
 
         if(plan == 'basic') {
             price = 5000
@@ -162,7 +204,7 @@
 
     function payment_callback(amount, reference) {
         $('#payment_ref').val(reference);
-        $('#payment_amount').val(amount);
+        $('#amount').val(amount);
         $('#sub_form').submit();
     }
 
