@@ -225,10 +225,11 @@ public function redirectToGateway()
     }
 
 
-    public function trackDelivery($id = null){
-
-        if(isset($id) && $id != null){
-            $delivery = OrderDetail::where('order_id',$id)->get();
+    public function trackDelivery(Request $request,$id = null){
+// dd($request->id);
+  $id = $request->id;
+        if(isset($request->id) && $request->id != null){
+            $delivery = OrderDetail::where('order_id',$request->id)->get();
 
             if(count($delivery)){
                 return view('front.track-delivery',compact(['delivery']));
