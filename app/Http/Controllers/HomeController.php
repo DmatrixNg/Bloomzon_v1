@@ -174,10 +174,10 @@ class HomeController extends Controller
     }
 
     public function seller_product_list(Request $request, $id = 0){
-        if($id == 0){
+        if($request->id == 0){
             $products = Product::where('product_type','seller')->paginate(5);
         }else{
-            $products = Product::where('seller_id',$id)->where('product_type','seller')->paginate(5);
+            $products = Product::where('seller_id',$request->id)->where('product_type','seller')->paginate(5);
         }
         //get sellers of product in distinct
         $dis = array();
@@ -191,7 +191,7 @@ class HomeController extends Controller
                 }
         }}
         $brands = [];
-        $seller = Seller::find($id);
+        $seller = Seller::find($request->id);
         $max_price = $products->max('product_price');
         $page_title = $seller->company_name;
         return view('front.seller-products',compact(['max_price','products','brands','colors','page_title']));
@@ -207,8 +207,8 @@ class HomeController extends Controller
         $proservices = Professional::where('profession','like','%fashion%')->get();
         return view('front.proservices',compact(['proservices']));
     }
-    public function proservice_details($id){
-        $proservice = Professional::find($id);
+    public function proservice_details(Request $request,$id){
+        $proservice = Professional::find( $request->id);
 
         return view('front.proservice-details',compact(['proservice']));
     }
