@@ -56,7 +56,9 @@ class HomeController extends Controller
         }
         return view('front.'.$request->page);
     }
+
     public function show_category(Request $request,$name, $subname = ''){
+
         $products = null;
         $cat = null;
         // dd($request->name);
@@ -127,9 +129,11 @@ class HomeController extends Controller
         return view('front.fast-food-grocery',compact(['fast_foods']));
     }
 
+
     public function vendor_food_list(Request $request,$id = 0){
       // dd($request->id);
         if($request->id == 0){
+
             $products = Product::where('product_type','fast_food_grocery')->paginate(10);
         }else{
             $products = Product::where('seller_id',$request->id)->where('product_type','fast_food_grocery')->paginate(10);
@@ -150,6 +154,7 @@ class HomeController extends Controller
 
         return view('front.networkingagent-details',compact(['agent']));
     }
+
 
     public function groceries(){
         $fast_foods = FastFoodGrocery::all();

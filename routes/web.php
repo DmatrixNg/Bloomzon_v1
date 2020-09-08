@@ -146,10 +146,12 @@ Route::group(['prefix' => '{lang}'], function () {
   //paystack
 
 
+  Route::get('/food-menus','HomeController@food_menus')->name('food-menus');
   Route::get('/fast-foods','HomeController@fast_foods')->name('fast-foods');
+  Route::get('/groceries','HomeController@groceries')->name('groceries');
   Route::get('/vendor-food-list/{id?}','HomeController@vendor_food_list');
   Route::get('/fast-food-details/{id}','HomeController@fast_food_details')->name('fast-food-details');
-  Route::get('/groceries','HomeController@groceries')->name("groceries");
+//   Route::get('/groceries','HomeController@groceries')->name("groceries");
 
   // Route::get('/manufacturers','HomeController@manufacturers')->name('manufacturers');
   Route::get('/sellers','HomeController@sellers')->name('sellers');
@@ -793,9 +795,29 @@ Route::prefix('/seller')->name('seller.')->namespace('Web\Seller')->group(functi
         Route::get('/password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
         Route::post('/password/reset', 'ResetPasswordController@reset')->name('password.update');
     });
-
+    
     // all seller protected routes, user must be login as seller to access these routes
     Route::middleware('auth:seller')->group(function () {
+
+        // routes that only basic subscription sellers can access
+        Route::middleware(['check_subscription_package:seller,basic'])->group(function () {
+
+        });
+
+
+        // routes that only premium subscription sellers can access
+        Route::middleware(['check_subscription_package:seller,premium'])->group(function () {
+
+            // message
+            Route::get('messages', 'MessageController@messages')->name('messages');
+            Route::get('create_message','MessageController@create_message');
+            Route::post('store_message','MessageController@store_message');
+            Route::post('/all_messages', 'MessageController@all_messages');
+            Route::post('/reply/{message_id}', 'MessageController@reply');
+            Route::get('/message_replies/{message_id}', 'MessageController@get_replies');
+            
+        });
+
         // index dashboard
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
@@ -844,13 +866,7 @@ Route::prefix('/seller')->name('seller.')->namespace('Web\Seller')->group(functi
 
         // Route::post('contact-admin', 'DashboardController@contactAdmin');
 
-        // message
-        Route::get('messages', 'MessageController@messages')->name('messages');
-        Route::get('create_message','MessageController@create_message');
-        Route::post('store_message','MessageController@store_message');
-        Route::post('/all_messages', 'MessageController@all_messages');
-        Route::post('/reply/{message_id}', 'MessageController@reply');
-        Route::get('/message_replies/{message_id}', 'MessageController@get_replies');
+        
 
         Route::get('/subscription', 'SubscriptionController@index');
         Route::post('/create_subscription', 'SubscriptionController@store');
@@ -865,10 +881,10 @@ Route::prefix('/seller')->name('seller.')->namespace('Web\Seller')->group(functi
         Route::get('notification/{id}','DashboardController@notification');
 
 
-         Route::get('all-coupons','CouponController@index')->name('all-coupons');
-         Route::get('create-coupon','CouponController@create')->name('create-coupon');
-         Route::post('store-coupon','CouponController@store')->name('store-coupon');
-         Route::post('change-coupon-status/{id}','CouponController@changeStatus');
+        Route::get('all-coupons','CouponController@index')->name('all-coupons');
+        Route::get('create-coupon','CouponController@create')->name('create-coupon');
+        Route::post('store-coupon','CouponController@store')->name('store-coupon');
+        Route::post('change-coupon-status/{id}','CouponController@changeStatus');
 
         // ADD PRODUCT
         Route::get('add-new-product', 'ProductController@create')->name('add-new-product');
@@ -888,6 +904,7 @@ Route::prefix('/seller')->name('seller.')->namespace('Web\Seller')->group(functi
         $seller = Auth::guard('seller')->user();
         return view('dashboard.seller.accountupgrade', compact(['seller']));
     });
+
     // Route::get('promotion', function () {
     //     $seller = Auth::guard('seller')->user();
     //     return view('dashboard.seller.promotion', compact(['seller']));
