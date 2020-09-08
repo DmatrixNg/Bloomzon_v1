@@ -1,6 +1,7 @@
 
 <?php $__env->startSection('page_title'); ?>
-    Account Policy
+    <?php echo e(__("Account Policy")); ?>
+
 <?php $__env->stopSection(); ?>
 
 
@@ -8,7 +9,7 @@
 
 <div class="card container my-5 py-5 z-depth-1">
 
-	<h2 class="text-center">Account Policy</h2>
+	<h2 class="text-center"><?php echo e(__("Account Policy")); ?></h2>
 
 	<br>
 
@@ -34,4 +35,5 @@
 
 </div>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.front', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\Bloomzon_v1\resources\views/front/accountpolicy.blade.php ENDPATH**/ ?>

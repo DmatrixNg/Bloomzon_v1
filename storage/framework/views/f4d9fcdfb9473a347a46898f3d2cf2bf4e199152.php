@@ -92,9 +92,9 @@
     									<ul>
     										<li><a href="#" class="btn pt-0 pb-0 text-light" style="background-color: #aa1607 !important; ">Help <i class="fa fa-angle-down"></i></a>
     											<ul>
-    							                  <li><a href="faq.html"> <?php echo e(__("FAQ")); ?></a></li>
-    							                  <li><a href="accountpolicy.html"><?php echo e(__("Account Policy")); ?></a></li>
-    							                  <li><a href="services.html"><?php echo e(__("Services")); ?></a></li>
+    							                  <li><a href="<?php echo e(route('home','faq')); ?>"> <?php echo e(__("FAQ")); ?></a></li>
+    							                  <li><a href="<?php echo e(route('home','accountpolicy')); ?>"><?php echo e(__("Account Policy")); ?></a></li>
+    							                  <li><a href="<?php echo e(route('home','services')); ?>"><?php echo e(__("Services")); ?></a></li>
     							                </ul>
     										</li>
     									</ul>

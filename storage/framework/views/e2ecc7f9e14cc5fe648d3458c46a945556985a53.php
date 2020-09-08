@@ -181,7 +181,7 @@
                                         <div class="slick-list draggable">
                                             <div class="slick-track"
                                                 style="opacity: 1; width: 420px; transform: translate3d(0px, 0px, 0px);">
-                                                <?php $__currentLoopData = $manufacturers->take(6); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $manufacturer): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php $__currentLoopData = $manufacturers->take(9); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $manufacturer): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
                                                     <div class="col-lg-4 p-1 slick-slide slick-current slick-active"
                                                         data-slick-index="0" aria-hidden="false" tabindex="0"

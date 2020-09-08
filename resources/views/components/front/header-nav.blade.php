@@ -91,9 +91,9 @@
     									<ul>
     										<li><a href="#" class="btn pt-0 pb-0 text-light" style="background-color: #aa1607 !important; ">Help <i class="fa fa-angle-down"></i></a>
     											<ul>
-    							                  <li><a href="faq.html"> {{ __("FAQ")}}</a></li>
-    							                  <li><a href="accountpolicy.html">{{ __("Account Policy")}}</a></li>
-    							                  <li><a href="services.html">{{ __("Services")}}</a></li>
+    							                  <li><a href="{{route('home','faq')}}"> {{ __("FAQ")}}</a></li>
+    							                  <li><a href="{{route('home','accountpolicy')}}">{{ __("Account Policy")}}</a></li>
+    							                  <li><a href="{{ route('home','services')}}">{{ __("Services")}}</a></li>
     							                </ul>
     										</li>
     									</ul>
