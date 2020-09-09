@@ -74,11 +74,11 @@
 			max-height: 220px !important
 		}
 
-        /* @media (max-width: 100px) {
+        @media (max-width: 994px) {
             .menu-hider {
                 display: none !important;
             }
-        } */
+        }
 	</style>
 </head>
 

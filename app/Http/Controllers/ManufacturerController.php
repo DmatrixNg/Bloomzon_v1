@@ -16,16 +16,16 @@ class ManufacturerController extends Controller
         ]);
     }
 
-    public function show($id)
+    public function show(Request $request,$id)
     {
 
-        $manufacturer = Manufacturer::findOrFail($id);
-        $products = Product::where('seller_id', $id)->where('product_type', 'manufacturer')->get();
-        
+        $manufacturer = Manufacturer::findOrFail($request->id);
+        $products = Product::where('seller_id', $request->id)->where('product_type', 'manufacturer')->get();
+
         return view('front.manufacturer-details', [
             'manufacturer' => $manufacturer,
             'products'     => $products,
         ]);
     }
-    
+
 }

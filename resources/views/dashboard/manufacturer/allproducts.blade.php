@@ -32,7 +32,7 @@
                     </div>
                     <div class="col-md-4 text-right m-auto">
                         <p style="color: grey">13/04/2020</p>
-                    <a href="{{url('product-details/'.base64_encode($product->id))}}" target="_blank" class="btn" style="background-color: #AF2E1D; border-radius: 5px; width: 130px; color: white;margin-top:2px">View Details</a>
+                    <a href="{{url(app()->getLocale().'/product-details/'.base64_encode($product->id))}}" target="_blank" class="btn" style="background-color: #AF2E1D; border-radius: 5px; width: 130px; color: white;margin-top:2px">View Details</a>
                     <a href="{{route('seller.edit-product',$product->id)}}" target="_blank" class="btn" style="background-color: #AF2E1D; border-radius: 5px; width: 130px; color: white; margin-top:2px">Edit</a>
                         <a  class="btn" style="background-color: #AF2E1D; border-radius: 5px; width: 130px; color: white; margin-top:2px" onclick="deleteProd(this,{{$product->id}})">Delete</a>
 
@@ -64,7 +64,7 @@
                             (res) => {
                                 console.log(res)
                                 if(res.success){
-                                    
+
                                     return swal("Product deleted").then(window.location.reload())
                                 }
                             }

@@ -35,8 +35,8 @@ class DashboardController extends Controller
         $id = $this->fast_food_grocery->id;
         $catalogues = FoodCatalogue::all();
 
-        $orders = $this->seller->order_details()->where('order_type','fast_food_grocery')->get();
-        $sales =  $this->seller->order_details()->where('status','delivered')->where('order_type','fast_food_grocery')->get();
+        $orders = $this->fast_food_grocery->order_details()->get();
+        $sales =  $this->fast_food_grocery->order_details()->where('status','delivered')->get();
         return view('dashboard.fast_food_grocery.home',compact(['orders','sales','catalogues']));
     }
 

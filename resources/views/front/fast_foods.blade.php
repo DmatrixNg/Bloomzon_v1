@@ -1,13 +1,13 @@
 @extends('layouts.front')
 @section('page_title')
-    Category - 
+    Category -
 @endsection
 @section('content')
 
   <!--products-area start-->
 	<div class="shop-area">
 		<div class="container">
-        <p class="text-left"><a href="index.html">Home</a> <i class="fa fa-chevron-right"></i> <a style="color:grey;" href="categories.html">{{$page_title}}</a></p>
+        <p class="text-left"><a href="{{url('/')}}">Home</a> <i class="fa fa-chevron-right"></i> <a style="color:grey;" href="categories.html">{{$page_title}}</a></p>
 		    <h3>{{$page_title}} </h3>
 			<div class="row mt-3">
 				<div class="col-md-9">
@@ -19,7 +19,7 @@
                                     <div class="col-xl-3 col-md-4 col-sm-6">
                                         <div class="product-single">
                                             <div class="product-thumb">
-                                               
+
                                                 <a href="#">
                                                     @if($product->avatars != null)
                                                     <img style="min-height: 150px" src="{{asset('storage/assets/product/avatars/'.$product->avatars[0]??'') }}" alt="">
@@ -34,7 +34,7 @@
                                                 <div class="product-quick-view">
                                                     {{-- <div class="row">
                                                         <div class="col-md-4 p-0"><a
-                                                        href="{{url('product-details/'.base64_encode($product->id))}}"
+                                                        href="{{url(app()->getLocale().'/product-details/'.base64_encode($product->id))}}"
                                                                 class="btn btn-success"><i
                                                                     class="fa fa-eye"></i></a></div>
                                                         <div class="col-md-4 p-0"><a href="javascript:void(0);"
@@ -45,7 +45,7 @@
                                                         </div>
                                                     </div> --}}
                                                 <x-product-buttons aria-label="{{$product->id}}" aria-labelledby="{{$product->id}}" :product="$product"/>
-                                                
+
 
                                                 </div>
                                             </div>
@@ -70,7 +70,7 @@
                                 @endif
                             @endforeach
 
-								
+
 
 							</div>
 						</div>
@@ -100,7 +100,7 @@
 		</div>
 	</div>
 	<!--products-area end-->
-	
+
 @endsection
 
     @push('scripts')
@@ -130,4 +130,3 @@
             })
         </script>
     @endpush
-

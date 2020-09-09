@@ -8,6 +8,7 @@ Manufacturer
     @endsection
 @section('content')
 <!--products-area start-->
+
 <div class="mm-page mm-slideout" id="mm-0"><div class="product-details-area mt-20">
     <div class="container-fluid">
         <div class="product-details">
@@ -22,6 +23,7 @@ Manufacturer
                         </div>
                     </div>
                 </div>
+
                 <div class="col-lg-4 mt-sm-50">
                     <div class="product-details-desc">
                         <h3><small>NAMES:</small> <span class="pl-5">{{ $manufacturer->company_name}}</span></h3>
@@ -80,6 +82,9 @@ Manufacturer
                                     <div class="row four-items cv-visible">
 
                                         @foreach($products as $product)
+                                          @php
+                                            // dd($product->avatars[0] ?? 'avatar.png')
+                                          @endphp
                                             <div class="col-lg-3">
                                                 <div class="product-single">
                                                     <div class="product-title">
@@ -87,7 +92,7 @@ Manufacturer
                                                         <h4><a href="#">{{ $product->product_name }}</a></h4>
                                                     </div>
                                                     <div class="product-thumb">
-                                                        <a href="#"><img src="{{asset('storage/assets/product/avatars/'.$product->avatars[0] ?? 'avatar.png') }}" alt="" /></a>
+                                                        <a href="#"><img src="{{asset('storage/assets/product/avatars/'.@$product->avatars[0] ?? 'avatar.png') }}" alt="" /></a>
                                                         <div class="downsale"><span>-</span>${{$product->product_price - $product->product_sales_price}}</div>
                                                         <div class="product-quick-view d-none">
                                                             <a href="javascript:void(0);" data-toggle="modal" data-target="#quick-view" tabindex="0">quick view</a>
@@ -116,7 +121,7 @@ Manufacturer
                                                 </div>
                                             </div>
                                         @endforeach
-                                        
+
                                     </div>
                                     <div class="text-center"><button class="btn btn-danger">View More</button></div>
                                 </div>
@@ -218,9 +223,9 @@ Manufacturer
             </div>
         </div>
         <div class="popup-messages" id="popup_box">
-            
+
         <div class="direct-chat-messages" id="new_chat_form" >
-            
+
             <div class="chat-box-single-line">
                 <abbr class="timestamp">Continue Previous Chat</abbr>
             </div>
@@ -239,10 +244,10 @@ Manufacturer
                         <button type="submit" class="btn btn-primary" id="send_message_btn" style="margin-top: 26px;">Start Chat</button>
                     </div>
                 </div>
-                
-                
+
+
             </form>
-                
+
             <div class="chat-box-single-line" style="clear: left">
                 <abbr class="timestamp">Start New Chat</abbr>
             </div>
@@ -286,7 +291,7 @@ Manufacturer
                     <small id="error_mcb_customer_address" class="text-danger"></small>
                 </div>
 
-                
+
 
                 <div class="form-group">
                     <label for="message">Message</label>
@@ -295,9 +300,9 @@ Manufacturer
                 </div>
                 <button type="submit" class="btn btn-primary" id="send_message_btn">Send</button>
             </form>
-                
+
         </div>
-            
+
             <div class="direct-chat-messages" style="display: none;" id="chat_msg">
 
                 <div id="chat_timeline" >
@@ -305,7 +310,7 @@ Manufacturer
                 </div>
                 <br/>
                 <br/>
-                    
+
             </div>
 
         </div>
@@ -324,7 +329,7 @@ Manufacturer
             $("#addClass").click(function () {
                 $('#qnimate').addClass('popup-box-on');
             });
-                    
+
             $("#removeClass").click(function () {
                 $('#qnimate').removeClass('popup-box-on');
             });
@@ -379,7 +384,7 @@ Manufacturer
 
                 // check if the error is form data validation error
                 if(response_errors.responseJSON.message === "The given data was invalid.") {
-                
+
                 // get all the form validation errors
                 const errors = response_errors.responseJSON.errors;
 
@@ -392,7 +397,7 @@ Manufacturer
                 }
 
                 }
-                
+
             }
             })
             .done(function (response) {
@@ -413,7 +418,7 @@ Manufacturer
                 // enable the submite button
                 // disable the submit button so that user can not submite form more than once
                 $("#send_message_btn").attr("disabled", false);
-                
+
             })
         }
 
@@ -433,7 +438,7 @@ Manufacturer
 
             // collect the data in the form
             var form = new FormData();
-            
+
             form.append("customer_email", $('#email').val());
             form.append("customer_full_name", $('#full_name').val());
             form.append("customer_phone_number", $('#phone_number').val());
@@ -462,7 +467,7 @@ Manufacturer
 
                 // check if the error is form data validation error
                 if(response_errors.responseJSON.message === "The given data was invalid.") {
-                
+
                 // get all the form validation errors
                 const errors = response_errors.responseJSON.errors;
 
@@ -475,7 +480,7 @@ Manufacturer
                 }
 
                 }
-                
+
             }
             })
             .done(function (response) {
@@ -535,7 +540,7 @@ Manufacturer
 
                 // check if the error is form data validation error
                 if(response_errors.responseJSON.message === "The given data was invalid.") {
-                
+
                 // get all the form validation errors
                 const errors = response_errors.responseJSON.errors;
 
@@ -548,7 +553,7 @@ Manufacturer
                 }
 
                 }
-                
+
             }
             })
             .done(function (response) {
@@ -587,7 +592,7 @@ Manufacturer
                 // enable the submite button
                 // disable the submit button so that user can not submite form more than once
                 $("#send_message_btn").attr("disabled", false);
-                
+
             })
         }
 
@@ -632,7 +637,7 @@ Manufacturer
                     $("#chat_timeline").prepend(chatHTML);
 
                 }
-                
+
             });
         }
 

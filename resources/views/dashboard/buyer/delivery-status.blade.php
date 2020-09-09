@@ -35,6 +35,7 @@
 
                     <div class="col-md-6 mb-2">
                         @foreach($all_products as $order)
+                        
                             @if($order->status === 'delivered')
                                 <div class="p-4" style="background-color: white !important; padding: 20px; width: 100%; height: 100%;">
                                     <div class="col-md-3 pl-0">
@@ -47,7 +48,7 @@
                                     </div>
                                     <div class="col-md-5">
                                     <span class="badge bg-success">{{$order->shopper_status}}</span>
-                                        <p><span>Billing Address: {{$order->buyer_id->billing_address}}</span> </p>
+                                        <p><span>Billing Address: {{$order->order->billing_address}}</span> </p>
                                         <p><span>Amount: {{number_format($order->product->product_sales_price)}} </span> </p>
                                         <p><span>Delivery Agent: {{$order->delivery_agent_id}} </span></p>
                                     </div>
