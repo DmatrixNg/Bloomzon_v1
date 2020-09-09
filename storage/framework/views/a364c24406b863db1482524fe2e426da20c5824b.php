@@ -334,6 +334,7 @@ data-namespace="paypal_sdk">
     var url = '';
     //WHEN PLACE ORDER BUTTON IS PRESSED
     place_order.onclick = function() {
+      // console.log(validateInputs());
       if (validateInputs() == 'valid') { //Validate to check all  inout are correct
         var names = document.getElementById('full_name', 2).value.split(' ');
         var first_name = names[0]
@@ -365,7 +366,7 @@ data-namespace="paypal_sdk">
               ref.value = res.reference
               payment_stat.value = 1;
               pgateway.value = 'paystack'
-              document.getElementById('pay').click();
+              // document.getElementById('pay').click();
             }
           })
 
@@ -387,14 +388,15 @@ data-namespace="paypal_sdk">
         else if (document.getElementById('pay_on_delivery').checked) {
           payment_stat.value = 0;
           pgateway.value = 'pay_on_delivery'
-          document.getElementById('pay').click();
+          // document.getElementById('pay').click();
         }
-        else if ($("input[name='card']:checked")) {
+        else if ($("input[name='card']").is('checked')) {
+          // console.log($("input[name='card']").is('checked'));
           // console.log($("input[name='card']:checked").val());
           payment_stat.value = 0;
           pgateway.value = 'card'
           $("#card_detail").val($("input[name='card']:checked").val())
-          document.getElementById('pay').click();
+          // document.getElementById('pay').click();
         }
          else {
           return swal("Please select payment method")
@@ -519,9 +521,9 @@ data-namespace="paypal_sdk">
         let point = a(this).val()
 
         switchStatus = $(this).is(':checked');
-        console.log(newtotal);
+        // console.log(newtotal);
         var newtotal = Number(total) - Number(point)
-        a('#totalDisplay').html("$"+ Number(newtotal))
+        a('#totalDisplay').html("$"+ curency_format(newtotal))
         a('#with').val("point")
 
         getConversion(Number(newtotal))
@@ -532,8 +534,8 @@ data-namespace="paypal_sdk">
         let total = a('#cart-total').val()
 
         switchStatus = a(this).is(':checked');
-        a('#totalDisplay').html("$"+total)
-        getConversion(total)
+        a('#totalDisplay').html("$"+curency_format(total))
+        getConversion(Number(total))
 
 
 
@@ -556,7 +558,7 @@ data-namespace="paypal_sdk">
               var key = Object.keys(data[i].currency)
                 convertions.append('<option id=' + i + ' value=' + data[i][0].amount + '> '+ data[i]['currency'][key].prefix +" " + curency_format(data[i][0].amount) + '</option>');
                 if (Object.keys(data[i].currency) == "NGN") {
-                  console.log('here');
+                  // console.log('here');
                   a("#naira_price").val(data[i][0].amount)
                 }
             }
