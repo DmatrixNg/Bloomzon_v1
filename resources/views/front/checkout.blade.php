@@ -516,14 +516,14 @@ data-namespace="paypal_sdk">
         return swal("Invalid coupon code added")
       })
     }
-    $("#point").on('change', function() {
-      if ($(this).is(':checked')) {
+    a("#point").on('change', function() {
+      if (a(this).is(':checked')) {
         // const subtotal = $('#checkout_subtotal').html();
         let total = a('#cart-total').val()
         let point = a(this).val()
 
         switchStatus = $(this).is(':checked');
-        newtotal = total - point
+        var newtotal = total - point
         console.log(newtotal);
         a('#totalDisplay').html("$"+newtotal)
         a('#with').val("point")
@@ -533,10 +533,10 @@ data-namespace="paypal_sdk">
 
       }
       else {
-        let total = $('#cart-total').val()
+        let total = a('#cart-total').val()
 
-        switchStatus = $(this).is(':checked');
-        $('#totalDisplay').html("$"+total)
+        switchStatus = a(this).is(':checked');
+        a('#totalDisplay').html("$"+total)
         getConversion(total)
 
 
@@ -544,7 +544,7 @@ data-namespace="paypal_sdk">
       }
     });
     function getConversion(total) {
-      $.ajax({
+      a.ajax({
         type: 'get',
         url: "{{ url('/convert/') }}/"+total,
         dataType: 'json',
@@ -554,14 +554,14 @@ data-namespace="paypal_sdk">
           // console.log(data[1]);
 
           if(Object.keys(data[0]).length != 0) {
-            var convertions = $('#convertions');
+            var convertions = a('#convertions');
             convertions.empty();
             for (var i = 0; i < data.length; i++) {
               var key = Object.keys(data[i].currency)
                 convertions.append('<option id=' + i + ' value=' + data[i][0].amount + '> '+ data[i]['currency'][key].prefix +" " + curency_format(data[i][0].amount) + '</option>');
                 if (Object.keys(data[i].currency) == "NGN") {
                   console.log('here');
-                  $("#naira_price").val(data[i][0].amount)
+                  a("#naira_price").val(data[i][0].amount)
                 }
             }
           }
