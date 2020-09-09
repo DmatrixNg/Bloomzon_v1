@@ -366,7 +366,7 @@ data-namespace="paypal_sdk">
               ref.value = res.reference
               payment_stat.value = 1;
               pgateway.value = 'paystack'
-              // document.getElementById('pay').click();
+              document.getElementById('pay').click();
             }
           })
 
@@ -388,7 +388,7 @@ data-namespace="paypal_sdk">
         else if (document.getElementById('pay_on_delivery').checked) {
           payment_stat.value = 0;
           pgateway.value = 'pay_on_delivery'
-          // document.getElementById('pay').click();
+          document.getElementById('pay').click();
         }
         else if ($("input[name='card']").is('checked')) {
           // console.log($("input[name='card']").is('checked'));
@@ -396,7 +396,7 @@ data-namespace="paypal_sdk">
           payment_stat.value = 0;
           pgateway.value = 'card'
           $("#card_detail").val($("input[name='card']:checked").val())
-          // document.getElementById('pay').click();
+          document.getElementById('pay').click();
         }
          else {
           return swal("Please select payment method")

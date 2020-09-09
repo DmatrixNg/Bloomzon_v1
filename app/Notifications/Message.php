@@ -61,7 +61,7 @@ class Message extends Notification
       return [
           'type' => 'message',
           'data' => $this->message,
-          'message' => $this->user->fullname." Sent you a message",
+          'message' => $this->user->full_name." Sent you a message",
       ];
   }
 }

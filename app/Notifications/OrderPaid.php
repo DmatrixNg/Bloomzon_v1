@@ -30,7 +30,7 @@ class OrderPaid extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail','database'];
+        return ['database'];
     }
 
     /**
@@ -62,7 +62,7 @@ class OrderPaid extends Notification
       return [
           'type' => 'order',
           'data' => $this->order,
-          'message' => 'Your Order with ID: '.$this->order->pickup_code." was Successful",
+          'message' => 'Your Order with ID: '.$this->order->id." was Successful",
       ];
     }
 }

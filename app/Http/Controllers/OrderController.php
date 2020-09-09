@@ -162,7 +162,7 @@ public function redirectToGateway()
                 'status' => $paymentstatus,
                 'pickup_id'=>  $pickup_id
             ]);
-            // $buyer->notify(new \App\Notifications\OrderPaid($order));
+            $buyer->notify(new \App\Notifications\OrderPaid($order));
 
             if($request->payment_status == 1){
                 $buyer->save();
