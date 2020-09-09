@@ -52,14 +52,14 @@
         <div class="row">
             <div class="col-lg-12">
                 <ul class="nav nav-tabs product-review-nav">
-                   
+
                     <li><a class="" data-toggle="tab" href="#termscond">Terms &amp; Conditions</a></li>
                     <li><a data-toggle="tab" href="#deliverymet">Delivery Method</a></li>
                     <li><a data-toggle="tab" href="#availables">Products</a></li>
                     <li><a data-toggle="tab" href="#reviews">Review ({{count($seller->reviews)}})</a></li>
                 </ul>
                 <div class="tab-content">
-                  
+
                     <div id="termscond" class="tab-pane fade active termscond">
                         <div class="product-description">
                             <h2>Terms &amp; Conditions</h2>
@@ -81,7 +81,7 @@
                                     <div class="col-lg-3">
                                         <div class="product-single">
                                             <div class="product-thumb">
-                                               
+
                                                 <a href="#">
                                                     @if($product->avatars != null)
                                                     <img src="{{asset('storage/assets/product/avatars/'.$product->avatars[0]??'') }}" alt="">
@@ -107,7 +107,7 @@
                                                         </div>
                                                     </div> --}}
                                                 <x-product-buttons aria-label="{{$product->id}}" aria-labelledby="{{$product->id}}" :product="$product"/>
-                                                
+
 
                                                 </div>
                                             </div>
@@ -136,7 +136,7 @@
                                     </div>
                                     @endif
                                 </div>
-                                <div class="text-center"><a href="{{url('/seller-product-list/'.$seller->id)}}" class="btn btn-danger">View More</a></div>
+                                <div class="text-center"><a href="{{url(app()->getLocale().'/seller-product-list/'.$seller->id)}}" class="btn btn-danger">View More</a></div>
                             </div>
                         </div>
                     </div>
@@ -164,7 +164,7 @@
                                 </li>
                                 @endforeach
                                 @endif
-                               
+
                             </ul>
                         </div>
                         <div class="blog-comment-form product-comment-form mt-05">
@@ -232,7 +232,7 @@
     var element = document.getElementById('cart');
         element.onclick = async e => {
             e.preventDefault();
-            
+
             const productId = e.target.getAttribute('data-product-id');
             const quantity = document.getElementById(`qty_${productId}`).value;
             try{
@@ -259,9 +259,9 @@
             catch(e){
                 console.log(e)
             }
-           
+
         }
-           
+
 
     function rate(rate) {
         var s1 = document.getElementById('star1')

@@ -129,9 +129,9 @@
                                         <h3 class="testimonial_heading font-weight-bold">{{ $seller->company_name }}</h3>
                                         <p class="testimonial_heading2">{{ $seller->full_name }}</p>
                                         <p class="testimonial_heading2">{{ $seller->shop_address }}</p>
-                                        <a href="{{ url('/seller-product-list/' . $seller->id) }}"
+                                        <a href="{{ url(app()->getLocale().'/seller-product-list/' . $seller->id) }}"
                                             class="btn btn-danger border-0 h2">View Products</a>
-                                        <a href="{{ url('/seller-details/' . $seller->id) }}"
+                                        <a href="{{ url(app()->getLocale().'/seller-details/' . $seller->id) }}"
                                             class="btn btn-primary border-0 h2">View Store</a>
                                     </div>
                                     <br>
@@ -150,7 +150,7 @@
             @endif
 
             @if (!count($ffgs))
-            
+
             @if (isset($_GET['category']) && $_GET['category'] == 'fast_food_grocery')
             <div class="alert alert-warning">No Result</div>
             @endif
@@ -178,9 +178,9 @@
                                         <h3 class="testimonial_heading font-weight-bold">{{ $ffg->company_name }}</h3>
                                         <p class="testimonial_heading2">{{ $ffg->full_name }}</p>
                                         <p class="testimonial_heading2">{{ $ffg->shop_address }}</p>
-                                        <a href="{{ url('/fast-food-details/' . $ffg->id) }}"
+                                        <a href="{{ url(app()->getLocale().'/fast-food-details/' . $ffg->id) }}"
                                             class="btn btn-primary border-0 h2">View Profile</a>
-                                        <a href="{{ url('/vendor-food-list/' . $ffg->id) }}"
+                                        <a href="{{ url(app()->getLocale().'/vendor-food-list/' . $ffg->id) }}"
                                             class="btn btn-danger border-0 h2">View Products</a>
                                     </div>
                                     <br>
@@ -190,7 +190,7 @@
                             </div>
                         </div>
                     @endforeach
-                    
+
                 </div>
                 @endif
 
@@ -222,7 +222,7 @@
                                         </h3>
                                         <p class="testimonial_heading2">{{ $proservice->full_name }}</p>
                                         <p class="testimonial_heading2">{{ $proservice->shop_address }}</p>
-                                        <a href="{{ url('/proservice-details/' . $proservice->id) }}"
+                                        <a href="{{ url(app()->getLocale().'/proservice-details/' . $proservice->id) }}"
                                             class="btn btn-outline-primary">View Services</a>
 
                                     </div>
@@ -233,7 +233,7 @@
                             </div>
                         </div>
                     @endforeach
-                    
+
                 </div>
                 @endif
 
@@ -268,7 +268,7 @@
                                         <h3 class="testimonial_heading font-weight-bold">{{ ucwords($agent->full_name) }}
                                         </h3>
                                         <p class="testimonial_heading2">{{ $agent->street_address }}</p>
-                                        <a href="{{ url('/networkingagent-details/' . $agent->id) }}"
+                                        <a href="{{ url(app()->getLocale().'/networkingagent-details/' . $agent->id) }}"
                                             class="btn btn-outline-primary">View Services</a>
 
                                     </div>

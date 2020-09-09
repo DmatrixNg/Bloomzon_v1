@@ -122,7 +122,7 @@ class DashboardController extends Controller
 
     public function notification($id){
         $id = base64_decode($id);
-        $notifications = $this->buyer->notifications;
+        $notifications = $this->buyer->notifications()->latest()->paginate(8);
 
         return view('dashboard.buyer.notifications',compact(['notifications']));
     }

@@ -92,9 +92,9 @@
     									<ul>
     										<li><a href="#" class="btn pt-0 pb-0 text-light" style="background-color: #aa1607 !important; ">Help <i class="fa fa-angle-down"></i></a>
     											<ul>
-    							                  <li><a href="faq.html"> <?php echo e(__("FAQ")); ?></a></li>
-    							                  <li><a href="accountpolicy.html"><?php echo e(__("Account Policy")); ?></a></li>
-    							                  <li><a href="services.html"><?php echo e(__("Services")); ?></a></li>
+    							                  <li><a href="<?php echo e(route('home','faq')); ?>"> <?php echo e(__("FAQ")); ?></a></li>
+    							                  <li><a href="<?php echo e(route('home','accountpolicy')); ?>"><?php echo e(__("Account Policy")); ?></a></li>
+    							                  <li><a href="<?php echo e(route('home','services')); ?>"><?php echo e(__("Services")); ?></a></li>
     							                </ul>
     										</li>
     									</ul>
@@ -291,19 +291,75 @@
 			<div class="container-fluid">
 				<!--logo and cart-->
 				<div class="row align-items-center">
-					<div class="col-sm-4 col-6">
+
+					<div class="col-2">
 						<div class="logo">
-							<a href="<?php echo e(url(app()->getLocale().'/')); ?>"><img src="<?php echo e(asset('front_assets/assets/images/bloomzon.png')); ?>" width="60" height="auto" alt="logo" /></a>
+							<a href="<?php echo e(url(app()->getLocale().'/')); ?>"><img src="<?php echo e(asset('front_assets/assets/images/bloomzon.png')); ?>" alt="logo" style="width: 60px; height: auto;" /></a>
 						</div>
-					</div>
-					<div class="col-sm-8 col-6">
+                    </div>
+
+                    <div class="col-6">
+                        <?php if(count($adverts)): ?>
+                            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    <?php $__currentLoopData = $adverts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $advert): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <div class="carousel-item <?php if($loop->iteration === 1): ?> active <?php endif; ?>">
+                                            <a href="<?php echo e($advert->advert_link); ?>?referrer=bloomzon" target="_blank">
+                                                <img class="d-block w-100" src="<?php echo e(asset('storage/assets/advert/avatar/' . $advert->avatar)); ?>" alt="First slide" height="60" width="100%">
+                                            </a>
+                                        </div>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </div>
+                            </div>
+                        <?php else: ?>
+                            <img src="<?php echo e(asset('front_assets/assets/images/top_banner.jpg')); ?>" height="60" width="100%" class="img img-responsive">
+                        <?php endif; ?>
+                    </div>
+
+					<div class="col-4">
 						<div class="mini-cart text-right">
-							<ul>
+                            <div class="currency-bar lang-bar" style="width: 20px; display: inline-block !important;">
+                                <ul>
+                                    <li>
+                                        <a href="#" class="btn btn-sm btn-primary" style="background-color: #23374D !important; padding: -1px !important; margin: 0px; ">
+                                            <?php if(app()->getLocale() == 'en'): ?>
+                                                <?php echo e(__("En")); ?>
+
+                                            <?php elseif(app()->getLocale() == 'fr'): ?>
+                                                <?php echo e(__("Frn")); ?>
+
+                                            <?php elseif(app()->getLocale() == 'es'): ?>
+                                                <?php echo e(__("	Spn")); ?>
+
+                                            <?php elseif(app()->getLocale() == 'zh_CH'): ?>
+                                                <?php echo e(__("	Cns")); ?>
+
+                                            <?php elseif(app()->getLocale() == 'ar'): ?>
+                                                <?php echo e(__("	Ara")); ?>
+
+                                            <?php else: ?>
+                                                <?php echo e(__("	En ")); ?>
+
+                                            <?php endif; ?>
+                                        </a>
+                                        <ul>
+                                            <li><a href="javascript:changeLocation('en')"> <img src="<?php echo e(asset('front_assets/assets/img/us.jpg')); ?>" width="30" height="20"> <?php echo e(__("English")); ?></a></li><br>
+                                            <li><a href="javascript:changeLocation('fr')"> <img src="<?php echo e(asset('front_assets/assets/img/fr.jpg')); ?>" width="30" height="20"> <?php echo e(__("French")); ?></a></li><br>
+                                            <li><a href="javascript:changeLocation('es')"> <img src="<?php echo e(asset('front_assets/assets/img/sp.jpg')); ?>" width="30" height="20"> <?php echo e(__("Spanish")); ?></a></li><br>
+                                            <li><a href="javascript:changeLocation('zh_CH')"> <img src="<?php echo e(asset('front_assets/assets/img/chinese.jpg')); ?>" width="30" height="20"> <?php echo e(__("Chinese")); ?></a></li><br>
+                                            <li><a href="javascript:changeLocation('ar')"> <img src="<?php echo e(asset('front_assets/assets/img/arabic.jpg')); ?>" width="30" height="20"> <?php echo e(__("Arabic")); ?></a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+							<ul style="width: 20px; display: inline-block !important;">
 								<li class="d-none"><a href="#"><i class="icon_heart_alt"></i><span>3</span></a></li>
 								<li class="minicart-icon"><a href="<?php echo e(url(app()->getLocale().'/cart')); ?>"><i class="icon_bag_alt"></i><span><?php echo e(count($cart)); ?></span></a>
 								</li>
-							</ul>
-						</div>
+                            </ul>
+                            
+                        </div>
+                        
 					</div>
 				</div>
 				<!--search-box-->
@@ -317,7 +373,7 @@
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 							</select>
 							<input type="text" placeholder="<?php echo e(__("What do you need?")); ?>" />
-							<button><?php echo e(__("Search")); ?></button>
+                            <button><i class="fa fa-search"></i></button>
 						</div>
 					</div>
 				</div>

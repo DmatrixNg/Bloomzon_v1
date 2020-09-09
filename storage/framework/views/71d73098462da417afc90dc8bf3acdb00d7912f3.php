@@ -82,7 +82,7 @@
             if (order_id.value == '') {
                 return swal("Please enter order id");
             }
-            window.location.href = '/track-delivery/' + order_id.value
+            window.location.href = "<?php echo e(url(app()->getLocale().'/track-delivery/')); ?>/" + order_id.value
         }
 
     </script>

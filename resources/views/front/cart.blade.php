@@ -60,12 +60,12 @@
                                             </td>
                                             <td>
                                                 <div class="cart-product-name">
-                                                    <h5><a href="product-details"> {{$cart_item->product_name}}</a></h5>
+                                                    <h5><a href="{{ url(app()->getLocale().'/product-details')}}"> {{$cart_item->product_name}}</a></h5>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="cart-product-name">
-                                                    <h5><a href="product-details"> {{@$cart_items[$cart_item->id]['color']}}</a></h5>
+                                                    <h5><a href="{{ url(app()->getLocale().'/product-details')}}"> {{@$cart_items[$cart_item->id]['color']}}</a></h5>
                                                 </div>
                                             </td>
                                             <td>
@@ -99,7 +99,7 @@
 			<div class="row mt-30">
 				<div class="col-lg-6">
 					<div class="cart-update">
-						<a href="shop" class="btn-common">{{ __("CONTINUE SHOPPING")}}</a>
+						<a href="{{url(app()->getLocale())}}/shop" class="btn-common">{{ __("CONTINUE SHOPPING")}}</a>
 					</div>
 				</div>
 				<div class="col-lg-6">
@@ -189,13 +189,13 @@
 {{--									<a href="#">Checkout with multiple address</a>--}}
 {{--								</div>--}}
 								<div class="col-lg-12">
-									<a href="checkout" class="btn-common">{{ __("PROCEED TO CHECK OUT")}}</a>
+									<a href="{{url(app()->getLocale())}}/checkout" class="btn-common">{{ __("PROCEED TO CHECK OUT")}}</a>
 								</div>
 							</div>
 						</div>
 					</div>
                     @else
-                        <h3> {{ __("Your Cart is  empty,")}} <a href="shop">{{ __("start shopping")}}</a></h3>
+                        <h3> {{ __("Your Cart is  empty,")}} <a href="{{url(app()->getLocale())}}/shop">{{ __("start shopping")}}</a></h3>
                     @endif
 
 				</div>

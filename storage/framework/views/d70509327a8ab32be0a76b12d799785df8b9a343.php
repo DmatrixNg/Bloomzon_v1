@@ -23,7 +23,7 @@
                                                     </div>
                                                     <div class="col-md-6 m-auto">
                                                         <p><span style="font-weight: bolder">
-                                                            <a href="<?php echo e(url('product-details/' . base64_encode($favourite->product_id->id))); ?>">
+                                                            <a href="<?php echo e(url(app()->getLocale().'/product-details/' . base64_encode($favourite->product_id->id))); ?>">
                                                                 <?php echo e($favourite->product_id->product_name); ?>
 
                                                             </a>
@@ -34,7 +34,7 @@
                                                     <div class="col-md-3 text-center">
                                                         <i class="fa fa-heart fa-2x" style="color: red"></i><br>
                                                         <button style="border-radius: 25px;" data-favourite-id="<?php echo e($favourite->id); ?>" type="button" id="removefv" onclick="removeFav(<?php echo e($favourite->id); ?>)" class="btn btn-info mt-3 btn-sm">Remove</button>
-                                                        <a href="<?php echo e(url('product-details/' . base64_encode($favourite->product_id->id))); ?>"
+                                                        <a href="<?php echo e(url(app()->getLocale().'/product-details/' . base64_encode($favourite->product_id->id))); ?>"
                                                             class="btn btn-info mt-3 btn-sm"><i class="fa fa-eye"></i>   </a>
                                                     </div>
                                                 </div>
@@ -53,7 +53,7 @@
                             </div>
                         </div>
 
-                        <?php $__env->stopSection(); ?> 
+                        <?php $__env->stopSection(); ?>
 <?php $__env->startPush('scripts'); ?>
 <script>
     elem = document.getElementById('removefv');
@@ -75,11 +75,12 @@ function removeFav(id){
             }
             )
 
-        }) 
+        })
     }
-    
+
     });
 }
-</script>   
+</script>
 <?php $__env->stopPush(); ?>
+
 <?php echo $__env->make('layouts.dashboard.buyer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Users/DMatrix/work/new/Bloomzon_v1/resources/views/dashboard/buyer/favourites.blade.php ENDPATH**/ ?>

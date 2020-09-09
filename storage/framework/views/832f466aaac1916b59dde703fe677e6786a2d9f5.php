@@ -18,7 +18,14 @@
                     <div class="row p-3 ml-3 mr-5">
                         <div class="col-md-3 text-left">
                             <h4><?php echo e($notification->data['type']); ?></h4>
-                            <img src="assets/img/profil.png" class="img img-circle" width="50" height="50" alt="">
+                            <?php if($notification->data['type'] == 'login'): ?>
+
+                              <i class="fa fa-sign-in-alt mr-3"></i>
+                            <?php elseif($notification->data['type'] == 'order'): ?>
+                              <i class="fas fa-shopping-cart"></i>
+
+                            <?php endif; ?>
+                            
                         </div>
                         <div class="col-md-6 m-auto">
                             <h5 style="color: #666;"><?php echo e($notification->data['message']); ?></h5>
@@ -27,16 +34,11 @@
                     </div>
                 </div>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
                 <div class="row col-md-12 text-center m-auto">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                        </ul>
-                    </nav>
+                  <?php echo e($notifications->links()); ?>
+
+                    
                 </div>
             <?php else: ?>
                 <h4>You have no notifications</h4>

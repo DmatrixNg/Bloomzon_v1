@@ -42,10 +42,10 @@
                                         </li>
                                         <li class="list-group-item"><p><span style="font-weight: bolder">{{ __("Billing
                                             Address")}}:</span>{{ $order->order->orderable->billing_address }}
-                                    </li>
-                                    <li class="list-group-item">{{ __("WareHouse Status")}}:
-                                        {{ $order->shopper_status }}</span></p>
-                                    </li>
+                                        </li>
+                                        <li class="list-group-item">{{ __("WareHouse Status")}}:
+                                            {{ $order->shopper_status }}</span></p>
+                                        </li>
                                     </ul>
 
                                 </div>
@@ -82,7 +82,7 @@
             if (order_id.value == '') {
                 return swal("Please enter order id");
             }
-            window.location.href = '/track-delivery/' + order_id.value
+            window.location.href = "{{url(app()->getLocale().'/track-delivery/')}}/" + order_id.value
         }
 
     </script>

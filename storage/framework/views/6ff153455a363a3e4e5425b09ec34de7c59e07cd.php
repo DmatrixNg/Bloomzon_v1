@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="col-md-9">
                                     <h4>Make an order to earn 100 points</h4>
-                                    <button class="btn btn-danger"><a href="/shop" target="_blank" class="text-white"> Start Shopping </a></button>
+                                    <button class="btn btn-danger"><a href="<?php echo e(url(app()->getLocale().'/shop')); ?>" target="_blank" class="text-white"> Start Shopping </a></button>
                                 </div>
                             </div>
                         </div>

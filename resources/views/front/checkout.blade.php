@@ -297,7 +297,7 @@
                             </div>
                         </div>
                     @else
-                        <h3> Your Cart is empty, <a href="shop">start shopping</a></h3>
+                        <h3> Your Cart is empty, <a href="{{url(app()->getLocale())}}/shop">start shopping</a></h3>
                     @endif
                 </div>
             </form>

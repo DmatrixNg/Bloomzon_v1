@@ -19,7 +19,14 @@
                     <div class="row p-3 ml-3 mr-5">
                         <div class="col-md-3 text-left">
                             <h4>{{$notification->data['type']}}</h4>
-                            <img src="assets/img/profil.png" class="img img-circle" width="50" height="50" alt="">
+                            @if ($notification->data['type'] == 'login')
+
+                              <i class="fa fa-sign-in-alt mr-3"></i>
+                            @elseif ($notification->data['type'] == 'order')
+                              <i class="fas fa-shopping-cart"></i>
+
+                            @endif
+                            {{-- <img src="assets/img/profil.png" class="img img-circle" width="50" height="50" alt=""> --}}
                         </div>
                         <div class="col-md-6 m-auto">
                             <h5 style="color: #666;">{{$notification->data['message']}}</h5>
@@ -28,8 +35,10 @@
                     </div>
                 </div>
                 @endforeach
+
                 <div class="row col-md-12 text-center m-auto">
-                    <nav aria-label="Page navigation example">
+                  {{$notifications->links()}}
+                    {{-- <nav aria-label="Page navigation example">
                         <ul class="pagination">
                             <li class="page-item"><a class="page-link" href="#">Previous</a></li>
                             <li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -37,7 +46,7 @@
                             <li class="page-item"><a class="page-link" href="#">3</a></li>
                             <li class="page-item"><a class="page-link" href="#">Next</a></li>
                         </ul>
-                    </nav>
+                    </nav> --}}
                 </div>
             @else
                 <h4>You have no notifications</h4>
