@@ -530,7 +530,7 @@ data-namespace="paypal_sdk">
         a('#totalDisplay').html("$"+ curency_format(newtotal))
         a('#with').val("point")
 
-        getConversion(Number(newtotal))
+        getConversion(newtotal)
 
 
       }
@@ -539,7 +539,7 @@ data-namespace="paypal_sdk">
 
         switchStatus = a(this).is(':checked');
         a('#totalDisplay').html("$"+curency_format(total))
-        getConversion(Number(total))
+        getConversion(total)
 
 
 
