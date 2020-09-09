@@ -52,7 +52,7 @@
                         </a>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <a href="/delivery-status">
+                        <a href="<?php echo e(url("buyer/delivery-status")); ?>">
                             <div class="card text-center pt-3" style="color: #02499B; background-color: white; padding: 30px;">
                                 <h2 style="font-size: 70px;"><i class="fas fa-truck"></i></h2>
                                 <h4>Delivery Alert</h4><br><br>
