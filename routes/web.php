@@ -139,8 +139,7 @@ Route::group(['prefix' => '{lang}'], function () {
   Route::get('/cart/increase/{product_id}/{qty}','CartController@addToCart');
   Route::get('/cart/decrease/{product_id}/{qty}','CartController@redItemQty');
   Route::get('/cart/remove/{product_id}','CartController@removeItem');
-
-
+  
   Route::get('/checkout','CartController@checkout');
 
   Route::get('/category/{name}/{subname?}','HomeController@show_category');

@@ -239,14 +239,14 @@
                                             <div style="width: 100vw !important; min-height: 100%; background-color: rgb(1, 54, 119, .9);" class="row menu-hider">
                                                 <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <li style="border-right: 1px solid #ccc;" class="col-md-2 p-2 menu-hider">
-                                                    <a href="/category/<?php echo e($category->name); ?>" style="font-size: 19px; color: white;"></i><?php echo e($category->name); ?></a>
+                                                    <a href="<?php echo e(url(app()->getLocale()."/category/".$category->name)); ?>" style="font-size: 19px; color: white;"></i><?php echo e($category->name); ?></a>
                                                         <?php if(!empty($category->sub_categories)): ?>
                                                             <ul>
                                                                 <li>
                                                                     <ul>
                                                                         <?php $__currentLoopData = $category->sub_categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $child): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                             <?php if($child): ?>
-                                                                                <li style="font-size: 15px; color: white !important;" style="list-style: circle;"><a href="/category/<?php echo e($category->name); ?>/<?php echo e($child->name); ?>" style="color: white;"><?php echo e($child->name); ?></a>
+                                                                                <li style="font-size: 15px; color: white !important;" style="list-style: circle;"><a href="<?php echo e(url(app()->getLocale()."/category/".$category->name."/". $child->name)); ?>" style="color: white;"><?php echo e($child->name); ?></a>
                                                                                 </li>
                                                                             <?php endif; ?>
                                                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
