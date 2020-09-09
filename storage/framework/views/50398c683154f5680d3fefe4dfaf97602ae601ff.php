@@ -42,8 +42,8 @@
 
                                 </div>
                                 <div class="col-md-2">
-                                <a href="<?php echo e(url('buyer/track-order')); ?>" style="border-radius: 25px;" type="button" class="btn btn-danger btn-sm mb-2">Track Order</a>
-                                    <a href="<?php echo e(asset('buyer/view-order-details/'.$purchase->order->id)); ?>" style="border-radius: 25px;" type="button" class="btn btn-danger btn-sm mb-2">View Order Details</a>
+                                <a href="<?php echo e(url(app()->getLocale().'/track-delivery',$purchase->order->id)); ?>" style="border-radius: 25px;" type="button" class="btn btn-danger btn-sm mb-2">Track Order</a>
+                                    <a href="<?php echo e(url('buyer/view-order-details/'.$purchase->order->id)); ?>" style="border-radius: 25px;" type="button" class="btn btn-danger btn-sm mb-2">View Order Details</a>
                                 <a href="<?php echo e(route('buyer.delivery-status',$purchase->order->id)); ?>" style="border-radius: 25px;" type="button" class="btn btn-info btn-sm">Delivery Status</a>
                                 </div>
 

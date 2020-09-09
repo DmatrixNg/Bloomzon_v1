@@ -42,10 +42,10 @@
                                         <li class="list-group-item"><p><span style="font-weight: bolder"><?php echo e(__("Billing
                                             Address")); ?>:</span><?php echo e($order->order->orderable->billing_address); ?>
 
-                                    </li>
-                                    <li class="list-group-item"><?php echo e(__("WareHouse Status")); ?>:
-                                        <?php echo e($order->shopper_status); ?></span></p>
-                                    </li>
+                                        </li>
+                                        <li class="list-group-item"><?php echo e(__("WareHouse Status")); ?>:
+                                            <?php echo e($order->shopper_status); ?></span></p>
+                                        </li>
                                     </ul>
 
                                 </div>

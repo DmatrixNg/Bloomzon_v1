@@ -31,7 +31,7 @@
                                     </li>
                                     <li class="list-group-item">
                                         <br>
-                                        <b>AMOUNT (N)</b>
+                                        <b>AMOUNT ($)</b>
                                         <span class="badge badge-primary badge-pill" style="background-color: #02499B; font-size: 15px;"><?php echo e($order->total_amount); ?></span>
                                         <br>
                                     </li>
@@ -71,9 +71,11 @@
                                     </li>
                                 </ul>
                             </div>
+                            <a href="<?php echo e(url('buyer/create_message')); ?>">
                             <div class="row col-md-12 text-center m-auto">
-                                <button class="btn btn-danger m-auto" data-toggle="modal" data-target="#chater">Chat On This Order</button>
+                                  <button class="btn btn-danger m-auto" data-toggle="modal" data-target="#chater">Chat On This Order</button>
                             </div>
+                          </a>
                         </div>
                     </div>
                 </div>

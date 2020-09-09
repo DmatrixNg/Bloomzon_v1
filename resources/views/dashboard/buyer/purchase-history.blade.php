@@ -45,8 +45,8 @@
 
                                 </div>
                                 <div class="col-md-2">
-                                <a href="{{url('buyer/track-order')}}" style="border-radius: 25px;" type="button" class="btn btn-danger btn-sm mb-2">Track Order</a>
-                                    <a href="{{asset('buyer/view-order-details/'.$purchase->order->id)}}" style="border-radius: 25px;" type="button" class="btn btn-danger btn-sm mb-2">View Order Details</a>
+                                <a href="{{url(app()->getLocale().'/track-delivery',$purchase->order->id)}}" style="border-radius: 25px;" type="button" class="btn btn-danger btn-sm mb-2">Track Order</a>
+                                    <a href="{{url('buyer/view-order-details/'.$purchase->order->id)}}" style="border-radius: 25px;" type="button" class="btn btn-danger btn-sm mb-2">View Order Details</a>
                                 <a href="{{route('buyer.delivery-status',$purchase->order->id)}}" style="border-radius: 25px;" type="button" class="btn btn-info btn-sm">Delivery Status</a>
                                 </div>
 
