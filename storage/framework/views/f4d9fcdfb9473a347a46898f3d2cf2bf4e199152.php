@@ -1,4 +1,4 @@
-<div>
+
     <!--header-area start-->
 	<header class="header-area">
 		<div class="desktop-header">
@@ -37,7 +37,7 @@
 							<div class="topbar-right">
 								<div class="currency-bar lang-bar pull-right">
 									<ul>
-										<li><a href="#" class="btn btn-primary pt-0 pb-0" style="background-color: #23374D !important: "><img src="assets/images/icons/gb.png" alt="" />
+										<li><a href="#" class="btn btn-primary pt-0 pb-0" style="background-color: #23374D !important; "><img src="assets/images/icons/gb.png" alt="" />
 											<?php if(app()->getLocale() == 'en'): ?>
 											<?php echo e(__("English")); ?>
 
@@ -364,8 +364,20 @@
 				</div>
 				<!--search-box-->
 				<div class="row align-items-center">
-					<div class="col-sm-12">
-						<div class="search-box mt-sm-15">
+                    <div class="col-2">
+
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-user"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="<?php echo e(url(app()->getLocale().'/login')); ?>">Login</a>
+                                <a class="dropdown-item" href="<?php echo e(url(app()->getLocale().'/register')); ?>">Register</a>
+                            </div>
+                        </div>
+					</div>
+					<div class="col-10 m-0">
+						<div class="search-box">
 							<select>
 								<option value=""><?php echo e(__("All Categories")); ?></option>
 								<?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -374,12 +386,14 @@
 							</select>
 							<input type="text" placeholder="<?php echo e(__("What do you need?")); ?>" />
                             <button><i class="fa fa-search"></i></button>
-						</div>
-					</div>
+                            
+                        </div>
+                    </div>
+                    
 				</div>
 				<!--site-menu-->
 				<div class="row mt-sm-10">
-					<div class="col-lg-12 menu-hider">
+					<div class="col-lg-12">
                         <a href="#my-menu" class="mmenu-icon pull-left"><i class="fa fa-bars"></i></a>
 
                         <div class="mainmenu d-none">
@@ -478,9 +492,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+        </div>
+        
 	</header>
-	<!--header-area end-->
-
-</div>
-<?php /**PATH C:\xampp\htdocs\Bloomzon_v1\resources\views/components/front/header-nav.blade.php ENDPATH**/ ?>
+	<!--header-area end--><?php /**PATH C:\xampp\htdocs\Bloomzon_v1\resources\views/components/front/header-nav.blade.php ENDPATH**/ ?>

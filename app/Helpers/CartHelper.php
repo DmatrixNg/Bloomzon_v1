@@ -83,7 +83,7 @@ class CartHelper {
         $this->current_cart[$product_id] = [
             'product_id' => $product_id,
             'quantity'   => $increment_by,
-            'color'   => $color
+            'color'      => $color
         ];
 
         $this->set_cart();

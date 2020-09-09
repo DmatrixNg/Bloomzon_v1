@@ -14,7 +14,7 @@ Product Details
                         <ul class="nav nav-tabs products-nav-tabs">
                             <?php $__currentLoopData = $images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             
-                            <li><a data-toggle="tab" href="#product-<?php echo e($key); ?>"><img src="<?php echo e(asset('storage/assets/product/avatars/'.$image)); ?>" alt=""></a></li>
+                            <li><a data-toggle="tab" href="#product-<?php echo e($key); ?>"><img src="<?php echo e(asset('storage/assets/product/avatars/'.$image)); ?>" alt="" class="product-image-set"></a></li>
                             
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </ul>

@@ -71,6 +71,9 @@ Route::group(['prefix' => '{lang}'], function () {
 
   Route::get('home/{page?}','HomeController@home')->name('home');
 
+//   Route::view('register', 'auth.register');
+//   Route::view('login', 'auth.login');
+
   Route::GET('/chat',function(){
     return view('front.chat');
   });
@@ -116,19 +119,19 @@ Route::post('/product/getSubCategories/{id}','ProductController@getSubCategories
 Route::post('/cart/add-coupon/','CartController@addCoupon');
 Route::post('/cart/clear','CartController@clearCart');
 
+Route::get('/cart','CartController@displayCart');
+Route::get('/cart/add/{product_id}/{qty}/{color}','CartController@addToCart');
+Route::get('/cart/add/{product_id}/{qty}','CartController@addToCart');
+Route::get('/cart/increase/{product_id}/{qty}','CartController@addToCart');
+Route::get('/cart/decrease/{product_id}/{qty}','CartController@redItemQty');
+Route::get('/cart/remove/{product_id}','CartController@removeItem');
+
 Route::group(['prefix' => '{lang}'], function () {
 
   // Route::get('/', 'HomeController@index')->name('home');
   Route::get('/product-details/{id}','ProductController@show');
 
   // Cart System Routes
-
-  Route::get('/cart','CartController@displayCart');
-  Route::get('/cart/add/{product_id}/{qty}/{color}','CartController@addToCart');
-  Route::get('/cart/add/{product_id}/{qty}','CartController@addToCart');
-  Route::get('/cart/increase/{product_id}/{qty}','CartController@addToCart');
-  Route::get('/cart/decrease/{product_id}/{qty}','CartController@redItemQty');
-  Route::get('/cart/remove/{product_id}','CartController@removeItem');
 
 
   Route::get('/checkout','CartController@checkout');

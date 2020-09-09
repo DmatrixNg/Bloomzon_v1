@@ -1,6 +1,6 @@
-<div>
+
     <!-- Well begun is half done. - Aristotle -->
-    <footer class="footer-area mt-50" style="background-color: #000;">
+<footer class="footer-area mt-50" style="background-color: #000;">
     <div class="container-fluid pl-5 pr-5">
         <div class="row">
             <div class="col-lg-4 col-sm-6">
@@ -119,4 +119,3 @@
         </div>
     </div>
 </footer>
-</div>
