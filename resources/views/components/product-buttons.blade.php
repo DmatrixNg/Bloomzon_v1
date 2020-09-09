@@ -13,20 +13,26 @@
     <script>
 
         var buyer_id = null;
+
         //check if user is authenticated then get the ID
         @if(Auth::guard('buyer')->user())
         buyer_id = @json(Auth::guard('buyer')->user()->id)
         @endif
+
         //handles the add to cart button
        async function addCart(id) {
             try {
+
                 console.log("pressed")
+
                 const response = await (await fetch('/cart/add/' + id + '/1',
                 {
                     method: 'GET',
                     headers: {'Accept': 'application/json'}
                 })).json();
+
                 console.log(response);
+
                 if (response.success) {
                     return swal({
                         'title': 'Cart Updated',
@@ -37,10 +43,12 @@
 
                     })
                 }
+                
             } catch (e) {
                 console.log(e)
             }
         }
+        
         //handles the add to favorite
          async function addFavorite(id) {
             if(buyer_id == null){

@@ -14,7 +14,7 @@ Product Details
                         <ul class="nav nav-tabs products-nav-tabs">
                             @foreach ($images as $key => $image )
                             {{-- <li><a class="active" data-toggle="tab" href="#product-1"><img src="{{asset($product->featured_img_url)}}" alt=""></a></li> --}}
-                            <li><a data-toggle="tab" href="#product-{{$key}}"><img src="{{asset('storage/assets/product/avatars/'.$image)}}" alt=""></a></li>
+                            <li><a data-toggle="tab" href="#product-{{$key}}"><img src="{{asset('storage/assets/product/avatars/'.$image)}}" alt="" class="product-image-set"></a></li>
                             {{-- <li><a data-toggle="tab" href="#product-3"><img src="{{asset($product->featured_img_url)}}" alt=""></a></li> --}}
                             @endforeach
                         </ul>
