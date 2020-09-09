@@ -21,7 +21,7 @@
                           @foreach (auth()->guard('buyer')->user()->cards as $card)
                             <strong> Card type: </strong>{{$card->card_type}} <br>
                             <strong> Last4: </strong>{{$card->last4}} <br>
-                            <strong> Expires: </strong> {{$card->exp_month}}/{{$card->exp_year}} <br>
+                            <strong> Expires: </strong> {{$card->exp_month}}/{{ substr($card->exp_year,-2)}} <br>
                             <br>
                           @endforeach
                         @endif
@@ -36,7 +36,7 @@
                     <div class="form-group">
                         <div class="">
                             <label for="card_number" style="font-size: 16px;;">Card Number: </label>
-                            <input type="text" value="{{substr($buyer->card_number,0,4)}}***********" name="card_number" id="card_number" class="form-control"
+                            <input type="text" value="" name="card_number" id="card_number" class="form-control"
                                 placeholder="0000 0000 0000 0000">
                         </div>
 
@@ -86,7 +86,7 @@
                     <div class="form-group">
                         <div class="col-md-6 pl-0">
                             <label for="expires_at" style="font-size: 16px;;">Expires: </label>
-                        <input type="text"  value="{{$buyer->card_expires}}" name="card_expires" id="card_expires" class="form-control" placeholder="02/23">
+                        <input type="text"  value="{{$buyer->card_expires}}" name="card_expires" id="card_expires" class="form-control" maxlength="5" placeholder="02/23">
                         </div>
 
                         <div class="col-md-6 pl-0">

@@ -327,6 +327,8 @@ data-namespace="paypal_sdk">
 
     {{-- END OF REQUIRED SCRIPTS --}}
     <script>
+    const a = jQuery.noConflict();
+
     var payment = new PaymentHandler();
     var place_order = document.getElementById('place_order');
     var products = @json([$products,$cart_items]);
@@ -517,14 +519,14 @@ data-namespace="paypal_sdk">
     $("#point").on('change', function() {
       if ($(this).is(':checked')) {
         // const subtotal = $('#checkout_subtotal').html();
-        let total = $('#cart-total').val()
-        let point = $(this).val()
+        let total = a('#cart-total').val()
+        let point = a(this).val()
 
         switchStatus = $(this).is(':checked');
         newtotal = total - point
         console.log(newtotal);
-        $('#totalDisplay').html("$"+newtotal)
-        $('#with').val("point")
+        a('#totalDisplay').html("$"+newtotal)
+        a('#with').val("point")
 
         getConversion(newtotal)
 

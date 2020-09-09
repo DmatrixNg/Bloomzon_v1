@@ -60,12 +60,12 @@
                                             </td>
                                             <td>
                                                 <div class="cart-product-name">
-                                                    <h5><a href="product-details"> <?php echo e($cart_item->product_name); ?></a></h5>
+                                                    <h5><a href="<?php echo e(url(app()->getLocale().'/product-details')); ?>"> <?php echo e($cart_item->product_name); ?></a></h5>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="cart-product-name">
-                                                    <h5><a href="product-details"> <?php echo e(@$cart_items[$cart_item->id]['color']); ?></a></h5>
+                                                    <h5><a href="<?php echo e(url(app()->getLocale().'/product-details')); ?>"> <?php echo e(@$cart_items[$cart_item->id]['color']); ?></a></h5>
                                                 </div>
                                             </td>
                                             <td>
@@ -99,7 +99,7 @@
 			<div class="row mt-30">
 				<div class="col-lg-6">
 					<div class="cart-update">
-						<a href="shop" class="btn-common"><?php echo e(__("CONTINUE SHOPPING")); ?></a>
+						<a href="<?php echo e(url(app()->getLocale())); ?>/shop" class="btn-common"><?php echo e(__("CONTINUE SHOPPING")); ?></a>
 					</div>
 				</div>
 				<div class="col-lg-6">
@@ -189,13 +189,13 @@
 
 
 								<div class="col-lg-12">
-									<a href="checkout" class="btn-common"><?php echo e(__("PROCEED TO CHECK OUT")); ?></a>
+									<a href="<?php echo e(url(app()->getLocale())); ?>/checkout" class="btn-common"><?php echo e(__("PROCEED TO CHECK OUT")); ?></a>
 								</div>
 							</div>
 						</div>
 					</div>
                     <?php else: ?>
-                        <h3> <?php echo e(__("Your Cart is  empty,")); ?> <a href="shop"><?php echo e(__("start shopping")); ?></a></h3>
+                        <h3> <?php echo e(__("Your Cart is  empty,")); ?> <a href="<?php echo e(url(app()->getLocale())); ?>/shop"><?php echo e(__("start shopping")); ?></a></h3>
                     <?php endif; ?>
 
 				</div>

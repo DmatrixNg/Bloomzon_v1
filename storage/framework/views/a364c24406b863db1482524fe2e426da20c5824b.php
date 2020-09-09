@@ -221,7 +221,7 @@
                                     <div class="payment-gateways mt-30">
                                         <div id="payment_gateways">
                                           <?php if(auth()->guard('buyer')->check()): ?>
-                                            <?php if($buyer->point->total_point != 0): ?>
+                                            <?php if($buyer->point && $buyer->point->total_point != 0): ?>
 
                                               <div class="single-payment-gateway">
                                                 <input id="point" type="checkbox" name="point" value="<?php echo e($buyer->point->amount); ?>" id="paypal">
@@ -293,7 +293,7 @@
                             </div>
                         </div>
                     <?php else: ?>
-                        <h3> Your Cart is empty, <a href="shop">start shopping</a></h3>
+                        <h3> Your Cart is empty, <a href="<?php echo e(url(app()->getLocale())); ?>/shop">start shopping</a></h3>
                     <?php endif; ?>
                 </div>
             </form>
@@ -323,6 +323,8 @@ data-namespace="paypal_sdk">
 
     
     <script>
+    const a = jQuery.noConflict();
+
     var payment = new PaymentHandler();
     var place_order = document.getElementById('place_order');
     var products = <?php echo json_encode([$products, $cart_items], 512) ?>;
@@ -513,14 +515,14 @@ data-namespace="paypal_sdk">
     $("#point").on('change', function() {
       if ($(this).is(':checked')) {
         // const subtotal = $('#checkout_subtotal').html();
-        let total = $('#cart-total').val()
-        let point = $(this).val()
+        let total = a('#cart-total').val()
+        let point = a(this).val()
 
         switchStatus = $(this).is(':checked');
         newtotal = total - point
         console.log(newtotal);
-        $('#totalDisplay').html("$"+newtotal)
-        $('#with').val("point")
+        a('#totalDisplay').html("$"+newtotal)
+        a('#with').val("point")
 
         getConversion(newtotal)
 
