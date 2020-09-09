@@ -25,7 +25,7 @@
                 </button>
                 <div class="dropdown-container">
                     <a class="dropdown-item" href="<?php echo e(url('buyer/messages')); ?>"> Dispute</a>
-                    <a class="dropdown-item" href="<?php echo e(url('buyer/messages')); ?>"> Feedback</a>
+                    
                     <a class="dropdown-item" href="<?php echo e(url('buyer/reviews-and-feedback')); ?>"> Reviews</a>
                 </div>
 
@@ -39,5 +39,4 @@
             </div>
         </div>
     </div>
-
 <?php /**PATH /Users/DMatrix/work/new/Bloomzon_v1/resources/views/components/dashboard/buyer-side-nav.blade.php ENDPATH**/ ?>

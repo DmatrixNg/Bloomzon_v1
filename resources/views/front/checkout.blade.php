@@ -525,8 +525,8 @@ data-namespace="paypal_sdk">
         let point = a(this).val()
 
         switchStatus = $(this).is(':checked');
-        // console.log(newtotal);
         var newtotal = Number(total) - Number(point)
+        // console.log(newtotal);
         a('#totalDisplay').html("$"+ curency_format(newtotal))
         a('#with').val("point")
 
@@ -553,14 +553,14 @@ data-namespace="paypal_sdk">
 
         success: function (data) {
           // console.log(data[0]['currency']);
-          // console.log(data[1]);
 
           if(Object.keys(data[0]).length != 0) {
             var convertions = a('#convertions');
             convertions.empty();
             for (var i = 0; i < data.length; i++) {
+              // console.log(data[i][0].value);
               var key = Object.keys(data[i].currency)
-                convertions.append('<option id=' + i + ' value=' + data[i][0].amount + '> '+ data[i]['currency'][key].prefix +" " + curency_format(data[i][0].amount) + '</option>');
+                convertions.append('<option id=' + i + ' value=' + data[i][0].amount + '> '+ data[i]['currency'][key].prefix +" " + curency_format(data[i][0].value) + '</option>');
                 if (Object.keys(data[i].currency) == "NGN") {
                   // console.log('here');
                   a("#naira_price").val(data[i][0].amount)

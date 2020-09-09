@@ -25,7 +25,7 @@
                 </button>
                 <div class="dropdown-container">
                     <a class="dropdown-item" href="{{ url('buyer/messages') }}"> Dispute</a>
-                    <a class="dropdown-item" href="{{ url('buyer/messages') }}"> Feedback</a>
+                    {{-- <a class="dropdown-item" href="{{ url('buyer/messages') }}"> Feedback</a> --}}
                     <a class="dropdown-item" href="{{ url('buyer/reviews-and-feedback') }}"> Reviews</a>
                 </div>
 
@@ -39,4 +39,3 @@
             </div>
         </div>
     </div>
-
