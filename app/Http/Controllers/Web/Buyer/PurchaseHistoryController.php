@@ -19,7 +19,7 @@ class PurchaseHistoryController extends Controller
         // $orders =array();
 
         //gets all order and order details relationships
-        $orders = $this->buyer->order_details()->paginate(5);
+        $orders = $this->buyer->orders()->paginate(5);
         // dd($orders);
        //from the distinc order selected get all order details
     //    $includ = array();

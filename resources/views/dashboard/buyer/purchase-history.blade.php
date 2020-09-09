@@ -19,13 +19,13 @@
 
                 @if(count($orders))
                         @foreach($orders as $purchase)
-                          {{-- @php
-                            dd($purchase->order);
-                          @endphp --}}
+                          @php
+                            // dd($purchase->order_details->first()->first());
+                          @endphp
                             <div class="row col-md-12 mb-2 ml-1" style="border-bottom: 1px solid #f2f2f2; padding: 20px;">
                                 <div class="col-md-5">
 
-                                    <img src="{{asset('storage/assets/product/avatars/'.$purchase->products->avatars[0] )}}" width="80" alt="">
+                                    <img src="{{asset('storage/assets/product/avatars/'.$purchase->order_details->first()->products->avatars[0] )}}" width="80" alt="">
 
 
 
@@ -35,19 +35,19 @@
                                         <p><span style="font-weight: bolder"></span>Product Details:
 
 
-                                            {{$purchase->product->product_name}} ({{$purchase->product->quantity}} piece(s))
+                                            {{$purchase->order_details->first()->product->product_name}} ({{$purchase->order_details->first()->product->quantity}} piece(s))
 
                                         </p>
-                                        <p><span style="font-weight: bold">Billing Address:</span> {{$purchase->order->billing_address}}</p>
+                                        <p><span style="font-weight: bold">Billing Address:</span> {{$purchase->billing_address}}</p>
                                         <p><span style="font-weight: bolder">Purchase Date: {{$purchase->created_at}}</span></p>
-                                        <p><span style="font-weight: bold" class="badge bg-{{$purchase->order->payment_status?'success':'danger'}}"> {{$purchase->order->payment_status?'Paid':'Pending'}}</span></p>
+                                        <p><span style="font-weight: bold" class="badge bg-{{$purchase->payment_status?'success':'danger'}}"> {{$purchase->payment_status?'Paid':'Pending'}}</span></p>
                                     </div>
 
                                 </div>
                                 <div class="col-md-2">
-                                <a href="{{url(app()->getLocale().'/track-delivery',$purchase->order->id)}}" style="border-radius: 25px;" type="button" class="btn btn-danger btn-sm mb-2">Track Order</a>
-                                    <a href="{{url('buyer/view-order-details/'.$purchase->order->id)}}" style="border-radius: 25px;" type="button" class="btn btn-danger btn-sm mb-2">View Order Details</a>
-                                <a href="{{route('buyer.delivery-status',$purchase->order->id)}}" style="border-radius: 25px;" type="button" class="btn btn-info btn-sm">Delivery Status</a>
+                                <a href="{{url(app()->getLocale().'/track-delivery',$purchase->order_details->first()->order->id)}}" style="border-radius: 25px;" type="button" class="btn btn-danger btn-sm mb-2">Track Order</a>
+                                    <a href="{{url('buyer/view-order-details/'.$purchase->order_details->first()->order->id)}}" style="border-radius: 25px;" type="button" class="btn btn-danger btn-sm mb-2">View Order Details</a>
+                                <a href="{{route('buyer.delivery-status',$purchase->order_details->first()->order->id)}}" style="border-radius: 25px;" type="button" class="btn btn-info btn-sm">Delivery Status</a>
                                 </div>
 
                             </div>

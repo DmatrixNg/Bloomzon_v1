@@ -18,11 +18,13 @@
 
                 <?php if(count($orders)): ?>
                         <?php $__currentLoopData = $orders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $purchase): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                          
+                          <?php
+                            // dd($purchase->order_details->first()->first());
+                          ?>
                             <div class="row col-md-12 mb-2 ml-1" style="border-bottom: 1px solid #f2f2f2; padding: 20px;">
                                 <div class="col-md-5">
 
-                                    <img src="<?php echo e(asset('storage/assets/product/avatars/'.$purchase->products->avatars[0] )); ?>" width="80" alt="">
+                                    <img src="<?php echo e(asset('storage/assets/product/avatars/'.$purchase->order_details->first()->products->avatars[0] )); ?>" width="80" alt="">
 
 
 
@@ -32,19 +34,19 @@
                                         <p><span style="font-weight: bolder"></span>Product Details:
 
 
-                                            <?php echo e($purchase->product->product_name); ?> (<?php echo e($purchase->product->quantity); ?> piece(s))
+                                            <?php echo e($purchase->order_details->first()->product->product_name); ?> (<?php echo e($purchase->order_details->first()->product->quantity); ?> piece(s))
 
                                         </p>
-                                        <p><span style="font-weight: bold">Billing Address:</span> <?php echo e($purchase->order->billing_address); ?></p>
+                                        <p><span style="font-weight: bold">Billing Address:</span> <?php echo e($purchase->billing_address); ?></p>
                                         <p><span style="font-weight: bolder">Purchase Date: <?php echo e($purchase->created_at); ?></span></p>
-                                        <p><span style="font-weight: bold" class="badge bg-<?php echo e($purchase->order->payment_status?'success':'danger'); ?>"> <?php echo e($purchase->order->payment_status?'Paid':'Pending'); ?></span></p>
+                                        <p><span style="font-weight: bold" class="badge bg-<?php echo e($purchase->payment_status?'success':'danger'); ?>"> <?php echo e($purchase->payment_status?'Paid':'Pending'); ?></span></p>
                                     </div>
 
                                 </div>
                                 <div class="col-md-2">
-                                <a href="<?php echo e(url(app()->getLocale().'/track-delivery',$purchase->order->id)); ?>" style="border-radius: 25px;" type="button" class="btn btn-danger btn-sm mb-2">Track Order</a>
-                                    <a href="<?php echo e(url('buyer/view-order-details/'.$purchase->order->id)); ?>" style="border-radius: 25px;" type="button" class="btn btn-danger btn-sm mb-2">View Order Details</a>
-                                <a href="<?php echo e(route('buyer.delivery-status',$purchase->order->id)); ?>" style="border-radius: 25px;" type="button" class="btn btn-info btn-sm">Delivery Status</a>
+                                <a href="<?php echo e(url(app()->getLocale().'/track-delivery',$purchase->order_details->first()->order->id)); ?>" style="border-radius: 25px;" type="button" class="btn btn-danger btn-sm mb-2">Track Order</a>
+                                    <a href="<?php echo e(url('buyer/view-order-details/'.$purchase->order_details->first()->order->id)); ?>" style="border-radius: 25px;" type="button" class="btn btn-danger btn-sm mb-2">View Order Details</a>
+                                <a href="<?php echo e(route('buyer.delivery-status',$purchase->order_details->first()->order->id)); ?>" style="border-radius: 25px;" type="button" class="btn btn-info btn-sm">Delivery Status</a>
                                 </div>
 
                             </div>
