@@ -5,11 +5,11 @@
         <?php
         $sellers_arr = [];
 
-
+        // dd($order->order_details);
         foreach($order->order_details as $order_detail){
 
-          // dd($order_detail->product->seller_id->full_name);
-            array_push($sellers_arr, @$order_detail->product->seller_id->full_name ??  "");
+          // dd($order_detail->products);
+            array_push($sellers_arr, @$order_detail->products->seller->full_name ??  "");
         }
         ?>
 
