@@ -206,7 +206,7 @@
                                             </tr>
                                             <tr>
                                                 <td>ORDER TOTAL</td>
-                                                <td><input type="hidden" id="cart-total" value="{{ number_format($total) }}">
+                                                <td><input type="hidden" id="cart-total" value="{{ $total }}">
                                                   <strong id="totalDisplay">${{ number_format($total) }}</strong></td>
                                             </tr>
 
@@ -523,8 +523,8 @@ data-namespace="paypal_sdk">
         let point = a(this).val()
 
         switchStatus = $(this).is(':checked');
+        console.log(newtotal);
         var newtotal = Number(total) - Number(point)
-        // console.log(newtotal);
         a('#totalDisplay').html("$"+ Number(newtotal))
         a('#with').val("point")
 
