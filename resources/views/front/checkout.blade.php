@@ -528,7 +528,7 @@ data-namespace="paypal_sdk">
         a('#totalDisplay').html("$"+ Number(newtotal))
         a('#with').val("point")
 
-        getConversion(newtotal)
+        getConversion(Number(newtotal))
 
 
       }
