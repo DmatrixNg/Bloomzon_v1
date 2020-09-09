@@ -523,9 +523,9 @@ data-namespace="paypal_sdk">
         let point = a(this).val()
 
         switchStatus = $(this).is(':checked');
-        var newtotal = total - point
-        console.log(newtotal);
-        a('#totalDisplay').html("$"+newtotal)
+        var newtotal = Number(total) - Number(point)
+        // console.log(newtotal);
+        a('#totalDisplay').html("$"+ Number(newtotal))
         a('#with').val("point")
 
         getConversion(newtotal)
