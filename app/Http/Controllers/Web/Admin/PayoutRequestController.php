@@ -26,12 +26,18 @@ class PayoutRequestController extends Controller
 
     }
 
-    public function pay($reques, $request_id){
+    public function pay(Request $request){
         
+        // $request->validate([
+        //     'id'                 => ['required'],
+        //     'status'                 => ['required'],
+        //     'paystack_transfer_code' => ['required']
+        // ]);
 
-        $request = WithdrawalRequest::findOrFail($request_id);
-        $request->status = 1;
-        $request->save();
+        $withdrawal_request                         = WithdrawalRequest::findOrFail($request->id);
+        $withdrawal_request->status                 = $request->status;
+        $withdrawal_request->paystack_transfer_code = $request->paystack_transfer_code;
+        $result = $withdrawal_request->save();
 
         return redirect()->back()->with([
             'message' => 'request status changed',
