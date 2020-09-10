@@ -56,6 +56,10 @@ class Professional extends Authenticatable
     //     return Product::where('seller_id',$this->id)->where('product_type','professional')->get();
     // }
 
+    public function gallery()
+    {
+        return $this->hasMany('App\ShopGallery', 'professional_id');
+    }
     public function products()
     {
         return $this->morphMany('App\Product', 'seller');

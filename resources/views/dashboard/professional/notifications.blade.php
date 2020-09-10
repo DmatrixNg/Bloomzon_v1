@@ -15,98 +15,43 @@
             <button class="btn btn-secondary">Show all</button>
         </div>
     </div>
-    <div class="card mb-3 p-0" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); transition: 0.3s; border-left: 5px solid #02499B;">
-        <div class="row p-3 ml-3 mr-5">
-            <div class="col-md-4 text-left">
-                <h4>Admin</h4>
-                <i class="fa fa-user-circle fa-4x"></i>
-            </div>
-            <div class="col-md-8 m-auto">
-                <h4 style="color: #666;">Your request has been treated.</h4>
-                <p style="font-size: 16px; color: #999;">13/04/2020</p>
-            </div>
+    @if(count($notifications))
+      @foreach($notifications as $notification)
+          <div class="card mb-3 p-0" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); transition: 0.3s; border-left: 5px solid #02499B;">
+              <div class="row p-3 ml-3 mr-5">
+                  <div class="col-md-3 text-left">
+                      <h4>{{$notification->data['type']}}</h4>
+                      @if ($notification->data['type'] == 'login')
+
+                        <i class="fa fa-sign-in-alt mr-3"></i>
+                      @elseif ($notification->data['type'] == 'order')
+                        <i class="fas fa-shopping-cart"></i>
+
+                      @endif
+                      {{-- <img src="assets/img/profil.png" class="img img-circle" width="50" height="50" alt=""> --}}
+                  </div>
+                  <div class="col-md-6 m-auto">
+                      <h5 style="color: #666;">{{$notification->data['message']}}</h5>
+                      <p style="font-size: 14px; color: #999;">{{$notification->created_at}}</p>
+                  </div>
+              </div>
+          </div>
+          @endforeach
+
+          <div class="row col-md-12 text-center m-auto">
+            {{$notifications->links()}}
+              {{-- <nav aria-label="Page navigation example">
+                  <ul class="pagination">
+                      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                      <li class="page-item"><a class="page-link" href="#">1</a></li>
+                      <li class="page-item"><a class="page-link" href="#">2</a></li>
+                      <li class="page-item"><a class="page-link" href="#">3</a></li>
+                      <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                  </ul>
+              </nav> --}}
+          </div>
+      @else
+          <h4>You have no notifications</h4>
+          @endif
         </div>
-    </div>
-    <div class="card mb-3 p-0" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); transition: 0.3s; border-left: 5px solid #AF2E1D;">
-        <div class="row p-3 ml-3 mr-5">
-            <div class="col-md-4 text-left">
-                <h4>Admin</h4>
-                <i class="fa fa-user-circle fa-4x"></i>
-            </div>
-            <div class="col-md-8 m-auto">
-                <h4 style="color: #666;">Your request has been treated.</h4>
-                <p style="font-size: 16px; color: #999;">13/04/2020</p>
-            </div>
-        </div>
-    </div>
-    <div class="card mb-3 p-0" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); transition: 0.3s; border-left: 5px solid #02499B;">
-        <div class="row p-3 ml-3 mr-5">
-            <div class="col-md-4 text-left">
-                <h4>Admin</h4>
-                <i class="fa fa-user-circle fa-4x"></i>
-            </div>
-            <div class="col-md-8 m-auto">
-                <h4 style="color: #666;">Your request has been treated.</h4>
-                <p style="font-size: 16px; color: #999;">13/04/2020</p>
-            </div>
-        </div>
-    </div>
-    <div class="card mb-3 p-0" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); transition: 0.3s; border-left: 5px solid #AF2E1D;">
-        <div class="row p-3 ml-3 mr-5">
-            <div class="col-md-4 text-left">
-                <h4>Admin</h4>
-                <i class="fa fa-user-circle fa-4x"></i>
-            </div>
-            <div class="col-md-8 m-auto">
-                <h4 style="color: #666;">Your request has been treated.</h4>
-                <p style="font-size: 16px; color: #999;">13/04/2020</p>
-            </div>
-        </div>
-    </div>
-    <div class="card mb-3 p-0" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); transition: 0.3s; border-left: 5px solid #02499B;">
-        <div class="row p-3 ml-3 mr-5">
-            <div class="col-md-4 text-left">
-                <h4>Admin</h4>
-                <i class="fa fa-user-circle fa-4x"></i>
-            </div>
-            <div class="col-md-8 m-auto">
-                <h4 style="color: #666;">Your request has been treated.</h4>
-                <p style="font-size: 16px; color: #999;">13/04/2020</p>
-            </div>
-        </div>
-    </div>
-    <div class="card mb-3 p-0" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); transition: 0.3s; border-left: 5px solid #AF2E1D;">
-        <div class="row p-3 ml-3 mr-5">
-            <div class="col-md-4 text-left">
-                <h4>Admin</h4>
-                <i class="fa fa-user-circle fa-4x"></i>
-            </div>
-            <div class="col-md-8 m-auto">
-                <h4 style="color: #666;">Your request has been treated.</h4>
-                <p style="font-size: 16px; color: #999;">13/04/2020</p>
-            </div>
-        </div>
-    </div>
-    <div class="card mb-3 p-0" style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); transition: 0.3s; border-left: 5px solid #AF2E1D;">
-        <div class="row p-3 ml-3 mr-5">
-            <div class="col-md-4 text-left">
-                <h4>Admin</h4>
-                <i class="fa fa-user-circle fa-4x"></i>
-            </div>
-            <div class="col-md-8 m-auto">
-                <h4 style="color: #666;">Your request has been treated.</h4>
-                <p style="font-size: 16px; color: #999;">13/04/2020</p>
-            </div>
-        </div>
-    </div>
-    <div class="row text-center m-auto">
-         <ul class="pagination">
-          <li><a href="#">1</a></li>
-          <li class="active"><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">5</a></li>
-        </ul> 
-    </div>
-</div>
 @endsection

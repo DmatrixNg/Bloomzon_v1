@@ -702,10 +702,11 @@ Route::prefix('/professional')->name('professional.')->namespace('Web\Profession
 
         Route::get('/account-information', 'ProfileController@account_info');
 
+        Route::get('/notifications', "DashboardController@notifications")->name('notifications');
 
-        Route::get('/notifications',function(){
-            return view('dashboard.professional.notifications');
-        })->name('notifications');
+        // Route::get('/notifications',function(){
+        //     return view('dashboard.professional.notifications');
+        // })->name('notifications');
         Route::get('/messages', function(){
             return view('dashboard.professional.messages');
         })->name('messages');
@@ -772,6 +773,10 @@ Route::prefix('/professional')->name('professional.')->namespace('Web\Profession
         //Bank Details
         Route::post('update_account_details', 'ProfileController@updateBankDetails');
         Route::post('update_paypal_details', 'ProfileController@update_paypal_details');
+
+        // accountupgrade
+        Route::get('/accountupgrade/', 'ProfileController@upgrade_account');
+        Route::post('/account_upgrade/', 'ProfileController@upgrade');
 
     });
 });

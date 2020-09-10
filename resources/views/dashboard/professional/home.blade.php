@@ -24,7 +24,11 @@
         </div>
         <div class="col-md-4">
             <div class="card text-center pr-0" style="color: #02499B; background-color: white;">
-                <img src="{{asset('assets/frontend/img/medium-fb-ad.png')}}">
+              @if ($shop_galleries->first()->avatar)
+                <img src="{{ asset('storage/assets/gallery/avatar/'.$shop_galleries->first()->avatar)}}" width="200">
+              @else
+                <img src="{{ asset('assets/frontend/img/medium-fb-ad.png')}}">
+              @endif
             </div>
         </div>
     </div>
@@ -50,7 +54,7 @@
                     <div
                         style="background-color: white !important; padding: 20px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1); border-radius: 0px !important; border: 1px solid #f2f2f2;">
                         <div class="col-md-4 m-auto">
-                                
+
                             <img src="{{ asset('storage/assets/product/avatars/' .  $product->avatars[0]) }}" height="120" width="170"
                                 style="border-radius: 50%">
                         </div>

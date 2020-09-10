@@ -211,4 +211,20 @@ class ProfileController extends Controller
         return redirect()->back();
 
     }
+
+    public function upgrade_account()
+    {
+        return view('dashboard.professional.upgrade_account');
+    }
+
+    public function upgrade(Request $request)
+    {
+        $user = Auth::guard('professional')->user();
+        $user->account_type = $request->plan;
+        $user->save();
+
+        return redirect()->back()->with([
+            'message' => 'Account Upgraded'
+        ]);
+    }
 }

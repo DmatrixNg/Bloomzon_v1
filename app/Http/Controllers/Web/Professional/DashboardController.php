@@ -142,4 +142,9 @@ class DashboardController extends Controller
     {
         //
     }
+    public function notifications(){
+
+      $notifications = $this->professional->notifications()->paginate(10);
+        return view('dashboard.professional.notifications',compact(['notifications']));
+    }
 }
