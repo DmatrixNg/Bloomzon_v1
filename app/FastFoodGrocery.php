@@ -5,10 +5,13 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 class FastFoodGrocery extends Authenticatable
 {
+  use HasApiTokens, Notifiable;
+
     protected $guard = 'fast_food_grocery';
     protected $guarded = [];
 
@@ -55,11 +58,14 @@ class FastFoodGrocery extends Authenticatable
     {
         return $this->morphMany('App\Order', 'orderable');
     }
+    
     /**
      * Get all of the user's orders.
      */
     public function order_details()
     {
-        return $this->morphMany('App\OrderDetail', 'seller');
+        return $this->hasManyThrough('App\OrderDetail', 'App\Order',
+        'orderable_id'
+      );
     }
 }

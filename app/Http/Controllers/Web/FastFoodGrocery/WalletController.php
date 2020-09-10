@@ -22,9 +22,19 @@ class WalletController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
+
         $fast_food_grocery = $this->fast_food_grocery;
-        $orders = OrderDetails::where('seller_id',$this->fast_food_grocery->id)->where('order_type','fast_food_grocery')->get();
-        $sales = OrderDetails::where('seller_id',$this->fast_food_grocery->id)->where('order_type','fast_food_grocery')->where('status','delivered')->get();
+        $orders = $fast_food_grocery->order_details()->get();
+        $sales = [];
+        foreach($this->fast_food_grocery->order_details()->get() as $sales) {
+
+          if ($sales->status == 'delivered') {
+
+            $sales[] = $sales;
+
+          }
+        }
+        // $sales = $fast_food_grocery()->where('status','delivered')->get();
         $history = WalletHistory::where('user_id',$this->fast_food_grocery->id)->where('user_type','fast_food_grocery')->get();
         $order_tran =  WalletHistory::where('user_id',$this->fast_food_grocery->id)->where('user_type','fast_food_grocery')->where('slug','order')->get();
         return view('dashboard.fast_food_grocery.wallet',compact(['orders','history','fast_food_grocery','sales','order_tran']));
