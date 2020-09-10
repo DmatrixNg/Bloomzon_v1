@@ -364,8 +364,8 @@
                             <i class="fa fa-user"></i>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="{{ url(app()->getLocale().'/login') }}">Login</a>
-                                <a class="dropdown-item" href="{{ url(app()->getLocale().'/register') }}">Register</a>
+                                <a class="dropdown-item" href="{{ url(app()->getLocale().'/all_login') }}">Login</a>
+                                <a class="dropdown-item" href="{{ url(app()->getLocale().'/all_register') }}">Register</a>
                             </div>
                         </div>
 					</div>
