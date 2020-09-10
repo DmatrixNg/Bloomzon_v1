@@ -37,10 +37,10 @@
 
                 <div class="form-group text-center">
                     <div id="error_list"></div>
-                    <button class="btn btn-danger btn-rounded btn-lg" id="verify_btn" onclick="verify_account()">Verify Accountt</button>
+                    <button class="btn btn-danger btn-rounded btn-lg" id="verify_btn" onclick="verify_account()">Verify Account</button>
                 </div>
 
-                <form action="{{ url('seller/update_account_details') }}" method="POST">
+                <form action="{{ url('networking_agent/update_account_details') }}" method="POST">
                     @csrf
 
                     <div class="form-group">
@@ -64,7 +64,7 @@
                         <div id="verify_details" class="">
                             <div class="form-group">
                                 <label for="bank_name" style="font-size: 16px;;">Bank</label>
-                                <input type="text" id="bank_name" class="form-control" name="bank_name" value="{{ $networking_agent->bank_name }}"
+                                <input type="text" id="bank_name" class="form-control" name="bank_name" value="{{ $networking_agent->account_bank_name }}"
                                 placeholder="Bank Name" readonly>
                             </div>
                         </div>
@@ -78,11 +78,13 @@
                         </div>
 
                     </div>
+                    {{-- @if($networking_agent->account_bank_name =="" ) --}}
 
-                    <div class="form-group text-center">
+                      <div class="form-group text-center">
                         <div id="error_list"></div>
-                        <button class="btn btn-primary btn-rounded btn-lg" onclick="verify_account()">Save</button>
-                    </div>
+                        <button class="btn btn-primary btn-rounded btn-lg">Save</button>
+                      </div>
+                    {{-- @endif --}}
 
                 </form>
 
@@ -91,7 +93,7 @@
 
                 <form action="" method="">
                     <div class="form-group">
-                        <h2 style="color: green; text-align: center;"><strong>For sellers outside Africa</strong></h2>
+                        <h2 style="color: green; text-align: center;"><strong>For networking agents outside Africa</strong></h2>
                         <div class="form-group">
                             <label for="exampleFormControlInput1" style="font-size: 16px;;">Paypal Email: </label>
                             <input type="" class="form-control" name="account_number" value="{{ $networking_agent->paypal_email }}"
@@ -123,7 +125,7 @@
         }
 
         // FormHandler('accountDetailsForm', {
-        //     requestUrl: '/seller/edit-bank/{{ Auth::guard(`seller`)->user()->id }}',
+        //     requestUrl: '/networking_agent/edit-bank/{{ Auth::guard(`networking_agent`)->user()->id }}',
         //     cb: function(response) {
         //         if (response.success) {
         //             return swal({
@@ -148,14 +150,15 @@
         list_banks()
         function list_banks() {
 
-            console.log('dsdsds')
 
             // $('#payment_modal').modal('show');
             $.ajax({
             url: "https://api.paystack.co/bank",
             type: "GET",
             headers: {
-                "Authorization": "Bearer " + "{{env('PAYSTACK_SECRET_KEY')}}"
+                "Authorization": "Bearer " + "{{ config('paystack.secretKey')}}",
+                "Cache-Control":"no-cache",
+
             },
             data: {
                 country: "nigeria",
@@ -194,15 +197,21 @@
             url: "https://api.paystack.co/bank/resolve",
             type: "GET",
             headers: {
-                "Authorization": "Bearer " + "{{env('PAYSTACK_SECRET_KEY')}}"
+                "Authorization": "Bearer " + "{{ config('paystack.secretKey')}}"
             },
             data: {
                 account_number: $('#input_acc_num').val(),
                 bank_code: $('#input_bank_code').val(),
             },
+            beforeSend: function () {
+              $('.modal').modal('show');
+
+            },
             error: function(response_error) {
                 $('#verify_btn').attr('disabled', false)
                 console.log(response_error);
+                $('.modal').modal('hide');
+
                 if(response_error['responseJSON']['message'] != undefined) {
                     $('#error_alert').text(response_error['responseJSON']['message'])
                 }
@@ -213,6 +222,7 @@
             .done(function (response) {
                 $('#verify_btn').attr('disabled', false)
                 console.log(response)
+                $('.modal').modal('hide');
 
                 $('#account_name').val(response['data']['account_name'])
                 $('#account_number').val(response['data']['account_number'])

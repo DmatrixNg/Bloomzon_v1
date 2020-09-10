@@ -653,6 +653,7 @@ Route::prefix('/networking_agent')->name('networking_agent.')->namespace('Web\Ne
         Route::post('post-ads/','AdvertController@store');
         Route::post('delete-ads/{id}','AdvertController@destroy');
         Route::post('change-ads-status/{id}','AdvertController@change_status');
+        Route::post('update_account_details', 'ProfileController@updateBankDetails');
 
 
 
@@ -827,6 +828,7 @@ Route::prefix('/seller')->name('seller.')->namespace('Web\Seller')->group(functi
         });
         Route::put('edit-profile/{id}', 'ProfileController@update');
         Route::put('edit-bank/{id}', 'ProfileController@updateBankDetails');
+        Route::post('update_account_details', 'ProfileController@updateBankDetails');
         Route::put('edit-terms-policy/{id}', 'ProfileController@updateTerms');
         //update account details
         Route::get('update-account-details', function () {
