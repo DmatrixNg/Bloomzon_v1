@@ -14,7 +14,7 @@ class AddFieldToWithdrawalRequestsTable extends Migration
     public function up()
     {
         Schema::table('withdrawal_requests', function (Blueprint $table) {
-            $table->longText('paystack_transfer_code')->nullable();
+            $table->string('paystack_transfer_code')->nullable();
         });
     }
 
@@ -29,4 +29,5 @@ class AddFieldToWithdrawalRequestsTable extends Migration
             $table->dropColumn('paystack_transfer_code');
         });
     }
+    
 }

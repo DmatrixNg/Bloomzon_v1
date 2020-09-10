@@ -88,6 +88,7 @@
                 <a href="{{ url('admin/payout-request/fast_food_grocery') }}">Fast Food & Grocery</a>
                 <a href="{{ url('admin/payout-request/networking_agent') }}">Networking Agent</a>
                 <a href="{{ url('admin/payout-request/professional_service') }}">Professional Service</a>
+                <a href="{{ url('admin/payout-request/seller') }}">Seller</a>
             </div>
             @if($admin->role == 'super_admin')
             <button class="dropdown-btn d-none"><i class="fas fa-users"></i> Sub-Admin
