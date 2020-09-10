@@ -769,6 +769,9 @@ Route::prefix('/professional')->name('professional.')->namespace('Web\Profession
         Route::get('/reply-review/{id}','ReviewController@reply')->name('reply-reviews');
         Route::post('/reply-review','ReviewController@storeReply')->name('reply-reviews');  //display account information
 
+        //Bank Details
+        Route::post('update_account_details', 'ProfileController@updateBankDetails');
+        Route::post('update_paypal_details', 'ProfileController@update_paypal_details');
 
     });
 });
