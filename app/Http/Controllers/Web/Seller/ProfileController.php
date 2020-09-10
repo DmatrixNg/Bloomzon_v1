@@ -77,9 +77,9 @@ class ProfileController extends Controller
     {
         //initiate buyer
         $buyer = Seller::find($id);
-        $data = $request->all();
+        $data  = $request->all();
 
-        $imgUrl = null; //instantiate imgurl variable
+        $imgUrl = null;  //instantiate imgurl variable
         //checks if image file exist and stores in localstorate
         if ($request->hasFile('avatar')) {
             $imgName = time() . '.' . $request->avatar->getClientOriginalExtension();
@@ -108,9 +108,9 @@ class ProfileController extends Controller
     {
         $request->validate([
             'terms_and_conditions' => ['required', 'string'],
-            'policy'    => ['required', 'string'],
-            'terms_of_purchase' => ['required', 'string'],
-            'delivery_terms' => ['required', 'string']
+            'policy'               => ['required', 'string'],
+            'terms_of_purchase'    => ['required', 'string'],
+            'delivery_terms'       => ['required', 'string']
 
         ]);
 
@@ -123,9 +123,9 @@ class ProfileController extends Controller
         try {
             $seller->update([
                 'terms_and_conditions' => $request->terms_and_conditions,
-                'policy'    => $request->policy,
-                'terms_of_purchase' => $request->terms_of_purchase,
-                'delivery_terms'    => $request->delivery_terms
+                'policy'               => $request->policy,
+                'terms_of_purchase'    => $request->terms_of_purchase,
+                'delivery_terms'       => $request->delivery_terms
             ]);
             return $this->send_response(true, $seller, 200, 'Your account has been edited');
         } catch (\Illuminate\Database\QueryException $e) {
@@ -133,28 +133,27 @@ class ProfileController extends Controller
         }
     }
 
-    public function updateBankDetails(Request $request,$id){
+    public function updateBankDetails(Request $request){
+
         $request->validate([
-            'account_name' => 'required | string',
-            'bank_name'     => 'string',
-            'other_bank'    => 'string',
-            'account_number' => 'required | string',
-            
+            'account_name'   => 'required',
+            'account_number' => 'required',
+            'bank_name'      => 'required',
+            'bank_code'      => 'required',
         ]);
 
-        $bank_name = $request->bank_name == 'other_bank'?$request->other_bank:$request->bank_name;
+        $seller = Auth::guard('seller')->user();
 
-        $seller = Seller::find($id);
-       $update =  $seller->update([
-            'account_name' => $request->account_name,
-            'bank_name'     => $bank_name,
+        $seller->update([
+            'account_name'   => $request->account_name,
+            'bank_name'      => $request->bank_name,
             'account_number' => $request->account_number,
+            'bank_code'      => $request->bank_code,
             
         ]);
-        if($update){
-            return $this->send_response(true, $update, 200, 'Your bank details has been saved');
-        }
-        return $this->send_response(false, $update, 400, 'Could not update account');
+        
+        return redirect()->back();
+        
     }
 
 
