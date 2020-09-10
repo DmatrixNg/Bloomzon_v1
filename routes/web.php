@@ -73,8 +73,8 @@ Route::group(['prefix' => '{lang}'], function () {
 
 
 
-//   Route::view('register', 'auth.register');
-//   Route::view('login', 'auth.login');
+  Route::view('all_register', 'auth.register');
+  Route::view('all_login', 'auth.login');
 
   Route::GET('/chat',function(){
     return view('front.chat');
@@ -831,6 +831,9 @@ Route::prefix('/seller')->name('seller.')->namespace('Web\Seller')->group(functi
         Route::put('edit-profile/{id}', 'ProfileController@update');
         Route::put('edit-bank/{id}', 'ProfileController@updateBankDetails');
         Route::put('edit-terms-policy/{id}', 'ProfileController@updateTerms');
+        Route::post('update_account_details', 'ProfileController@updateBankDetails');
+        Route::post('update_paypal_details', 'ProfileController@update_paypal_details');
+
         //update account details
         Route::get('update-account-details', function () {
             $seller = Auth::guard('seller')->user();
