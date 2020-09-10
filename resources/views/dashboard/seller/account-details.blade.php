@@ -220,8 +220,6 @@
 
             });
 
-            $('#verify_btn').attr('disabled', false)
-
         }
 
     </script>

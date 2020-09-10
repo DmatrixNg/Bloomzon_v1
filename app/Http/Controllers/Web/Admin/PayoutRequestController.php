@@ -26,7 +26,8 @@ class PayoutRequestController extends Controller
 
     }
 
-    public function pay($request_id){
+    public function pay($reques, $request_id){
+        
 
         $request = WithdrawalRequest::findOrFail($request_id);
         $request->status = 1;

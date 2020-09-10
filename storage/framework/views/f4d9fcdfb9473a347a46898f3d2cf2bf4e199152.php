@@ -371,8 +371,8 @@
                             <i class="fa fa-user"></i>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="<?php echo e(url(app()->getLocale().'/all_login')); ?>">Login</a>
-                                <a class="dropdown-item" href="<?php echo e(url(app()->getLocale().'/all_register')); ?>">Register</a>
+                                <a class="dropdown-item" href="<?php echo e(url( app()->getLocale().'/all_login')); ?>">Login</a>
+                                <a class="dropdown-item" href="<?php echo e(url( app()->getLocale().'/all_register')); ?>">Register</a>
                             </div>
                         </div>
 					</div>
