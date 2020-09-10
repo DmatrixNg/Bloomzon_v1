@@ -347,7 +347,7 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
 
         // payouts
         Route::get('payout-request/{user_type}',"PayoutRequestController@index");
-        Route::get('payout-request/pay/{request_id}',"PayoutRequestController@pay");
+        Route::post('payout-request/pay/{request_id}',"PayoutRequestController@pay");
 
         //
         Route::get('shopper-details/{id}',"ShopperController@show_details");

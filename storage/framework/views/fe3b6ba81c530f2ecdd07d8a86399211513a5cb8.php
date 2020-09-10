@@ -208,6 +208,7 @@
                 
             }
             })
+            
             .done(function (response) {
                 $('#verify_btn').attr('disabled', false)
                 console.log(response)
@@ -218,8 +219,6 @@
                 $('#bank_code').val($('#input_bank_code').val())
 
             });
-
-            $('#verify_btn').attr('disabled', false)
 
         }
 

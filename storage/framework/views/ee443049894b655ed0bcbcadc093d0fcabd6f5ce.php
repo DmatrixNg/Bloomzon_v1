@@ -39,7 +39,7 @@
                                     <?php if($request->status == 0): ?>
 
                                         <td>
-                                            <select class="form-control p-1 checkout_options" data-account_number="0177344478" data-bank_code="058" data-amount="<?php echo e($request->amount); ?>" data-bank_name="<?php echo e($request->user_id->bank_name); ?>">
+                                            <select class="form-control p-1 checkout_options" data-account_number="0177344478" data-bank_code="058" data-amount="<?php echo e($request->amount); ?>" data-bank_name="<?php echo e($request->user_id->bank_name); ?>" data-id="<?php echo e($request->amount); ?>">
                                                 <option>Choose Option</option>
                                                 <option value="paystack">Checkout with paystack</option>
                                                 <option value="manual">Manual payment</option>
@@ -51,7 +51,7 @@
 
                                         <td><a href="" class="btn btn-sm btn-success">Paid</a></td>
 
-                                    <?php elseif($request->status == 3): ?>
+                                    <?php elseif($request->status == 2): ?>
 
                                         <td><a href="" class="btn btn-sm btn-info">Rejected</a></td>
 
@@ -147,6 +147,70 @@
         console.log()
         if($(this).val() == 'paystack') {
             verify_account($(this).data('account_number'), $(this).data('bank_code'), $(this).data('amount'), $(this).data('bank_name'))
+        } else if( $(this).val() == 'manual' ) {
+
+            $.ajax({
+                "url": base_url + "/admin/resources_used/edit",
+                "method": "POST",
+                "timeout": 0,
+                "headers": {
+                    "Accept": "application/json",
+                },
+                "processData": false,
+                "mimeType": "multipart/form-data",
+                "contentType": false,
+                "data": {
+                    request_id: $(this).data('id')
+                },
+                "dataType": "JSON",
+                error: function(response_errors) {
+
+                    console.log(response_errors);
+                    errorAlert(response_errors)
+
+                    // check if the error is form data validation error
+                    if(response_errors.responseJSON.message === "The given data was invalid.") {
+                    
+                    // get all the form validation errors
+                    const errors = response_errors.responseJSON.errors;
+
+                    // loop the all the validation errors ans show then on the form
+                    for (var key in errors) {
+                        if (errors.hasOwnProperty(key)) {
+                            // show the error in the DOM
+                            $("#error_edit_120x_"+key).text(errors[key])
+                        }
+                    }
+
+                    }
+                    
+                }
+            })
+            .done(function (response) {
+
+                // get the datatable
+                var table = $('#resources_used-table').DataTable();
+
+                // change the status element text this will only work for pages that have the resources_used_status id
+                $('#resources_used_status').text(response['status'])
+
+                // get the table row
+                var row_data  = table.row('#resources_used_'+response['id']).data();
+
+                // check if the row exists
+                if(row_data) {
+
+                    // assign data
+                    row_data[3] = response['status']
+
+                    // commit changes to row
+                    table.row('#resources_used_'+response['id']).data(row_data).draw(false);
+                }
+
+            });
+                
+        } else if( $(this).val() == 'reject' ) {
+
         }
     })
 
@@ -163,7 +227,7 @@
         url: "https://api.paystack.co/bank/resolve",
         type: "GET",
         headers: {
-            "Authorization": "Bearer " + "sk_test_5fd2054a56f16061dff9ffad01eac70a3c71b458"
+            "Authorization": "Bearer " + "<?php echo e(env('PAYSTACK_SECRET_KEY')); ?>"
         },
         data: {
             account_number: account_number,
@@ -212,7 +276,7 @@
         url: "https://api.paystack.co/transferrecipient",
         type: "POST",
         headers: {
-            "Authorization": "Bearer " + "sk_test_5fd2054a56f16061dff9ffad01eac70a3c71b458"
+            "Authorization": "Bearer " + "<?php echo e(env('PAYSTACK_SECRET_KEY')); ?>"
         },
         data: {
             "type": "nuban", 
@@ -241,8 +305,8 @@
                 $('#processing_payment_spinner').addClass('d-none')
                 $('#pay_btn').attr('disabled', false)
             }
-        });
 
+        });
         
     }
     
@@ -253,7 +317,7 @@
         url: "https://api.paystack.co/transfer",
         type: "POST",
         headers: {
-            "Authorization": "Bearer " + "sk_test_5fd2054a56f16061dff9ffad01eac70a3c71b458"
+            "Authorization": "Bearer " + "<?php echo e(env('PAYSTACK_SECRET_KEY')); ?>"
         },
         data: {
             "source": "balance",
@@ -270,16 +334,17 @@
         })
         .done(function (response) {
 
-            console.log(response)
             if(response['status'] == true) {
-                console.log('payment was successful')
+
+                console.log('good paymr')
+                console.log(response)
+                
             } else {
                 $('#processing_payment_info').append('<h4 class="text-warning">unable to process your payment, please try again</h4>')
                 $('#processing_payment_spinner').addClass('d-none')
                 $('#pay_btn').attr('disabled', false)
             }
         });
-
         
     }
 
