@@ -21,6 +21,7 @@
                                 <th>Wallet Balance</th>
                                 <th>Amount Request</th>
                                 <th>Narration</th>
+                                <th>Paystack Payment Ref</th>
                                 <th>Action</th>
                                 <!-- <th>User Balance</th> -->
                             </tr>
@@ -37,11 +38,18 @@
                                     <td>${{$request->user_id->wallet}}</td>
                                     <td>${{$request->amount}}</td>
                                     <td>{{$request->narration}}</td>
+                                    <td>{{$request->paystack_transfer_code}}</td>
 
                                     @if($request->status == 0)
 
                                         <td>
-                                            <select class="form-control p-1 checkout_options" data-account_number="0177344478" data-bank_code="058" data-amount="{{$request->amount}}" data-bank_name="{{$request->user_id->bank_name}}" data-id="{{$request->amount}}">
+                                            <select class="form-control p-1 checkout_options" 
+                                            data-account_number="{{$request->user_id->account_number}}" 
+                                            data-bank_code="{{$request->user_id->bank_code}}" 
+                                            data-amount="{{$request->amount}}" 
+                                            data-bank_name="{{$request->user_id->bank_name}}" 
+                                            data-id="{{$request->id}}">
+
                                                 <option>Choose Option</option>
                                                 <option value="paystack">Checkout with paystack</option>
                                                 <option value="manual">Manual payment</option>
@@ -113,6 +121,7 @@
             <div class="form-group">
                 <label for="amount">Amount</label>
                 <input type="text" class="form-control" id="amount" placeholder="Amount" disabled>
+                <input type="hidden" id="request_id" disabled>
             </div>
         </form>
             <div id="processing_payment_spinner" class="text-center d-none">
@@ -141,82 +150,56 @@
 
 <script>
 
+    const base_url = "{{ url('/') }}"
+
+    
+
+
     $(document).ready(function(){
+
         $("#request-table").DataTable();
     })
+
+    
 
     $('.checkout_options').change( function(){
         console.log()
         if($(this).val() == 'paystack') {
-            verify_account($(this).data('account_number'), $(this).data('bank_code'), $(this).data('amount'), $(this).data('bank_name'))
+
+            verify_account($(this).data('id'), $(this).data('account_number'), $(this).data('bank_code'), $(this).data('amount'), $(this).data('bank_name'))
+
         } else if( $(this).val() == 'manual' ) {
-
-            $.ajax({
-                "url": base_url + "/admin/resources_used/edit",
-                "method": "POST",
-                "timeout": 0,
-                "headers": {
-                    "Accept": "application/json",
-                },
-                "processData": false,
-                "mimeType": "multipart/form-data",
-                "contentType": false,
-                "data": {
-                    request_id: $(this).data('id')
-                },
-                "dataType": "JSON",
-                error: function(response_errors) {
-
-                    console.log(response_errors);
-                    errorAlert(response_errors)
-
-                    // check if the error is form data validation error
-                    if(response_errors.responseJSON.message === "The given data was invalid.") {
-                    
-                    // get all the form validation errors
-                    const errors = response_errors.responseJSON.errors;
-
-                    // loop the all the validation errors ans show then on the form
-                    for (var key in errors) {
-                        if (errors.hasOwnProperty(key)) {
-                            // show the error in the DOM
-                            $("#error_edit_120x_"+key).text(errors[key])
-                        }
-                    }
-
-                    }
-                    
-                }
-            })
-            .done(function (response) {
-
-                // get the datatable
-                var table = $('#resources_used-table').DataTable();
-
-                // change the status element text this will only work for pages that have the resources_used_status id
-                $('#resources_used_status').text(response['status'])
-
-                // get the table row
-                var row_data  = table.row('#resources_used_'+response['id']).data();
-
-                // check if the row exists
-                if(row_data) {
-
-                    // assign data
-                    row_data[3] = response['status']
-
-                    // commit changes to row
-                    table.row('#resources_used_'+response['id']).data(row_data).draw(false);
-                }
-
-            });
-                
+            update_request($(this).data('id'), 1)
         } else if( $(this).val() == 'reject' ) {
-
+            update_request($(this).data('id'), 2)
         }
     })
 
-    function verify_account(account_number, bank_code, amount, bank_name) {
+    function update_request(id, status, ref='') {
+        $.ajax({
+            "url": base_url + "/admin/process_Request/pay",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+            },
+            "data": {
+                paystack_transfer_code: ref,
+                id: id,
+                status: status
+            },
+            "dataType": "JSON",
+            error: function(response_errors) {
+                // console.log(response_errors)
+                location.reload();
+            }
+        })
+        .done(function (response) {
+            location.reload();
+        });
+    }
+
+    function verify_account(request_id, account_number, bank_code, amount, bank_name) {
 
         $('#payment_spinner').removeClass('d-none');
         $('#payment_form').addClass('d-none');
@@ -250,6 +233,7 @@
                 $('#bank_name').val(bank_name);
                 $('#bank_code').val(bank_code);
                 $('#amount').val(amount);
+                $('#request_id').val(request_id);
 
                 $('#payment_spinner').addClass('d-none');
                 $('#payment_form').removeClass('d-none');
@@ -338,11 +322,9 @@
 
             if(response['status'] == true) {
 
-                console.log('good paymr')
-                console.log(response)
-                
-                $('#processing_payment_spinner').addClass('d-none')
-                $('#pay_btn').attr('disabled', false)
+                update_request($('#request_id').val(), 1, response['data']['transfer_code'])
+                // $('#processing_payment_spinner').addClass('d-none')
+                // $('#pay_btn').attr('disabled', false)
                 
             } else {
                 $('#processing_payment_info').append('<h4 class="text-warning">unable to process your payment, please try again</h4>')
