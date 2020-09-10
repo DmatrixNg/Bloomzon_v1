@@ -14,7 +14,7 @@
                     </div>
                 </div>
 
-                <form method="post" action="{{ url('/uploadImage') }}" enctype="multipart/form-data" class="dropzone"
+                <form method="POST" action="{{ url('/uploadImage') }}" enctype="multipart/form-data" class="dropzone"
                     name="dropZone" id="dropzone">
                     @csrf
                 </form>

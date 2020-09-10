@@ -31,7 +31,7 @@
                     </div>
                     <div class="col-md-4 text-right m-auto">
                         <p style="color: grey"><?php echo e(date($product->created_at)); ?></p>
-                    <a href="<?php echo e(url('product-details/'.base64_encode($product->id))); ?>" target="_blank" class="btn" style="background-color: #AF2E1D; border-radius: 5px; width: 130px; color: white;margin-top:2px">View Details</a>
+                    <a href="<?php echo e(url(app()->getLocale().'/product-details/'.base64_encode($product->id))); ?>" target="_blank" class="btn" style="background-color: #AF2E1D; border-radius: 5px; width: 130px; color: white;margin-top:2px">View Details</a>
                     <a href="<?php echo e(route('seller.edit-product',$product->id)); ?>" target="_blank" class="btn" style="background-color: #AF2E1D; border-radius: 5px; width: 130px; color: white; margin-top:2px">Edit</a>
                         <a  class="btn" style="background-color: #AF2E1D; border-radius: 5px; width: 130px; color: white; margin-top:2px" onclick="deleteProd(this,<?php echo e($product->id); ?>)">Delete</a>
 

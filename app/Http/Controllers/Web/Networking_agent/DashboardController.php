@@ -35,7 +35,7 @@ class DashboardController extends Controller
 
     // handles the file and image uploads
     public function fileStore($data)
-    {   
+    {
         $url = array();
         foreach ($data as $img) {
             $image = $img;
@@ -61,7 +61,7 @@ class DashboardController extends Controller
         return $filename;
     }
 
-   
+
     /**
      * Show the form for creating a new resource.
      *
@@ -83,7 +83,7 @@ class DashboardController extends Controller
     }
 
 
-   
+
 
     /**
      * Display the specified resource.
@@ -129,4 +129,12 @@ class DashboardController extends Controller
     {
         //
     }
+    public function notification()
+    {
+      $notifications = $this->networking_agent->notifications()->latest()->paginate(8);
+
+      return view('dashboard.networking_agent.notification',compact(['notifications']));
+    }
+
+
 }

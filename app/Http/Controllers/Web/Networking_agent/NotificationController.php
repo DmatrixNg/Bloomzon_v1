@@ -10,9 +10,12 @@ use Illuminate\Support\Facades\Auth;
 
 class NotificationController extends Controller
 {
+
+  protected $user;
+
     public function __construct()
     {
-            $this->seller = Auth::guard('networking_agent')->user();
+            $this->user = Auth::guard('networking_agent')->user();
     }
     /**
      * Display a listing of the resource.
@@ -21,7 +24,9 @@ class NotificationController extends Controller
      */
     public function index()
     {
-        //
+      $notifications = $this->user->notifications()->latest()->paginate(8);
+
+      return view('dashboard.networking_agent.notification',compact(['notifications']));
     }
 
     /**

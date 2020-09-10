@@ -1,6 +1,6 @@
-<div>
+
     <!-- Well begun is half done. - Aristotle -->
-    <footer class="footer-area mt-50" style="background-color: #000;">
+<footer class="footer-area mt-50" style="background-color: #000;">
     <div class="container-fluid pl-5 pr-5">
         <div class="row">
             <div class="col-lg-4 col-sm-6">
@@ -126,5 +126,4 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 </footer>
-</div>
 <?php /**PATH /Users/DMatrix/work/new/Bloomzon_v1/resources/views/components/front/footer-nav.blade.php ENDPATH**/ ?>

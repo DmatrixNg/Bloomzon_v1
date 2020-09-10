@@ -46,8 +46,8 @@
     <link rel="stylesheet" href=" <?php echo e(asset('front_assets/assets/css/responsive.css')); ?>">
 
     <!-- owl slider -->
-    <link rel="stylesheet" href=" <?php echo e(asset('front_assets/assets/css/owl.carousel.css')); ?>">
-    <link rel="stylesheet" href=" <?php echo e(asset('front_assets/assets/css/owl.theme.default.min.css')); ?>">
+    <!-- <link rel="stylesheet" href=" <?php echo e(asset('front_assets/assets/css/owl.carousel.css')); ?>">
+    <link rel="stylesheet" href=" <?php echo e(asset('front_assets/assets/css/owl.theme.default.min.css')); ?>"> -->
 
 
 
@@ -91,6 +91,11 @@
 
             .svh {
                 height: 180px !important;
+            }
+
+            .product-image-set {
+                width: 150px;
+                height: auto;
             }
         }
 	</style>
@@ -184,26 +189,9 @@
 \
 
 <!-- owl slider -->
-<script src="<?php echo e(asset('front_assets/assets/owl.carousel.min.js')); ?>"></script>
+<!-- <script src="<?php echo e(asset('front_assets/assets/owl.carousel.min.js')); ?>"></script> -->
 
-<script>
-$('.owl-carousel').owlCarousel({
-    loop:true,
-    margin:10,
-    nav:true,
-    responsive:{
-        0:{
-            items:1
-        },
-        600:{
-            items:3
-        },
-        1000:{
-            items:5
-        }
-    }
-})
-</script>
+
 
 
 <div class="mm-wrapper__blocker mm-slideout"><a href="#mm-0">

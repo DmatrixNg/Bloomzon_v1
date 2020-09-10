@@ -73,9 +73,6 @@ Route::group(['prefix' => '{lang}'], function () {
 
 
 
-//   Route::view('register', 'auth.register');
-//   Route::view('login', 'auth.login');
-
   Route::GET('/chat',function(){
     return view('front.chat');
   });
@@ -90,8 +87,6 @@ Route::group(['prefix' => '{lang}'], function () {
 
 
   Route::get('/', 'HomeController@index');
-  Route::post('/uploadImage','ProductController@upload_image');
-  Route::post('/deleteImage','ProductController@delete_image');
 
   Route::get('/not-found',function(){
     return view('front.404');
@@ -103,6 +98,8 @@ Route::group(['prefix' => '{lang}'], function () {
   Route::get('track-order/{id}','OrderController@trackDelivery');
 });
 
+Route::post('/uploadImage','ProductController@upload_image');
+Route::post('/deleteImage','ProductController@delete_image');
 Route::post('/order/create','OrderController@create');
 Route::post('track-order/{id}','OrderController@trackDelivery');
 
@@ -120,6 +117,12 @@ Route::post('/product/getSubCategories/{id}','ProductController@getSubCategories
 Route::post('/cart/add-coupon/','CartController@addCoupon');
 Route::post('/cart/clear','CartController@clearCart');
 
+Route::get('/cart/add/{product_id}/{qty}/{color}','CartController@addToCart');
+Route::get('/cart/add/{product_id}/{qty}','CartController@addToCart');
+Route::get('/cart/increase/{product_id}/{qty}','CartController@addToCart');
+Route::get('/cart/decrease/{product_id}/{qty}','CartController@redItemQty');
+Route::get('/cart/remove/{product_id}','CartController@removeItem');
+
 Route::get('/get_categories', 'Web\Admin\CategoryController@get_all_catgeory');
 Route::get('/convert/{total}', 'CartController@getConversion');
 
@@ -134,12 +137,8 @@ Route::group(['prefix' => '{lang}'], function () {
   // Cart System Routes
 
   Route::get('/cart','CartController@displayCart');
-  Route::get('/cart/add/{product_id}/{qty}/{color}','CartController@addToCart');
-  Route::get('/cart/add/{product_id}/{qty}','CartController@addToCart');
-  Route::get('/cart/increase/{product_id}/{qty}','CartController@addToCart');
-  Route::get('/cart/decrease/{product_id}/{qty}','CartController@redItemQty');
-  Route::get('/cart/remove/{product_id}','CartController@removeItem');
-  
+
+
   Route::get('/checkout','CartController@checkout');
 
   Route::get('/category/{name}/{subname?}','HomeController@show_category');
@@ -613,9 +612,7 @@ Route::prefix('/networking_agent')->name('networking_agent.')->namespace('Web\Ne
 
 
 
-        Route::get('/notifications',function(){
-            return view('dashboard.networking_agent.notification');
-        })->name('notifications');
+        Route::get('/notifications', "DashboardController@notification")->name('notifications');
 
 
 

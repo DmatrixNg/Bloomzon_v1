@@ -33,9 +33,39 @@ class AdvertController extends Controller
             'id' => 'required'
             ]);
 
+            if($request->status == 0) {
+                $stat = "Rejected";
+            } else {
+                $stat = "Accepted";
+            }
+
         $advert = Advert::find($request->id);
+
+        if ($advert->ads_by == "buyer") {
+          $user = \App\Buyer::find($advert->user_id)->first();
+
+        }elseif ($advert->ads_by == "seller") {
+          $user = \App\Seller::find($advert->user_id)->first();
+
+        }elseif ($advert->ads_by == "professional") {
+          $user = \App\Professional::find($advert->user_id)->first();
+
+        }elseif ($advert->ads_by == "networking_agent") {
+          $user = \App\NetworkingAgent::find($advert->user_id)->first();
+
+        }elseif ($advert->ads_by == "fast_food_grocery") {
+          $user = \App\FastFoodGrocery::find($advert->user_id)->first();
+
+        }elseif ($advert->ads_by == "admin") {
+          $user = \App\Admin::find($advert->user_id)->first();
+
+        }elseif ($advert->ads_by == "manufacturer") {
+          $user = \App\Manufacturer::find($advert->user_id)->first();
+
+        }
+        $user->notify(new \App\Notifications\Ads($advert,$stat))
         $advert->update(
-            ['status'=>$request->status]);    
+            ['status'=>$request->status]);
             if($advert){
                 return $this->send_response(true,[],200,'Advert updated successfully');
             }
@@ -61,7 +91,7 @@ class AdvertController extends Controller
     {
         $ad  = new Advert();
         $imgName = '';
-        //validate image 
+        //validate image
         $request->validate([
             'user_id' => [],
             'ads_by' => [],

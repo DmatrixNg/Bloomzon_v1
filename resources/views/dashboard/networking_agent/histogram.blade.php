@@ -166,8 +166,8 @@
 
         <div class="col-md-4">
             <a href="{{route('networking_agent.create-seller')}}" class="btn" style="background: #02499B; color: white; border-radius: 30px;"> Add Seller</a>
-            
-            
+
+
         </div>
     </div>
 @endsection
