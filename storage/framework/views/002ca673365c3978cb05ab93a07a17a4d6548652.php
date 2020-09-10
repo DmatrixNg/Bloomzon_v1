@@ -13,7 +13,7 @@
                     </div>
                 </div>
 
-                <form method="post" action="<?php echo e(url('/uploadImage')); ?>" enctype="multipart/form-data" class="dropzone"
+                <form method="POST" action="<?php echo e(url('/uploadImage')); ?>" enctype="multipart/form-data" class="dropzone"
                     name="dropZone" id="dropzone">
                     <?php echo csrf_field(); ?>
                 </form>

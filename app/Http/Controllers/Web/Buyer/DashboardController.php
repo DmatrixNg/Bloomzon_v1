@@ -90,6 +90,7 @@ class DashboardController extends Controller
         $messages = Message::where('ticket',$ticket)->get();
         return view('dashboard.buyer.show-message',compact(['messages']));
     }
+    
     protected function validator(array $data)
     {
 

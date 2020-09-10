@@ -110,7 +110,7 @@ class ProfileController extends Controller
         } catch (\Illuminate\Database\QueryException $e) {
             abort(404);
         }
-        
+
     }
 
     /**
@@ -123,7 +123,7 @@ class ProfileController extends Controller
             'account_name' => 'required|string',
             'card_number'     => 'required|numeric',
             'account_number'  => 'required|numeric',
-            
+
         ]);
 
         $networking_agent = Auth::guard('networking_agent')->user();
@@ -147,9 +147,9 @@ class ProfileController extends Controller
         } catch (\Illuminate\Database\QueryException $e) {
             abort(404);
         }
-        
 
-        
+
+
     }
 
     /**
@@ -179,9 +179,9 @@ class ProfileController extends Controller
             $imgName = time() . '.' . $request->avatar->getClientOriginalExtension();
 
             try {
-                
+
                 $request->file('avatar')->storeAs('/assets/networking_agent/avatar', $imgName, 'public');
-               
+
             } catch (\Exception $e) {
                 return $this->send_response(false, $e, 400, 'Problem updating profile');
             }
@@ -208,13 +208,13 @@ class ProfileController extends Controller
     }
 
     public function updateBankAccount(Request $request,$id) {
-        
+
         $request->validate([
             'account_name' => 'required | string',
             'bank_name'     => 'string',
             'other_bank'    => 'string',
             'account_number' => 'required | string',
-            
+
         ]);
 
         $bank_name = $request->bank_name == 'other_bank'?$request->other_bank:$request->bank_name;
@@ -225,13 +225,13 @@ class ProfileController extends Controller
             'card_number'  => $request->card_number,
             'account_bank_name'     => $bank_name,
             'account_number' => $request->account_number,
-            
+
         ]);
         if($update){
             return $this->send_response(true, $update, 200, 'Your bank details has been saved');
         }
         return $this->send_response(false, $update, 400, 'Could not update account');
-    
+
      }
 
      public function upgrade_account()
@@ -244,7 +244,7 @@ class ProfileController extends Controller
          $user = Auth::guard('networking_agent')->user();
          $user->account_type = $request->plan;
          $user->save();
-         
+
          return redirect()->back()->with([
              'message' => 'Account Upgraded'
          ]);
@@ -261,4 +261,43 @@ class ProfileController extends Controller
     {
         //
     }
+    public function updateBankDetails(Request $request){
+
+        $request->validate([
+            'account_name'   => 'required',
+            'account_number' => 'required',
+            'bank_name'      => 'required',
+            'bank_code'      => 'required',
+        ]);
+
+        $user = Auth::guard('networking_agent')->user();
+
+        $user->update([
+            'account_name'   => $request->account_name,
+            'account_bank_name'      => $request->bank_name,
+            'account_number' => $request->account_number,
+            'bank_code'      => $request->bank_code,
+
+        ]);
+
+        return redirect()->back();
+
+    }
+    public function update_paypal_details(Request $request){
+
+        $request->validate([
+            'email'   => 'email|required',
+        ]);
+
+        $user = Auth::guard('networking_agent')->user();
+
+        $user->update([
+            'paypal_email'   => $request->email
+
+        ]);
+
+        return redirect()->back();
+
+    }
+
 }

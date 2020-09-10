@@ -11,7 +11,7 @@ class ReviewController extends Controller
 {
 
     use JsonResponse;
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -32,10 +32,14 @@ class ReviewController extends Controller
         $ffg = Review::find($id);
         if($ffg->status == 1) {
             $ffg->status = 0;
+            $stat = "Rejected";
         } else {
             $ffg->status = 1;
+            $stat = "Accepted";
         }
         $result = $ffg->save();
+        $sender = \App\Buyer::find($ffg->buyer_id)->first();
+        $sender->notify(new \App\Notifications\Action($ffg,$stat));
         if($result) return $this->send_response(true,$ffg,200,'Status has been changes');
         return $this->send_response(true,$ffg,400,'');
     }

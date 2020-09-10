@@ -7,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-xl-8">
-                        <div class="main-slider mt-30 mt-sm-0 slick-initialized slick-slider slick-dotted">
+                        <div class="main-slider slick-initialized mt-30 mt-sm-0 slick-slider slick-dotted">
                             <div id="sliderCar" class="carousel slide" data-ride="carousel">
 
                                 <div class="carousel-inner">
@@ -37,7 +37,7 @@
                               </div>
                         </div>
                     </div>
-                    <div class="col-xl-4 hider-cs">
+                    <div class="col-xl-4 hider-cs menu-hider">
                         <div class="row mt-30">
                         <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
@@ -47,9 +47,9 @@
                               <div class="carousel-item  <?php if($count == 0): ?> active <?php endif; ?>">
                                 <div class="banner-sm hover-effect">
                                     <a href="<?php echo e($advert->advert_link); ?>?referrer=bloomzon" target="_blank">
-                                            <img src="<?php echo e(asset('storage/assets/advert/avatar/'.$advert->avatar)); ?>" class="d-block w-100" alt="<?php echo e($advert->advert_link); ?>" height="341">
-                                        </a>
-                              </div>
+                                        <img src="<?php echo e(asset('storage/assets/advert/avatar/'.$advert->avatar)); ?>" class="d-block w-100" alt="<?php echo e($advert->advert_link); ?>" height="341">
+                                    </a>
+                                </div>
                               </div>
                               <?php ($count++); ?>
                               <?php endif; ?>
@@ -61,7 +61,7 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid mt-50 hider-cs" style="background-color: #eeeeee !important">
+        <div class="container-fluid mt-50 hider-cs menu-hider" style="background-color: #eeeeee !important">
             <div class="brands-area">
                 <div class="row">
                     <div class="col-lg-2">

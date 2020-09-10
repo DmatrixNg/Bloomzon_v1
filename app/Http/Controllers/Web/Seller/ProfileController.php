@@ -149,14 +149,29 @@ class ProfileController extends Controller
             'bank_name'      => $request->bank_name,
             'account_number' => $request->account_number,
             'bank_code'      => $request->bank_code,
-            
+
         ]);
-        
+
         return redirect()->back();
-        
+
     }
 
+    public function update_paypal_details(Request $request){
 
+      $request->validate([
+          'email'   => 'email|required',
+      ]);
+
+        $seller = Auth::guard('seller')->user();
+
+      $seller->update([
+            'paypal_email'   => $request->email
+
+        ]);
+
+        return redirect()->back();
+
+    }
 
     /**
      * Remove the specified resource from storage.

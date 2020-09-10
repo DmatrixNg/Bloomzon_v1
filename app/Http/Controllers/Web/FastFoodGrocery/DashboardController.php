@@ -24,6 +24,7 @@ class DashboardController extends Controller
     {
             $this->fast_food_grocery = Auth::guard('fast_food_grocery')->user();
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -36,7 +37,16 @@ class DashboardController extends Controller
         $catalogues = FoodCatalogue::all();
 
         $orders = $this->fast_food_grocery->order_details()->get();
-        $sales =  $this->fast_food_grocery->order_details()->where('status','delivered')->get();
+        $sales = [];
+        foreach($this->fast_food_grocery->order_details()->get() as $sales) {
+
+          if ($sales->status == 'delivered') {
+
+            $sales[] = $sales;
+
+          }
+        }
+        // dd($sales);
         return view('dashboard.fast_food_grocery.home',compact(['orders','sales','catalogues']));
     }
 

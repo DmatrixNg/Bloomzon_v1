@@ -32,7 +32,7 @@
           line-height: 40px;
           padding: 10px;
         }
-        
+
         /* Style the sidenav links and the dropdown button */
         .sidenav1 a, .dropdown-btn {
           padding: 6px;
@@ -48,48 +48,48 @@
           outline: none;
           border-bottom: solid 1px #f2f2f2;
         }
-        
+
         /* On mouse-over */
         .sidenav1 a:hover, .dropdown-btn:hover {
           color: #fff;
           background-color: #02499B;
           /*border-radius: 5px;*/
         }
-        
+
         /* Main content */
         .main1 {
           margin-left: 200px; /* Same as the width of the sidenav */
           font-size: 20px; /* Increased text to enable scrolling */
           padding: 0px 10px;
         }
-        
+
         /* Add an active class to the active dropdown button */
         .active {
           background-color: #02499B;
           color: white;
           border-radius: 5px;
         }
-        
+
         a .active {
           background-color: #02499B;
           color: white;
           border-radius: 5px;
         }
-        
+
         /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
         .dropdown-container1 {
           display: none;
           background-color: #f2f2f2;
           padding-left: 8px;
         }
-        
+
         /* Optional: Style the caret down icon */
         .fa-caret-down {
           float: right;
           padding-right: 8px;
           padding-top: 20px;
         }
-        
+
         /* Some media queries for responsiveness */
         @media screen and (max-height: 450px) {
           .sidenav1 {padding-top: 15px;}
@@ -101,7 +101,26 @@
 <body style="background-color: #fff;">
 
     <x-networking-agent-header />
+    <div class="modal fade bd-example-modal-lg" data-backdrop="static" data-keyboard="false" tabindex="-1">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content" style="width: 48px">
+                <span class="fa fa-spinner fa-spin fa-3x"></span>
+            </div>
+        </div>
+    </div>
+  <style media="screen">
+  .bd-example-modal-lg .modal-dialog{
+    display: table;
+    position: relative;
+    margin: 0 auto;
+    top: calc(50% - 24px);
+  }
 
+  .bd-example-modal-lg .modal-dialog .modal-content{
+    background-color: transparent;
+    border: none;
+  }
+  </style>
     <div class="container-fluid">
 
         <div class="row">

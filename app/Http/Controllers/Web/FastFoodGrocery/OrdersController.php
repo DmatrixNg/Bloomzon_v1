@@ -19,8 +19,9 @@ class OrdersController extends Controller
         $this->fast_food_grocery = Auth::guard('fast_food_grocery')->user();
     }
     public function index(){
-        $orders = OrderDetails::where('seller_id',$this->fast_food_grocery->id)->where('order_type','fast_food_grocery')->get();
 
+        $orders = $this->fast_food_grocery->order_details()->get();
+        // dd($orders);
         return view('dashboard.fast_food_grocery.orders',compact(['orders']));
     }
 

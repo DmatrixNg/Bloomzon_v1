@@ -52,11 +52,32 @@ class Professional extends Authenticatable
         return $this->morphMany('App\Message', 'messageable');
     }
 
-    public function getProductsAttribute(){
-        return Product::where('seller_id',$this->id)->where('product_type','professional')->get();
+    // public function getProductsAttribute(){
+    //     return Product::where('seller_id',$this->id)->where('product_type','professional')->get();
+    // }
+
+    public function products()
+    {
+        return $this->morphMany('App\Product', 'seller');
     }
 
     public function getReviewsAttribute(){
         return Review::where('seller_id',$this->id)->where('review_type','professional')->get();
+    }
+
+    /**
+     * Get all of the user's orders details.
+     */
+    public function order_details()
+    {
+        return $this->morphMany('App\OrderDetail', 'seller');
+    }
+
+    /**
+     * Get all of the user's orders.
+     */
+    public function orders()
+    {
+        return $this->morphMany('App\Order', 'orderable');
     }
 }

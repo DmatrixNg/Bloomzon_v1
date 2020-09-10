@@ -73,9 +73,6 @@ Route::group(['prefix' => '{lang}'], function () {
 
 
 
-  Route::view('all_register', 'auth.register');
-  Route::view('all_login', 'auth.login');
-
   Route::GET('/chat',function(){
     return view('front.chat');
   });
@@ -90,8 +87,6 @@ Route::group(['prefix' => '{lang}'], function () {
 
 
   Route::get('/', 'HomeController@index');
-  Route::post('/uploadImage','ProductController@upload_image');
-  Route::post('/deleteImage','ProductController@delete_image');
 
   Route::get('/not-found',function(){
     return view('front.404');
@@ -103,6 +98,8 @@ Route::group(['prefix' => '{lang}'], function () {
   Route::get('track-order/{id}','OrderController@trackDelivery');
 });
 
+Route::post('/uploadImage','ProductController@upload_image');
+Route::post('/deleteImage','ProductController@delete_image');
 Route::post('/order/create','OrderController@create');
 Route::post('track-order/{id}','OrderController@trackDelivery');
 
@@ -120,6 +117,12 @@ Route::post('/product/getSubCategories/{id}','ProductController@getSubCategories
 Route::post('/cart/add-coupon/','CartController@addCoupon');
 Route::post('/cart/clear','CartController@clearCart');
 
+Route::get('/cart/add/{product_id}/{qty}/{color}','CartController@addToCart');
+Route::get('/cart/add/{product_id}/{qty}','CartController@addToCart');
+Route::get('/cart/increase/{product_id}/{qty}','CartController@addToCart');
+Route::get('/cart/decrease/{product_id}/{qty}','CartController@redItemQty');
+Route::get('/cart/remove/{product_id}','CartController@removeItem');
+
 Route::get('/get_categories', 'Web\Admin\CategoryController@get_all_catgeory');
 Route::get('/convert/{total}', 'CartController@getConversion');
 
@@ -134,12 +137,8 @@ Route::group(['prefix' => '{lang}'], function () {
   // Cart System Routes
 
   Route::get('/cart','CartController@displayCart');
-  Route::get('/cart/add/{product_id}/{qty}/{color}','CartController@addToCart');
-  Route::get('/cart/add/{product_id}/{qty}','CartController@addToCart');
-  Route::get('/cart/increase/{product_id}/{qty}','CartController@addToCart');
-  Route::get('/cart/decrease/{product_id}/{qty}','CartController@redItemQty');
-  Route::get('/cart/remove/{product_id}','CartController@removeItem');
-  
+
+
   Route::get('/checkout','CartController@checkout');
 
   Route::get('/category/{name}/{subname?}','HomeController@show_category');
@@ -348,7 +347,9 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
 
         // payouts
         Route::get('payout-request/{user_type}',"PayoutRequestController@index");
+
         Route::POST('process_Request/pay',"PayoutRequestController@pay");
+
 
         //
         Route::get('shopper-details/{id}',"ShopperController@show_details");
@@ -613,9 +614,7 @@ Route::prefix('/networking_agent')->name('networking_agent.')->namespace('Web\Ne
 
 
 
-        Route::get('/notifications',function(){
-            return view('dashboard.networking_agent.notification');
-        })->name('notifications');
+        Route::get('/notifications', "DashboardController@notification")->name('notifications');
 
 
 
@@ -656,6 +655,8 @@ Route::prefix('/networking_agent')->name('networking_agent.')->namespace('Web\Ne
         Route::post('post-ads/','AdvertController@store');
         Route::post('delete-ads/{id}','AdvertController@destroy');
         Route::post('change-ads-status/{id}','AdvertController@change_status');
+        Route::post('update_account_details', 'ProfileController@updateBankDetails');
+        Route::post('update_paypal_details', 'ProfileController@update_paypal_details');
 
 
 
@@ -770,6 +771,9 @@ Route::prefix('/professional')->name('professional.')->namespace('Web\Profession
         Route::get('/reply-review/{id}','ReviewController@reply')->name('reply-reviews');
         Route::post('/reply-review','ReviewController@storeReply')->name('reply-reviews');  //display account information
 
+        //Bank Details
+        Route::post('update_account_details', 'ProfileController@updateBankDetails');
+        Route::post('update_paypal_details', 'ProfileController@update_paypal_details');
 
     });
 });
@@ -830,10 +834,8 @@ Route::prefix('/seller')->name('seller.')->namespace('Web\Seller')->group(functi
         });
         Route::put('edit-profile/{id}', 'ProfileController@update');
         Route::put('edit-bank/{id}', 'ProfileController@updateBankDetails');
-        Route::put('edit-terms-policy/{id}', 'ProfileController@updateTerms');
         Route::post('update_account_details', 'ProfileController@updateBankDetails');
-        Route::post('update_paypal_details', 'ProfileController@update_paypal_details');
-
+        Route::put('edit-terms-policy/{id}', 'ProfileController@updateTerms');
         //update account details
         Route::get('update-account-details', function () {
             $seller = Auth::guard('seller')->user();
@@ -879,6 +881,8 @@ Route::prefix('/seller')->name('seller.')->namespace('Web\Seller')->group(functi
         //     $seller = Auth::guard('seller')->user();
         //     return view('dashboard.seller.package', compact(['seller']));
         // });
+
+        Route::post('update_paypal_details', 'ProfileController@update_paypal_details');
 
         Route::get('notifications/','DashboardController@notifications');
         Route::get('notification','DashboardController@notifications');

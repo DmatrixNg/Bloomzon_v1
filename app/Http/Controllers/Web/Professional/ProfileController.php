@@ -104,7 +104,7 @@ class ProfileController extends Controller
             'profession'=> 'required | string'
 
         ]);
-        
+
         //initiate networking agent using nag
         $nag = Professional::find($id);
         $imgName = null; //instantiate imgurl variable
@@ -113,7 +113,7 @@ class ProfileController extends Controller
             $imgName = time() . '.' . $request->avatar->getClientOriginalExtension();
             try {
                 $request->file('avatar')->storeAs('/assets/professional/avatar', $imgName, 'public');
-               
+
             } catch (\Exception $e) {
                 return $this->send_response(false, $e, 400, 'Problem updating profile');
             }
@@ -147,7 +147,7 @@ class ProfileController extends Controller
              'account_name' => 'required | string',
              'account_number' => 'required | integer',
          ]);
-         
+
          //initiate networking agent using nag
          $nag = Professional::find($id);
          //if update buyer profile works
@@ -171,5 +171,44 @@ class ProfileController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function updateBankDetails(Request $request){
+
+        $request->validate([
+            'account_name'   => 'required',
+            'account_number' => 'required',
+            'bank_name'      => 'required',
+            'bank_code'      => 'required',
+        ]);
+
+        $user = Auth::guard('professional')->user();
+
+        $user->update([
+            'account_name'   => $request->account_name,
+            'bank_name'      => $request->bank_name,
+            'account_number' => $request->account_number,
+            'bank_code'      => $request->bank_code,
+
+        ]);
+
+        return redirect()->back();
+
+    }
+    public function update_paypal_details(Request $request){
+
+        $request->validate([
+            'email'   => 'email|required',
+        ]);
+
+        $user = Auth::guard('professional')->user();
+
+        $user->update([
+            'paypal_email'   => $request->email
+
+        ]);
+
+        return redirect()->back();
+
     }
 }

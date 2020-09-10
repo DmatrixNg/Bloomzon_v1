@@ -11,11 +11,11 @@
 
         <div class="row mb-3" style="background-color: #fff !important; padding: 20px;">
             <div class="col-md-6 p-5 offset-3">
-                
+
                 <div class="form-group text-center">
                     <img src="{{ asset('assets/dashboard/img/card.png') }}" alt="">
                 </div>
-                
+
                 <div class="form-group">
                     <div class="form-group">
                         <label for="exampleFormControlInput1" style="font-size: 16px;;">Account Number: </label>
@@ -43,7 +43,7 @@
                     @csrf
 
                     <div class="form-group">
-                        
+
                         <div id="verify_details" class="">
                             <div class="form-group">
                                 <label for="account_name" style="font-size: 16px;;">Account Name</label>
@@ -75,7 +75,7 @@
                                 placeholder="Bank Code" readonly>
                             </div>
                         </div>
-                        
+
                     </div>
 
                     <div class="form-group text-center">
@@ -84,16 +84,16 @@
                     </div>
 
                 </form>
-                    
-                    
 
 
-                <form action="" method="">
+
+
+                <form action="{{url("seller/update_paypal_details")}}" method="post">
                     <div class="form-group">
                         <h2 style="color: green; text-align: center;"><strong>For sellers outside Africa</strong></h2>
                         <div class="form-group">
                             <label for="exampleFormControlInput1" style="font-size: 16px;;">Paypal Email: </label>
-                            <input type="" class="form-control" name="account_number" value="{{ $seller->paypal_email }}"
+                            <input type="email" class="form-control" name="email"  value="{{ $seller->paypal_email }}"
                             placeholder="">
                             <div class="form-group text-center">
                                 <div id="error_list"></div>
@@ -104,7 +104,7 @@
                         </div>
                     </div>
                 </form>
-                    
+
             </div>
 
         </div>
@@ -171,14 +171,14 @@
 
                     // loop through each state and append it to the output selector's options
                     $.each(response['data'], function( key, value ) {
-                        
+
                         $('#input_bank_code').prepend(new Option(value['name'], value['code']));
 
                     });
                 } else {
                     $('#bank').append(new Option('No bank to select, please refresh the page'))
                 }
-                
+
             });
 
         }
@@ -205,10 +205,10 @@
                 if(response_error['responseJSON']['message'] != undefined) {
                     $('#error_alert').text(response_error['responseJSON']['message'])
                 }
-                
+
             }
             })
-            
+
             .done(function (response) {
                 $('#verify_btn').attr('disabled', false)
                 console.log(response)
