@@ -41,33 +41,37 @@ $.scrollUp({
     Hero Slider
 ----------------------------------------*/
 var mainSlider = $('.main-slider');
-mainSlider.slick({
-	arrows: false,
-	prevArrow:"<button type='button' class='slick-prev'><i class='fa fa-angle-left'></i></button>",
-	nextArrow:"<button type='button' class='slick-next'><i class='fa fa-angle-right'></i></button>",
-	autoplay: true,
-	autoplaySpeed: 5000,
-	dots: true,
-	pauseOnFocus: false,
-	pauseOnHover: false,
-	fade: true,
-	infinite: true,
-	slidesToShow: 1,
-	responsive: [
-		{
-		  breakpoint: 767,
-		  settings: {
-			  arrows: false
-		  }
-		},
-		{
-			breakpoint: 479,
-			settings: {
-				arrows: false
-			}
-		}
-	]
-});
+
+$(".main-slider").not('.slick-initialized').slick()
+
+// mainSlider.slick({
+// 	arrows: false,
+// 	prevArrow:"<button type='button' class='slick-prev'><i class='fa fa-angle-left'></i></button>",
+// 	nextArrow:"<button type='button' class='slick-next'><i class='fa fa-angle-right'></i></button>",
+// 	autoplay: true,
+// 	autoplaySpeed: 5000,
+// 	dots: true,
+// 	pauseOnFocus: false,
+// 	pauseOnHover: false,
+// 	fade: true,
+// 	infinite: true,
+// 	slidesToShow: 1,
+// 	responsive: [
+// 		{
+// 		  breakpoint: 767,
+// 		  settings: {
+// 			  arrows: false
+// 		  }
+// 		},
+// 		{
+// 			breakpoint: 479,
+// 			settings: {
+// 				arrows: false
+// 			}
+// 		}
+// 	]
+// });
+
 mainSlider.on('beforeChange', function(event, slick, currentSlide, nextSlide){
 	var sliderTitle = $('.main-slider h2');
 	var currentTitle = $('.slick-current h2');
@@ -83,52 +87,52 @@ mainSlider.on('afterChange', function(event, slick, currentSlide, nextSlide){
 /*--------------------------
  product category carousel
 ---------------------------- */
-$(".product-categories-carousel").slick({
-  dots: false,
-  infinite: true,
-  speed: 300,
-  slidesToShow: 6,
-  adaptiveHeight: true,
-  prevArrow: '<i class="fa fa-angle-left"></i>',
-  nextArrow: '<i class="fa fa-angle-right"></i>',
-	responsive: [
-		{
-			breakpoint: 361,
-			settings: {
-				slidesToShow: 1,
-				slidesToScroll: 1,
-			}
-		},
-		{
-			breakpoint: 769,
-			settings: {
-				slidesToShow: 2,
-				slidesToScroll: 2,
-			}
-		},
-		{
-			breakpoint: 992,
-			settings: {
-				slidesToShow: 3,
-				slidesToScroll: 3
-			}
-		},
-		{
-			breakpoint: 1200,
-			settings: {
-				slidesToShow: 3,
-				slidesToScroll: 3
-			}
-		},
-		{
-			breakpoint: 1400,
-			settings: {
-				slidesToShow: 4,
-				slidesToScroll: 4
-			}
-		},
-	]
-});
+// $(".product-categories-carousel").slick({
+//   dots: false,
+//   infinite: true,
+//   speed: 300,
+//   slidesToShow: 6,
+//   adaptiveHeight: true,
+//   prevArrow: '<i class="fa fa-angle-left"></i>',
+//   nextArrow: '<i class="fa fa-angle-right"></i>',
+// 	responsive: [
+// 		{
+// 			breakpoint: 361,
+// 			settings: {
+// 				slidesToShow: 1,
+// 				slidesToScroll: 1,
+// 			}
+// 		},
+// 		{
+// 			breakpoint: 769,
+// 			settings: {
+// 				slidesToShow: 2,
+// 				slidesToScroll: 2,
+// 			}
+// 		},
+// 		{
+// 			breakpoint: 992,
+// 			settings: {
+// 				slidesToShow: 3,
+// 				slidesToScroll: 3
+// 			}
+// 		},
+// 		{
+// 			breakpoint: 1200,
+// 			settings: {
+// 				slidesToShow: 3,
+// 				slidesToScroll: 3
+// 			}
+// 		},
+// 		{
+// 			breakpoint: 1400,
+// 			settings: {
+// 				slidesToShow: 4,
+// 				slidesToScroll: 4
+// 			}
+// 		},
+// 	]
+// });
 /*--------------------------
  product category 2
 ---------------------------- */
@@ -525,38 +529,38 @@ $(".recent-products").slick({
 /*--------------------------
 brand carousel
 ---------------------------- */
-$(".brand-items").slick({
-	dots: false,
-	infinite: true,
-	speed: 300,
-	slidesToShow: 8,
-	slidesToScroll: 1,
-	adaptiveHeight: true,
-	autoplay: true,
-	responsive: [
-		{
-			breakpoint: 1400,
-			settings: {
-				slidesToShow: 5,
-			}
-		},
-		{
-			breakpoint: 992,
-			settings: {
-				slidesToShow: 4,
-			}
-		},
-		{
-			breakpoint: 481,
-			settings: {
-				slidesToShow: 2,
-			}
-		}
-	],
-	arrows:false,
-	prevArrow: '<i class="fa fa-angle-left"></i>',
-	nextArrow: '<i class="fa fa-angle-right"></i>',
-});
+// $(".brand-items").slick({
+// 	dots: false,
+// 	infinite: true,
+// 	speed: 300,
+// 	slidesToShow: 8,
+// 	slidesToScroll: 1,
+// 	adaptiveHeight: true,
+// 	autoplay: true,
+// 	responsive: [
+// 		{
+// 			breakpoint: 1400,
+// 			settings: {
+// 				slidesToShow: 5,
+// 			}
+// 		},
+// 		{
+// 			breakpoint: 992,
+// 			settings: {
+// 				slidesToShow: 4,
+// 			}
+// 		},
+// 		{
+// 			breakpoint: 481,
+// 			settings: {
+// 				slidesToShow: 2,
+// 			}
+// 		}
+// 	],
+// 	arrows:false,
+// 	prevArrow: '<i class="fa fa-angle-left"></i>',
+// 	nextArrow: '<i class="fa fa-angle-right"></i>',
+// });
 
 /*---------------------
 countdown

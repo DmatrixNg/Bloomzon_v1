@@ -36,7 +36,7 @@
 				<div class="col-sm-12">
 					<div class="table-responsive">
                         @if($cart_items)
-						<table class="cart-table">
+						<table class="cart-table table table-responsive">
 							<thead>
 								<tr>
 									<th>{{ __("Image")}}</th>
