@@ -91,12 +91,13 @@
 
 
 
-                <form action="" method="">
+                <form action="{{url("networking_agent/update_paypal_details")}}" method="post">
                     <div class="form-group">
+                      @csrf
                         <h2 style="color: green; text-align: center;"><strong>For networking agents outside Africa</strong></h2>
                         <div class="form-group">
                             <label for="exampleFormControlInput1" style="font-size: 16px;;">Paypal Email: </label>
-                            <input type="" class="form-control" name="account_number" value="{{ $networking_agent->paypal_email }}"
+                            <input type="email" class="form-control" name="email" value="{{ $networking_agent->paypal_email }}"
                             placeholder="">
                             <div class="form-group text-center">
                                 <div id="error_list"></div>

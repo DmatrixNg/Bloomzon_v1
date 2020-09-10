@@ -347,7 +347,7 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
 
         // payouts
         Route::get('payout-request/{user_type}',"PayoutRequestController@index");
-        Route::post('payout-request/pay/{request_id}',"PayoutRequestController@pay");
+        Route::get('payout-request/pay/{request_id}',"PayoutRequestController@pay");
 
         //
         Route::get('shopper-details/{id}',"ShopperController@show_details");
@@ -654,6 +654,7 @@ Route::prefix('/networking_agent')->name('networking_agent.')->namespace('Web\Ne
         Route::post('delete-ads/{id}','AdvertController@destroy');
         Route::post('change-ads-status/{id}','AdvertController@change_status');
         Route::post('update_account_details', 'ProfileController@updateBankDetails');
+        Route::post('update_paypal_details', 'ProfileController@update_paypal_details');
 
 
 
@@ -875,6 +876,8 @@ Route::prefix('/seller')->name('seller.')->namespace('Web\Seller')->group(functi
         //     $seller = Auth::guard('seller')->user();
         //     return view('dashboard.seller.package', compact(['seller']));
         // });
+
+        Route::post('update_paypal_details', 'ProfileController@update_paypal_details');
 
         Route::get('notifications/','DashboardController@notifications');
         Route::get('notification','DashboardController@notifications');

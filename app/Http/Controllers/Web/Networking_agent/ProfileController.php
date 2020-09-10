@@ -283,4 +283,21 @@ class ProfileController extends Controller
         return redirect()->back();
 
     }
+    public function update_paypal_details(Request $request){
+
+        $request->validate([
+            'email'   => 'email|required',
+        ]);
+
+        $user = Auth::guard('networking_agent')->user();
+
+        $user->update([
+            'paypal_email'   => $request->email
+
+        ]);
+
+        return redirect()->back();
+
+    }
+
 }
