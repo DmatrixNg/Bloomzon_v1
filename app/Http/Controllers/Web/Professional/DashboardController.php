@@ -35,8 +35,8 @@ class DashboardController extends Controller
         $professional = Auth::guard('professional')->user();
         $shop_galleries = ShopGallery::where('professional_id',$professional->id)->get();
 
-        $products = Product::where('product_type','professional')->where('seller_id',$professional->id)->get();
-        $orders = OrderDetails::where('order_type','professional')->where('seller_id',$professional->id)->get();
+        $products = $professional->products;
+        $orders = $professional->orders;
         $withdrawals = WithdrawalRequest::where('user_type','professional')->where('user_id',$professional->id)->get();
         return view('dashboard.professional.home', [
             'shop_galleries' => $shop_galleries,
