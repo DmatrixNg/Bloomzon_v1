@@ -112,7 +112,7 @@ class AdvertController extends Controller
             }
         }
 
-        $advert = $ad::create([
+        $advert = Advert::create([
             'user_id' => $request->user_id,
             'ads_by' => $request->ads_by,
             'advert_position' => $request->advert_position,
