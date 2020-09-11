@@ -26,21 +26,20 @@
 
                             <tbody>
                              @foreach($orders as $order)
-                            <tr>
-                                <td>Order {{$order->order_id}}</td>
-                                <td>{{$order->product->total}}</td>
-                               
-
-                                <td>
-
+                                <tr>
+                                    <td>Order {{$order->order_id}}</td>
+                                    <td>{{$order->product->total}}</td>
                                     
-                                        {{$order->product->quantity}} {{$order->product->product_name}},
-                                   
-                                </td>
-                                <td>{{\Illuminate\Support\Carbon::parse($order->created_at)->format('d-m-y g:i A')}}</td>
-                                <td><span style="padding: 5px; border-radius: 10px;" class="badge-danger">{{$order->status}}</span></td>
-                                <td><a href="{{route('fast_food_grocery.order-details',$order->id)}}" style="background-color: #E5E5E5; color: black;" class="btn">Details</a></td>
-                            </tr>
+                                    <td>
+
+                                        
+                                            {{$order->product->quantity}} {{$order->product->product_name}},
+                                    
+                                    </td>
+                                    <td>{{\Illuminate\Support\Carbon::parse($order->created_at)->format('d-m-y g:i A')}}</td>
+                                    <td><span style="padding: 5px; border-radius: 10px;" class="badge-danger">{{$order->status}}</span></td>
+                                    <td><a href="{{route('fast_food_grocery.order-details',$order->id)}}" style="background-color: #E5E5E5; color: black;" class="btn">Details</a></td>
+                                </tr>
                             @endforeach
                             </tbody>
                         </table>

@@ -34,7 +34,7 @@
                         width="100%" height="160"/>
                     </div>
                     <div class="p-1 text-center " style="background-color: #b92c28;">
-                    <h4 class="text-white ">{{$catalogue->name}}</h4>
+                    <h4 class="text-white "><a href="{{ url(app()->getLocale().'/category/'.$catalogue->name) }}?fast_food_grocery" target="_blank" class="text-white">{{$catalogue->name}}</a></h4>
                     </div>
                 </div>
                 @endforeach

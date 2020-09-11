@@ -24,6 +24,7 @@ class OrdersController extends Controller
     }
 
     public function show($order){
+        
         $order = json_decode(base64_decode($order));
 
         $order = \App\Order::find($order->order_id);

@@ -24,7 +24,7 @@ class ProductController extends Controller
     public function index()
     {
         $id = Auth::guard("fast_food_grocery")->user()->id;
-        $products = Product::where('seller_id',$id)->get();
+        $products = Product::where('seller_id',$id)->where('product_type', 'fast_food_grocery')->get();
 
         return view('dashboard.fast_food_grocery.allproducts',compact(['products']));
     }
@@ -51,8 +51,9 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
-        $prod   = new Product();
-       $config  = SiteConfig::find(1);
+        // $prod   = new Product();
+        // $config  = SiteConfig::find(1);
+
         $request->validate([
             'product_name'           => ['required', 'string', 'max:255'],
             'product_description'    => ['required', 'string'],
@@ -62,13 +63,12 @@ class ProductController extends Controller
             'product_sales_price'    => ['numeric','max:5000'],
             'weight'                 => 'required|integer',
             'avatars'                => 'required|string|min:3',
-
         ],
-    ['avatars.required'=>'Please upload an image',
-    'avatars.min'=>'You need to upload image',
-    'product_sales_price.max' => "Sales price must be less than $5000"
-    ]
-);
+        [
+            'avatars.required'        => 'Please upload an image',
+            'avatars.min'             => 'You need to upload image',
+            'product_sales_price.max' => "Sales price must be less than $5000"
+        ]);
 
         $created = Auth::guard("fast_food_grocery")->user()->products()->create($request->all());
         if ($created) {
@@ -163,4 +163,5 @@ class ProductController extends Controller
         $product->delete();
         return $this->send_response(true, [], 200, 'Product Deleted');
     }
+    
 }

@@ -20,7 +20,9 @@ class OrdersController extends Controller
     }
     public function index(){
 
-        $orders = $this->fast_food_grocery->order_details()->get();
+        // $orders = $this->fast_food_grocery->order_details;
+        $orders = OrderDetails::where('seller_id',$this->fast_food_grocery->id)->where('seller_type', 'App\FastFoodGrocery')->get();
+        // $orders = Auth::guard('fast_food_grocery')->user()->orders()->order_details;
         // dd($orders);
         return view('dashboard.fast_food_grocery.orders',compact(['orders']));
     }
