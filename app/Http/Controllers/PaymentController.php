@@ -41,8 +41,9 @@ class PaymentController extends Controller
        $paymentDetails = Paystack::getPaymentData();
        // dd($this->user->cards()->get());
        if ($paymentDetails['data']['status'] == 'success'){
-         // dd($this->user->cards()->where(['user_id' => $this->user->id, 'last4' => $paymentDetails['data']['authorization']['last4']])->get());
-         // dd($paymentDetails);
+         dump($this->user);
+         dump($this->user->cards());
+         dd($this->user->cards()->where(['user_id' => $this->user->id, 'last4' => $paymentDetails['data']['authorization']['last4']])->get());
          if($paymentDetails['data']['metadata']['action'] == "addCard") {
 
 

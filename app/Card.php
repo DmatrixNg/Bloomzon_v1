@@ -27,6 +27,10 @@ class Card extends Model
 
   public function user()
   {
-      return $this->morphTo();
+      return $this->morphTo(__FUNCTION__, 'user_type', 'user_id');
+  }
+  public function users()
+  {
+      return $this->morphMany('App\Card', 'user');
   }
 }
