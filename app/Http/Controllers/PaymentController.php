@@ -47,7 +47,7 @@ class PaymentController extends Controller
          if($paymentDetails['data']['metadata']['action'] == "addCard") {
 
 
-           $createOrNew = $this->user->cards()->updateOrInsert(['user_id' => $this->user->id, 'last4' => $paymentDetails['data']['authorization']['last4']], ["authorization_code" => $paymentDetails['data']['authorization']['authorization_code'],
+           $createOrNew = $this->user->cards()->updateOrCreate(['user_id' => $this->user->id, 'last4' => $paymentDetails['data']['authorization']['last4']], ["authorization_code" => $paymentDetails['data']['authorization']['authorization_code'],
            "bin" => $paymentDetails['data']['authorization']['bin'],
            "last4" => $paymentDetails['data']['authorization']['last4'],
            "exp_month" => $paymentDetails['data']['authorization']['exp_month'],
