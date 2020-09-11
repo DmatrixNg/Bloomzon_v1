@@ -21,8 +21,8 @@ class WalletController extends Controller
 
     public function index(){
         $professional = $this->professional;
-        $orders = OrderDetails::where('seller_id',$this->professional->id)->where('order_type','professional')->get();
-        $sales = OrderDetails::where('seller_id',$this->professional->id)->where('order_type','professional')->where('status','delivered')->get();
+        $orders = $professional->order_details()->get();
+        $sales = $professional->order_details()->where('status','delivered')->get();
         $history = WalletHistory::where('user_id',$this->professional->id)->where('user_type','professional')->get();
         $order_tran =  WalletHistory::where('user_id',$this->professional->id)->where('user_type','professional')->where('slug','order')->get();
         return view('dashboard.professional.wallet',compact(['orders','history','professional','sales','order_tran']));

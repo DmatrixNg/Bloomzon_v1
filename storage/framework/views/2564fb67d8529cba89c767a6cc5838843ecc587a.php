@@ -36,7 +36,7 @@
 				<div class="col-sm-12">
 					<div class="table-responsive">
                         <?php if($cart_items): ?>
-						<table class="cart-table">
+						<table class="cart-table table table-responsive">
 							<thead>
 								<tr>
 									<th><?php echo e(__("Image")); ?></th>

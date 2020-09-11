@@ -34,7 +34,8 @@ class SalesController extends Controller
 
 
         $id = Auth::guard('professional')->user()->id;
-        $sales = $this->seller->order_details()->where('status','delivered')->get();
+        $sales = Auth::guard('professional')->user()->order_details()->where('status','delivered')->get();
+        // dd($sales);
         $total_sales = WalletHistory::where('user_id',$id)->where('user_type','professional')->where('slug','order')->get();
 
         return view('dashboard.professional.sales',compact(['sales','total_sales']));

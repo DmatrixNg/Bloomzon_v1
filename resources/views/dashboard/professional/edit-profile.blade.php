@@ -14,7 +14,7 @@
 
         <div class="col-md-8 offset-2">
             <form name="professionalProfileUpdate">
-                   
+
                 <div class="form-inline mb-5">
                     <div class="col-md-12 text-left" style="font-size: 18px;">Edit Profile image</div>
                     <input class="col-md-10" type="file" name="avatar" style="border-radius:20px; font-size: 12px; height: 30px; background-color: #535057" class="btn">
@@ -51,7 +51,7 @@
             </div>
             <div class="form-group ">
                 <label for="service_description " style="font-size: 16px; color: #fff; font-weight: 500; ">Service Description</label><br>
-                <textarea class="form-control" id="service_description" name="service_description" rows="5">
+                <textarea class="form-control" id="service_description" name="service_description" rows="5" placeholder="Description of your services">
                     {{$professional->service_description}}
                 </textarea>
             </div>
@@ -93,4 +93,3 @@
     </script>
 
 @endpush
-

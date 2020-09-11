@@ -36,7 +36,7 @@ class DashboardController extends Controller
         $shop_galleries = ShopGallery::where('professional_id',$professional->id)->get();
 
         $products = $professional->products;
-        $orders = $professional->orders;
+        $orders = $professional->order_details;
         $withdrawals = WithdrawalRequest::where('user_type','professional')->where('user_id',$professional->id)->get();
         return view('dashboard.professional.home', [
             'shop_galleries' => $shop_galleries,
