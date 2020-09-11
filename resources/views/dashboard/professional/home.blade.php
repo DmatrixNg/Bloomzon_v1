@@ -24,7 +24,7 @@
         </div>
         <div class="col-md-4">
             <div class="card text-center pr-0" style="color: #02499B; background-color: white;">
-              @if ($shop_galleries->first()->avatar)
+              @if (@$shop_galleries->first()->avatar ?? null)
                 <img src="{{ asset('storage/assets/gallery/avatar/'.$shop_galleries->first()->avatar)}}" width="200">
               @else
                 <img src="{{ asset('assets/frontend/img/medium-fb-ad.png')}}">
