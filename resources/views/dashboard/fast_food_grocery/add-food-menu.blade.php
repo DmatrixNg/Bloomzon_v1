@@ -20,11 +20,11 @@
                 <input type="hidden" name="seller_id" value="{{$ffg->id}}"/>
                     <div class="form-group mt-5">
                         <label for="name" style="font-size: 16px;;">Food name: </label>
-                        <input type="text" id="name" name="name" class="form-control"
+                        <input type="text" id="name" name="product_name" class="form-control"
                             style="height: 40px; border-radius: 0;">
                     </div>
                     <div class="form-group mt-5">
-                        <select name="catalogue_id" id="" class="form-control" style="height: 40px; border-radius: 0;">
+                        <select name="category_id" id="" class="form-control" style="height: 40px; border-radius: 0;">
                             <option value="">Select Catalogue</option>
                             @foreach($food_catalogues as $catalogue)
                                 <option value="{{ $catalogue->id }}">{{ $catalogue->name }}</option>
@@ -33,7 +33,7 @@
                     </div>
                     <div class="form-group mt-5">
                         <label for="description" style="font-size: 16px;;">Description: </label>
-                        <textarea id="description" name="description" class="form-control"
+                        <textarea id="description" name="product_description" class="form-control"
                             style="height: 40px; border-radius: 0; "></textarea>
                     </div>
                     <div class="form-inline mt-5 mb-4">
@@ -45,12 +45,14 @@
                             <option value="2">$</option>
                             <option value="1">N</option>
                         </select> --}}
-                        <input type="text" id="amount" name="amount" class="form-control"
+                        <input type="text" id="amount" name="product_price" class="form-control"
                             style="height: 40px; border-radius: 0; ">
                     </div>
+                    <input type="hidden" name="weight" value="0" />
+                    <input type="hidden" name="product_type" value="fast_food_grocery" />
                     <div class="form-inline mt-5 mb-4">
                         <label for="discount" style="font-size: 16px;" class="mr-5">Discount: </label>
-                        <input type="text" name="discount" id="discount" class="form-control" style="height: 40px; border-radius: 0; ">
+                        <input type="text" name="product_sales_price" id="discount" class="form-control" style="height: 40px; border-radius: 0; ">
                     </div>
                     <ul id="error_list"></ul>
                     <div class="form-group mt-5 text-center">

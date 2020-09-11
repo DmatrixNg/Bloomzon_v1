@@ -1,13 +1,13 @@
 
 <?php $__env->startSection('page_title'); ?>
-    Category - 
+    Category -
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 
   <!--products-area start-->
 	<div class="shop-area">
 		<div class="container">
-        <p class="text-left"><a href="index.html">Home</a> <i class="fa fa-chevron-right"></i> <a style="color:grey;" href="categories.html"><?php echo e($page_title); ?></a></p>
+        <p class="text-left"><a href="<?php echo e(url('/')); ?>">Home</a> <i class="fa fa-chevron-right"></i> <a style="color:grey;" href="categories.html"><?php echo e($page_title); ?></a></p>
 		    <h3><?php echo e($page_title); ?> </h3>
 			<div class="row mt-3">
 				<div class="col-md-9">
@@ -19,7 +19,7 @@
                                     <div class="col-xl-3 col-md-4 col-sm-6">
                                         <div class="product-single">
                                             <div class="product-thumb">
-                                               
+
                                                 <a href="#">
                                                     <?php if($product->avatars != null): ?>
                                                     <img style="min-height: 150px" src="<?php echo e(asset('storage/assets/product/avatars/'.$product->avatars[0]??'')); ?>" alt="">
@@ -46,7 +46,7 @@
 <?php endif; ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?> 
-                                                
+
 
                                                 </div>
                                             </div>
@@ -71,7 +71,7 @@
                                 <?php endif; ?>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-								
+
 
 							</div>
 						</div>
@@ -88,7 +88,7 @@
 		</div>
 	</div>
 	<!--products-area end-->
-	
+
 <?php $__env->stopSection(); ?>
 
     <?php $__env->startPush('scripts'); ?>
@@ -118,6 +118,5 @@
             })
         </script>
     <?php $__env->stopPush(); ?>
-
 
 <?php echo $__env->make('layouts.front', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\Bloomzon_v1\resources\views/front/fast_foods.blade.php ENDPATH**/ ?>
