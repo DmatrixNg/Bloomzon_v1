@@ -24,6 +24,7 @@ class AdvertController extends Controller
     public function index()
     {
         $adverts = Advert::all();
+        // dd($adverts);
         return view('dashboard.admin.all-adverts',compact(['adverts']));
     }
 
@@ -63,7 +64,7 @@ class AdvertController extends Controller
           $user = \App\Manufacturer::find($advert->user_id)->first();
 
         }
-        $user->notify(new \App\Notifications\Ads($advert,$stat))
+        $user->notify(new \App\Notifications\Ads($advert,$stat));
         $advert->update(
             ['status'=>$request->status]);
             if($advert){
