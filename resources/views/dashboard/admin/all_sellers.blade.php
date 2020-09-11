@@ -12,7 +12,7 @@
         <div class="panel-body">
             <div class="table-responsive">
                 <table id="users-table" class="display table" style="width: 100%; cellspacing: 0;">
-                  <thead class="text-white bg-primary"> 
+                  <thead class="text-white bg-primary">
                     <tr>
                       <th>ID</th>
                   <th>Full Name</th>
@@ -31,7 +31,7 @@
                     @foreach ($sellers as $seller )
                     <tr>
                       <td>{{$seller->id}}</td>
-                    <td> <a href="{{ url('/seller-details', $seller->id) }}" target="_blank">{{$seller->full_name}}</a> </td>
+                    <td> <a href="{{ url(app()->getLocale().'/seller-details', $seller->id) }}" target="_blank">{{$seller->full_name}}</a> </td>
                       <td>{{$seller->email}}</td>
                     <td>{{$seller->phone_number}}</td>
                     <td>{{$seller->account_type}}</td>
@@ -51,7 +51,7 @@
                       </button>
                       <button class="btn btn-sm @if($seller->is_bloomzon)bg-warning @else bg-success @endif text-white" onclick="makeBloomzon({{$seller->id}})">@if($seller->is_bloomzon)remove bloomzon @else make bloomzon @endif</button>
                     </td>
-                    </tr>    
+                    </tr>
                     @endforeach
                     @else
                     <div class="alert alert-warning">No Seller Found</div>

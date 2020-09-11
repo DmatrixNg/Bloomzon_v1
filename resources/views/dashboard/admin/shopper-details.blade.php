@@ -10,7 +10,7 @@
         <div class="col-md-6 offset-3">
             <div class="text-white justify-content-center">
 
-                <img src="{{ asset('storage/assets/shopper/avatar/'. $shopper->avatar) }}" />
+                <img width="200px" src="{{ asset('storage/assets/shopper/avatar/'. $shopper->avatar) }}" />
                 <div class="row p-5" style="border-bottom: 1px solid #f2f2f2;">
                     <div class="col-md-6 text-left">
                         Company Name:
@@ -75,7 +75,7 @@
                 </div>
 
 
-                
+
             </div>
 
         </div>
