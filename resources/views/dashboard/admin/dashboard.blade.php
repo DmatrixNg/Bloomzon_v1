@@ -18,7 +18,7 @@
         </div>
 
     </div>
-    
+
     <div class="row m-5">
         <div class="col-md-6 justify-content-center">
             <div class="card align-items-center dashboard_box">
@@ -32,7 +32,19 @@
                 <img src="{{asset('assets/dashboard/img/payouticon.png')}}" width="180" height="180" alt="">
 
             </div>
-            <a href="{{url('/admin/payout-request')}}" class="btn dashboard_btn">Payout Request</a>
+            {{-- <a href="{{url('/admin/payout-request')}}" class="btn dashboard_btn">Payout Request</a> --}}
+            <button class="dropdown-btn "><i class="fas fa-cash-register mr-3"></i> Payout Requests
+                {{-- <i class="fa fa-caret-down"></i> --}}
+            </button>
+            <div class="dropdown-container1">
+                <a href="{{ url('admin/payout-request/delivery_merchants') }}">Delivery Merchants</a>
+                <a href="{{ url('admin/payout-request/manufacturer') }}">Manufacturer</a>
+                <a href="{{ url('admin/payout-request/shopper') }}">Shopper</a>
+                <a href="{{ url('admin/payout-request/fast_food_grocery') }}">Fast Food & Grocery</a>
+                <a href="{{ url('admin/payout-request/networking_agent') }}">Networking Agent</a>
+                <a href="{{ url('admin/payout-request/professional_service') }}">Professional Service</a>
+                <a href="{{ url('admin/payout-request/seller') }}">Seller</a>
+            </div>
         </div>
 
 
