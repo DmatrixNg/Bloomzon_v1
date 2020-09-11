@@ -65,9 +65,8 @@ class AdvertController extends Controller
 
         }
         $user->notify(new \App\Notifications\Ads($advert,$stat));
-        $advert->update(
-            ['status'=>$request->status]);
-            if($advert){
+
+            if($advert->update(['status'=>$request->status])){
                 return $this->send_response(true,[],200,'Advert updated successfully');
             }
             return $this->send_response(false,[],400,'unable to update advert');
