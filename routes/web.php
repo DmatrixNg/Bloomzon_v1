@@ -829,6 +829,10 @@ Route::prefix('/seller')->name('seller.')->namespace('Web\Seller')->group(functi
             Route::post('/reply/{message_id}', 'MessageController@reply');
             Route::get('/message_replies/{message_id}', 'MessageController@get_replies');
 
+            
+        Route::get('/orders','OrdersController@index')->name('histogram');
+        Route::get('/order/show/{order}','OrdersController@show')->name('order-details');
+
         });
 
         // index dashboard
@@ -858,8 +862,6 @@ Route::prefix('/seller')->name('seller.')->namespace('Web\Seller')->group(functi
         Route::get('/sales','SalesController@index')->name('sales');
         Route::get('/sales/show/{sale}','SalesController@show')->name('show-sales');
 
-        Route::get('/orders','OrdersController@index')->name('histogram');
-        Route::get('/order/show/{order}','OrdersController@show')->name('order-details');
 
         Route::post('change-order-status','OrdersController@changeStatus');
 
@@ -1077,6 +1079,7 @@ Route::prefix('/fast_food_grocery')->name('fast_food_grocery.')->namespace('Web\
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
         Route::get('/profile', 'ProfileController@index')->name('profile');
+        Route::post('update_account_details', 'ProfileController@updateBankDetails');
          //edit profile
          Route::get('edit-profile', function () {
             $fast_food_grocery = Auth::guard('fast_food_grocery')->user();
@@ -1100,8 +1103,9 @@ Route::prefix('/fast_food_grocery')->name('fast_food_grocery.')->namespace('Web\
         Route::get('/order/show/{order}','OrdersController@show')->name('order-details');
 
         Route::post('change-order-status','OrdersController@changeStatus');
-
-
+        
+        // 
+        Route::post('product/delete/{id}','ProductController@destroy');
 
         //WALLET
         Route::get('/wallet',"WalletController@index")->name('wallet');

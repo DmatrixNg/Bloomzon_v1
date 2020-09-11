@@ -184,24 +184,48 @@ class ProfileController extends Controller
         }
     
             
-        public function updateBankAccount(Request $request,$id) {
-            $validated =  $request->validate([
-                 'account_name' => 'required | string',
-                 'account_number' => 'required | integer',
-             ]);
+        // public function updateBankAccount(Request $request,$id) {
+        //     $validated =  $request->validate([
+        //          'account_name' => 'required | string',
+        //          'account_number' => 'required | integer',
+        //      ]);
              
-             //initiate networking agent using nag
-             $nag = FastFoodGrocery::find($id);
-             //if update buyer profile works
-             try {
-                 $update =  $nag->update($request->all());
-                 if ($update) {
-                     return $this->send_response(true, $update, 200, 'Your account has been edited');
-                 }else{ return $this->send_response(false, $update, 400, 'Your account could not be edited');}
-             } catch (\Illuminate\Database\QueryException $e) {
-                 return $this->send_response(false, $e, 400, 'Problem updating Account');
-             }
-         }
+        //      //initiate networking agent using nag
+        //      $nag = FastFoodGrocery::find($id);
+        //      //if update buyer profile works
+        //      try {
+        //          $update =  $nag->update($request->all());
+        //          if ($update) {
+        //              return $this->send_response(true, $update, 200, 'Your account has been edited');
+        //          }else{ return $this->send_response(false, $update, 400, 'Your account could not be edited');}
+        //      } catch (\Illuminate\Database\QueryException $e) {
+        //          return $this->send_response(false, $e, 400, 'Problem updating Account');
+        //      }
+        //  }
+
+
+         public function updateBankDetails(Request $request){
+
+            $request->validate([
+                'account_name'   => 'required',
+                'account_number' => 'required',
+                'bank_name'      => 'required',
+                'bank_code'      => 'required',
+            ]);
+    
+            $fast_food_grocery = Auth::guard('fast_food_grocery')->user();
+    
+            $fast_food_grocery->update([
+                'account_name'   => $request->account_name,
+                'bank_name'      => $request->bank_name,
+                'account_number' => $request->account_number,
+                'bank_code'      => $request->bank_code,
+    
+            ]);
+    
+            return redirect()->back();
+    
+        }
     
     
                
