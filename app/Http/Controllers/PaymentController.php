@@ -39,7 +39,7 @@ class PaymentController extends Controller
    public function handleGatewayCallback()
    {
        $paymentDetails = Paystack::getPaymentData();
-
+       // dd($this->user->cards()->get());
        if ($paymentDetails['data']['status'] == 'success'){
          // dd($this->user);
          // dd($paymentDetails);

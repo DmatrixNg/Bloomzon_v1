@@ -193,7 +193,7 @@ public function redirectToGateway()
                 ]);
                 if($request->payment_status == 1){// check if user already for product
                 WalletHistory::create([
-                    'user_id' => $prod->seller_id->id,
+                    'user_id' => $prod->seller->id,
                     'user_type'=> $prod->product_type,
                     'type'  => 1,
                     'amount'=>$prod->product_sales_price,
