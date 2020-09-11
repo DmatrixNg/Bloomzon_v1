@@ -65,7 +65,7 @@
                                         <td style="border: solid 1px #ddd;"><?php echo e(@$points->created_at->format('d/m/y g:i A')); ?></td>
                                         <td style="border: solid 1px #ddd;"><?php echo e(@$points->purchase_count); ?></td>
                                         <td style="border: solid 1px #ddd;">$<?php echo e(@$points->amount); ?></td>
-                                        <td style="border: solid 1px #ddd;"><?php echo e(@$points->used_point); ?></td>
+                                        <td style="border: solid 1px #ddd;"><?php echo e(@$points->total_point - ($points->used_point * 100)); ?></td>
                                     </tr>
                                 
                             </tbody>

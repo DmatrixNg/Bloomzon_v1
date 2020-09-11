@@ -66,7 +66,7 @@
                                         <td style="border: solid 1px #ddd;">{{@$points->created_at->format('d/m/y g:i A')}}</td>
                                         <td style="border: solid 1px #ddd;">{{@$points->purchase_count}}</td>
                                         <td style="border: solid 1px #ddd;">${{@$points->amount}}</td>
-                                        <td style="border: solid 1px #ddd;">{{@$points->used_point}}</td>
+                                        <td style="border: solid 1px #ddd;">{{@$points->total_point - ($points->used_point * 100)}}</td>
                                     </tr>
                                 {{-- @endforeach --}}
                             </tbody>
