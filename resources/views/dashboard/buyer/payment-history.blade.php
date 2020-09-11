@@ -60,7 +60,7 @@
                                     <tr style="height: 60px;">
 
                                         <td style="border: solid 1px #ddd;">{{count($payment->order_details) }}</td>
-                                        <td style="border: solid 1px #ddd;"><a href="/seller-details/{{@$payment->order_details[0]->seller->id ?? ""}}">{{@$payment->order_details[0]->seller->company_name ?? "" }}</a></td>
+                                        <td style="border: solid 1px #ddd;"><a href="/{{app()->getLocale()}}/seller-details/{{@$payment->order_details[0]->seller->id ?? ""}}">{{@$payment->order_details[0]->seller->company_name ?? "" }}</a></td>
                                         <td style="border: solid 1px #ddd;">{{$payment->total_amount}}</td>
                                         <td style="border: solid 1px #ddd;">{{$payment->payment_method}}</td>
                                         <td style="border: solid 1px #ddd;">{{date('Y-M-d',strtotime($payment->created_at))}}</td>

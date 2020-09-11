@@ -18,7 +18,7 @@ class OrdersController extends Controller
         $this->professional = Auth::guard('professional')->user();
     }
     public function index(){
-        $orders = OrderDetails::where('seller_id',$this->professional->id)->where('order_type', 'professional')->get();
+        $orders = $this->professional->order_details()->get();
 
         return view('dashboard.professional.histogram',compact(['orders']));
     }
@@ -27,8 +27,8 @@ class OrdersController extends Controller
         
         $order = json_decode(base64_decode($order));
 
-        $orders = OrderDetails::where('buyer_id',$order->buyer_id->id)->where('seller_id',$order->seller_id->id)->where('order_id',$order->order_id)->get();
-
+        $order = \App\Order::find($order->order_id);
+        $orders = $order->order_details;
         return view('dashboard.professional.order-detail',compact(['order','orders']));
     }
 

@@ -18,8 +18,9 @@
 
                     @if(count($reviews))
                     @foreach($reviews as $review)
+
                     <div class="mb-2 p-4" style="border-radius: 20px; background-color: #fcfcfc; width: 100%; border: 1px solid #fcfcfc; text-shadow: #666;">
-                        <a href="reply-review">
+                        <a href="{{url('buyer/reply-review/'.$review->id)}}">
                             <div class="col-md-2">
                             <img src="{{asset('storage/assets/buyer/avatar/'.$review->buyer_id->avatar)}}" class="img img-circle" width="70" height="70">
                             </div>
@@ -27,8 +28,9 @@
                                 <span class="badge badge-dark" style="background-color: #2B2950 !important; font-size: 17px;">
                                     {{$review->buyer_id->full_name}}
                                 </span>
-                                <p style="font-size: large;">{{$review->message}}</p>
+                                <p style="font-size: large;">{{$review->review_message}}</p>
                             </div>
+                          </a>
                             <div class="col-md-6 text-right">
                                 <p>
                                     @for($i = 1; $i <= 5; $i++)
@@ -39,11 +41,10 @@
                                     @endif
 
                                     @endfor
-                                   
+
                                 </p>
-                            <a href="{{url('buyer/reply-review/'.$review->id)}}" class="btn btn-outline-primary mr-4" style="border: solid 1px #666;">Reply</button>
+                            <a href="{{url('buyer/reply-review/'.$review->id)}}" class="btn btn-outline-primary mr-4" style="border: solid 1px #666;">Reply</button></a>
                             </div>
-                        </a>
                     </div>
                     @endforeach
                     @else

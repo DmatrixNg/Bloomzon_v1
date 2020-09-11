@@ -42,9 +42,7 @@
                                Buyer:
                            </div>
                            <div class="col-md-6">
-                             {{-- @php
-                               dd($sale)
-                             @endphp --}}
+
                                {{$order->orderable->full_name}}
                            </div>
                        </div><hr>

@@ -90,7 +90,7 @@ class DashboardController extends Controller
         $messages = Message::where('ticket',$ticket)->get();
         return view('dashboard.buyer.show-message',compact(['messages']));
     }
-    
+
     protected function validator(array $data)
     {
 
@@ -224,20 +224,19 @@ class DashboardController extends Controller
       $user = $this->buyer;
       $prevpoint = $user->point ? $user->point->total_point : 0;
       $prev_used_point = $user->point ? $user->point->used_point : 0;
-//      $prev_used_amount = $user->point ? $user->point->used_point : 0;
+     // $prev_used_amount = $user->point ? $user->point->used_point : 0;
       $purchase_count = $user->orders->count();
-      // dd($purchase_count);
-      // dd($purchase_count);
-      // if ($purchase_count >= 10) {
-        // $discount = $purchase_count / 100;
-        //   $discount = (int) $discount;
-          // $amount = $purchase_count * 100;
+
           $point = $purchase_count * 100;
+
           $old_new = $prev_used_point + $prevpoint;
-          $newpoint = $point - $old_new;
+
+          $newpoint = $point - $prev_used_point;
           $newamount= $newpoint / 100 ;
+
+          // dd($newpoint);
           // dd($old_new);
-          // dd($newamount);
+          // dd($old_new != $point);
           if ($old_new != $point) {
 
             $update = $user->point()->updateOrCreate(["pointable_type" => 'App\Buyer','pointable_id' => $user->id],[
