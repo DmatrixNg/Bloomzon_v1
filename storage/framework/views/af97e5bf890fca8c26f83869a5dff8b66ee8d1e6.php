@@ -20,7 +20,9 @@
                 <th> Subscription Date</th>
                 <th> State</th>
                 <th>Street Address</th>
-                <th>Status</th>
+                <th>Verification Status</th>
+                <th>Verify</th>
+                <th>Account Status</th>
                 <th>Action</th>
                   </tr>
                 </thead>
@@ -36,7 +38,18 @@
                   <td><?php echo e($networking_agent->subscription_date); ?></td>
                   <td><?php echo e($networking_agent->state); ?></td>
                   <td><?php echo e($networking_agent->street_address); ?></td>
-                  <td><button class="btn btn-sm bg-primary text-white" onclick="change_status(<?php echo e($networking_agent->id); ?>)"><?php echo e($networking_agent->account_status); ?></button></td>
+                  <td><?php echo e($networking_agent->verification_status); ?></td>
+                  <td>
+                    <button class="btn btn-sm bg-success text-white" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"
+                    data-agent_id="<?php echo e($networking_agent->id); ?>"
+                    data-verification_status="<?php echo e($networking_agent->verification_status); ?>" 
+                    data-proof_of_address="<?php echo e(asset('storage/networking_agent/proof_of_address/' . $networking_agent->proof_of_address )); ?>" 
+                    data-valid_id="<?php echo e(asset('storage/networking_agent/valid_id/' . $networking_agent->valid_id)); ?>"
+                    >Verify</button>
+                  </td>
+                  <td>
+                    <button class="btn btn-sm bg-primary text-white" onclick="change_status(<?php echo e($networking_agent->id); ?>)"><?php echo e($networking_agent->account_status); ?></button>
+                  </td>
                     <td><button class="btn btn-sm bg-danger text-white" onclick="deleteUser(<?php echo e($networking_agent->id); ?>)">
                       delete
                     </button></td>
@@ -51,6 +64,46 @@
         </div>
     </div>
 </div>
+
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Networking Agent Verification</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="<?php echo e(url('/admin/update_na_verification')); ?>">
+        <?php echo csrf_field(); ?>
+          <a class="btn btn-primary" id="prof_of_address" href="" target="_blank">View Prof Of Address</a>
+          <a class="btn btn-primary" id="valid_id" href="" target="_blank">View ID</a>
+
+          <div class="form-group">
+            <label for="status" class="col-form-label"></label>
+            <select class="form-control" style="height: 30px;" name="status">
+              <option value="">Select Status</option>
+              <option value="approve">Approve</option>
+              <option value="reject">Reject</option>
+            </select>
+          </div>
+
+          <input id="agent_id" type="hidden" name="agent_id" value="" />
+
+          <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startPush('scripts'); ?>
@@ -61,6 +114,31 @@
     $(document).ready(function(){
       $("#users-table").DataTable();
     })
+
+    // const asset_url = "<?php echo e(asset('/')); ?>"
+
+
+
+    $('#exampleModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget) // Button that triggered the modal
+      // var recipient = button.data('whatever') // Extract info from data-* attributes
+      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+
+      var verification_status = button.data('verification_status')
+      var proof_of_address = button.data('proof_of_address')
+      var valid_id = button.data('valid_id')
+      var agent_id = button.data('agent_id')
+
+
+      var modal = $(this)
+      // modal.find('.modal-title').text('New message to ' + recipient)
+      modal.find('#prof_of_address').attr('href', proof_of_address)
+      modal.find('#valid_id').attr('href', valid_id)
+      modal.find('#agent_id').val(agent_id)
+      // modal.find('.modal-body input').val(recipient)
+    })
+
 
     function deleteUser(id){
       return swal({

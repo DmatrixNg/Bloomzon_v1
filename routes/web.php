@@ -367,6 +367,9 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
         Route::get('newsletters/', "NewsletterController@all_newsletters");
         Route::get('subscribers/', "NewsletterController@subscribers");
 
+        // networking agent
+        Route::post('update_na_verification/', "NetworkingAgentController@update_verification");
+
 
 
     });
