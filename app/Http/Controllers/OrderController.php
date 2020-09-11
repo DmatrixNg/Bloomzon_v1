@@ -192,8 +192,10 @@ public function redirectToGateway()
                     'status'    => $request->status
                 ]);
                 if($request->payment_status == 1){// check if user already for product
+                  // Log::debug((array)$prod);
+                  // dd();
                 WalletHistory::create([
-                    'user_id' => $prod->seller->id,
+                    'user_id' => $prod->seller_id,
                     'user_type'=> $prod->product_type,
                     'type'  => 1,
                     'amount'=>$prod->product_sales_price,
@@ -203,13 +205,13 @@ public function redirectToGateway()
                 $seller = null;
                 switch($prod->product_type){
                     case 'seller':
-                    $seller = Seller::find($prod->seller_id->id);
+                    $seller = Seller::find($prod->seller_id);
                     break;
                     case 'professional':
-                    $seller = Professional::find($prod->seller_id->id);
+                    $seller = Professional::find($prod->seller_id);
                     break;
                     case 'fast_food_grocery':
-                    $seller = FastFoodGrocery::find($prod->seller_id->id);
+                    $seller = FastFoodGrocery::find($prod->seller_id);
                     break;
 
                 }
