@@ -133,7 +133,7 @@ Product Details
                                     </div>
                                     <div class="add-to-get mt-50">
                                         <a href="#" id="cart" class="add-to-cart cart" data-product-id="{{$product->id}}">Add to Cart</a>
-                                        <a href="/cart" class="add-to-cart text-white bg-danger" >Check out</a>
+                                        <a href="{{url(app()->getLocale()."/cart")}}" class="add-to-cart text-white bg-danger" >Check out</a>
                                         {{-- <a href="#" class="add-to-cart compare">+ ADD to Compare</a>--}}
                                     </div>
                                     <div class="product-features mt-50">

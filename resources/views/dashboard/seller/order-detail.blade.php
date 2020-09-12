@@ -48,9 +48,9 @@
                                 <tbody>
 
                                     @foreach($orders as $order_detail)
-                                    
+
                                         <tr>
-                                            <td>{{ $order_detail->product->id }}</td>
+                                          <td><a href="{{url(app()->getLocale().'/product-details/'.base64_encode($order_detail->products->id))}}">{{ $order_detail->products->id }}</a></td>
                                             <td>{{ $order->orderable->billing_address }}</td>
                                             <td>{{ $order_detail->quantity }}</td>
                                             <td>{{ $order_detail->product->product_price }}</td>
