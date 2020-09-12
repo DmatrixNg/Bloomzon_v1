@@ -91,7 +91,7 @@
 @push('scripts')
 <script>
     FormHandler('postAdvertForm', {
-        requestUrl: '/admin/post-ads/',
+        requestUrl: '{{route("admin.post-ads")}}',
         requestType: 'POST',
         cb: response => {
 
@@ -111,7 +111,6 @@
             })
         }
     })
-
 </script>
 
 @endpush
