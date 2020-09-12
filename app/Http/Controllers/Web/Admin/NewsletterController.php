@@ -17,7 +17,7 @@ class NewsletterController extends Controller
     {
         return view('dashboard.admin.send_newsletter');
     }
-    
+
     public function send_newsletter(Request $request)
     {
         $request->validate([
@@ -41,7 +41,7 @@ class NewsletterController extends Controller
         {
             Mail::to($subscriber)->send(new Newsletter($request));
         }
-        
+
 
         return redirect('/admin/newsletters');
 
@@ -49,7 +49,7 @@ class NewsletterController extends Controller
 
     public function all_newsletters()
     {
-        
+
         $newsletters = AppNewsletter::all();
 
         return view('dashboard.admin.newsletters', [
@@ -61,7 +61,7 @@ class NewsletterController extends Controller
 
     public function subscribers()
     {
-        
+
         $subscribers = NewsletterSubscription::all();
 
         return view('dashboard.admin.subscribers', [
