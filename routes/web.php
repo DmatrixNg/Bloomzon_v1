@@ -351,8 +351,7 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
 
         // payouts
         Route::get('payout-request/{user_type}',"PayoutRequestController@index");
-        Route::get('payout-request/pay/{request_id}',"PayoutRequestController@pay");
-
+        Route::post('process_Request/pay',"PayoutRequestController@pay");
         //
         Route::get('shopper-details/{id}',"ShopperController@show_details");
         Route::get('buyer-details/{id}',"BuyerController@show_details");
@@ -942,8 +941,8 @@ Route::prefix('/seller')->name('seller.')->namespace('Web\Seller')->group(functi
     Route::post('cashout','WalletController@cashOut')->name('cash-out');
 
         // HANDLES FILE UPLOADS
-        Route::post('image/upload/store', 'ImageUploadController@fileStore');
-        Route::post('image/delete', 'ImageUploadController@fileDestroy');
+        // Route::post('image/upload/store', 'ImageUploadController@fileStore');
+        // Route::post('image/delete', 'ImageUploadController@fileDestroy');
 
         Route::get('/logout', function () {
             Auth::logout();
