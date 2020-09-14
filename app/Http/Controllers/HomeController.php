@@ -253,5 +253,51 @@ class HomeController extends Controller
         return view('front.shop',compact(['products','brands','categories','colors','sellers','max_price']));
     }
 
+    public function bloomzon_products(){
+        $sellers = array();
+        $colors = array();
+        $dis = array();
+        $products = Product::where('product_type','seller')->paginate(10);
+        $categories = Category::all();
+
+
+        // $sellers = Seller::where('is_bloomzon', 1)->with('products')->get()->pluck('products')->flatten();
+        $blom_sellers = Seller::where('is_bloomzon', 1)->orderBy('created_at', 'desc')->get();
+        $products = [];
+
+        foreach($blom_sellers as $blom_seller) {
+
+            $seller_products = Product::where('product_type', 'seller')->where('seller_id', $blom_seller->id)->get();
+
+            if($seller_products->count() == 0){
+                continue;
+            }
+
+            foreach($seller_products as $seller_product) {
+                $products[] = $seller_product;
+            }
+
+        }
+
+        if(count($products)){
+            foreach($products as $product){
+                if(!in_array(strval($product),$dis)){
+                    array_push($sellers,$product->seller);
+                    array_push($dis,strval($product));
+                }
+            }
+
+            foreach($product->product_color as $color){
+                if(!in_array($color, $colors)){
+                    array_push($colors,$color);
+                }
+            }
+        }
+
+        $max_price = collect($products)->max('product_price');
+        $brands = Brand::all();
+        return view('front.bloomzon_products',compact(['products','brands','categories','colors','sellers','max_price']));
+    }
+
 
 }

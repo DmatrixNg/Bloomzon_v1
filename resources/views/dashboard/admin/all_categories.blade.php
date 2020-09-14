@@ -28,7 +28,7 @@
                     <tbody>
                     @foreach($categories as $category)
                         <tr>
-                            <td rowspan="{{ count($category->sub_categories) + 1 }}">{{ $category->name }}</td>
+                            <td rowspan="{{ count($category->sub_categories) + 1 }}">{{ $category->name }} <a href="javascript:void(0)" class="text-danger" data-toggle="modal" data-target="#edit_category_modal" data-cat_name="{{ $category->name }}">edit</a></td>
                             <td></td>
                             <td></td>
                         </tr>
@@ -51,12 +51,53 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="edit_category_modal" tabindex="-1" aria-labelledby="edit_category_modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="edit_category_modalLabel">Edit Category</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Recipient:</label>
+            <input type="text" class="form-control" id="cat_name" name="cat_name">
+            <input type="text" class="form-control" id="cat_id" name="cat_id">
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection
 
 @section('page_js')
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script> -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
 <script>
+
+    $('#edit_category_modal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var cat_name = button.data('cat_name')
+        var cat_id = button.data('cat_id')
+        var modal = $(this)
+
+        $('#cat_name').val(cat_name);
+        $('#cat_id').val(cat_id);
+    })
 
     const base_url  = "{{ url('/') }}";
     const file_path = "{{ asset('/storage') }}";

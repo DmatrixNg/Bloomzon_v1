@@ -1,16 +1,17 @@
 
 <?php $__env->startSection('page_title'); ?>
-    Agents
+    <?php echo e(__("Agents")); ?>
+
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 
 <div class="container text-center mt-5">
 
 
-    <p class="text-left"><a href="index.html">Home</a> <i class="fa fa-chevron-right"></i> <a style="color:grey;" href="agent.html">Networking Associates</a></p>
+    <p class="text-left"><a href="index.html"><?php echo e(__("Home")); ?></a> <i class="fa fa-chevron-right"></i> <a style="color:grey;" href="agent.html"><?php echo e(__("Networking Associates")); ?></a></p>
 
-    <h4 class="text-left">NETWORKING ASSOCIATES</h4>
-    
+    <h4 class="text-left"><?php echo e(__("NETWORKING ASSOCIATES")); ?></h4>
+
     <div class="row mt-5">
 
         <?php if(count($agents)): ?>
@@ -38,7 +39,7 @@
                     <div class="text-center">
                         <h3 class="testimonial_heading font-weight-bold"><?php echo e(ucwords($agent->full_name)); ?></h3>
                         <p class="testimonial_heading2"><?php echo e($agent->street_address); ?></p>
-                    <a href="<?php echo e(url('/networkingagent-details/'.$agent->id)); ?>" class="btn btn-outline-primary">View Services</a>
+                    <a href="<?php echo e(url('/networkingagent-details/'.$agent->id)); ?>" class="btn btn-outline-primary"><?php echo e(__("View Services")); ?></a>
 
                     </div>
                     <br>
@@ -51,10 +52,11 @@
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         <?php else: ?>
         <div class="alert alert-warning">
-            No Associate on the system
+            <?php echo e(__("No Associate on the system")); ?>
+
         </div>
         <?php endif; ?>
-      
+
 
 
     </div>

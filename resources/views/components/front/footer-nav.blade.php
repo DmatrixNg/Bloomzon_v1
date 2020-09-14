@@ -12,7 +12,7 @@
                                 <ul>
                                     <li><a href="{{ route('home','about')}}">{{ __("About")}}</a> </li>
                                     <li><a href="{{ route('home','services')}}">{{ __("Services")}}</a> </li>
-                                    <li><a href="{{ route('home','agent')}}">{{ __("Agents")}}</a> </li>
+                                    <li><a href="{{route('agents',app()->getLocale()) }}">{{ __("Agents")}}</a> </li>
                                     <li><a href="{{ route('home','investor_relations')}}">{{ __("Investor Relations")}}</a></li>
                                     <li><a href="{{ route('home','bloomzontrip')}}">{{ __("Bloomzon trip")}}</a></li>
                                     <li><a href="{{ route('home','make_money')}}">{{ __("Make Money with Us")}}</a></li>
