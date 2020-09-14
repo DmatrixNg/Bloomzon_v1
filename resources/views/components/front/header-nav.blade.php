@@ -268,8 +268,8 @@
                                     <ul>
 
                                         <li><a href="{{url(app()->getLocale().'/realestate')}}">{{ __("Real Estate")}}</a></li>
-                                        <li><a href="{{route('fashion',app()->getLocale())}}">{{ __("Fashion Designer")}} &amp; {{ __("Tailoring")}}</a></li>
-                                        <li><a href="{{url(app()->getLocale().'/bloomzontravels')}}">{{ __("Bloomzon Travel & Hotels")}}</a></li>
+                                        <li><a href="{{route('fashion',app()->getLocale())}}">{{ __("Fashion")}} &amp; {{ __("Tailoring")}}</a></li>
+                                        <li><a href="{{url(app()->getLocale().'/bloomzontravels')}}">{{ __("Travel & Hotels")}}</a></li>
                                         <li><a href="{{url(app()->getLocale().'/bloomzon-products')}}">Bloomzon {{ __("Products")}}</a></li>
                                         <li><a href="{{route('fast-foods',app()->getLocale())}}">{{ __("Food")}} &amp; {{ __("Groceries")}}</a></li>
                                     <li><a href="{{ url(app()->getLocale().'/proservice')}}">{{ __("Professional Services")}}</a></li>

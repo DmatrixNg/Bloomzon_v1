@@ -86,6 +86,11 @@
                                     <li class="text-white pt-3"><img src="<?php echo e(asset('assets/frontend/img/youtube.JPEG')); ?>" alt="" width="20"> Bloomzon</li>
                                 </ul>
                             </div>
+                            <div class="col">
+                                <ul>
+                                    <li class="text-white"><img src="<?php echo e(asset('assets/frontend/img/insta.jpg')); ?>" alt="" width="20"> Instagram</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
 
