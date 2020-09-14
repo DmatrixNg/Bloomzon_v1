@@ -12,7 +12,7 @@
                                 <ul>
                                     <li><a href="<?php echo e(route('home','about')); ?>"><?php echo e(__("About")); ?></a> </li>
                                     <li><a href="<?php echo e(route('home','services')); ?>"><?php echo e(__("Services")); ?></a> </li>
-                                    <li><a href="<?php echo e(route('home','agent')); ?>"><?php echo e(__("Agents")); ?></a> </li>
+                                    <li><a href="<?php echo e(route('agents',app()->getLocale())); ?>"><?php echo e(__("Agents")); ?></a> </li>
                                     <li><a href="<?php echo e(route('home','investor_relations')); ?>"><?php echo e(__("Investor Relations")); ?></a></li>
                                     <li><a href="<?php echo e(route('home','bloomzontrip')); ?>"><?php echo e(__("Bloomzon trip")); ?></a></li>
                                     <li><a href="<?php echo e(route('home','make_money')); ?>"><?php echo e(__("Make Money with Us")); ?></a></li>
