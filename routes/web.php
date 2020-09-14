@@ -65,6 +65,8 @@ Route::get('/paid', 'PaymentController@handleGatewayCallback');
 Route::get('manufacturer/logout', 'Web\Manufacturer\Auth\LoginController@logout')->name('logout');
 Route::redirect('/','en');
 Route::get('home/{page?}','HomeController@home')->name('home');
+Route::get('/get_categories', 'Web\Admin\CategoryController@get_all_catgeory');
+
 Route::group(['prefix' => '{lang}'], function () {
 
   Route::GET('/realestate',function(){
@@ -88,10 +90,10 @@ Route::group(['prefix' => '{lang}'], function () {
 
   Route::get('/', 'HomeController@index');
 
+
   Route::get('/not-found',function(){
     return view('front.404');
   });
-
 
   Route::get('/track-delivery/{id?}','OrderController@trackDelivery');
 
@@ -123,7 +125,6 @@ Route::get('/cart/increase/{product_id}/{qty}','CartController@addToCart');
 Route::get('/cart/decrease/{product_id}/{qty}','CartController@redItemQty');
 Route::get('/cart/remove/{product_id}','CartController@removeItem');
 
-Route::get('/get_categories', 'Web\Admin\CategoryController@get_all_catgeory');
 Route::get('/convert/{total}', 'CartController@getConversion');
 
 Route::get('/all_categories', 'Web\Admin\CategoryController@index');
@@ -350,9 +351,7 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
 
         // payouts
         Route::get('payout-request/{user_type}',"PayoutRequestController@index");
-
-        Route::POST('process_Request/pay',"PayoutRequestController@pay");
-
+        Route::get('payout-request/pay/{request_id}',"PayoutRequestController@pay");
 
         //
         Route::get('shopper-details/{id}',"ShopperController@show_details");
@@ -369,9 +368,6 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
         Route::post('send-newsletter/', "NewsletterController@send_newsletter");
         Route::get('newsletters/', "NewsletterController@all_newsletters");
         Route::get('subscribers/', "NewsletterController@subscribers");
-
-        // networking agent
-        Route::post('update_na_verification/', "NetworkingAgentController@update_verification");
 
 
 
@@ -832,10 +828,6 @@ Route::prefix('/seller')->name('seller.')->namespace('Web\Seller')->group(functi
             Route::post('/reply/{message_id}', 'MessageController@reply');
             Route::get('/message_replies/{message_id}', 'MessageController@get_replies');
 
-            
-        Route::get('/orders','OrdersController@index')->name('histogram');
-        Route::get('/order/show/{order}','OrdersController@show')->name('order-details');
-
         });
 
         // index dashboard
@@ -865,6 +857,8 @@ Route::prefix('/seller')->name('seller.')->namespace('Web\Seller')->group(functi
         Route::get('/sales','SalesController@index')->name('sales');
         Route::get('/sales/show/{sale}','SalesController@show')->name('show-sales');
 
+        Route::get('/orders','OrdersController@index')->name('histogram');
+        Route::get('/order/show/{order}','OrdersController@show')->name('order-details');
 
         Route::post('change-order-status','OrdersController@changeStatus');
 
@@ -1082,7 +1076,6 @@ Route::prefix('/fast_food_grocery')->name('fast_food_grocery.')->namespace('Web\
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
         Route::get('/profile', 'ProfileController@index')->name('profile');
-        Route::post('update_account_details', 'ProfileController@updateBankDetails');
          //edit profile
          Route::get('edit-profile', function () {
             $fast_food_grocery = Auth::guard('fast_food_grocery')->user();
@@ -1106,9 +1099,8 @@ Route::prefix('/fast_food_grocery')->name('fast_food_grocery.')->namespace('Web\
         Route::get('/order/show/{order}','OrdersController@show')->name('order-details');
 
         Route::post('change-order-status','OrdersController@changeStatus');
-        
-        // 
-        Route::post('product/delete/{id}','ProductController@destroy');
+
+
 
         //WALLET
         Route::get('/wallet',"WalletController@index")->name('wallet');

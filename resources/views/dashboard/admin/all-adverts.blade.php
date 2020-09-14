@@ -10,7 +10,7 @@
             <div class="row col-md-12 text-center" style="border-bottom: 1px solid #f2f2f2;">
                 <h1 class="text-center m-auto pt-3 pb-3 "><b>All Advert List</b></h1>
             </div>
-            <div class="row">
+            <div class="row col-md-12">
                 <div class="col-md-12">
                     <div class="panel panel-white">
                 <div class="panel-body">
@@ -47,7 +47,7 @@
 
                             </tr>
                             @endforeach
-                          
+
                             </tbody>
                         </table>
                     </div>
@@ -80,9 +80,9 @@
                         return swal("Problem changing status")
                     }
                 );
-           
+
         })
        }
         </script>
-        
+
         @endpush

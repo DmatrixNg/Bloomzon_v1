@@ -249,7 +249,7 @@
                                               <?php $__currentLoopData = $buyer->cards; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $card): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
                                                 <div class="single-payment-gateway">
-                                                  <input type="radio" name="card" value="<?php echo e($card->id); ?>" class="cards" id="card-<?php echo e($card->id); ?>" >
+                                                  <input type="radio" name="ptype" value="<?php echo e($card->id); ?>" class="cards" id="card-<?php echo e($card->id); ?>">
 
                                                   <?php if($card->brand == 'visa'): ?>
 
@@ -390,12 +390,13 @@ data-namespace="paypal_sdk">
           pgateway.value = 'pay_on_delivery'
           document.getElementById('pay').click();
         }
-        else if ($("input[name='card']").is('checked')) {
+        else if ($('.single-payment-gateway .cards:checked')) {
           // console.log($("input[name='card']").is('checked'));
           // console.log($("input[name='card']:checked").val());
+          // alert($('.single-payment-gateway .cards:checked').val())
           payment_stat.value = 0;
           pgateway.value = 'card'
-          $("#card_detail").val($("input[name='card']:checked").val())
+          $("#card_detail").val($('.single-payment-gateway .cards:checked').val())
           document.getElementById('pay').click();
         }
          else {

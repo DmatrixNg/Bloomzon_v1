@@ -253,7 +253,7 @@
                                               @foreach ($buyer->cards as $card)
 
                                                 <div class="single-payment-gateway">
-                                                  <input type="radio" name="card" value="{{$card->id}}" class="cards" id="card-{{$card->id}}" >
+                                                  <input type="radio" name="ptype" value="{{$card->id}}" class="cards" id="card-{{$card->id}}">
 
                                                   @if ($card->brand == 'visa')
 
@@ -394,12 +394,13 @@ data-namespace="paypal_sdk">
           pgateway.value = 'pay_on_delivery'
           document.getElementById('pay').click();
         }
-        else if ($("input[name='card']").is('checked')) {
+        else if ($('.single-payment-gateway .cards:checked')) {
           // console.log($("input[name='card']").is('checked'));
           // console.log($("input[name='card']:checked").val());
+          // alert($('.single-payment-gateway .cards:checked').val())
           payment_stat.value = 0;
           pgateway.value = 'card'
-          $("#card_detail").val($("input[name='card']:checked").val())
+          $("#card_detail").val($('.single-payment-gateway .cards:checked').val())
           document.getElementById('pay').click();
         }
          else {

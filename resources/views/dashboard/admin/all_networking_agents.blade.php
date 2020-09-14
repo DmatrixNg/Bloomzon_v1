@@ -12,7 +12,7 @@
         <div class="panel-body">
             <div class="table-responsive">
               <table id="users-table" class="display table" style="width: 100%; cellspacing: 0;">
-                <thead class="text-white bg-primary"> 
+                <thead class="text-white bg-primary">
                   <tr>
                     <th>ID</th>
                 <th>Full Name</th>
@@ -33,7 +33,7 @@
                   @foreach ($networking_agents as $networking_agent )
                   <tr>
                     <td>{{$networking_agent->id}}</td>
-                  <td> <a href="{{ url('/networkingagent-details', $networking_agent->id) }}" target="_blank">{{$networking_agent->full_name}}</a></td>
+                  <td> <a href="{{ url(app()->getLocale().'/networkingagent-details', $networking_agent->id) }}" target="_blank">{{$networking_agent->full_name}}</a></td>
                     <td>{{$networking_agent->email}}</td>
                   <td>{{$networking_agent->phone_number}}</td>
                   <td>{{$networking_agent->account_type}}</td>
@@ -44,8 +44,8 @@
                   <td>
                     <button class="btn btn-sm bg-success text-white" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"
                     data-agent_id="{{$networking_agent->id}}"
-                    data-verification_status="{{ $networking_agent->verification_status }}" 
-                    data-proof_of_address="{{ asset('storage/networking_agent/proof_of_address/' . $networking_agent->proof_of_address )  }}" 
+                    data-verification_status="{{ $networking_agent->verification_status }}"
+                    data-proof_of_address="{{ asset('storage/networking_agent/proof_of_address/' . $networking_agent->proof_of_address )  }}"
                     data-valid_id="{{ asset('storage/networking_agent/valid_id/' . $networking_agent->valid_id) }}"
                     >Verify</button>
                   </td>
@@ -55,7 +55,7 @@
                     <td><button class="btn btn-sm bg-danger text-white" onclick="deleteUser({{$networking_agent->id}})">
                       delete
                     </button></td>
-                  </tr>    
+                  </tr>
                   @endforeach
                   @else
                   <div class="alert alert-warning">No Networking Agent Found</div>
@@ -101,7 +101,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        
+
       </div>
     </div>
   </div>

@@ -11,9 +11,9 @@
             <div class="" style="color: #02499B; background-color: white; padding: 30px;">
                 <div class="col-md-12 pb-4 mb-4" style="border-bottom: #ddd solid 1px;">
                     <h2>Create New Advert</h2>
-                    
+
                 </div>
-               
+
                 <form name="postAdvertForm">
                     <input name="user_id" id="user_id" type="hidden" value="{{$admin->id }}" />
                     <input name="ads_by" type="hidden" value="admin" />
@@ -57,7 +57,7 @@
                     </div>
 
 
-                    <input type="hidden" name="status" value=0>
+                    <input type="hidden" name="status" value="0">
 
                     <div class="form-group">
                         <label for="advert_link " style="font-size: 16px; color: #666; font-weight: 500;">Advert
@@ -91,7 +91,7 @@
 @push('scripts')
 <script>
     FormHandler('postAdvertForm', {
-        requestUrl: '/admin/post-ads/',
+        requestUrl: '{{route("admin.post-ads")}}',
         requestType: 'POST',
         cb: response => {
 
@@ -111,7 +111,6 @@
             })
         }
     })
-
 </script>
 
 @endpush

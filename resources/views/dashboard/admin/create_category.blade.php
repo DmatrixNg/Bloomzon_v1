@@ -27,7 +27,7 @@
         <!-- col.// -->
     </div>
     <div class="row mt-5">
-        
+
         <div class="col-md-6 offset-3">
 
             <form name="createCategory">
@@ -49,12 +49,12 @@
                     <small class="text-danger" id="description_error"></small>
                 </div>
 
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="avatar" style="color: #02499B;"><strong>Image</strong></label>
                     <input style="border: 2px solid #02499B ;color: #02499B;" name="avatar" id="avatar" name="avatar" class="form-control" type="file" placeholder="">
                     <small class="text-danger" id="avatar_error"></small>
-                </div>
-                
+                </div> --}}
+
                 <div class="form-group text-center mt-5">
                     <ul id="error_list"></ul>
                     <button class="btn bloomzon_btn" id="save_category_btn">SAVE</button>
@@ -87,7 +87,6 @@
              button: 'Try Again'
          })
      }
-     })    
-</script>  
+     })
+</script>
 @endpush
-
