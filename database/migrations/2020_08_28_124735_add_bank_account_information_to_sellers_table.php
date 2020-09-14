@@ -14,7 +14,7 @@ class AddBankAccountInformationToSellersTable extends Migration
     public function up()
     {
         Schema::table('sellers', function (Blueprint $table) {
-            $table->string('bank_code');
+            $table->string('bank_code')->nullable();
         });
     }
 
@@ -26,7 +26,7 @@ class AddBankAccountInformationToSellersTable extends Migration
     public function down()
     {
         Schema::table('sellers', function (Blueprint $table) {
-            //
+          $table->dropColumn('bank_code');
         });
     }
 }

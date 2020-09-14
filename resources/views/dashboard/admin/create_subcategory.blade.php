@@ -13,11 +13,11 @@
         </div>
     </div>
     <div class="row mt-5">
-        
+
         <div class="col-md-6 offset-3">
 
             <form onsubmit="event.preventDefault(); create_category()" enctype="multipart/form-data">
-            
+
                 <div class="form-group">
                     <label for="category_id" style="color: #02499B;"><strong>Select Category</strong><abbr title="required field">*</abbr></label>
                     <select style="border: 2px solid #02499B ;color: #02499B;" id="category_id" class="form-control" type="text" placeholder="Accessories">
@@ -44,12 +44,12 @@
                     <small class="text-danger" id="description_error"></small>
                 </div>
 
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="avatar" style="color: #02499B;"><strong>Image</strong></label>
                     <input style="border: 2px solid #02499B ;color: #02499B;" id="avatar" name="avatar" class="form-control" type="file" placeholder="">
                     <small class="text-danger" id="avatar_error"></small>
-                </div>
-                
+                </div> --}}
+
                 <div class="form-group text-center mt-5">
                     <button class="btn bloomzon_btn" id="save_subcategory_btn">SAVE</button>
                 </div>
@@ -115,7 +115,7 @@
 
             // check if the error is form data validation error
             if(response_errors.responseJSON.message === "The given data was invalid.") {
-            
+
             // get all the form validation errors
             const errors = response_errors.responseJSON.errors;
 
@@ -128,7 +128,7 @@
             }
 
             }
-            
+
         }
         })
         .done(function (response) {
@@ -144,25 +144,25 @@
         $(output_id).empty();
 
         $.ajax({
-        url: base_url + "/get_categories",
+        url: "/get_categories",
         type: "GET",
         error: function(response_errors) {
             console.log(response_errors);
         }
         })
         .done(function (response) {
-        
+
             $(output_id).append('<option value="">Choose Option</option>');
 
             // loop through each state and append it to the output selector's options
             $.each(response, function( key, value ) {
-                
+
                 if(selected_id == value['id']) {// select an option
                     $(output_id).append(new Option(value['name'], value['id'], true, true));
                 } else {
                     $(output_id).append(new Option(value['name'], value['id']));
                 }
-                
+
             });
 
         });
@@ -187,7 +187,7 @@
         form.append("name", $('#name').val());
         form.append("icon", $('#icon').val());
         form.append("description", $('#description').val());
-        form.append("avatar", $('input[name=avatar]')[0].files[0]);
+        // form.append("avatar", $('input[name=avatar]')[0].files[0]);
 
         // use jquery ajax to make request to the server
         $.ajax({
@@ -208,7 +208,7 @@
 
                 // check if the error is form data validation error
                 if(response_errors.responseJSON.message === "The given data was invalid.") {
-                
+
                 // get all the form validation errors
                 const errors = response_errors.responseJSON.errors;
 
@@ -221,7 +221,7 @@
                 }
 
                 }
-                
+
             }
         })
         .done(function (response) {

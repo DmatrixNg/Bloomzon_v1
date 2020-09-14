@@ -271,6 +271,7 @@
                                         <li><a href="{{route('fashion',app()->getLocale())}}">{{ __("Fashion Designer")}} &amp; {{ __("Tailoring")}}</a></li>
                                         <li><a href="{{url(app()->getLocale().'/bloomzontravels')}}">{{ __("Bloomzon Travel & Hotels")}}</a></li>
                                         <li><a href="{{url(app()->getLocale().'/bloomzon-products')}}">Bloomzon {{ __("Products")}}</a></li>
+
                                         <li><a href="{{route('fast-foods',app()->getLocale())}}">{{ __("Food")}} &amp; {{ __("Groceries")}}</a></li>
                                     <li><a href="{{ url(app()->getLocale().'/proservice')}}">{{ __("Professional Services")}}</a></li>
                                         <li><a href="{{url(app()->getLocale().'/sellers')}}">{{ __("Seller")}}</a></li>
@@ -350,9 +351,9 @@
 								<li class="minicart-icon"><a href="{{url(app()->getLocale().'/cart')}}"><i class="icon_bag_alt"></i><span>{{count($cart)}}</span></a>
 								</li>
                             </ul>
-                            
+
                         </div>
-                        
+
 					</div>
 				</div>
 				<!--search-box-->
@@ -379,10 +380,10 @@
 							</select>
 							<input type="text" placeholder="{{ __("What do you need?")}}" />
                             <button><i class="fa fa-search"></i></button>
-                            
+
                         </div>
                     </div>
-                    
+
 				</div>
 				<!--site-menu-->
 				<div class="row mt-sm-10">
@@ -394,7 +395,7 @@
 								<ul>
 									@foreach($categories as $category)
                                         <li style="padding: 8px !important;">
-                                        <a href="/category/{{ $category->name }}"><i class="fa {{$category->icon}}"></i>{{ $category->name }}</a>
+                                        <a href="/{{app()->getLocale()}}/category/{{ $category->name }}"><i class="fa {{$category->icon}}"></i>{{ $category->name }}</a>
                                             @if(!empty($category->sub_categories))
                                                 <ul class="">
                                                     <li class="megamenu-single">
@@ -403,7 +404,7 @@
                                                         <ul>
                                                             @foreach($category->sub_categories as $child)
                                                                 @if($child)
-                                                                    <li><a href="/category/{{$category->name}}/{{ $child->name }}">{{ $child->name }}</a>
+                                                                    <li><a href="/{{app()->getLocale()}}/category/{{$category->name}}/{{ $child->name }}">{{ $child->name }}</a>
                                                                     </li>
                                                                 @endif
                                                             @endforeach
@@ -423,7 +424,7 @@
 								<ul>
 									@foreach($categories as $category)
                                         <li style="padding: 8px !important;">
-                                        <a href="/category/{{ $category->name }}"><i class="fa {{$category->icon}}"></i>{{ $category->name }}</a>
+                                        <a href="/{{app()->getLocale()}}/category/{{ $category->name }}"><i class="fa {{$category->icon}}"></i>{{ $category->name }}</a>
                                             @if(!empty($category->sub_categories))
                                                 <ul class="mega-menu">
                                                     <li class="megamenu-single">
@@ -431,7 +432,7 @@
                                                 <ul>
                                                     @foreach($category->sub_categories as $child)
                                                         @if($child)
-                                                            <li><a href="/category/{{$category->name}}/{{ $child->name }}">{{ $child->name }}</a>
+                                                            <li><a href="/{{app()->getLocale()}}/category/{{$category->name}}/{{ $child->name }}">{{ $child->name }}</a>
                                                             </li>
                                                         @endif
                                                     @endforeach

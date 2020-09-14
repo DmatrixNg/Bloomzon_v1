@@ -211,7 +211,7 @@
                                 </div>
                             </div>
                             <div class="row cv-visible">
-                                
+
                                     @foreach($groceries->take(6) as $grocery)
                                         <div class="col-6 col-md-3" style="height: 200;">
                                             <div class="product-single p-0"
@@ -231,7 +231,7 @@
                                         </div>
                                     @endforeach
 
-                                    
+
 
 
 
@@ -372,10 +372,11 @@
         </div>
         <!--products-tab end-->
 
-        
+
 
         <div class="container-fluid mt-50">
             <div class="row mt-40">
+              
                 @foreach($adverts as $advert)
                     @if($advert->advert_position === 'Footer')
                         <div class="col-xl-4 col-lg-6">

@@ -18,7 +18,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-        
+
                             <a style="color: #02499B;" href="{{url('admin/account-statement')}}">
                                 <img src="{{asset('assets/dashboard/img/filesicon.png')}}">
                                 <span style="margin-left: 55px;">Account Statement</span> <i style="color: #02499B; margin-left: 392px;" class="fa fa-chevron-right"></i></a>
@@ -34,12 +34,12 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-        
+
                             <a style="color: #02499B;" href="{{url('/admin/privacy-policy')}}">
                                 <img src="{{asset('assets/dashboard/img/fileicon.png')}}">
                                 <span style="margin-left: 60px;">Bloomzon Policy</span><i style="color: #02499B; margin-left: 435px;" class="fa fa-chevron-right"></i>
                         </a>
-        
+
                         </h4>
                     </div>
                     <div id="collapse2" class="panel-collapse collapse">
@@ -52,7 +52,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-        
+
                             <a style="color: #02499B;" href="{{url('/admin/terms')}}">
                                 <img src="{{asset('assets/dashboard/img/tcicon.png')}}">
                                 <span style="margin-left: 37px">Bloomzon T & C</span> <i style="color: #02499B; margin-left: 435px;" class="fa fa-chevron-right"></i></a>
@@ -84,10 +84,10 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a style="color: #02499B;" href="{{url('/admin/refund')}}">
-        
+                            <a style="color: #02499B;" href="{{url('/admin/refundpolicy')}}">
+
                             <img src="{{asset('assets/dashboard/img/refundicon.png')}}">
-        
+
                            <span style="margin-left: 37px;">Refund T & C </span> <i style="color: #02499B; margin-left: 460px;" class="fa fa-chevron-right"></i></a>
                         </h4>
                     </div>
@@ -103,9 +103,9 @@
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a style="color: #02499B;" href="{{url('/admin/accountpolicy')}}">
-        
+
                             <img src="{{asset('assets/dashboard/img/refundicon.png')}}">
-        
+
                            <span style="margin-left: 37px;">Account policy </span> <i style="color: #02499B; margin-left: 460px;" class="fa fa-chevron-right"></i></a>
                         </h4>
                     </div>
@@ -121,9 +121,9 @@
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a style="color: #02499B;" href="{{ url('/admin/retailpolicy' )}}">
-        
+
                             <img src="{{asset('assets/dashboard/img/refundicon.png')}}">
-        
+
                            <span style="margin-left: 37px;">Retail policy </span> <i style="color: #02499B; margin-left: 460px;" class="fa fa-chevron-right"></i></a>
                         </h4>
                     </div>
@@ -139,9 +139,9 @@
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a style="color: #02499B;" href="{{ url('/admin/cookies' )}}">
-        
+
                             <img src="{{asset('assets/dashboard/img/refundicon.png')}}">
-        
+
                            <span style="margin-left: 37px;">Cookies </span> <i style="color: #02499B; margin-left: 460px;" class="fa fa-chevron-right"></i></a>
                         </h4>
                     </div>
@@ -157,9 +157,9 @@
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a style="color: #02499B;" href="{{ url('/admin/privacy' )}}">
-        
+
                             <img src="{{asset('assets/dashboard/img/refundicon.png')}}">
-        
+
                            <span style="margin-left: 37px;">Privacy </span> <i style="color: #02499B; margin-left: 460px;" class="fa fa-chevron-right"></i></a>
                         </h4>
                     </div>
@@ -175,9 +175,9 @@
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a style="color: #02499B;" href="{{ url('/admin/refundpolicy' )}}">
-        
+
                             <img src="{{asset('assets/dashboard/img/refundicon.png')}}">
-        
+
                            <span style="margin-left: 37px;">Refund Policy </span> <i style="color: #02499B; margin-left: 460px;" class="fa fa-chevron-right"></i></a>
                         </h4>
                     </div>
@@ -193,9 +193,9 @@
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a style="color: #02499B;" href="{{ url('/admin/datapolicy' )}}">
-        
+
                             <img src="{{asset('assets/dashboard/img/refundicon.png')}}">
-        
+
                            <span style="margin-left: 37px;">Data Policy </span> <i style="color: #02499B; margin-left: 460px;" class="fa fa-chevron-right"></i></a>
                         </h4>
                     </div>
@@ -211,9 +211,9 @@
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a style="color: #02499B;" href="{{ url('/admin/shippingreturns' )}}">
-        
+
                             <img src="{{asset('assets/dashboard/img/refundicon.png')}}">
-        
+
                            <span style="margin-left: 37px;">Shipping Returns </span> <i style="color: #02499B; margin-left: 460px;" class="fa fa-chevron-right"></i></a>
                         </h4>
                     </div>
@@ -229,9 +229,9 @@
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a style="color: #02499B;" href="{{ url('/admin/qualitycontrol' )}}">
-        
+
                             <img src="{{asset('assets/dashboard/img/refundicon.png')}}">
-        
+
                            <span style="margin-left: 37px;">Quality Control </span> <i style="color: #02499B; margin-left: 460px;" class="fa fa-chevron-right"></i></a>
                         </h4>
                     </div>
@@ -242,14 +242,14 @@
                             commodo consequat.</div>
                     </div>
                 </div>
-                
+
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a style="color: #02499B;" href="{{ url('/admin/about' )}}">
-        
+
                             <img src="{{asset('assets/dashboard/img/refundicon.png')}}">
-        
+
                            <span style="margin-left: 37px;">About </span> <i style="color: #02499B; margin-left: 460px;" class="fa fa-chevron-right"></i></a>
                         </h4>
                     </div>
@@ -265,9 +265,9 @@
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a style="color: #02499B;" href="{{ url('/admin/services' )}}">
-        
+
                             <img src="{{asset('assets/dashboard/img/refundicon.png')}}">
-        
+
                            <span style="margin-left: 37px;">Services </span> <i style="color: #02499B; margin-left: 460px;" class="fa fa-chevron-right"></i></a>
                         </h4>
                     </div>
@@ -283,9 +283,9 @@
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a style="color: #02499B;" href="{{ url('/admin/investor_relations' )}}">
-        
+
                             <img src="{{asset('assets/dashboard/img/refundicon.png')}}">
-        
+
                            <span style="margin-left: 37px;">Investor Relations </span> <i style="color: #02499B; margin-left: 460px;" class="fa fa-chevron-right"></i></a>
                         </h4>
                     </div>
@@ -301,9 +301,9 @@
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a style="color: #02499B;" href="{{ url('/admin/career' )}}">
-        
+
                             <img src="{{asset('assets/dashboard/img/refundicon.png')}}">
-        
+
                            <span style="margin-left: 37px;">Career </span> <i style="color: #02499B; margin-left: 460px;" class="fa fa-chevron-right"></i></a>
                         </h4>
                     </div>
@@ -319,9 +319,9 @@
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a style="color: #02499B;" href="{{ url('/admin/advertise_your_products' )}}">
-        
+
                             <img src="{{asset('assets/dashboard/img/refundicon.png')}}">
-        
+
                            <span style="margin-left: 37px;">Advertise your product </span> <i style="color: #02499B; margin-left: 460px;" class="fa fa-chevron-right"></i></a>
                         </h4>
                     </div>
@@ -333,7 +333,7 @@
                     </div>
                 </div>
 
-                
+
             </div>
             </div>
             </div>
