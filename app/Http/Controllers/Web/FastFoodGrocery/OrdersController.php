@@ -20,19 +20,24 @@ class OrdersController extends Controller
     }
     public function index(){
 
-        // $orders = $this->fast_food_grocery->order_details;
-        $orders = OrderDetails::where('seller_id',$this->fast_food_grocery->id)->where('seller_type', 'App\FastFoodGrocery')->get();
+        $orders = $this->fast_food_grocery->order_details()->get();
+        // $orders = OrderDetails::where('seller_id',$this->fast_food_grocery->id)->where('seller_type', 'App\FastFoodGrocery')->get();
         // $orders = Auth::guard('fast_food_grocery')->user()->orders()->order_details;
         // dd($orders);
         return view('dashboard.fast_food_grocery.orders',compact(['orders']));
     }
 
     public function show($id){
-        $order = OrderDetails::find($id);
+        $order = OrderDetails::findOrFail($id);
 
-        $orders = OrderDetails::where('buyer_id',$order->buyer_id->id)
-        ->where('seller_id',$order->seller_id->id)
-        ->where('order_id',$order->order_id)->get();
+        // $orders = OrderDetails::where('buyer_id',$order->buyer_id->id)
+        // ->where('seller_id',$order->seller_id->id)
+        // ->where('order_id',$order->order_id)->get();
+
+        // $order = json_decode(base64_decode($id));
+
+        $order = \App\Order::find($order->order_id);
+        $orders = $order->order_details;
 
         return view('dashboard.fast_food_grocery.order-details',compact(['order','orders']));
     }

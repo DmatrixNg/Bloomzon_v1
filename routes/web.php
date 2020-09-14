@@ -171,6 +171,7 @@ Route::group(['prefix' => '{lang}'], function () {
   Route::get('/networkingagent-details/{id}','HomeController@agent_details')->name('fast-food-details');
 
   Route::get('/shop','HomeController@shops');
+  Route::get('/bloomzon-products','HomeController@bloomzon_products');
 
 
   // manufacturer
