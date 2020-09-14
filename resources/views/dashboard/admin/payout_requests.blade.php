@@ -31,7 +31,7 @@
                             @foreach($requests as $request)
                                 <tr>
                                     <td>{{$loop->index + 1}}</td>
-                                    <td><a href="{{ url('/seller-details', $request->user_id->id) }}" target="_blank">{{$request->user_id->full_name}}</a></td>
+                                    <td><a href="{{ url(app()->getLocale().'/seller-details', $request->user_id->id) }}" target="_blank">{{$request->user_id->full_name}}</a></td>
                                     <td>{{$request->user_id->bank_name}}</td>
                                     <td>{{$request->user_id->account_number}}</td>
                                     <td>{{$request->user_id->account_name}}</td>
@@ -43,18 +43,18 @@
                                     @if($request->status == 0)
 
                                         <td>
-                                            <select class="form-control p-1 checkout_options" 
-                                            data-account_number="{{$request->user_id->account_number}}" 
-                                            data-bank_code="{{$request->user_id->bank_code}}" 
-                                            data-amount="{{$request->amount}}" 
-                                            data-bank_name="{{$request->user_id->bank_name}}" 
+                                            <select class="form-control p-1 checkout_options"
+                                            data-account_number="{{$request->user_id->account_number}}"
+                                            data-bank_code="{{$request->user_id->bank_code}}"
+                                            data-amount="{{$request->amount}}"
+                                            data-bank_name="{{$request->user_id->bank_name}}"
                                             data-id="{{$request->id}}">
 
                                                 <option>Choose Option</option>
                                                 <option value="paystack">Checkout with paystack</option>
                                                 <option value="manual">Manual payment</option>
                                                 <option value="reject">Reject</option>
-                                            </select> 
+                                            </select>
                                         </td>
 
                                     @elseif($request->status == 1)
@@ -74,7 +74,7 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 
 
@@ -89,7 +89,7 @@
         </button>
       </div>
       <div class="modal-body">
-          
+
           <div id="payment_spinner" class="text-center">
                 <div class="spinner-border" role="status">
                     <span class="sr-only">Loading...</span>
@@ -100,7 +100,7 @@
           <div id="payment_warning" class="text-center">
             <h4 class="text-warning">unable to verify account details, please try again</h4>
           </div>
-        
+
         <form id="payment_form" class="d-none">
             <div class="form-group">
                 <label for="account_name">Account Name</label>
@@ -131,7 +131,7 @@
                 <p>processing payment...</p>
             </div>
             <div id="processing_payment_info" class="text-center">
-                
+
             </div>
       </div>
       <div class="modal-footer">
@@ -152,7 +152,7 @@
 
     const base_url = "{{ url('/') }}"
 
-    
+
 
 
     $(document).ready(function(){
@@ -160,7 +160,7 @@
         $("#request-table").DataTable();
     })
 
-    
+
 
     $('.checkout_options').change( function(){
         console.log()
@@ -241,7 +241,7 @@
                 $('#payment_warning').addClass('d-none');
 
                 // transfer_recipient(response['data']['account_name'], response['data']['account_number'], bank_code)
-                
+
             } else {
                 $('#payment_spinner').addClass('d-none');
                 $('#payment_warning').removeClass('d-none');
@@ -250,7 +250,7 @@
             }
         });
 
-        
+
     }
 
     function create_transfer_recipient() {
@@ -265,10 +265,10 @@
             "Authorization": "Bearer " + "{{env('PAYSTACK_SECRET_KEY')}}"
         },
         data: {
-            "type": "nuban", 
+            "type": "nuban",
             "name": $('#account_name').val(),
-            "account_number": $('#account_number').val(), 
-            "bank_code": $('#bank_code').val(), 
+            "account_number": $('#account_number').val(),
+            "bank_code": $('#bank_code').val(),
             "currency": "NGN"
         },
         error: function(response_error) {
@@ -293,9 +293,9 @@
             }
 
         });
-        
+
     }
-    
+
     function initiate_transfer(amount, recipient_code) {
 
         // account_name, account_number, bank_code
@@ -308,7 +308,7 @@
         data: {
             "source": "balance",
             "amount": amount,
-            "recipient": recipient_code, 
+            "recipient": recipient_code,
             "reason": "agent payment"
         },
         error: function(response_error) {
@@ -325,14 +325,14 @@
                 update_request($('#request_id').val(), 1, response['data']['transfer_code'])
                 // $('#processing_payment_spinner').addClass('d-none')
                 // $('#pay_btn').attr('disabled', false)
-                
+
             } else {
                 $('#processing_payment_info').append('<h4 class="text-warning">unable to process your payment, please try again</h4>')
                 $('#processing_payment_spinner').addClass('d-none')
                 $('#pay_btn').attr('disabled', false)
             }
         });
-        
+
     }
 
 </script>
