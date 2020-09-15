@@ -1,3 +1,5 @@
+
+
 <?php $__env->startSection('content'); ?>
     <div class="col-md-10">
         <div class="row mb-5 mt-5">
@@ -29,11 +31,11 @@
                             <?php $__currentLoopData = $requests; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $request): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
                                     <td><?php echo e($loop->index + 1); ?></td>
-                                    <td><a href="<?php echo e(url('/seller-details', $request->user_id->id)); ?>" target="_blank"><?php echo e($request->user_id->full_name); ?></a></td>
-                                    <td><?php echo e($request->user_id->bank_name); ?></td>
-                                    <td><?php echo e($request->user_id->account_number); ?></td>
-                                    <td><?php echo e($request->user_id->account_name); ?></td>
-                                    <td>$<?php echo e($request->user_id->wallet); ?></td>
+                                    <td><a href="<?php echo e(url(app()->getLocale().'/seller-details', $request->user_id->id ?? '')); ?>" target="_blank"><?php echo e($request->user_id->full_name ?? ''); ?></a></td>
+                                    <td><?php echo e($request->user_id->bank_name ?? ''); ?></td>
+                                    <td><?php echo e($request->user_id->account_number ?? ''); ?></td>
+                                    <td><?php echo e($request->user_id->account_name ?? ''); ?></td>
+                                    <td>$<?php echo e($request->user_id->wallet ?? ''); ?></td>
                                     <td>$<?php echo e($request->amount); ?></td>
                                     <td><?php echo e($request->narration); ?></td>
                                     <td><?php echo e($request->paystack_transfer_code); ?></td>
@@ -41,18 +43,18 @@
                                     <?php if($request->status == 0): ?>
 
                                         <td>
-                                            <select class="form-control p-1 checkout_options" 
-                                            data-account_number="<?php echo e($request->user_id->account_number); ?>" 
-                                            data-bank_code="<?php echo e($request->user_id->bank_code); ?>" 
-                                            data-amount="<?php echo e($request->amount); ?>" 
-                                            data-bank_name="<?php echo e($request->user_id->bank_name); ?>" 
+                                            <select class="form-control p-1 checkout_options"
+                                            data-account_number="<?php echo e($request->user_id->account_number ?? ''); ?>"
+                                            data-bank_code="<?php echo e($request->user_id->bank_code ?? ''); ?>"
+                                            data-amount="<?php echo e($request->amount ?? ''); ?>"
+                                            data-bank_name="<?php echo e($request->user_id->bank_name ?? ''); ?>"
                                             data-id="<?php echo e($request->id); ?>">
 
                                                 <option>Choose Option</option>
                                                 <option value="paystack">Checkout with paystack</option>
                                                 <option value="manual">Manual payment</option>
                                                 <option value="reject">Reject</option>
-                                            </select> 
+                                            </select>
                                         </td>
 
                                     <?php elseif($request->status == 1): ?>
@@ -72,7 +74,7 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 
 
@@ -87,7 +89,7 @@
         </button>
       </div>
       <div class="modal-body">
-          
+
           <div id="payment_spinner" class="text-center">
                 <div class="spinner-border" role="status">
                     <span class="sr-only">Loading...</span>
@@ -98,7 +100,7 @@
           <div id="payment_warning" class="text-center">
             <h4 class="text-warning">unable to verify account details, please try again</h4>
           </div>
-        
+
         <form id="payment_form" class="d-none">
             <div class="form-group">
                 <label for="account_name">Account Name</label>
@@ -129,7 +131,7 @@
                 <p>processing payment...</p>
             </div>
             <div id="processing_payment_info" class="text-center">
-                
+
             </div>
       </div>
       <div class="modal-footer">
@@ -150,7 +152,7 @@
 
     const base_url = "<?php echo e(url('/')); ?>"
 
-    
+
 
 
     $(document).ready(function(){
@@ -158,7 +160,7 @@
         $("#request-table").DataTable();
     })
 
-    
+
 
     $('.checkout_options').change( function(){
         console.log()
@@ -239,7 +241,7 @@
                 $('#payment_warning').addClass('d-none');
 
                 // transfer_recipient(response['data']['account_name'], response['data']['account_number'], bank_code)
-                
+
             } else {
                 $('#payment_spinner').addClass('d-none');
                 $('#payment_warning').removeClass('d-none');
@@ -248,7 +250,7 @@
             }
         });
 
-        
+
     }
 
     function create_transfer_recipient() {
@@ -263,10 +265,10 @@
             "Authorization": "Bearer " + "<?php echo e(env('PAYSTACK_SECRET_KEY')); ?>"
         },
         data: {
-            "type": "nuban", 
+            "type": "nuban",
             "name": $('#account_name').val(),
-            "account_number": $('#account_number').val(), 
-            "bank_code": $('#bank_code').val(), 
+            "account_number": $('#account_number').val(),
+            "bank_code": $('#bank_code').val(),
             "currency": "NGN"
         },
         error: function(response_error) {
@@ -291,9 +293,9 @@
             }
 
         });
-        
+
     }
-    
+
     function initiate_transfer(amount, recipient_code) {
 
         // account_name, account_number, bank_code
@@ -306,7 +308,7 @@
         data: {
             "source": "balance",
             "amount": amount,
-            "recipient": recipient_code, 
+            "recipient": recipient_code,
             "reason": "agent payment"
         },
         error: function(response_error) {
@@ -323,16 +325,17 @@
                 update_request($('#request_id').val(), 1, response['data']['transfer_code'])
                 // $('#processing_payment_spinner').addClass('d-none')
                 // $('#pay_btn').attr('disabled', false)
-                
+
             } else {
                 $('#processing_payment_info').append('<h4 class="text-warning">unable to process your payment, please try again</h4>')
                 $('#processing_payment_spinner').addClass('d-none')
                 $('#pay_btn').attr('disabled', false)
             }
         });
-        
+
     }
 
 </script>
 <?php $__env->stopPush(); ?>
+
 <?php echo $__env->make('layouts.dashboard.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\Bloomzon_v1\resources\views/dashboard/admin/payout_requests.blade.php ENDPATH**/ ?>

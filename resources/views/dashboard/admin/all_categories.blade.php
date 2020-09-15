@@ -28,14 +28,14 @@
                     <tbody>
                     @foreach($categories as $category)
                         <tr>
-                            <td rowspan="{{ count($category->sub_categories) + 1 }}">{{ $category->name }} <a href="javascript:void(0)" class="text-danger" data-toggle="modal" data-target="#edit_category_modal" data-cat_name="{{ $category->name }}">edit</a></td>
+                            <td rowspan="{{ count($category->sub_categories) + 1 }}">{{ $category->name }} <a href="javascript:void(0)" class="text-danger" data-toggle="modal" data-target="#edit_category_modal" data-cat_name="{{ $category->name }}" data-cat_id="{{ $category->id }}">edit</a></td>
                             <td></td>
                             <td></td>
                         </tr>
 
                         @foreach( $category->sub_categories as $subcategory )
                             <tr>
-                                <td>{{ $subcategory->name }}</td>
+                                <td>{{ $subcategory->name }} <a href="javascript:void(0)" class="text-danger" data-toggle="modal" data-target="#edit_sub_category_modal" data-sub_cat_name="{{ $subcategory->name }}" data-sub_cat_id="{{ $subcategory->id }}">edit</a></td>
                                 <td> <a href="{{ url('/category/'.$category->name . '/' . $subcategory->name ) }}" target="_blabk">{{count($subcategory->products)}}</a> </td>
                             </tr>
                         @endforeach
@@ -52,6 +52,34 @@
     </div>
 </div>
 
+<div class="modal fade" id="edit_sub_category_modal" tabindex="-1" aria-labelledby="edit_sub_category_modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="edit_sub_category_modalLabel">Edit Category</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="{{ url('admin/update_sub_category') }}" method="POST">
+        @csrf
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Recipient:</label>
+            <input type="text" class="form-control" id="sub_cat_name" name="sub_cat_name">
+            <input type="text" class="form-control" id="sub_cat_id" name="sub_cat_id">
+          </div>
+
+          <button type="submit" class="btn btn-primary">Update</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="modal fade" id="edit_category_modal" tabindex="-1" aria-labelledby="edit_category_modalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -62,19 +90,19 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
-
+        <form action="{{ url('admin/update_category') }}" method="POST">
+        @csrf
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Recipient:</label>
             <input type="text" class="form-control" id="cat_name" name="cat_name">
             <input type="text" class="form-control" id="cat_id" name="cat_id">
           </div>
 
+          <button type="submit" class="btn btn-primary">Update</button>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
       </div>
     </div>
   </div>
@@ -88,6 +116,16 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
 <script>
+
+    $('#edit_sub_category_modal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var sub_cat_name = button.data('sub_cat_name')
+        var sub_cat_id = button.data('sub_cat_id')
+        var modal = $(this)
+
+        $('#sub_cat_name').val(sub_cat_name);
+        $('#sub_cat_id').val(sub_cat_id);
+    })
 
     $('#edit_category_modal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal

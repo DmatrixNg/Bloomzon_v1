@@ -1,7 +1,7 @@
 <div class="col-md-2">
     <div class="mt-3 mb-3">
         <div class="text-center mt-5 mb-5">
-            <img src="asset/img/userface.png" alt="" height="105" width="105"><br><br>
+            <img src="<?php echo e(asset('assets/dashboard/img/bloomzon.png')); ?>" alt="" height="105" width="105"><br><br>
             <span><strong>Name: </strong> <?php echo e(Auth::guard('admin')->user()->full_name); ?></span>
         </div>
         <hr>
@@ -23,7 +23,7 @@
                 <a href="<?php echo e(url('admin/get_users/bloomzon_sellers')); ?>">Bloomzon Sellers</a>
                 <a href="<?php echo e(url('admin/get_users/networking_agents')); ?>">Networking Associates</a>
                 <a href="<?php echo e(url('admin/get_users/shoppers')); ?>">Shoppers Associates</a>
-                <a href="<?php echo e(url('admin/get_users/delivery_agents')); ?>">Delivery Merchants</a>
+                <a href="#">Delivery Merchants</a>
                 <a href="<?php echo e(url('admin/get_users/professionals')); ?>">Professional Service</a>
                 <?php if(auth()->guard('admin')->user()->role == 'super_admin'): ?>
                 <a href="<?php echo e(url('admin/get_users/sub_admins')); ?>">Sub Admin</a>
@@ -53,7 +53,7 @@
             </div>
 
             <a href="<?php echo e(url('admin/manufacturer-chats')); ?>"><i class="fas fa-tasks mr-2"></i> Manufacturers Mgt.</a>
-            
+
             <button class="dropdown-btn"><i class="fas fa-user-cog mr-3"></i> Brands Management
                 <i class="fa fa-caret-down"></i>
             </button>
@@ -101,9 +101,9 @@
             <a href="<?php echo e(url('admin/account-statement')); ?>"><i class="fas fa-clipboard-list"></i> Account Sales Statements</a>
             <a href="<?php echo e(url('admin/site-analysis')); ?>"><i class="fas fa-route"></i> Site Analysis</a>
             <a href="<?php echo e(route("admin.site-config")); ?>"><i class="fas fa-route"></i> Site Configuration</a>
-            <a href="system_control.html"><i class="fa fa-cog"></i>System Control</a>
+            <a href="#"><i class="fa fa-cog"></i>System Control</a>
             <?php endif; ?>
-            <a href="#"><i class="fa fa-sign-out-alt mr-3"></i> Logout</a>
+            <a href="<?php echo e(url('/admin/logout')); ?>"><i class="fa fa-sign-out-alt mr-3"></i> Logout</a>
         </div>
     </div>
 </div>

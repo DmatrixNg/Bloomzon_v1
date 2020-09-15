@@ -31,11 +31,11 @@
                             @foreach($requests as $request)
                                 <tr>
                                     <td>{{$loop->index + 1}}</td>
-                                    <td><a href="{{ url(app()->getLocale().'/seller-details', $request->user_id->id) }}" target="_blank">{{$request->user_id->full_name}}</a></td>
-                                    <td>{{$request->user_id->bank_name}}</td>
-                                    <td>{{$request->user_id->account_number}}</td>
-                                    <td>{{$request->user_id->account_name}}</td>
-                                    <td>${{$request->user_id->wallet}}</td>
+                                    <td><a href="{{ url(app()->getLocale().'/seller-details', $request->user_id->id ?? '') }}" target="_blank">{{$request->user_id->full_name ?? ''}}</a></td>
+                                    <td>{{$request->user_id->bank_name ?? ''}}</td>
+                                    <td>{{$request->user_id->account_number ?? ''}}</td>
+                                    <td>{{$request->user_id->account_name ?? ''}}</td>
+                                    <td>${{$request->user_id->wallet ?? ''}}</td>
                                     <td>${{$request->amount}}</td>
                                     <td>{{$request->narration}}</td>
                                     <td>{{$request->paystack_transfer_code}}</td>
@@ -44,10 +44,10 @@
 
                                         <td>
                                             <select class="form-control p-1 checkout_options"
-                                            data-account_number="{{$request->user_id->account_number}}"
-                                            data-bank_code="{{$request->user_id->bank_code}}"
-                                            data-amount="{{$request->amount}}"
-                                            data-bank_name="{{$request->user_id->bank_name}}"
+                                            data-account_number="{{$request->user_id->account_number ?? ''}}"
+                                            data-bank_code="{{$request->user_id->bank_code ?? ''}}"
+                                            data-amount="{{$request->amount ?? ''}}"
+                                            data-bank_name="{{$request->user_id->bank_name ?? ''}}"
                                             data-id="{{$request->id}}">
 
                                                 <option>Choose Option</option>

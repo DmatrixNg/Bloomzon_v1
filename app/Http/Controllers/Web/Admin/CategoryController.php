@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web\Admin;
 use App\Category;
 use App\Helpers\CategoryHelper;
 use App\Http\Controllers\Controller;
+use App\SubCategory;
 use App\Traits\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -136,9 +137,19 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update_ctaegory(Request $request, $id)
+    public function update_ctaegory(Request $request)
     {
-        //
+
+        $request->validate([
+            'cat_name' => ['required'],
+            'cat_id'   => ['required'],
+        ]);
+
+        $category = Category::findOrFail($request->cat_id);
+        $category->name = $request->cat_name;
+        $category->save();
+        return redirect()->back();
+        
     }
 
     /**
@@ -148,9 +159,19 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update_subcategory(Request $request, $id)
+    public function update_subcategory(Request $request)
     {
-        //
+
+        $request->validate([
+            'sub_cat_name' => ['required'],
+            'sub_cat_id'   => ['required'],
+        ]);
+
+        $category = SubCategory::findOrFail($request->sub_cat_id);
+        $category->name = $request->sub_cat_name;
+        $category->save();
+        return redirect()->back();
+
     }
 
     /**
