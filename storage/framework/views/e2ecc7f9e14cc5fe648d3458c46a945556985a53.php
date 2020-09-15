@@ -224,7 +224,7 @@
                                 </div>
                             </div>
                             <div class="row cv-visible">
-                                
+
                                     <?php $__currentLoopData = $groceries->take(6); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $grocery): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <div class="col-6 col-md-3" style="height: 200;">
                                             <div class="product-single p-0"
@@ -244,7 +244,7 @@
                                         </div>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-                                    
+
 
 
 
@@ -386,10 +386,11 @@
         </div>
         <!--products-tab end-->
 
-        
+
 
         <div class="container-fluid mt-50">
             <div class="row mt-40">
+              
                 <?php $__currentLoopData = $adverts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $advert): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <?php if($advert->advert_position === 'Footer'): ?>
                         <div class="col-xl-4 col-lg-6">

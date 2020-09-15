@@ -226,10 +226,12 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
         Route::get('/create_category', 'CategoryController@create_category');
         Route::post('/store_category', 'CategoryController@store_category');
         Route::get('/all_categories', 'CategoryController@index');
+        Route::post('/update_category', 'CategoryController@update_ctaegory');
 
         // subcategories
         Route::get('/create_subcategory', 'CategoryController@create_subcategory');
         Route::post('/store_subcategory', 'CategoryController@store_subcategory');
+        Route::post('/update_sub_category', 'CategoryController@update_subcategory');
 
         // messages and replies
         Route::post('/create_message', 'MessageController@create_message');
