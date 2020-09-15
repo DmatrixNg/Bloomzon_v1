@@ -37,7 +37,7 @@
                 <a class="dropdown-item" href="<?php echo e(route('seller.post-new-ads')); ?>"> Post New Ads</a>
             </div>
            
-            <a href="<?php echo e(url('/seller/logout')); ?>"><i class="fa fa-sign-out-alt mr-3"></i> Logouts</a>
+            <a href="logout"><form action="/seller/logout" method="post"><i class="fa fa-sign-out-alt mr-3"></i>Logout</form></a>
         </div>
 
     </div>

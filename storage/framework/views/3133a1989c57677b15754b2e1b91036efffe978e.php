@@ -210,7 +210,7 @@
 
 <div class="mm-wrapper__blocker mm-slideout"><a href="#mm-0">
         <span class="mm-sronly"><?php echo e(__("Close menu")); ?></span></a></div>
-<a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647;"><i class="fa fa-angle-up"></i></a>
+<!-- <a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647;"><i class="fa fa-angle-up"></i></a> -->
 
 <!-- Modal -->
 <div class="modal fade" id="quick-view" tabindex="-1" role="dialog" aria-hidden="true">
