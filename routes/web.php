@@ -277,7 +277,7 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
         Route::get('all-adverts','AdvertController@index')->name('all-adverts');
         Route::get('create-advert','AdvertController@create')->name('create-advert');
         Route::post('post-ads','AdvertController@store')->name('post-ads');
-        Route::post('change-advert-status','AdvertController@changeStatus');
+        Route::post('change-advert-status','AdvertController@changeStatus')->name('change.ads');
         Route::post('delete-advert/{id}','AdvertController@destroy');
 
 
@@ -803,8 +803,13 @@ Route::prefix('/seller')->name('seller.')->namespace('Web\Seller')->group(functi
         Route::post('/password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 
         //Reset Password Routes
-        Route::get('/password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
-        Route::post('/password/reset', 'ResetPasswordController@reset')->name('password.update');
+        Route::get('/password/reset/{token}','ResetPasswordController@showResetForm')->name('password.reset');
+        Route::post('/password/reset','ResetPasswordController@reset')->name('password.update');
+
+        // Email Verification Route(s)
+        Route::get('email/verify','VerificationController@show')->name('verification.notice');
+        Route::get('email/verify/{id}','VerificationController@verify')->name('verification.verify');
+        Route::get('email/resend','VerificationController@resend')->name('verification.resend');
     });
 
     // all seller protected routes, user must be login as seller to access these routes
