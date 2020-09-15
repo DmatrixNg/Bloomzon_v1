@@ -103,7 +103,7 @@
             <a href="{{route("admin.site-config") }}"><i class="fas fa-route"></i> Site Configuration</a>
             <a href="#"><i class="fa fa-cog"></i>System Control</a>
             @endif
-            <a href="#"><i class="fa fa-sign-out-alt mr-3"></i> Logout</a>
+            <a href="{{ url('/admin/logout') }}"><i class="fa fa-sign-out-alt mr-3"></i> Logout</a>
         </div>
     </div>
 </div>
