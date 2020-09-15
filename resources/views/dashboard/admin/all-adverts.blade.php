@@ -39,8 +39,8 @@
                                 </td>
                                 <td>
                                     <select name="ad_status" id="ad_status" onchange="changeStatus(this,{{$advert->id}})" class="form-control form-group" style=" color: white; background-color: #2B2950;">
-                                        <option  @if($advert->status == 0) selected @endif  value="1" >Activate</option>
-                                        <option @if($advert->status == 1)  selected @endif  value="0" >Deactivate</option>
+                                        <option  @if($advert->status == 0) selected @endif  value="0" >Deactivate</option>
+                                        <option @if($advert->status == 1)  selected @endif  value="1" >Activate</option>
                                     </select>
                                     </div>
                                 </td>
@@ -70,7 +70,7 @@
             text:"Do you want to change this advert status?",
             buttons:true
         }).then((change)=>{
-            var res = makeRequest('/admin/change-advert-status',{
+            var res = makeRequest('{{route("admin.change.ads")}}',{
                     status:el.value,
                     id:id
                 }).then(

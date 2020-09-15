@@ -378,6 +378,7 @@ Route::prefix('/buyer')->name('buyer.')->namespace('Web\Buyer')->group(function 
 
     // all buyer authentication routes
     Route::namespace('Auth')->group(function () {
+
         //Login Routes
         Route::get('/login', 'LoginController@showLoginForm')->name('login');
         Route::post('/login', 'LoginController@login');
@@ -788,6 +789,7 @@ Route::prefix('/seller')->name('seller.')->namespace('Web\Seller')->group(functi
     // all seller authentication routes
     Route::namespace('Auth')->group(function () {
         //Login Routes
+
         Route::get('/login', 'LoginController@showLoginForm')->name('login');
         Route::post('/login', 'LoginController@login');
         Route::get('/logout', 'LoginController@logout')->name('logout');
