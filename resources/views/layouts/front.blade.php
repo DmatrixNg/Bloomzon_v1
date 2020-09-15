@@ -14,7 +14,21 @@
 
 	<link rel="manifest" href="site.html">
 	<link rel="apple-touch-icon" href="icon.html">
-	<!-- Place favicon.ico in the root directory -->
+    <!-- Place favicon.ico in the root directory -->
+    
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/5f6090114704467e89ef10dc/default';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
 
 	<!-- bootstrap v4.0.0 -->
 	<link rel="stylesheet" href=" {{ asset('front_assets/assets/css/bootstrap.min.css') }}">
