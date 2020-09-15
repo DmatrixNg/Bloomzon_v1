@@ -129,6 +129,9 @@ Route::get('/convert/{total}', 'CartController@getConversion');
 
 Route::get('/all_categories', 'Web\Admin\CategoryController@index');
 
+// search
+Route::get('/product/search', 'SearchController@show');
+
 
 Route::group(['prefix' => '{lang}'], function () {
 
