@@ -7,10 +7,10 @@
 <div class="container text-center mt-5">
 
 
-    <p class="text-left"><a href="index.html">Home</a> <i class="fa fa-chevron-right"></i> <a style="color:grey;" href="fastfood.html">Fast Food Vendors</a></p>
+    <p class="text-left"><a href="<?php echo e(url("/")); ?>">Home</a> <i class="fa fa-chevron-right"></i> <a style="color:grey;" href="fastfood.html">Fast Food Vendors</a></p>
 
     <h4 class="text-left"><?php echo e(strtoupper(\Request::segment(1))); ?> VENDOR</h4>
-    
+
     <div class="row mt-5">
         <?php if(!count($proservices)): ?>
         <div class="alert alert-warning">No Vendor</div>
@@ -33,8 +33,8 @@
                         <h3 class="testimonial_heading font-weight-bold"><?php echo e($proservice->company_name); ?></h3>
                         <p class="testimonial_heading2"><?php echo e($proservice->full_name); ?></p>
                         <p class="testimonial_heading2"><?php echo e($proservice->shop_address); ?></p>
-                        <a href="<?php echo e(url('/proservice-details/'.$proservice->id)); ?>" class="btn btn-outline-primary">View Services</a>
-                       
+                        <a href="<?php echo e(url(app()->getLocale().'/proservice-details/'.$proservice->id)); ?>" class="btn btn-outline-primary">View Services</a>
+
                     </div>
                     <br>
                     <!-- Quotation -->

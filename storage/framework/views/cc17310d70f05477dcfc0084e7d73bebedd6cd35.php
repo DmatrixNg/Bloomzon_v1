@@ -10,7 +10,7 @@
     <p class="text-left"><a href="index.html">Home</a> <i class="fa fa-chevron-right"></i> <a style="color:grey;" href="/sellers">Seller</a></p>
 
     <h4 class="text-left">SELLERS</h4>
-    
+
     <div class="row mt-5">
 
         <?php if(count($sellers)): ?>
@@ -32,8 +32,8 @@
                         <h3 class="testimonial_heading font-weight-bold"><?php echo e($seller->company_name); ?></h3>
                         <p class="testimonial_heading2"><?php echo e($seller->full_name); ?></p>
                         <p class="testimonial_heading2"><?php echo e($seller->shop_address); ?></p>
-                        <a href="<?php echo e(url('/seller-product-list/'.$seller->id)); ?>" class="btn btn-danger border-0 h2">View Products</a>
-                        <a href="<?php echo e(url('/seller-details/'.$seller->id)); ?>" class="btn btn-primary border-0 h2">View Store</a>
+                        <a href="<?php echo e(url(app()->getLocale().'/seller-product-list/'.$seller->id)); ?>" class="btn btn-danger border-0 h2">View Products</a>
+                        <a href="<?php echo e(url(app()->getLocale().'/seller-details/'.$seller->id)); ?>" class="btn btn-primary border-0 h2">View Store</a>
                     </div>
                     <br>
                     <!-- Quotation -->
@@ -47,7 +47,7 @@
             No Associate on the system
         </div>
         <?php endif; ?>
-      
+
 
 
     </div>

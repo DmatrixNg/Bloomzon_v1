@@ -34,7 +34,7 @@
                             <div class="text-center">
                                 <h3 class="testimonial_heading font-weight-bold"><?php echo e($manufacturer->company_name); ?></h3>
                                 <p class="testimonial_heading2"><?php echo e($manufacturer->street_address); ?></p>
-                                <a href="<?php echo e(url('manufacturer-details/'. $manufacturer->id )); ?>" class="btn btn-danger btn-sm mb-2">View dealer</a>
+                                <a href="<?php echo e(url(app()->getLocale().'/manufacturer-details/'. $manufacturer->id )); ?>" class="btn btn-danger btn-sm mb-2">View dealer</a>
                                 <a href="#" class="btn btn-outline-primary btn-sm d-none">Message dealer</a>
 
                             </div>
@@ -46,7 +46,7 @@
                     </div>
                 </div>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-            
+
         </div>
     </div>
 
