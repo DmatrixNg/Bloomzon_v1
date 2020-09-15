@@ -1,3 +1,5 @@
+
+
 <?php $__env->startSection('content'); ?>
 <div class="col-md-10" style="padding: 20px;">
     <div class="row">
@@ -10,7 +12,7 @@
         <div class="panel-body">
             <div class="table-responsive">
               <table id="users-table" class="display table" style="width: 100%; cellspacing: 0;">
-                <thead class="text-white bg-primary"> 
+                <thead class="text-white bg-primary">
                   <tr>
                     <th>ID</th>
                 <th>Full Name</th>
@@ -31,7 +33,7 @@
                   <?php $__currentLoopData = $networking_agents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $networking_agent): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                   <tr>
                     <td><?php echo e($networking_agent->id); ?></td>
-                  <td> <a href="<?php echo e(url('/networkingagent-details', $networking_agent->id)); ?>" target="_blank"><?php echo e($networking_agent->full_name); ?></a></td>
+                  <td> <a href="<?php echo e(url(app()->getLocale().'/networkingagent-details', $networking_agent->id)); ?>" target="_blank"><?php echo e($networking_agent->full_name); ?></a></td>
                     <td><?php echo e($networking_agent->email); ?></td>
                   <td><?php echo e($networking_agent->phone_number); ?></td>
                   <td><?php echo e($networking_agent->account_type); ?></td>
@@ -40,12 +42,14 @@
                   <td><?php echo e($networking_agent->street_address); ?></td>
                   <td><?php echo e($networking_agent->verification_status); ?></td>
                   <td>
-                    <button class="btn btn-sm bg-success text-white" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"
-                    data-agent_id="<?php echo e($networking_agent->id); ?>"
-                    data-verification_status="<?php echo e($networking_agent->verification_status); ?>" 
-                    data-proof_of_address="<?php echo e(asset('storage/networking_agent/proof_of_address/' . $networking_agent->proof_of_address )); ?>" 
-                    data-valid_id="<?php echo e(asset('storage/networking_agent/valid_id/' . $networking_agent->valid_id)); ?>"
-                    >Verify</button>
+                    <?php if($networking_agent->proof_of_address && $networking_agent->valid_id): ?>
+                      <button class="btn btn-sm bg-success text-white" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"
+                      data-agent_id="<?php echo e($networking_agent->id); ?>"
+                      data-verification_status="<?php echo e($networking_agent->verification_status); ?>"
+                      data-proof_of_address="<?php echo e(asset('storage/networking_agent/proof_of_address/' . $networking_agent->proof_of_address )); ?>"
+                      data-valid_id="<?php echo e(asset('storage/networking_agent/valid_id/' . $networking_agent->valid_id)); ?>"
+                      >Verify</button>
+                    <?php endif; ?>
                   </td>
                   <td>
                     <button class="btn btn-sm bg-primary text-white" onclick="change_status(<?php echo e($networking_agent->id); ?>)"><?php echo e($networking_agent->account_status); ?></button>
@@ -53,7 +57,7 @@
                     <td><button class="btn btn-sm bg-danger text-white" onclick="deleteUser(<?php echo e($networking_agent->id); ?>)">
                       delete
                     </button></td>
-                  </tr>    
+                  </tr>
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   <?php else: ?>
                   <div class="alert alert-warning">No Networking Agent Found</div>
@@ -99,7 +103,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        
+
       </div>
     </div>
   </div>
@@ -175,4 +179,5 @@
     }
 </script>
 <?php $__env->stopPush(); ?>
+
 <?php echo $__env->make('layouts.dashboard.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\Bloomzon_v1\resources\views/dashboard/admin/all_networking_agents.blade.php ENDPATH**/ ?>

@@ -42,12 +42,14 @@
                   <td>{{$networking_agent->street_address}}</td>
                   <td>{{$networking_agent->verification_status}}</td>
                   <td>
-                    <button class="btn btn-sm bg-success text-white" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"
-                    data-agent_id="{{$networking_agent->id}}"
-                    data-verification_status="{{ $networking_agent->verification_status }}"
-                    data-proof_of_address="{{ asset('storage/networking_agent/proof_of_address/' . $networking_agent->proof_of_address )  }}"
-                    data-valid_id="{{ asset('storage/networking_agent/valid_id/' . $networking_agent->valid_id) }}"
-                    >Verify</button>
+                    @if($networking_agent->proof_of_address && $networking_agent->valid_id)
+                      <button class="btn btn-sm bg-success text-white" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"
+                      data-agent_id="{{$networking_agent->id}}"
+                      data-verification_status="{{ $networking_agent->verification_status }}"
+                      data-proof_of_address="{{ asset('storage/networking_agent/proof_of_address/' . $networking_agent->proof_of_address )  }}"
+                      data-valid_id="{{ asset('storage/networking_agent/valid_id/' . $networking_agent->valid_id) }}"
+                      >Verify</button>
+                    @endif
                   </td>
                   <td>
                     <button class="btn btn-sm bg-primary text-white" onclick="change_status({{$networking_agent->id}})">{{$networking_agent->account_status }}</button>
