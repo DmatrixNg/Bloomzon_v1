@@ -37,7 +37,7 @@ class RegisterController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
-    protected function redirectTo() 
+    protected function redirectTo()
     {
         return 'manufacturer/dashboard';
     }
@@ -49,7 +49,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest:manufacturer');
     }
 
     /**
@@ -130,24 +130,24 @@ class RegisterController extends Controller
         return Auth::guard('manufacturer');
     }
 
-    /**
-     * The user has been registered.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  mixed  $user
-     * @return mixed
-     */
-    protected function registered(Request $request, $user)
-    {
-        
-        $user->email_verification_code = mt_rand(1000,9999);
+    // /**
+    //  * The user has been registered.
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @param  mixed  $user
+    //  * @return mixed
+    //  */
+    // protected function registered(Request $request, $user)
+    // {
+    //
+    //     $user->email_verification_code = mt_rand(1000,9999);
+    //
+    //     if($user->save()) {
+    //         Mail::to($user->email)->send(new EmailVerification($user));
+    //     }
+    //
+    // }
 
-        if($user->save()) {
-            Mail::to($user->email)->send(new EmailVerification($user));
-        }
-        
-    }
 
-    
-    
+
 }

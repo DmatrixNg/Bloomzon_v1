@@ -31,14 +31,14 @@
                                         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password">
 									</div>
 
-									
+
 									<div class="col-sm-12 mt-5">
 										<div class="row">
 											<div class="col-md-2 offset-3"><input {{ old('remember') ? 'checked' : '' }} id="remember" name="remember" type="checkbox" class="pull-left" ></div>
 											<div class="col-md-4 text-left pt-2"><label style="color: #999; ">{{ __('Remember password') }}</label></div>
 										</div>
 									</div>
-							
+
 
 									<div class="col-sm-12">
 										<button class="btn btn-primary btn-lg" type="submit">Login</button>
@@ -46,9 +46,10 @@
 
 									<hr>
 									<div class="col-sm-12 text-center pt-30">Don't have an account yet? <a href="{{ url('fast_food_grocery/register') }}">Create account</a></div>
-									<div class="col-sm-12 text-center pt-30">Forgot your Login Email or password? Recover account</div>
+									<div class="col-sm-12 text-center pt-30">Forgot your Login Email or password? <a href="{{route('fast_food_grocery.password.request')}}">
+										Recover account </a></div>
 									<div class="col-sm-12 text-center">By clicking Sign up you agree to our terms of service</div>
-									
+
 								</div>
 							</form>
 						</div>

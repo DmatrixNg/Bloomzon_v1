@@ -28,6 +28,13 @@ class VerificationController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+    protected function redirectTo() {
+      $user = auth()->guard('manufacturer')->user();
+
+      $user->notify(new \App\Notifications\Login($user));
+
+        return '/manufacturer/dashboard';
+    }
     /**
      * Create a new controller instance.
      *
@@ -35,8 +42,22 @@ class VerificationController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:manufacturer');
         $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
+    }
+    /**
+     * Show the email verification notice.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Request $request)
+    {
+        return $request->user()->hasVerifiedEmail()
+            ? redirect("/manufacturer/dashboard")
+            : view('front.auth.manufacturer.verify',[
+                'resendRoute' => 'verification.resend',
+            ]);
     }
 }

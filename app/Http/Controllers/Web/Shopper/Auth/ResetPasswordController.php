@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Web\Shopper\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Http\Request;
 
 class ResetPasswordController extends Controller
 {
@@ -26,5 +29,50 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+     protected function redirectTo() {
+       $user = auth()->guard('shopper')->user();
+
+       $user->notify(new \App\Notifications\Login($user));
+
+         return '/shopper/dashboard';
+     }
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('guest:shopper');
+    }
+    /**
+     * Show the reset password form.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  string|null  $token
+     * @return \Illuminate\Http\Response
+     */
+    public function showResetForm(Request $request, $token = null){
+        return view('front.auth.shopper.passwords.reset',[
+            'token' => $token,
+        ]);
+    }
+
+    /**
+    * Get the guard to be used during password reset.
+    *
+    * @return \Illuminate\Contracts\Auth\StatefulGuard
+    */
+    protected function guard()
+    {
+      return Auth::guard("shopper");
+    }
+    /**
+     * password broker for shopper guard.
+     *
+     * @return \Illuminate\Contracts\Auth\PasswordBroker
+     */
+    public function broker(){
+        return Password::broker('shoppers');
+    }
 }

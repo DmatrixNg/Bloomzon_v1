@@ -35,7 +35,7 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
-    
+
     protected function redirectTo() {
         return 'buyer/dashboard';
     }
@@ -47,7 +47,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest:buyer');
     }
 
     /**
@@ -101,6 +101,7 @@ class RegisterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();
@@ -117,6 +118,7 @@ class RegisterController extends Controller
                     ? new Response('', 201)
                     : redirect('buyer/dashboard');
     }
+
 
     /**
      * Get the guard to be used during registration.
@@ -139,5 +141,5 @@ class RegisterController extends Controller
     {
         //
     }
-    
+
 }

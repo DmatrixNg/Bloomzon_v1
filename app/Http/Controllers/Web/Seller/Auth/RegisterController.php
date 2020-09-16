@@ -49,7 +49,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest:seller');
     }
 
     /**
@@ -104,7 +104,7 @@ class RegisterController extends Controller
      */
     public function register(Request $request)
     {
-        
+
         $request->validate([
            'company_name'  =>  ['required','string','max:255'],
            'full_name'     => ['required','string','max:255'],
@@ -123,7 +123,7 @@ class RegisterController extends Controller
 
         return $request->wantsJson()
                     ? $this->send_response(true,$user, 200,'Registered added')
-                    : redirect($this->redirectPath());
+                    : redirect($this->redirectTo());
     }
 
     /**
@@ -147,5 +147,5 @@ class RegisterController extends Controller
     {
         //
     }
-    
+
 }

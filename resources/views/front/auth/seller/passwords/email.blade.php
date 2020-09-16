@@ -1,20 +1,23 @@
-@extends('layouts.app')
-
+@extends('layouts.front')
+@section('page_title')
+    Email
+@endsection
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+	<div class="about-area mt-50">
+		<div class="container">
+      <div class="row">
+        <div class="col-lg-6 offset-3 text-center">
+          <img class="img-100p" src="assets/images/bloomzon.png" width="120" height="auto" alt="" >
+          <div class="product-single">
+						<div class="contact-form mt-sm-30">
 
-                <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('password.email') }}">
+                    <form method="POST" action="{{ route('seller.password.email') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -39,9 +42,10 @@
                             </div>
                         </div>
                     </form>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-</div>
-@endsection
+      @endsection

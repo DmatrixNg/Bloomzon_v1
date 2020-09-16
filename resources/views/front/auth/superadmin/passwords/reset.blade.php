@@ -1,14 +1,18 @@
-@extends('layouts.app')
-
+@extends('layouts.front')
+@section('page_title')
+    Confirm
+@endsection
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('password.update') }}">
+	<div class="about-area mt-50">
+		<div class="container">
+      <div class="row">
+        <div class="col-lg-6 offset-3 text-center">
+          <img class="img-100p" src="assets/images/bloomzon.png" width="120" height="auto" alt="" >
+          <div class="product-single">
+						<div class="contact-form mt-sm-30">
+							<h4>{{ __('Reset Password') }}</div>
+                  </h4>
+                    <form method="POST" action="{{ route('admin.password.update') }}">
                         @csrf
 
                         <input type="hidden" name="token" value="{{ $token }}">
@@ -57,9 +61,10 @@
                             </div>
                         </div>
                     </form>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-</div>
-@endsection
+        @endsection

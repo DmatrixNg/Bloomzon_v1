@@ -39,7 +39,9 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
-
+    protected function redirectTo() {
+        return '/fast_food_grocery/dashboard';
+    }
     /**
      * Create a new controller instance.
      *
@@ -47,7 +49,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest:fast_food_grocery');
     }
 
     /**
@@ -117,7 +119,7 @@ class RegisterController extends Controller
 
         return $request->wantsJson()
                     ? $this->send_response(true,$user, 200,'Registered added')
-                    : redirect('fast_food_grocery/dashboard');
+                    : redirect('/fast_food_grocery/dashboard');
     }
 
     /**
@@ -141,5 +143,5 @@ class RegisterController extends Controller
     {
         //
     }
-    
+
 }

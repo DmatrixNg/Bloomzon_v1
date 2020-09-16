@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use App\Helpers\GuardCheck;
 
 class LoginController extends Controller
 {
@@ -36,5 +38,15 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+    * Get the guard to be used during password reset.
+    *
+    * @return \Illuminate\Contracts\Auth\StatefulGuard
+    */
+    protected function guard()
+    {
+      return Auth::guard(GuardCheck::get());
     }
 }
