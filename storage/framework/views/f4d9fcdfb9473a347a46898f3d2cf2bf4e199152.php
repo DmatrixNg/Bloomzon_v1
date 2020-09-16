@@ -102,13 +102,11 @@
     							</div>
 
 								<div class="search-box col-md-10">
-                                    <form action="/search" method="GET">
+                                    <form action="<?php echo e(url('product/search')); ?>" method="GET">
 
                                         <select class="form-control"
                                             name="category"
                                             style="width: 80px; height: 45px !important; border-top-right-radius: 0px; border-bottom-right-radius:  0px;">
-                                            <option value="all"><?php echo e(__("All")); ?></option>
-
                                                 <option value="product"><?php echo e(__("Products")); ?></option>
                                                 <option value="seller"><?php echo e(__("Seller")); ?></option>
                                                 <option value="proservice"><?php echo e(__("Professional Service")); ?></option>

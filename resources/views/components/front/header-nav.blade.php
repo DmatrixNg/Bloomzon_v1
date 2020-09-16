@@ -101,13 +101,11 @@
     							</div>
 
 								<div class="search-box col-md-10">
-                                    <form action="/search" method="GET">
+                                    <form action="{{ url('product/search') }}" method="GET">
 
                                         <select class="form-control"
                                             name="category"
                                             style="width: 80px; height: 45px !important; border-top-right-radius: 0px; border-bottom-right-radius:  0px;">
-                                            <option value="all">{{ __("All")}}</option>
-
                                                 <option value="product">{{ __("Products")}}</option>
                                                 <option value="seller">{{ __("Seller")}}</option>
                                                 <option value="proservice">{{ __("Professional Service")}}</option>
