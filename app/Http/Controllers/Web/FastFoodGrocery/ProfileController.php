@@ -64,7 +64,7 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        
+
     }
 
     /**
@@ -79,7 +79,7 @@ class ProfileController extends Controller
         //initiate buyer
         $ffg = FastFoodGrocery::find($id);
         $data = $request->all();
-        
+
         $imgUrl = null;//instantiate imgurl variable
         //checks if image file exist and stores in localstorate
         if ($request->hasFile('avatar')) {
@@ -102,8 +102,8 @@ class ProfileController extends Controller
         }catch(\Illuminate\Database\QueryException $e){
             return $this->send_response(false,$e, 400,'Problem updating profile');
         }}
-   
-    
+
+
         public function updateTerms(Request $request, $id):\Illuminate\Http\JsonResponse
         {
             $request->validate([
@@ -117,8 +117,8 @@ class ProfileController extends Controller
 
             //initiate buyer
             $fast_food_grocery = Seller::find($id);
-            
-            
+
+
             //if update buyer profile works
             try{
                 $fast_food_grocery->update([
@@ -142,7 +142,7 @@ class ProfileController extends Controller
             $user = Auth::guard('fast_food_grocery')->user();
             $user->account_type = $request->plan;
             $user->save();
-            
+
             return redirect()->back()->with([
                 'message' => 'Account Upgraded'
             ]);
@@ -155,7 +155,7 @@ class ProfileController extends Controller
 
         public function store_settings(Request $request)
         {
-            
+
             $request->validate([
                 'shop_location'           => ['required'],
                 'delivery_terms'          => ['required'],
@@ -177,19 +177,19 @@ class ProfileController extends Controller
             $user->delivery_agent          = $request->delivery_agent;
             $user->means_of_identification = $request->means_of_identification;
             $result = $user->save();
-            
+
             return redirect()->back()->with([
                 'message' => 'Settings saved'
             ]);
         }
-    
-            
+
+
         // public function updateBankAccount(Request $request,$id) {
         //     $validated =  $request->validate([
         //          'account_name' => 'required | string',
         //          'account_number' => 'required | integer',
         //      ]);
-             
+
         //      //initiate networking agent using nag
         //      $nag = FastFoodGrocery::find($id);
         //      //if update buyer profile works
@@ -212,26 +212,41 @@ class ProfileController extends Controller
                 'bank_name'      => 'required',
                 'bank_code'      => 'required',
             ]);
-    
+
             $fast_food_grocery = Auth::guard('fast_food_grocery')->user();
-    
+
             $fast_food_grocery->update([
                 'account_name'   => $request->account_name,
                 'bank_name'      => $request->bank_name,
                 'account_number' => $request->account_number,
                 'bank_code'      => $request->bank_code,
-    
-            ]);
-    
-            return redirect()->back();
-    
-        }
-    
-    
-               
 
-    
-    
+            ]);
+
+            return redirect()->back();
+
+        }
+
+
+
+        public function update_paypal_details(Request $request){
+
+            $request->validate([
+                'email'   => 'email|required',
+            ]);
+
+            $user = Auth::guard('fast_food_grocery')->user();
+
+            $user->update([
+                'paypal_email'   => $request->email
+
+            ]);
+
+            return redirect()->back();
+
+        }
+
+
         /**
      * Remove the specified resource from storage.
      *
@@ -245,5 +260,5 @@ class ProfileController extends Controller
     {
         //
     }
-}
 
+}

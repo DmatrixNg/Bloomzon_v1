@@ -16,7 +16,7 @@
                     <div class="col-md-2">
                         <i class="fa fa-user-circle fa-4x pl-3"></i>
                     </div>
-                    <a href="{{ url('/fast/message_replies/' . $message->id ) }}">
+                    <a href="{{ url('/fast_food_grocery/message_replies/' . $message->id ) }}">
                         <div class="col-md-4">
                             <span class="badge badge-dark" style="background-color: #AF2E1D !important; font-size: 17px;">
                                 {{ $message->messageable->full_name }}

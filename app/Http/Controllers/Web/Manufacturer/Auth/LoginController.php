@@ -35,7 +35,7 @@ class LoginController extends Controller
     protected function redirectTo() {
       $user = auth()->guard('manufacturer')->user();
 
-      $user->notify(new \App\Notifications\Login($user));
+      // $user->notify(new \App\Notifications\Login($user));
 
         return '/manufacturer/dashboard';
     }

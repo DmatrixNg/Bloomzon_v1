@@ -89,6 +89,8 @@
 
 
                 <form action="{{url("fast_food_grocery/update_paypal_details")}}" method="post">
+                  @csrf
+
                     <div class="form-group">
                         <h2 style="color: green; text-align: center;"><strong>For users outside Africa</strong></h2>
                         <div class="form-group">
@@ -131,7 +133,8 @@
             url: "https://api.paystack.co/bank",
             type: "GET",
             headers: {
-                "Authorization": "Bearer " + "{{env('PAYSTACK_SECRET_KEY')}}"
+                "Authorization": "Bearer " + "{{ config('paystack.secretKey')}}",
+                "Cache-Control":"no-cache",
             },
             data: {
                 country: "nigeria",
@@ -170,7 +173,7 @@
             url: "https://api.paystack.co/bank/resolve",
             type: "GET",
             headers: {
-                "Authorization": "Bearer " + "{{env('PAYSTACK_SECRET_KEY')}}"
+                "Authorization": "Bearer " + "{{ config('paystack.secretKey')}}"
             },
             data: {
                 account_number: $('#input_acc_num').val(),

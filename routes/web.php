@@ -1186,6 +1186,8 @@ Route::prefix('/fast_food_grocery')->name('fast_food_grocery.')->namespace('Web\
         Route::get('/reviews-and-feedback','ReviewController@index')->name('reviews');
         Route::get('/reply-review/{id}','ReviewController@reply')->name('reply-reviews');
         Route::post('/reply-review','ReviewController@storeReply')->name('reply-reviews');
+        Route::post('update_account_details', 'ProfileController@updateBankDetails');
+        Route::post('update_paypal_details', 'ProfileController@update_paypal_details');
 
 
     });
