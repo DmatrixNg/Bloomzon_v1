@@ -54,7 +54,7 @@
                     </div>
                 </a>
                 <hr>
-                <a href="accountupgrade">
+                <a href="{{ url('fast_food_grocery/subscription') }}">
                     <div class="row">
                         <div class="col-md-8 offset-2">
                             <div class="row">
