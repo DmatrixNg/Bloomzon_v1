@@ -584,6 +584,10 @@ Route::prefix('/manufacturer')->name('manufacturer.')->namespace('Web\Manufactur
         Route::get('request-details/{id}',"RequestController@show");
         Route::get('request-status/{id}',"RequestController@show_status");
         Route::post('request-update/{id}',"RequestController@update_status");
+
+        // subscriptions
+        Route::get('/subscription', 'SubscriptionController@index');
+        Route::post('/create_subscription', 'SubscriptionController@store');
     });
 });
 
@@ -677,6 +681,9 @@ Route::prefix('/networking_agent')->name('networking_agent.')->namespace('Web\Ne
         Route::post('change-ads-status/{id}','AdvertController@change_status');
         Route::post('update_account_details', 'ProfileController@updateBankDetails');
         Route::post('update_paypal_details', 'ProfileController@update_paypal_details');
+
+        Route::get('/subscription', 'SubscriptionController@index');
+        Route::post('/create_subscription', 'SubscriptionController@store');
 
 
 
@@ -1186,6 +1193,10 @@ Route::prefix('/fast_food_grocery')->name('fast_food_grocery.')->namespace('Web\
         Route::get('/reviews-and-feedback','ReviewController@index')->name('reviews');
         Route::get('/reply-review/{id}','ReviewController@reply')->name('reply-reviews');
         Route::post('/reply-review','ReviewController@storeReply')->name('reply-reviews');
+
+        // subscriptions
+        Route::get('/subscription', 'SubscriptionController@index');
+        Route::post('/create_subscription', 'SubscriptionController@store');
 
 
     });

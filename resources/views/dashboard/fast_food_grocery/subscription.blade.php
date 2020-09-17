@@ -1,4 +1,9 @@
-@extends('dashboard.manufacturer.layouts.app')
+
+
+@extends('layouts.dashboard.fast_food_grocery')
+@section('page_title')
+    Subscription
+@endsection
 
 @section('content')
     <div class="col-md-10">
@@ -8,7 +13,7 @@
             </div>
         </div>
 
-        @if(auth()->guard('manufacturer')->user()->is_subscribed())
+        @if(auth()->guard('fast_food_grocery')->user()->is_subscribed())
             <div class="">
                 <div class="col-md-3"></div>
                 <div class="col-md-6" style="padding: 30px;">
@@ -18,21 +23,21 @@
                                 <h4>Current Package</h4>
                             </div>
                             <div class="col-md-6">
-                                <button class="btn text-capitalize" style="color: white; background-color: #02499B; border-radius: 5px;">{{ auth()->guard('manufacturer')->user()->is_subscribed()->package }}</button>
+                                <button class="btn text-capitalize" style="color: white; background-color: #02499B; border-radius: 5px;">{{ auth()->guard('fast_food_grocery')->user()->is_subscribed()->package }}</button>
                             </div>
 
                             <div class="col-md-6">
                                 <h4>Start Date</h4>
                             </div>
                             <div class="col-md-6">
-                                <button class="btn text-capitalize" style="color: white; background-color: #02499B; border-radius: 5px;">{{ auth()->guard('manufacturer')->user()->is_subscribed()->start_date }}</button>
+                                <button class="btn text-capitalize" style="color: white; background-color: #02499B; border-radius: 5px;">{{ auth()->guard('fast_food_grocery')->user()->is_subscribed()->start_date }}</button>
                             </div>
 
                             <div class="col-md-6">
                                 <h4>End Date</h4>
                             </div>
                             <div class="col-md-6">
-                                <button class="btn text-capitalize" style="color: white; background-color: #02499B; border-radius: 5px;">{{ auth()->guard('manufacturer')->user()->is_subscribed()->end_date }}</button>
+                                <button class="btn text-capitalize" style="color: white; background-color: #02499B; border-radius: 5px;">{{ auth()->guard('fast_food_grocery')->user()->is_subscribed()->end_date }}</button>
                             </div>
                         </div>
                     </div>
@@ -63,7 +68,7 @@
             <div class="">
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
-                    <form id="sub_form" action="{{ url('manufacturer/create_subscription') }}" method="post">
+                    <form id="sub_form" action="{{ url('fast_food_grocery/create_subscription') }}" method="post">
                         @csrf
                         <div class="row">
                             <div class="col-md-4">
@@ -155,8 +160,8 @@
             price = 7000
         }
 
-        var manufacturer_name = '{{ auth()->guard("manufacturer")->user()->company_name }}'
-        var manufacturer_email = '{{ auth()->guard("manufacturer")->user()->email }}'
+        var fast_food_grocery_name = '{{ auth()->guard("fast_food_grocery")->user()->company_name }}'
+        var fast_food_grocery_email = '{{ auth()->guard("fast_food_grocery")->user()->email }}'
 
 
         
@@ -180,10 +185,10 @@
                 key       : 'pk_test_09382aa6313abb13f39a4994ce801a2abfa26dd6',
                 amount    : price,
                 curency   : 'NGN',
-                first_name: manufacturer_name,
-                last_name : manufacturer_name,
+                first_name: fast_food_grocery_name,
+                last_name : fast_food_grocery_name,
                 reference : makeid(10),
-                email     : manufacturer_email,
+                email     : fast_food_grocery_email,
                 onClose   : function(){
                     alert('you clossed the payment frame')
                 },

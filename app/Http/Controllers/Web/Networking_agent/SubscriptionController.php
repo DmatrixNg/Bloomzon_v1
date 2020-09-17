@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Web\Professional;
+namespace App\Http\Controllers\Web\Networking_agent;
 
 use App\Helpers\SubscriptionHelper;
 use App\Http\Controllers\Controller;
@@ -13,16 +13,16 @@ class SubscriptionController extends Controller
      * Display a listing of the resource.
      *
      */
-    private $professional;
+    private $networking_agent;
     public function __construct()
     {
-        $this->professional = Auth::guard('professional')->user();
+        $this->networking_agent = Auth::guard('networking_agent')->user();
     }
 
 
     public function index()
     {
-        return view('dashboard.professional.subscription');
+        return view('dashboard.networking_agent.subscription');
 
     }
 
@@ -46,9 +46,9 @@ class SubscriptionController extends Controller
 
         ]);
 
-        $professional = Auth::guard('professional')->user();
+        $networking_agent = Auth::guard('networking_agent')->user();
 
-        $subscription = SubscriptionHelper::store($professional, $request);
+        $subscription = SubscriptionHelper::store($networking_agent, $request);
 
         return redirect()->back();
 

@@ -106,4 +106,24 @@ class Professional extends Authenticatable
     {
         $this->notify(new EmailVerification('professional'));
     }
+
+    /**
+     * Get all of the subscriptions's comments.
+     */
+    public function subscriptions()
+    {
+        return $this->morphMany('App\Subscription', 'subscriptionable');
+    }
+
+    public function is_subscribed()
+    {
+        $my_subscription = $this->subscriptions->where('end_date', '>', now())->first();
+
+        if($my_subscription) {
+            return $my_subscription;
+        } else {
+            return null;
+        }
+
+    }
 }

@@ -49,7 +49,7 @@
                 <br>
                 <hr>
                 <br>
-                <a href="">
+                <a href="{{ url('/manufacturer/subscription') }}">
                     <div class="row">
                         <div class="col-md-3">
                             <img src="{{ asset('manufacturer_assets/img/faqicon.png') }}">
