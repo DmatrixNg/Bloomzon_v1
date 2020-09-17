@@ -7,6 +7,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use phpDocumentor\Reflection\Types\This;
+use App\Notifications\EmailVerification;
+use App\Notifications\ResetPassword as Notification;
 
 class Seller extends Authenticatable
 {
@@ -127,5 +129,24 @@ class Seller extends Authenticatable
     public function order_details()
     {
         return $this->morphMany('App\OrderDetail', 'seller');
+    }
+    /**
+     * Custom password reset notification.
+     *
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new Notification('seller',$token));
+    }
+
+    /**
+     * Send email verification notice.
+     *
+     * @return void
+     */
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new EmailVerification('seller'));
     }
 }

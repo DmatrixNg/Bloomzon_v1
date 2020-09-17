@@ -6,6 +6,9 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Notifications\EmailVerification;
+use App\Notifications\ResetPassword as Notification;
+
 
 class Buyer extends Authenticatable
 {
@@ -98,5 +101,24 @@ class Buyer extends Authenticatable
         return $this->morphMany('App\Card', 'user');
     }
 
+    /**
+     * Custom password reset notification.
+     *
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new Notification('buyer',$token));
+    }
+
+    /**
+     * Send email verification notice.
+     *
+     * @return void
+     */
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new EmailVerification('buyer'));
+    }
 
 }

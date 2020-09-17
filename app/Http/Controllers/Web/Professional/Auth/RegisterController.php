@@ -37,7 +37,7 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
-    
+
     protected function redirectTo(){
         return 'professional/dashboard';
     }
@@ -49,7 +49,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest:professional');
     }
 
     /**
@@ -103,7 +103,7 @@ class RegisterController extends Controller
      */
     public function register(Request $request)
     {
-        
+
        $data = $request->validate([
             'phone_number' => ['required', 'string', 'max:255'],
             'full_name'    => ['required','string','max:255'],
@@ -145,5 +145,5 @@ class RegisterController extends Controller
     {
         //
     }
-    
+
 }

@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Traits\JsonResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+
 
 class AdvertController extends Controller
 { use JsonResponse;
@@ -41,30 +43,51 @@ class AdvertController extends Controller
             }
 
         $advert = Advert::find($request->id);
-
+        // Log::debug($advert);
+        // Log::debug($request->id);
+        // dd();
+        $user = null;
         if ($advert->ads_by == "buyer") {
-          $user = \App\Buyer::find($advert->user_id)->first();
+          if ($advert->user_id) {
+            $user = \App\Buyer::find($advert->user_id)->first();
+          }
 
         }elseif ($advert->ads_by == "seller") {
+          if ($advert->user_id) {
+
           $user = \App\Seller::find($advert->user_id)->first();
-
-        }elseif ($advert->ads_by == "professional") {
-          $user = \App\Professional::find($advert->user_id)->first();
-
-        }elseif ($advert->ads_by == "networking_agent") {
-          $user = \App\NetworkingAgent::find($advert->user_id)->first();
-
-        }elseif ($advert->ads_by == "fast_food_grocery") {
-          $user = \App\FastFoodGrocery::find($advert->user_id)->first();
-
-        }elseif ($advert->ads_by == "admin") {
-          $user = \App\Admin::find($advert->user_id)->first();
-
-        }elseif ($advert->ads_by == "manufacturer") {
-          $user = \App\Manufacturer::find($advert->user_id)->first();
-
         }
-        $user->notify(new \App\Notifications\Ads($advert,$stat));
+        }elseif ($advert->ads_by == "professional") {
+          if ($advert->user_id) {
+
+          $user = \App\Professional::find($advert->user_id)->first();
+        }
+        }elseif ($advert->ads_by == "networking_agent") {
+          if ($advert->user_id) {
+
+          $user = \App\NetworkingAgent::find($advert->user_id)->first();
+        }
+        }elseif ($advert->ads_by == "fast_food_grocery") {
+          if ($advert->user_id) {
+
+          $user = \App\FastFoodGrocery::find($advert->user_id)->first();
+        }
+        }elseif ($advert->ads_by == "admin") {
+          if ($advert->user_id) {
+
+          $user = \App\Admin::find($advert->user_id)->first();
+        }
+        }elseif ($advert->ads_by == "manufacturer") {
+          if ($advert->user_id) {
+
+          $user = \App\Manufacturer::find($advert->user_id)->first();
+        }
+        }else {
+          $user = null;
+        }
+        if ($user != null) {
+          $user->notify(new \App\Notifications\Ads($advert,$stat));
+        }
 
             if($advert->update(['status'=>$request->status])){
                 return $this->send_response(true,[],200,'Advert updated successfully');

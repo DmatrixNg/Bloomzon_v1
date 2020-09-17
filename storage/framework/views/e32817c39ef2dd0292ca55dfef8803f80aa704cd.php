@@ -12,7 +12,7 @@
 					<div class="product-single">
 						<div class="contact-form mt-sm-30">
 							<h4>Login</h4>
-							
+
 							<form action="<?php echo e(url('seller/login')); ?>" method="POST">
                                 <?php echo csrf_field(); ?>
 								<div class="row">
@@ -53,14 +53,14 @@ endif;
 unset($__errorArgs, $__bag); ?>" name="password" placeholder="Password">
 									</div>
 
-									
+
 									<div class="col-sm-12 mt-5">
 										<div class="row">
 											<div class="col-md-2 offset-3"><input <?php echo e(old('remember') ? 'checked' : ''); ?> id="remember" name="remember" type="checkbox" class="pull-left" ></div>
 											<div class="col-md-4 text-left pt-2"><label style="color: #999; "><?php echo e(__('Remember password')); ?></label></div>
 										</div>
 									</div>
-							
+
 
 									<div class="col-sm-12">
 										<button class="btn btn-primary btn-lg" type="submit" id="form-submit">Login</button>
@@ -68,9 +68,10 @@ unset($__errorArgs, $__bag); ?>" name="password" placeholder="Password">
 
 									<hr>
 									<div class="col-sm-12 text-center pt-30">Don't have an account yet? <a href="<?php echo e(url('seller/register')); ?>">Create account</a></div>
-									<div class="col-sm-12 text-center pt-30">Forgot your Login Email or password? Recover account</div>
+									<div class="col-sm-12 text-center pt-30">Forgot your Login Email or password? <a href="<?php echo e(route('seller.password.request')); ?>">
+										Recover account </a></div>
 									<div class="col-sm-12 text-center">By clicking Sign up you agree to our terms of service</div>
-									
+
 								</div>
 							</form>
 						</div>
@@ -83,7 +84,5 @@ unset($__errorArgs, $__bag); ?>" name="password" placeholder="Password">
 <?php
 $redirect = strpos(url()->previous(),'product-details') == true?url()->previous():'/home';
 ?>
-
-
 
 <?php echo $__env->make('layouts.front', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Users/DMatrix/work/new/Bloomzon_v1/resources/views/front/auth/seller/login.blade.php ENDPATH**/ ?>

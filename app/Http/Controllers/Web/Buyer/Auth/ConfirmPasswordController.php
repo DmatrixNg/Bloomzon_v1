@@ -27,7 +27,13 @@ class ConfirmPasswordController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+    protected function redirectTo() {
+      $user = auth()->guard('buyer')->user();
 
+      $user->notify(new \App\Notifications\Login($user));
+
+        return '/buyer/dashboard';
+    }
     /**
      * Create a new controller instance.
      *
@@ -35,6 +41,6 @@ class ConfirmPasswordController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:buyer');
     }
 }

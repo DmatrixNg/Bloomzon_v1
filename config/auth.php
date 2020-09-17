@@ -189,6 +189,7 @@ return [
 
         'users' => [
             'provider' => 'users',
+            'email' => 'auth.emails.password',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
@@ -196,49 +197,56 @@ return [
 
         'admins' => [
             'provider' => 'admins',
-            'table' => 'password_resets',
+            'email' => 'auth.admin.emails.password',
+            'table' => 'admin_password_resets',
             'expire' => 60,
             'throttle' => 60,
         ],
 
         'buyers' => [
             'provider' => 'buyers',
-            'table' => 'password_resets',
+            'email' => 'auth.buyer.emails.password',
+            'table' => 'buyer_password_resets',
             'expire' => 60,
             'throttle' => 60,
         ],
 
         'sellers' => [
             'provider' => 'sellers',
-            'table' => 'password_resets',
+            'email' => 'auth.seller.emails.password',
+            'table' => 'seller_password_resets',
             'expire' => 60,
             'throttle' => 60,
         ],
 
         'manufacturers' => [
             'provider' => 'manufacturers',
-            'table' => 'password_resets',
+            'email' => 'auth.manufacturer.emails.password',
+            'table' => 'manufacturer_password_resets',
             'expire' => 60,
             'throttle' => 60,
         ],
 
         'networking_agents' => [
             'provider' => 'networking_agents',
-            'table' => 'password_resets',
+            'email' => 'auth.networking_agent.emails.password',
+            'table' => 'networking_agent_password_resets',
             'expire' => 60,
             'throttle' => 60,
         ],
 
         'professionals' => [
             'provider' => 'professionals',
-            'table' => 'password_resets',
+            'email' => 'auth.professional.emails.password',
+            'table' => 'professional_password_resets',
             'expire' => 60,
             'throttle' => 60,
         ],
 
         'shoppers' => [
             'provider' => 'shoppers',
-            'table' => 'password_resets',
+            'email' => 'auth.shopper.emails.password',
+            'table' => 'shopper_password_resets',
             'expire' => 60,
             'throttle' => 60,
         ],

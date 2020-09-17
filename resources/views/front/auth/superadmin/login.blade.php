@@ -33,7 +33,8 @@
 									</div>
 									<hr>
 									<div class="col-sm-12 text-center pt-30">Don't have an account yet? <a href="register">Create account</a></div>
-									<div class="col-sm-12 text-center pt-30">Forgot your Login Email or password? Recover account</div>
+									<div class="col-sm-12 text-center pt-30">Forgot your Login Email or password? <a href="{{route('admin.password.request')}}">
+										Recover account </a></div>
 									<div class="col-sm-12 text-center">By clicking Sign up you agree to our terms of service</div>
 								</div>
 							</form>
@@ -50,7 +51,7 @@ $redirect = strpos(url()->previous(),'product-details') == true?url()->previous(
 
 @push('scripts')
     <script>
-		
+
         FormHandler('loginForm', {
             requestUrl: '/auth/login/web',
             cb: response => {

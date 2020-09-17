@@ -105,7 +105,7 @@ Route::post('/deleteImage','ProductController@delete_image');
 Route::post('/order/create','OrderController@create');
 Route::post('track-order/{id}','OrderController@trackDelivery');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 Route::get('/logout',function(){
     Auth::logout();
 });
@@ -282,7 +282,7 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
         Route::get('all-adverts','AdvertController@index')->name('all-adverts');
         Route::get('create-advert','AdvertController@create')->name('create-advert');
         Route::post('post-ads','AdvertController@store')->name('post-ads');
-        Route::post('change-advert-status','AdvertController@changeStatus');
+        Route::post('change-advert-status','AdvertController@changeStatus')->name('change.ads');
         Route::post('delete-advert/{id}','AdvertController@destroy');
 
 
@@ -383,6 +383,7 @@ Route::prefix('/buyer')->name('buyer.')->namespace('Web\Buyer')->group(function 
 
     // all buyer authentication routes
     Route::namespace('Auth')->group(function () {
+
         //Login Routes
         Route::get('/login', 'LoginController@showLoginForm')->name('login');
         Route::post('/login', 'LoginController@login');
@@ -399,6 +400,11 @@ Route::prefix('/buyer')->name('buyer.')->namespace('Web\Buyer')->group(function 
         //Reset Password Routes
         Route::get('/password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
         Route::post('/password/reset', 'ResetPasswordController@reset')->name('password.update');
+
+        // Email Verification Route(s)
+        Route::get('email/verify','VerificationController@show')->name('verification.notice');
+        Route::get('email/verify/{id}','VerificationController@verify')->name('verification.verify');
+        Route::get('email/resend','VerificationController@resend')->name('verification.resend');
     });
 
 
@@ -508,12 +514,17 @@ Route::prefix('/manufacturer')->name('manufacturer.')->namespace('Web\Manufactur
         Route::get('/password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
         Route::post('/password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 
-        // veryfy email
-        Route::post('/verify_email', 'LoginController@verify_email')->name('verify_email');
+        // // veryfy email
+        // Route::post('/verify_email', 'LoginController@verify_email')->name('verify_email');
 
         //Reset Password Routes
         Route::get('/password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
         Route::post('/password/reset', 'ResetPasswordController@reset')->name('password.update');
+
+        // Email Verification Route(s)
+        Route::get('email/verify','VerificationController@show')->name('verification.notice');
+        Route::get('email/verify/{id}','VerificationController@verify')->name('verification.verify');
+        Route::get('email/resend','VerificationController@resend')->name('verification.resend');
     });
 
     // email verification page
@@ -522,7 +533,7 @@ Route::prefix('/manufacturer')->name('manufacturer.')->namespace('Web\Manufactur
     Route::post('/accept_terms', 'ProfileController@accept_terms')->name('accept_terms');
 
     // all manufacturer protected routes, user must be login as manufacturer to access these routes
-    Route::middleware(['auth:manufacturer', 'manufacturer_has_verified', 'manufacturer_accept_terms_and_conditions'])->group(function () {
+    Route::middleware(['auth:manufacturer', 'manufacturer_accept_terms_and_conditions'])->group(function () {
         // dashboard
         Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
@@ -597,6 +608,11 @@ Route::prefix('/networking_agent')->name('networking_agent.')->namespace('Web\Ne
         //Reset Password Routes
         Route::get('/password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
         Route::post('/password/reset', 'ResetPasswordController@reset')->name('password.update');
+
+        // Email Verification Route(s)
+        Route::get('email/verify','VerificationController@show')->name('verification.notice');
+        Route::get('email/verify/{id}','VerificationController@verify')->name('verification.verify');
+        Route::get('email/resend','VerificationController@resend')->name('verification.resend');
     });
 
     // all networking_agent protected routes, user must be login as networking_agent to access these routes
@@ -688,6 +704,11 @@ Route::prefix('/professional')->name('professional.')->namespace('Web\Profession
         //Reset Password Routes
         Route::get('/password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
         Route::post('/password/reset', 'ResetPasswordController@reset')->name('password.update');
+
+        // Email Verification Route(s)
+        Route::get('email/verify','VerificationController@show')->name('verification.notice');
+        Route::get('email/verify/{id}','VerificationController@verify')->name('verification.verify');
+        Route::get('email/resend','VerificationController@resend')->name('verification.resend');
     });
 
     // all professional protected routes, user must be login as professional to access these routes
@@ -793,6 +814,7 @@ Route::prefix('/seller')->name('seller.')->namespace('Web\Seller')->group(functi
     // all seller authentication routes
     Route::namespace('Auth')->group(function () {
         //Login Routes
+
         Route::get('/login', 'LoginController@showLoginForm')->name('login');
         Route::post('/login', 'LoginController@login');
         Route::get('/logout', 'LoginController@logout')->name('logout');
@@ -806,8 +828,13 @@ Route::prefix('/seller')->name('seller.')->namespace('Web\Seller')->group(functi
         Route::post('/password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 
         //Reset Password Routes
-        Route::get('/password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
-        Route::post('/password/reset', 'ResetPasswordController@reset')->name('password.update');
+        Route::get('/password/reset/{token}','ResetPasswordController@showResetForm')->name('password.reset');
+        Route::post('/password/reset','ResetPasswordController@reset')->name('password.update');
+
+        // Email Verification Route(s)
+        Route::get('email/verify','VerificationController@show')->name('verification.notice');
+        Route::get('email/verify/{id}','VerificationController@verify')->name('verification.verify');
+        Route::get('email/resend','VerificationController@resend')->name('verification.resend');
     });
 
     // all seller protected routes, user must be login as seller to access these routes
@@ -975,6 +1002,11 @@ Route::prefix('/shopper')->name('shopper.')->namespace('Web\Shopper')->group(fun
         //Reset Password Routes
         Route::get('/password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
         Route::post('/password/reset', 'ResetPasswordController@reset')->name('password.update');
+
+        // Email Verification Route(s)
+        Route::get('email/verify','VerificationController@show')->name('verification.notice');
+        Route::get('email/verify/{id}','VerificationController@verify')->name('verification.verify');
+        Route::get('email/resend','VerificationController@resend')->name('verification.resend');
     });
 
     // all shopper protected routes, user must be login as shopper to access these routes
@@ -1070,6 +1102,11 @@ Route::prefix('/fast_food_grocery')->name('fast_food_grocery.')->namespace('Web\
         //Reset Password Routes
         Route::get('/password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.reset');
         Route::post('/password/reset', 'ResetPasswordController@reset')->name('password.update');
+
+        // Email Verification Route(s)
+        Route::get('email/verify','VerificationController@show')->name('verification.notice');
+        Route::get('email/verify/{id}','VerificationController@verify')->name('verification.verify');
+        Route::get('email/resend','VerificationController@resend')->name('verification.resend');
     });
 
     // all shopper protected routes, user must be login as shopper to access these routes

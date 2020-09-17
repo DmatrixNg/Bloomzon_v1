@@ -154,19 +154,19 @@ class UserController extends Controller
             case ('manufacturers'):
                 $manufacturers = Manufacturer::all();
                 return view('dashboard.admin.all_manufacturers', compact(['manufacturers']));
-                
+
             case ('fast_food_groceries'):
                 $fast_food_groceries = FastFoodGrocery::all();
                 return view('dashboard.admin.all_fast_food_groceries', compact(['fast_food_groceries']));
-                
+
             case ('delivery_agents'):
                 $delivery_agents = DeliveryAgent::all();
                 return view('dashboard.admin.all_delivery_agents',compact(['delivery_agents']));
-                
+
             case ('sub_admins'):
                 $subadmins = Admin::where('role','sub_admin')->get();
                 return view('dashboard.admin.all_subadmins',compact(['subadmins']));
-                
+
         }
 
         return null;
@@ -353,7 +353,7 @@ class UserController extends Controller
         return $this->send_response(true,$seller,200,'Seller type changed');
         }
         return $this->send_response(true,[],400,'Unable to change seller type');
-        
+
     }
 
     public function changeAdminStatus($id)
@@ -365,6 +365,6 @@ class UserController extends Controller
         return $this->send_response(true,$admin,200,'Seller type changed');
         }
         return $this->send_response(true,[],400,'Unable to change seller type');
-        
+
     }
 }

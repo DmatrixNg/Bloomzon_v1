@@ -47,7 +47,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest:networking_agents');
     }
 
     /**
@@ -100,7 +100,7 @@ class RegisterController extends Controller
      */
     public function register(Request $request)
     {
-        
+
        $data = $request->validate([
             'phone_number' => ['required', 'string', 'max:255'],
             'full_name' => ['required','string','max:255'],
@@ -142,5 +142,5 @@ class RegisterController extends Controller
     {
         //
     }
-    
+
 }

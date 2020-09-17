@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Notifications\EmailVerification;
+use App\Notifications\ResetPassword as Notification;
 
 class NetworkingAgent extends Authenticatable
 {
@@ -50,5 +52,24 @@ class NetworkingAgent extends Authenticatable
 
     public function getReviewsAttribute(){
         return Review::where('seller_id',$this->id)->where('review_type','professional')->get();
+    }
+    /**
+     * Custom password reset notification.
+     *
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new Notification('networking_agent',$token));
+    }
+
+    /**
+     * Send email verification notice.
+     *
+     * @return void
+     */
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new EmailVerification('networking_agent'));
     }
 }

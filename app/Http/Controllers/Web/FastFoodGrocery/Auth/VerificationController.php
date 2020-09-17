@@ -28,15 +28,23 @@ class VerificationController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('signed')->only('verify');
-        $this->middleware('throttle:6,1')->only('verify', 'resend');
-    }
+
+        protected function redirectTo() {
+          $user = auth()->guard('fast_food_grocery')->user();
+
+          $user->notify(new \App\Notifications\Login($user));
+
+            return '/fast_food_grocery/dashboard';
+        }
+        /**
+         * Create a new controller instance.
+         *
+         * @return void
+         */
+        public function __construct()
+        {
+            $this->middleware('auth:fast_food_grocery');
+            $this->middleware('signed')->only('verify');
+            $this->middleware('throttle:6,1')->only('verify', 'resend');
+        }
 }

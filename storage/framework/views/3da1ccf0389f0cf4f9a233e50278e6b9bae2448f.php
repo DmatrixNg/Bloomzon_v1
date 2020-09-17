@@ -269,9 +269,10 @@
                                     <ul>
 
                                         <li><a href="<?php echo e(url(app()->getLocale().'/realestate')); ?>"><?php echo e(__("Real Estate")); ?></a></li>
-                                        <li><a href="<?php echo e(route('fashion',app()->getLocale())); ?>"><?php echo e(__("Fashion Design")); ?> &amp; <?php echo e(__("Tailoring")); ?></a></li>
+                                        <li><a href="<?php echo e(route('fashion',app()->getLocale())); ?>"><?php echo e(__("Fashion")); ?> &amp; <?php echo e(__("Tailoring")); ?></a></li>
                                         <li><a href="<?php echo e(url(app()->getLocale().'/bloomzontravels')); ?>"><?php echo e(__("Travel & Hotels")); ?></a></li>
-                                        <li><a href="#">Bloomzon <?php echo e(__("Products")); ?></a></li>
+                                        <li><a href="<?php echo e(url(app()->getLocale().'/bloomzon-products')); ?>">Bloomzon <?php echo e(__("Products")); ?></a></li>
+
                                         <li><a href="<?php echo e(route('fast-foods',app()->getLocale())); ?>"><?php echo e(__("Food")); ?> &amp; <?php echo e(__("Groceries")); ?></a></li>
                                     <li><a href="<?php echo e(url(app()->getLocale().'/proservice')); ?>"><?php echo e(__("Professional Services")); ?></a></li>
                                         <li><a href="<?php echo e(url(app()->getLocale().'/sellers')); ?>"><?php echo e(__("Seller")); ?></a></li>
