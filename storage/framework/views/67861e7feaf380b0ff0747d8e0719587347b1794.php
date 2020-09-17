@@ -7,10 +7,10 @@
 <div class="container text-center mt-5">
 
 
-    <p class="text-left"><a href="index.html">Home</a> <i class="fa fa-chevron-right"></i> <a style="color:grey;" href="fastfood.html">Fast Food Vendors</a></p>
+    <p class="text-left"><a href="<?php echo e(url('/')); ?>">Home</a> <i class="fa fa-chevron-right"></i> <a style="color:grey;" href="fastfood.html">Fast Food Vendors</a></p>
 
     <h4 class="text-left"><?php echo e(strtoupper(\Request::segment(1))); ?> VENDOR</h4>
-    
+
     <div class="row mt-5">
         <?php if(!count($fast_foods)): ?>
         <div class="alert alert-warning">No Vendor</div>
@@ -33,8 +33,8 @@
                         <h3 class="testimonial_heading font-weight-bold"><?php echo e($ffg->company_name); ?></h3>
                         <p class="testimonial_heading2"><?php echo e($ffg->full_name); ?></p>
                         <p class="testimonial_heading2"><?php echo e($ffg->shop_address); ?></p>
-                        <a href="<?php echo e(url('/fast-food-details/'.$ffg->id)); ?>" class="btn btn-primary border-0 h2">View Profile</a>
-                        <a href="<?php echo e(url('/vendor-food-list/'.$ffg->id)); ?>" class="btn btn-danger border-0 h2">View Products</a>
+                        <a href="<?php echo e(url(app()->getLocale().'/fast-food-details/'.$ffg->id)); ?>" class="btn btn-primary border-0 h2">View Profile</a>
+                        <a href="<?php echo e(url(app()->getLocale().'/vendor-food-list/'.$ffg->id)); ?>" class="btn btn-danger border-0 h2">View Products</a>
                     </div>
                     <br>
                     <!-- Quotation -->
