@@ -95,9 +95,9 @@
                         </div>
                     </div>
                     <input type="hidden" name="email" value="{{ request()->user()->email }}"> {{-- required --}}
-                                <input type="hidden" name="amount" value="{{0.20 * 100}}"> {{-- required in kobo --}}
+                                <input type="hidden" name="amount" value="{{50 * 100}}"> {{-- required in kobo --}}
                                 <input type="hidden" name="quantity" value="1">
-                                <input type="hidden" name="currency" value="USD">
+                                <input type="hidden" name="currency" value="NGN">
                                 <input type="hidden" name="metadata" value="{{ json_encode($array = ['action' => 'addCard']) }}">
                                 <input type="hidden" name="reference" value="{{ Paystack::genTranxRef() }}"> {{-- required --}}
                                 {{ csrf_field() }}

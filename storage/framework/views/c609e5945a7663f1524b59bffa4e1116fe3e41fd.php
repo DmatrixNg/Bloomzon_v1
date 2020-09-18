@@ -49,9 +49,9 @@
                         </div>
                     </div>
                     <input type="hidden" name="email" value="<?php echo e(request()->user()->email); ?>"> 
-                                <input type="hidden" name="amount" value="<?php echo e(0.20 * 100); ?>"> 
+                                <input type="hidden" name="amount" value="<?php echo e(50 * 100); ?>"> 
                                 <input type="hidden" name="quantity" value="1">
-                                <input type="hidden" name="currency" value="USD">
+                                <input type="hidden" name="currency" value="NGN">
                                 <input type="hidden" name="metadata" value="<?php echo e(json_encode($array = ['action' => 'addCard'])); ?>">
                                 <input type="hidden" name="reference" value="<?php echo e(Paystack::genTranxRef()); ?>"> 
                                 <?php echo e(csrf_field()); ?>

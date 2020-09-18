@@ -15,7 +15,7 @@ class EnsureCustomGuardIsVerified
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next,$guard = null, $redirectTo = 'login')
+    public function handle($request, Closure $next,$guard = null, $redirectTo = '/')
     {
         if (! $request->user($guard) ||
             ($request->user($guard) instanceof MustVerifyEmail &&
