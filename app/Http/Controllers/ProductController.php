@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile as HttpUploadedFile;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\File\UploadedFile as FileUploadedFile;
+use Illuminate\Support\Facades\Log;
+
 
 class ProductController extends Controller
 {
@@ -90,7 +92,7 @@ class ProductController extends Controller
         ]);
 
     }
-    
+
     /**
      * Display the specified resource.
      *
@@ -119,6 +121,9 @@ class ProductController extends Controller
 
     public function addReview(Request $request){
 
+// Log::debug($request);
+//
+// dd($request);
         //check if user already gave reviews
         $reviewExist = Review::where('buyer_id',$request->buyer_id)->where('product_id',$request->product_id)->first();
 
@@ -126,6 +131,7 @@ class ProductController extends Controller
             $reviewExist->update($request->all());
             return $this->send_response(true, $reviewExist, 200, 'Product Review updated');
         }
+
 
         //creates
         $review = Review::create($request->all());

@@ -68,10 +68,17 @@ class Professional extends Authenticatable
         return $this->morphMany('App\Product', 'seller');
     }
 
-    public function getReviewsAttribute(){
-        return Review::where('seller_id',$this->id)->where('review_type','professional')->get();
-    }
+    // public function getReviewsAttribute(){
+    //     return Review::where('seller_id',$this->id)->where('review_type','professional')->get();
+    // }
 
+    /**
+     * Get all of the user's reviews.
+     */
+    public function reviews()
+    {
+        return $this->morphMany('App\Review', 'seller');
+    }
     /**
      * Get all of the user's orders details.
      */

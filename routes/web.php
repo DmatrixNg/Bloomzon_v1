@@ -60,6 +60,22 @@ dump('done');
   // dd($first->seller);
   // $first->supermarket->user->notify(new \App\Notifications\Store($product));
 });
+Route::get('fix/review-seller', function () {
+  $first = \App\Review::all();
+
+
+  foreach ($first as $key => $value) {
+    // dd($value->product_id->seller_type);
+    \App\Review::where('id',$value->id)->update([
+      'seller_type' => $value->product_id->seller_type
+    ]);
+dump($value->product_id->seller_type);
+
+ }
+dump('done');
+  // dd($first->seller);
+  // $first->supermarket->user->notify(new \App\Notifications\Store($product));
+});
 Route::get('/paid', 'PaymentController@handleGatewayCallback');
 
 Route::get('manufacturer/logout', 'Web\Manufacturer\Auth\LoginController@logout')->name('logout');
@@ -107,7 +123,7 @@ Route::post('track-order/{id}','OrderController@trackDelivery');
 
 Auth::routes(['verify' => true]);
 Route::get('/logout',function(){
-    Auth::logout();
+  Auth::logout();
 });
 Route::post('/pay', 'PaymentController@redirectToGateway')->name('pay');
 // Route::post('/order', 'PaymentController@order')->name('order');
@@ -155,7 +171,7 @@ Route::group(['prefix' => '{lang}'], function () {
   Route::get('/groceries','HomeController@groceries')->name('groceries');
   Route::get('/vendor-food-list/{id?}','HomeController@vendor_food_list');
   Route::get('/fast-food-details/{id}','HomeController@fast_food_details')->name('fast-food-details');
-//   Route::get('/groceries','HomeController@groceries')->name("groceries");
+  //   Route::get('/groceries','HomeController@groceries')->name("groceries");
 
   // Route::get('/manufacturers','HomeController@manufacturers')->name('manufacturers');
   Route::get('/sellers','HomeController@sellers')->name('sellers');

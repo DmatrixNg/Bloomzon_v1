@@ -121,7 +121,7 @@ Product Details
                                     </div>
                                     <div class="add-to-get mt-50">
                                         <a href="#" id="cart" class="add-to-cart cart" data-product-id="<?php echo e($product->id); ?>">Add to Cart</a>
-                                        <a href="/cart" class="add-to-cart text-white bg-danger" >Check out</a>
+                                        <a href="<?php echo e(url(app()->getLocale()."/cart")); ?>" class="add-to-cart text-white bg-danger" >Check out</a>
                                         
                                     </div>
                                     <div class="product-features mt-50">
@@ -232,7 +232,7 @@ Product Details
                                         <?php else: ?>
                                         <div class="col-sm-4 single-form">
                                             <h5>Please login to add review</h5>
-                                            <a href="/login" class="btn btn-danger btn-lg">Login</a>
+                                            <a href="<?php echo e(url('buyer/login')); ?>" class="btn btn-danger btn-lg">Login</a>
                                         </div>
                                         <div class="col-sm-4 single-form">
                                         </div>
@@ -251,10 +251,12 @@ Product Details
                                         <div class="col-sm-12">
                                             <textarea name="review_message" placeholder="Messages"></textarea>
                                         </div>
+
                                         <div class="col-sm-12">
                                             <?php if(Auth::guard('buyer')->user()): ?>
                                             <input type="hidden" value="<?php echo e($product->id); ?>" name="product_id" />
                                             <input type="hidden" value="<?php echo e($product->seller->id); ?>" name="seller_id" />
+                                            <input type="hidden" value="<?php echo e($product->seller_type); ?>" name="seller_type" />
                                             <input type="hidden" value="<?php echo e(Auth::guard('buyer')->user()->id); ?>" name="buyer_id" />
                                             <input type="hidden" value="0" id="rating" name="rating" />
                                             <input type="hidden" value="1" name="status" />

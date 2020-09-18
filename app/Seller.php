@@ -105,10 +105,17 @@ class Seller extends Authenticatable
         return Product::where('seller_id',$this->id)->where('product_type','seller')->get();
     }
 
-    public function getReviewsAttribute(){
-        return Review::where('seller_id',$this->id)->where('review_type','seller')->get();
-    }
+    // public function getReviewsAttribute(){
+    //     return Review::where('seller_id',$this->id)->where('review_type','seller')->get();
+    // }
 
+    /**
+     * Get all of the user's reviews.
+     */
+    public function reviews()
+    {
+        return $this->morphMany('App\Review', 'seller');
+    }
     /**
      * Get all of the user's points.
      */

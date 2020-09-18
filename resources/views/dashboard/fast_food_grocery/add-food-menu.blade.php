@@ -37,7 +37,7 @@
                             style="height: 40px; border-radius: 0; "></textarea>
                     </div>
                     <div class="form-inline mt-5 mb-4">
-                        <label for="amount" style="font-size: 16px;" class="mr-5">Amount: </label>
+                        <label for="amount" style="font-size: 16px;" class="mr-5">Amount ($): </label>
                         {{-- <label for="currency"></label> --}}
                         {{-- <select name="currency" id="currency" class="form-control "
                             style="height: 40px; border-radius: 0; ">
@@ -51,7 +51,7 @@
                     <input type="hidden" name="weight" value="0" />
                     <input type="hidden" name="product_type" value="fast_food_grocery" />
                     <div class="form-inline mt-5 mb-4">
-                        <label for="discount" style="font-size: 16px;" class="mr-5">Discount: </label>
+                        <label for="discount" style="font-size: 16px;" class="mr-5">Discount ($): </label>
                         <input type="text" name="product_sales_price" id="discount" class="form-control" style="height: 40px; border-radius: 0; ">
                     </div>
                     <ul id="error_list"></ul>

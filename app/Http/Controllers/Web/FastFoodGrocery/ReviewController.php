@@ -14,7 +14,7 @@ class ReviewController extends Controller
     use JsonResponse;
     protected $fast_food_grocery;
     public function __construct()
-    {   
+    {
         $this->fast_food_grocery = Auth::guard('fast_food_grocery')->user();
     }
     /**
@@ -24,7 +24,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $reviews = Review::where('review_type','fast_food_grocery')->where('seller_id',$this->fast_food_grocery->id)->get();
+        $reviews = $this->fast_food_grocery->reviews;
         return view('dashboard.fast_food_grocery.review-feedback',compact(['reviews']));
     }
 

@@ -24,6 +24,13 @@ class Review extends Model
         return $this->belongsTo('App\Buyer');
     }
 
+    /**
+     * Get the owning orderable model.
+     */
+    public function review()
+    {
+        return $this->morphTo();
+    }
 
     public function seller(){
         return $this->belongsTo('App\Seller','seller_id','id');
@@ -33,5 +40,5 @@ class Review extends Model
         return $this->hasMany('\App\ReviewReply','review_id');
     }
 
-    
+
 }

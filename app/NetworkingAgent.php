@@ -50,8 +50,16 @@ class NetworkingAgent extends Authenticatable
         return $this->morphMany('App\Message', 'messageable');
     }
 
-    public function getReviewsAttribute(){
-        return Review::where('seller_id',$this->id)->where('review_type','professional')->get();
+    // public function getReviewsAttribute(){
+    //     return Review::where('seller_id',$this->id)->where('review_type','professional')->get();
+    // }
+
+    /**
+     * Get all of the user's reviews.
+     */
+    public function reviews()
+    {
+        return $this->morphMany('App\Review', 'seller');
     }
     /**
      * Custom password reset notification.

@@ -5,8 +5,11 @@
 
 @section('content')
     <div class="row col-md-10 p-0">
-        
+
         @foreach ($subadmins as $subadmin)
+          @php
+            // dd($subadmin);
+          @endphp
             <div class="col-md-3 p-2">
                 <div class="card p-2">
                     <img src="{{ asset('storage/assets/admin/avatar/' . $subadmin->avatar) }}"

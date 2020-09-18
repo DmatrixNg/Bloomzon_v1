@@ -52,8 +52,16 @@ class FastFoodGrocery extends Authenticatable
         return Product::where('seller_id',$this->id)->where('product_type','fast_food_grocery')->get();
     }
 
-    public function getReviewsAttribute(){
-        return Review::where('seller_id',$this->id)->where('review_type','fast_food_grocery')->get();
+    // public function getReviewsAttribute(){
+    //     return Review::where('seller_id',$this->id)->where('review_type','fast_food_grocery')->get();
+    // }
+
+    /**
+     * Get all of the user's reviews.
+     */
+    public function reviews()
+    {
+        return $this->morphMany('App\Review', 'seller');
     }
 
     public function orders()
