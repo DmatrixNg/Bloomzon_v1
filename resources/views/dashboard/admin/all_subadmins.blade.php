@@ -4,8 +4,30 @@
 @endsection
 
 @section('content')
-    <div class="row col-md-10 p-0">
 
+    <div class="row col-md-10 p-0" style="
+    height: -webkit-fill-available;
+">
+      <div class="row col-12 justify-content-end" style="">
+
+        <form  action="?" method="get">
+
+          <input type="search" name="q" placeholder="Search Name " value="@if(request()->q){{request()->q}}@endif">
+        </form>
+      </div>
+      <div class="row col-12">
+
+
+      @php
+      if (request()->q) {
+
+        $subadmins = \App\Admin::where('role','sub_admin')->where('full_name','like','%'.request()->q.'%')->get();
+        // dd($subadmins);
+      }
+      if (empty($subadmins)) {
+        echo "No User with that Name found";
+      }
+      @endphp
         @foreach ($subadmins as $subadmin)
           @php
             // dd($subadmin);
@@ -47,6 +69,7 @@
             </div>
         @endforeach
 
+    </div>
     </div>
 
 
