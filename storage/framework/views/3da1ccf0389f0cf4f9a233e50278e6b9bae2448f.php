@@ -186,9 +186,8 @@
                                                     <li><a href="<?php echo e(route("buyer.register",app()->getLocale())); ?>"> <?php echo e(__("As Buyer")); ?></a></li>
                                                     <li><a href="<?php echo e(route("seller.register",app()->getLocale())); ?>"><?php echo e(__("As Seller")); ?></a></li>
                                                     <li><a href="<?php echo e(route("networking_agent.register",app()->getLocale())); ?>"><?php echo e(__("As Network Agent")); ?></a></li>
-                                                    <li><a href="<?php echo e(route("fast_food_grocery.register",app()->getLocale())); ?>"><?php echo e(__("As FastFood & Grocery")); ?></a></li>
+                                                    <li><a href="<?php echo e(route("fast_food_grocery.register",app()->getLocale())); ?>"><?php echo e(__("As Fast food & Grocery")); ?></a></li>
                                                     <li><a href="<?php echo e(route("professional.register",app()->getLocale())); ?>"><?php echo e(__("Professional Service")); ?></a></li>
-                                                    <li><a href="<?php echo e(route("fast_food_grocery.register",app()->getLocale())); ?>"><?php echo e(__("As Fast Food Grocery")); ?></a></li>
                                                     <li><a href="<?php echo e(route("manufacturer.register",app()->getLocale())); ?>"><?php echo e(__("As Manufacturer")); ?></a></li>
                                                 </ul>
                                             </li>

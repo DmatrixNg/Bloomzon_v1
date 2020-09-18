@@ -60,7 +60,7 @@
                                 class="btn btn-danger btn-sm pull-left">Details</a> --}}
                             <a class="btn btn-sm text-white btn-{{ $subadmin->status ? 'success' : 'warning' }}"
                                 onclick="changeStatus({{$subadmin->id}})">{{ $subadmin->status ? 'Active' : 'Inactive' }}</a>
-                            <a class="btn btn-sm btn-danger text-white" onclick="deleteUser()">Delete</a>
+                            <a class="btn btn-sm btn-danger text-white" onclick="deleteUser({{$subadmin->id}})">Delete</a>
                             <a class="btn btn-sm btn-primary text-white" href="{{ url('/admin/create_query', $subadmin->id) }}" onclick="querySubadmin()">Query</a>
                 </div>
 

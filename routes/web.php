@@ -238,7 +238,7 @@ Route::prefix('/admin')->name('admin.')->namespace('Web\Admin')->group(function 
     // all admin protected routes, user must be login as admin to access these routes
     Route::middleware('auth:admin')->group(function () {
 
-        Route::get('/dashboard', 'DashboardController@index');
+        Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
         Route::get('/profile', 'ProfileController@index');
 
         // categories
@@ -428,7 +428,7 @@ Route::prefix('/buyer')->name('buyer.')->namespace('Web\Buyer')->group(function 
     // all buyer protected routes, user must be login as buyer to access these routes
     Route::middleware('auth:buyer')->group(function () {
 
-        Route::get('/dashboard', 'DashboardController@index');
+        Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
         Route::get('/profile', 'ProfileController@index');
         //ADD TO FAVORITE
