@@ -185,9 +185,8 @@
                                                     <li><a href="{{route("buyer.register",app()->getLocale())}}"> {{ __("As Buyer")}}</a></li>
                                                     <li><a href="{{route("seller.register",app()->getLocale())}}">{{ __("As Seller")}}</a></li>
                                                     <li><a href="{{route("networking_agent.register",app()->getLocale())}}">{{ __("As Network Agent")}}</a></li>
-                                                    <li><a href="{{route("fast_food_grocery.register",app()->getLocale())}}">{{ __("As FastFood & Grocery")}}</a></li>
+                                                    <li><a href="{{route("fast_food_grocery.register",app()->getLocale())}}">{{ __("As Fast food & Grocery")}}</a></li>
                                                     <li><a href="{{route("professional.register",app()->getLocale())}}">{{ __("Professional Service")}}</a></li>
-                                                    <li><a href="{{route("fast_food_grocery.register",app()->getLocale())}}">{{ __("As Fast Food Grocery")}}</a></li>
                                                     <li><a href="{{route("manufacturer.register",app()->getLocale())}}">{{ __("As Manufacturer")}}</a></li>
                                                 </ul>
                                             </li>
