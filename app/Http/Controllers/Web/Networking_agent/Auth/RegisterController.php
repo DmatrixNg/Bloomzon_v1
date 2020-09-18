@@ -47,7 +47,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest:networking_agents');
+        $this->middleware('guest:networking_agent');
     }
 
     /**
