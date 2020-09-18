@@ -39,16 +39,7 @@ return [
 
         'web' => [
             'driver' => 'session',
-            'provider' => ['users',
-                          'buyers',
-                          'admins',
-                          'manufacturers',
-                          'fast_food_groceries',
-                          'networking_agents',
-                          'professionals',
-                          'sellers',
-                          'shoppers',
-                        ],
+            'provider' => 'users',
         ],
 
         'admin' => [

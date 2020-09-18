@@ -51,9 +51,7 @@
             </div>
             <div class="form-group ">
                 <label for="service_description " style="font-size: 16px; color: #fff; font-weight: 500; ">Service Description</label><br>
-                <textarea class="form-control" id="service_description" name="service_description" rows="5" placeholder="Description of your services">
-                    {{$professional->service_description}}
-                </textarea>
+                <textarea class="form-control" id="service_description" name="service_description" rows="5" placeholder="Description of your services">{{$professional->service_description}}</textarea>
             </div>
             <div class="form-group mt-4 mb-4 text-center">
                 <button class="btn" style="border: 1px solid white; width: 150px; background-color:#AF2E1D; border-radius: 20px; color: white;">SAVE</button>
