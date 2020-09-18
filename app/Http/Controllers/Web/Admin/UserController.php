@@ -67,6 +67,16 @@ class UserController extends Controller
             'password'     => 'required|confirmed|string|min:6',
         ]);
 
+        if ($request->hasFile('avatar')) {
+            $imgName = time() . '.' . $request->avatar->getClientOriginalExtension();
+            try {
+                $request->file('avatar')->storeAs('/assets/'.($request->account_type === "sub_admin" ? "admin" : $request->account_type) .'/avatar', $imgName, 'public');
+                $imgUrl = $imgName;
+            } catch (\Exception $e) {
+                return $this->send_response(false, $e, 400, 'Problem updating profile');
+            }
+            $request->merge(['avatar',$imgUrl]);
+        }
 
         switch ($request->account_type) {
             case ('buyer'):
@@ -114,6 +124,7 @@ class UserController extends Controller
 //                     return ShopperHelper::store($request);
 
         }
+
         if ($user) {
             return $this->send_response(true, $user, 200);
         } else {
@@ -165,6 +176,7 @@ class UserController extends Controller
 
             case ('sub_admins'):
                 $subadmins = Admin::where('role','sub_admin')->get();
+                // dd($subadmins);
                 return view('dashboard.admin.all_subadmins',compact(['subadmins']));
 
         }
