@@ -21,6 +21,10 @@
                                 class="badge badge-primary badge-pill pull-right">{{ substr($subadmin->full_name, 0, 3) . $subadmin->id }}</span>
                         </li>
                         <li class="list-group-item" style="font-size: 16px;">
+                            Full Name
+                            <span class="badge badge-primary badge-pill pull-right">{{ $subadmin->full_name }}</span>
+                        </li>
+                        <li class="list-group-item" style="font-size: 16px;">
                             Location
                             <span class="badge badge-primary badge-pill pull-right">{{ $subadmin->address }}</span>
                         </li>
